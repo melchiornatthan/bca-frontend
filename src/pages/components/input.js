@@ -15,7 +15,7 @@ function InputWithLabel({ label, placeholder, value, onChange, id }) {
         <div className="form-group py-1">
             <label className='py-1'>{label}</label>
             <input
-                type="text"
+                type="text" 
                 className="form-control"
                 placeholder={placeholder}
                 id={id}

@@ -3,12 +3,12 @@ import React from 'react';
 
 function VsatSelect({ value, onChange }) {
   return (
-    <select
+    <select 
       className="form-control" // Apply Bootstrap form-control class
       value={value}
       onChange={onChange}
     >
-      <option value="VSAT">VSAT</option>
+      <option style={{'font-family': 'Montserrat'}} value="VSAT">VSAT</option>
     </select>
   );
 }

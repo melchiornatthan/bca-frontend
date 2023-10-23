@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
-import InputWithLabel from "./components/input";
-import CustomButton from "./components/button";
+import { ToastContainer, toast } from 'react-toastify';
+import InputWithLabel from "../components/input";
+import MemoApp from "../assets/app-logo.png";
+import CustomButton from "../components/button";
 
 function Login() {
   // State variables
@@ -33,20 +34,22 @@ function Login() {
       .then((response) => {
         if (response.data.message === "User logged in successfully") {
           // Redirect to the main page upon successful login
-          window.location.href = "/main";
+          toast.success('Login successful');
+          window.location.href = '/installationrequest';
         }
       })
       .catch((error) => {
         // Handle any errors
+        toast.error('Login failed');
         console.error('Login error:', error);
       });
   };
 
   return (
-    <div className="container py-5">
-      <div className="row w-75 mx-auto">
-        <div className="col-md text center my-auto">
-          <h1>Memo App</h1>
+    <div className="container-fluid">
+      <div className="row w-75 mx-auto mt-5">
+        <div className="col-md text center">
+          <img src={MemoApp} alt="Logo" style={{ height: '250px' }} />
         </div>
         <div className="col-md">
           <form onSubmit={handleSubmit}>
@@ -74,6 +77,7 @@ function Login() {
           </form>
         </div>
       </div>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>
   );
 }

@@ -12,7 +12,7 @@ import React from 'react';
 const SelectLocation = ({ options, label, value, onChange }) => {
   return (
     <div className="form-group py-1">
-      <label htmlFor={label}>{label}</label>
+      <label htmlFor={label} style={{'font-family': 'Montserrat'}}>{label}</label>
       <select
         className="form-control"
         id={label}
@@ -20,7 +20,7 @@ const SelectLocation = ({ options, label, value, onChange }) => {
         onChange={onChange}
       >
         {options.map((option) => (
-          <option key={option.id} value={option.location}>
+          <option style={{'font-family': 'Montserrat'}} key={option.id} value={option.location}>
             {option.location}
           </option>
         ))}
