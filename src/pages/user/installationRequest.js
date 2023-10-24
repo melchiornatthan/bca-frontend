@@ -5,9 +5,9 @@ import bcaLogo from '../assets/white-bca.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomButton from '../components/button';
-import SelectLocation from '../components/locations';
 import InputWithLabel from '../components/input';
 import VsatSelect from '../components/communication';
+import SelectLocation from '../components/locations';
 
 function InstallationReq() {
   // State variables
@@ -20,18 +20,20 @@ function InstallationReq() {
   const [batchId, setBatchId] = useState();
   const [batchData, setBatchData] = useState([]);
   const [submittedRequests, setSubmittedRequests] = useState([]);
+  const [isHoveredFirst, setIsHoveredFirst] = useState(false);
+  const [isHoveredSecond, setIsHoveredSecond] = useState(false);
 
   // Batch ID generator
   async function generateBatchId() {
     await axios.get('http://localhost:3333/bca-app/getBatchId')
-    .then((response) => {
-      const currentBatchId = parseInt(response.data.batchid, 10);
-      const newBatchId = currentBatchId + 1;
-      setBatchId(newBatchId);
-    })
-    .catch((error) => {
-      console.error('Error fetching location data:', error);
-    });
+      .then((response) => {
+        const currentBatchId = parseInt(response.data.batchid, 10);
+        const newBatchId = currentBatchId + 1;
+        setBatchId(newBatchId);
+      })
+      .catch((error) => {
+        console.error('Error fetching location data:', error);
+      });
   }
 
   // Reusable input change handler
@@ -85,7 +87,7 @@ function InstallationReq() {
     if (batchData.length === 0) {
       return; // No data to submit
     }
-  
+
     try {
       setBatchId(generateBatchId());
       let date = new Date();
@@ -118,98 +120,121 @@ function InstallationReq() {
         <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
       </nav>
       <div className="container mt-5">
-        <div className="text-center" style={{ fontFamily: 'Montserrat' }}>
-          <h1>Installation Request</h1>
+        <div className="text-center pb-5" style={{ fontFamily: 'Montserrat' }}>
+          <h1 style={{ color: '#219C90', fontWeight: 'bold' }}>Installation Request</h1>
         </div>
-        <div className="row py-5 w-75 mx-auto">
-          <div className="col-md">
-            <div className="form-group">
-              <InputWithLabel
-                label="Location"
-                value={location}
-                name="location"
-                placeholder="Enter the location"
-                onChange={(e) => handleInputChange(e, setLocation)}
-              />
-              <InputWithLabel
-                label="Address"
-                value={address}
-                name="address"
-                placeholder="Enter the address"
-                onChange={(e) => handleInputChange(e, setAddress)}
-              />
-            </div>
-            <div>
-              <SelectLocation
-                options={data}
-                label="Select the Area"
-                value={area}
-                onChange={(e) => handleInputChange(e, setArea)}
-              />
-            </div>
-          </div>
-          <div className="col-md">
-            <div className="form-group">
-              <InputWithLabel
-                label="Branch PIC"
-                value={pic}
-                name="pic"
-                placeholder="Enter the Branch PIC"
-                onChange={(e) => handleInputChange(e, setPic)}
-              />
-              <div className="py-1">
-                <label htmlFor="communication" style={{ fontFamily: 'Montserrat' }} className="py-1">Communication</label>
-                <VsatSelect
-                  value={communication}
-                  onChange={(e) => handleInputChange(e, setCommunication)}
+        <div
+          style={{
+            border: '1px solid #219C90',
+            borderRadius: '33px',
+            padding: '20px',
+            boxShadow: isHoveredFirst ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
+            transition: 'box-shadow 0.3s',
+          }}
+          onMouseEnter={() => setIsHoveredFirst(true)}
+          onMouseLeave={() => setIsHoveredFirst(false)}
+        >
+          <div className="row py-5 w-75 mx-auto">
+            <div className="col-md">
+              <div className="form-group">
+                <InputWithLabel
+                  label="Location"
+                  value={location}
+                  name="location"
+                  placeholder="Enter the location"
+                  onChange={(e) => handleInputChange(e, setLocation)}
+                />
+                <InputWithLabel
+                  label="Address"
+                  value={address}
+                  name="address"
+                  placeholder="Enter the address"
+                  onChange={(e) => handleInputChange(e, setAddress)}
                 />
               </div>
-              <div className="row py-4 mx-auto text-center">
-                <div className="col-md">
-                  <CustomButton
-                    text="Submit"
-                    color="primary"
-                    onClick={handleSubmit}
+              <div>
+                <SelectLocation
+                  options={data}
+                  label="Select the Area"
+                  value={area}
+                  onChange={(e) => handleInputChange(e, setArea)}
+                />
+              </div>
+            </div>
+            <div className="col-md">
+              <div className="form-group">
+                <InputWithLabel
+                  label="Branch PIC"
+                  value={pic}
+                  name="pic"
+                  placeholder="Enter the Branch PIC"
+                  onChange={(e) => handleInputChange(e, setPic)}
+                />
+                <div className="py-1">
+                  <label htmlFor="communication" style={{ fontFamily: 'Montserrat' }} className="py-1">Communication</label>
+                  <VsatSelect
+                    value={communication}
+                    onChange={(e) => handleInputChange(e, setCommunication)}
                   />
+                </div>
+                <div className="row py-4 mx-auto text-center">
+                  <div className="col-md">
+                    <CustomButton
+                      text="Submit"
+                      color="primary"
+                      onClick={handleSubmit}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         {submittedRequests.length > 0 && (
-          <div className="row py-4 mx-auto">
-            <div className="col-md">
-              <h2>Submitted Requests:</h2>
-              <table className="table">
-                <thead>
-                  <tr>
-                    
-                    <th>Location</th>
-                    <th>Address</th>
-                    <th>Branch PIC</th>
-                    <th>Area</th>
-                    <th>Communication</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {submittedRequests.map((request, index) => (
-                    <tr key={index}>
-                     
-                      <td>{request.location}</td>
-                      <td>{request.address}</td>
-                      <td>{request.branch_pic}</td>
-                      <td>{request.area}</td>
-                      <td>{request.communication}</td>
+          <div
+            className="mt-5"
+            style={{
+              border: '1px solid #219C90',
+              borderRadius: '33px',
+              padding: '20px',
+              boxShadow: isHoveredSecond ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
+              transition: 'box-shadow 0.3s',
+            }}
+            onMouseEnter={() => setIsHoveredSecond(true)}
+            onMouseLeave={() => setIsHoveredSecond(false)}
+          >
+            <div className="row py-4 mx-auto">
+              <div className="col-md text-center">
+                <h2>Submitted Requests</h2>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Location</th>
+                      <th>Address</th>
+                      <th>Branch PIC</th>
+                      <th>Area</th>
+                      <th>Communication</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-              <div className='text-center mx-auto'>
-              <CustomButton
-                text="Submit Batch"
-                color="primary"
-                onClick={() => submitBatchData()}
-              />
+                  </thead>
+                  <tbody>
+                    {submittedRequests.map((request, index) => (
+                      <tr key={index}>
+                        <td>{request.location}</td>
+                        <td>{request.address}</td>
+                        <td>{request.branch_pic}</td>
+                        <td>{request.area}</td>
+                        <td>{request.communication}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="text-center mx-auto">
+                  <CustomButton
+                    text="Submit Batch"
+                    color="primary"
+                    onClick={() => submitBatchData()}
+                  />
+                </div>
               </div>
             </div>
           </div>

@@ -34,6 +34,26 @@ function AdminBatchDetails() {
                 console.error('Error fetching location data:', error);
             });
     };
+    
+
+    const updateRequestStatus = async (id) => {
+        // Display a confirmation dialog
+        const confirmed = window.confirm('Are you sure you want to approve this request?');
+        
+        if (confirmed) {
+            // User clicked "OK" in the confirmation dialog, proceed with the request
+            await axios.put(`http://localhost:3333/bca-app/update-installations/${id}`)
+                .then((response) => {
+                    console.log(response);
+                    // After updating the status, fetch the data again to update the table
+                    getInstallationData();
+                })
+                .catch((error) => {
+                    console.error('Error updating installation data:', error);
+                });
+        }
+    };
+    
 
     return (
         <div>
@@ -42,7 +62,7 @@ function AdminBatchDetails() {
                 <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
             </nav>
             <div className='py-5 mx-auto text-center'>
-                <AdminInstallationDetails installationData={data} />
+                <AdminInstallationDetails installationData={data}  updateStatus={updateRequestStatus} />
             </div>
 
         </div>

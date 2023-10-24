@@ -1,5 +1,4 @@
 import React from 'react';
-
 import axios from 'axios';
 
 function AdminBatchTable({ batchdata }) {
@@ -9,18 +8,28 @@ function AdminBatchTable({ batchdata }) {
   };
 
   function formatCustomDate(dateString) {
-  const options = {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  };
-  return new Date(dateString).toLocaleString(undefined, options);
-}
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    };
+    return new Date(dateString).toLocaleString(undefined, options);
+  }
+
   const toDetails = (batchid) => {
-        window.location.href = '/admin/installationDetails?batchid='+batchid+'';
-     
+    window.location.href = '/admin/installationDetails?batchid=' + batchid + '';
+  };
+
+  const cellStyle = {
+    fontFamily: 'Montserrat',
+    fontWeight: 'bold', // Make the text bold by default
+  };
+
+  const nonBoldCellStyle = {
+    fontFamily: 'Montserrat',
+    fontWeight: 'normal', // Make the text not bold
   };
 
   return (
@@ -30,20 +39,25 @@ function AdminBatchTable({ batchdata }) {
         <table className="table mt-3">
           <thead>
             <tr>
-              <th style={{ fontFamily: 'Montserrat' }}>Requested at</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Request ID</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Status</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Details</th>
+              <th style={nonBoldCellStyle}>Requested at</th>
+              <th style={nonBoldCellStyle}>Request ID</th>
+              <th style={cellStyle}>Status</th>
+              <th style={cellStyle}>Details</th>
             </tr>
           </thead>
           <tbody>
             {batchdata.map((entry, index) => (
               <tr key={index}>
-                <td style={{ fontFamily: 'Montserrat' }}>{formatCustomDate(entry.createdAt)}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.batchid}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.status}</td>
+                <td style={nonBoldCellStyle}>{formatCustomDate(entry.createdAt)}</td>
+                <td style={nonBoldCellStyle}>{entry.batchid}</td>
+                <td style={{
+                  ...cellStyle,
+                  color: entry.status === 'pending' ? '#FFA500' : (entry.status === 'approved' ? 'green' : 'black')
+                }}>
+                  {entry.status}
+                </td>
                 <td>
-                      <button className="btn btn-primary" onClick={() => toDetails(entry.batchid)}>Details</button>
+                  <button className="btn btn-primary" onClick={() => toDetails(entry.batchid)}>Details</button>
                 </td>
               </tr>
             ))}

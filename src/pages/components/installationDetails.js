@@ -1,16 +1,26 @@
-import React from 'react';
-
-
+import React, { useState } from 'react';
 
 function ClientInstallationDetails({ installationData }) {
   const tableStyle = {
     maxHeight: '600px',
     overflowY: 'auto',
   };
+  const [isHoveredFirst, setIsHoveredFirst] = useState(false);
 
   return (
-    <div className='text-center w-75 mx-auto'>
-      <h1 style={{ fontFamily: 'Montserrat' }}>Batch Requests</h1>
+    <div
+      style={{
+        border: '1px solid #219C90',
+        borderRadius: '33px',
+        padding: '20px',
+        boxShadow: isHoveredFirst ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
+        transition: 'box-shadow 0.3s',
+      }}
+      className='text-center w-75 mx-auto px-5'
+      onMouseEnter={() => setIsHoveredFirst(true)}
+      onMouseLeave={() => setIsHoveredFirst(false)}
+    >
+      <h1 style={{ fontFamily: 'Montserrat', color: '#219C90', fontWeight: 'bold' }}>Batch Requests</h1>
       <div style={tableStyle}>
         <table className="table mt-3">
           <thead>
@@ -34,7 +44,13 @@ function ClientInstallationDetails({ installationData }) {
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.area}</td>
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.communication}</td>
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.provider}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.status}</td>
+                <td style={{
+                  fontFamily: 'Montserrat',
+                  fontWeight: 'bold',
+                  color: entry.status === 'pending' ? '#FFA500' : entry.status === 'approved' ? 'green' : 'black'
+                }}>
+                  {entry.status}
+                </td>
               </tr>
             ))}
           </tbody>

@@ -9,6 +9,7 @@ import AdminInstallationReq from './pages/admin/adminInstallationReq';
 import BatchDetails from './pages/user/batchDetails';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import AdminBatchDetails from './pages/admin/adminBatchDetails';
+import InstallationOverride from './pages/admin/adminInstallationOverride';
 class App extends Component {
   render() {
     return (
@@ -22,6 +23,7 @@ class App extends Component {
           <Route exact path='/installationDetails' element={< BatchDetails />}></Route>
           <Route exact path='/admin/installationBatch' element={< AdminInstallationReq />}></Route>
           <Route exact path='/admin/installationDetails' element={< AdminBatchDetails />}></Route>
+          <Route exact path='/admin/installationOverride' element={< InstallationOverride />}></Route>
         </Routes>
         </div>
         

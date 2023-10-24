@@ -3,7 +3,7 @@ import axios from "axios";
 import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
 import { useState, useEffect } from "react";
-
+import React from 'react';
 function AdminInstallationReq() {
 
     const [installationData, setInstallationData] = useState([]);

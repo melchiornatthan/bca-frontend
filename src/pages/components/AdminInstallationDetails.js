@@ -1,12 +1,15 @@
 import React from 'react';
 
-
-
-function AdminInstallationDetails({ installationData }) {
+function AdminInstallationDetails({ installationData, updateStatus }) {
     const tableStyle = {
         maxHeight: '600px',
         overflowY: 'auto',
     };
+
+    const toDetails = (id) => {
+        window.location.href = '/admin/installationOverride?id='+id+'';
+     
+  };
 
     return (
         <div className='text-center w-75 mx-auto'>
@@ -22,7 +25,7 @@ function AdminInstallationDetails({ installationData }) {
                             <th style={{ fontFamily: 'Montserrat' }}>Communication</th>
                             <th style={{ fontFamily: 'Montserrat' }}>Provider</th>
                             <th style={{ fontFamily: 'Montserrat' }}>Status</th>
-                            <th style={{ fontFamily: 'Montserrat' }}>Approve or Override</th> 
+                            <th style={{ fontFamily: 'Montserrat' }}>Approve or Override</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,15 +39,20 @@ function AdminInstallationDetails({ installationData }) {
                                 <td style={{ fontFamily: 'Montserrat' }}>{entry.provider}</td>
                                 <td style={{ fontFamily: 'Montserrat' }}>{entry.status}</td>
                                 <td>
-                                <div className='row'>
-                                    <div className='col'>
-                                    <button className="btn btn-success">Apporove</button>
+                                    <div className='row'>
+                                        <div className='col'>
+                                            {entry.status !== 'approved' && (
+                                                <button className="btn btn-success" onClick={() => updateStatus(entry.id)}>
+                                                    Approve
+                                                </button>
+                                            )}
+                                        </div>
+                                        <div className='col'>
+                                            {entry.status !== 'approved' && (
+                                                <button className="btn btn-danger" onClick={() => toDetails(entry.id)}>Override</button>
+                                            )}
+                                        </div>
                                     </div>
-                                    <div className='col'>
-                                <button className="btn btn-danger">Override</button>
-                                </div>
-                                </div>
-                                
                                 </td>
                             </tr>
                         ))}
