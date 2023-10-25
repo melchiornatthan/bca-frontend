@@ -13,12 +13,8 @@ function ClientInstallationDetails({ installationData }) {
         border: '1px solid #219C90',
         borderRadius: '33px',
         padding: '20px',
-        boxShadow: isHoveredFirst ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
-        transition: 'box-shadow 0.3s',
       }}
       className='text-center w-75 mx-auto px-5'
-      onMouseEnter={() => setIsHoveredFirst(true)}
-      onMouseLeave={() => setIsHoveredFirst(false)}
     >
       <h1 style={{ fontFamily: 'Montserrat', color: '#219C90', fontWeight: 'bold' }}>Batch Requests</h1>
       <div style={tableStyle}>
