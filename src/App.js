@@ -12,6 +12,9 @@ import AdminBatchDetails from './pages/admin/adminBatchDetails';
 import InstallationOverride from './pages/admin/adminInstallationOverride';
 import Select from './pages/user/installationSelect';
 import RelocationReq from './pages/user/relocationReq';
+import AdminRelocationBatch from './pages/admin/adminRelocationBatch';
+import AdminRelocationDetails from './pages/admin/adminRelocationDetails';
+import AdminDismantleBatch from './pages/admin/adminDismantleBatch';
 class App extends Component {
   render() {
     return (
@@ -28,6 +31,9 @@ class App extends Component {
           <Route exact path='/admin/installationOverride' element={< InstallationOverride />}></Route>
           <Route exact path='/installationSelect' element={< Select />}></Route>
           <Route exact path='/relocationRequest' element={< RelocationReq />}></Route>
+          <Route exact path='/admin/relocationBatch' element={< AdminRelocationBatch />}></Route>
+          <Route exact path='/admin/relocationDetails' element={< AdminRelocationDetails />}></Route>
+          <Route exact path='/admin/dismantleBatch' element={< AdminDismantleBatch />}></Route>
         </Routes>
         </div>
         

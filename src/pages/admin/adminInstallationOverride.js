@@ -65,7 +65,7 @@ getProviderAlternatives();
     })
       .then((response) => {
         console.log(response);
-        window.location.href = '/admin/installationDetails?batchid=' + data.batchid + '';
+        window.location.href=`/admin/installationDetails?batchid=${data.batchid}`
       })
       .catch((error) => {
         console.error('Error fetching location data:', error);

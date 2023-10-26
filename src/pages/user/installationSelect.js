@@ -14,7 +14,7 @@ function InstallationSelect() {
     }, []);
     
     const getInstallationData = async () => {
-        await axios.get('http://localhost:3333/bca-app/installations'
+        await axios.get('http://localhost:3333/bca-app/filtered-installation'
         ).then((response) => {
             setInstallationData(response.data);
         })

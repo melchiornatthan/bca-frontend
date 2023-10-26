@@ -1,7 +1,9 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function SelectInstallation({ installationData }) {
+  const [pendingDismantleIds, setPendingDismantleIds] = useState([]); // State to track pending dismantle requests
+
   const tableStyle = {
     maxHeight: '600px',
     overflowY: 'auto',
@@ -11,10 +13,31 @@ function SelectInstallation({ installationData }) {
     window.location.href = '/relocationRequest?id=' + id + '';
   };
 
+  const deleteInstallation = async (id) => {
+    const confirmed = window.confirm('Are you sure you want to approve this request?');
+
+    if (confirmed) {
+      const body = {
+        installation_id: id,
+      };
+
+      try {
+        const dismantleReq = await axios.post(`http://localhost:3333/bca-app/dismantle-request`, body, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        });
+
+        // If the request is successful, add the id to the pendingDismantleIds array
+        setPendingDismantleIds((prevIds) => [...prevIds, id]);
+      } catch (error) {
+        console.error('Dismantle request failed', error);
+      }
+    }
+  };
+
   return (
-    <div
-      className='text-center mx-auto px-5'
-    >
+    <div className='text-center mx-auto px-5'>
       <div style={tableStyle}>
         <table className="table mt-3">
           <thead>
@@ -40,17 +63,22 @@ function SelectInstallation({ installationData }) {
                 <td>
                   <div className='row'>
                     <div className='col'>
+                      {entry.relocation_status ? (
+                        'Pending'
+                      ) : (
                         <button className="btn btn-warning" onClick={() => toRelocation(entry.id)}>
                           Relocate
                         </button>
-                      
+                      )}
                     </div>
                     <div className='col'>
-                     
-                        <button className="btn btn-danger">
+                      {entry.dismantle_status || pendingDismantleIds.includes(entry.id) ? (
+                        'Pending'
+                      ) : (
+                        <button className="btn btn-danger" onClick={() => deleteInstallation(entry.id)}>
                           Dismantle
                         </button>
-                      
+                      )}
                     </div>
                   </div>
                 </td>
