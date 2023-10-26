@@ -5,13 +5,11 @@ import { useState } from 'react';
 import BackLogo from '../assets/Back-Sign.svg';
 import bcaLogo from '../assets/white-bca.svg';
 import axios from 'axios';
-import CustomButton from '../components/button';
 import AdminInstallationDetails from '../components/AdminInstallationDetails';
 
 
 function AdminBatchDetails() {
     const [data, setData] = useState([]);
-    // const [batchId, setBatchId] = useState('200000001');
     const location = useLocation();
 
     // Parse the URL parameters and extract the 'data' parameter
@@ -20,12 +18,9 @@ function AdminBatchDetails() {
 
     useEffect(() => {
         getInstallationData();
-    }, []);
+    }, [batchid]);
 
     const getInstallationData = async () => {
-        const body = {
-            batchid: batchid
-        };
         await axios.get('http://localhost:3333/bca-app/getInstallationsbyBatchID/' + batchid + ''
         ).then((response) => {
             setData(response.data);
