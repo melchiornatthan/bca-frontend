@@ -17,6 +17,7 @@ import AdminRelocationDetails from './pages/admin/adminRelocationDetails';
 import AdminDismantleBatch from './pages/admin/adminDismantleBatch';
 import RelocationBatch from './pages/user/relocationBatch';
 import RelocationDetails from './pages/user/relocationDetails';
+import DismantleBatch from './pages/user/dismantleBatch';
 class App extends Component {
   render() {
     return (
@@ -27,6 +28,7 @@ class App extends Component {
           <Route exact path='/main' element={< Main />}></Route>
           <Route exact path='/installationRequest' element={< InstallationReq />}></Route>
           <Route exact path='/installationBatch' element={< InstallationBatch />}></Route>
+          <Route exact path='/dismantleBatch' element={< DismantleBatch />}></Route>
           <Route exact path='/relocationBatch' element={< RelocationBatch />}></Route>
           <Route exact path='/installationDetails' element={< BatchDetails />}></Route>
           <Route exact path='/relocationDetails' element={< RelocationDetails />}></Route>
