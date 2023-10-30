@@ -30,6 +30,9 @@ function AdminInstallationReq() {
                 <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
             </nav>
             <div className='py-5 mx-auto text-center'>
+            <h1 style={{ fontFamily: 'Montserrat', color: '#219C90', fontWeight: 'bold' }}>
+                    Installation Requests
+                </h1>
             <BatchTable batchdata={installationData} isAdmin={true} />
         </div>
       </div>
