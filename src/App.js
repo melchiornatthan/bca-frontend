@@ -3,7 +3,7 @@ import './App.css';
 import React, { Component } from 'react';
 import Login from './pages/user/login';
 import InstallationReq from './pages/user/installationRequest';
-import Invoice from './pages/user/installationBatch';
+import InstallationBatch from './pages/user/installationBatch';
 import Main from './pages/user/main';
 import AdminInstallationReq from './pages/admin/adminInstallationReq';
 import BatchDetails from './pages/user/installationDetails';
@@ -15,6 +15,8 @@ import RelocationReq from './pages/user/relocationRequest';
 import AdminRelocationBatch from './pages/admin/adminRelocationBatch';
 import AdminRelocationDetails from './pages/admin/adminRelocationDetails';
 import AdminDismantleBatch from './pages/admin/adminDismantleBatch';
+import RelocationBatch from './pages/user/relocationBatch';
+import RelocationDetails from './pages/user/relocationDetails';
 class App extends Component {
   render() {
     return (
@@ -24,8 +26,10 @@ class App extends Component {
           <Route exact path='/login' element={< Login />}></Route>
           <Route exact path='/main' element={< Main />}></Route>
           <Route exact path='/installationRequest' element={< InstallationReq />}></Route>
-          <Route exact path='/installationBatch' element={< Invoice />}></Route>
+          <Route exact path='/installationBatch' element={< InstallationBatch />}></Route>
+          <Route exact path='/relocationBatch' element={< RelocationBatch />}></Route>
           <Route exact path='/installationDetails' element={< BatchDetails />}></Route>
+          <Route exact path='/relocationDetails' element={< RelocationDetails />}></Route>
           <Route exact path='/admin/installationBatch' element={< AdminInstallationReq />}></Route>
           <Route exact path='/admin/installationDetails' element={< AdminBatchDetails />}></Route>
           <Route exact path='/admin/installationOverride' element={< InstallationOverride />}></Route>

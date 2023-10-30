@@ -3,22 +3,22 @@ import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import InstallationBatchTable from "../components/installationBatch";
+import RelocationBatchTable from "../components/relocationBatch";
 
 
-function InstallationBatch() {
+function RelocationBatch() {
 
-  const [installationData, setInstallationData] = useState([]);
+  const [relocationData, setRelocationData] = useState([]);
 
   useEffect(() => {
     getInstallationData();
   }, []);
 
   const getInstallationData = () => {
-    axios.get('http://localhost:3333/bca-app/getBatchInstallations')
+    axios.get('http://localhost:3333/bca-app/relocations')
       .then((response) => {
         console.log(response.data);
-        setInstallationData(response.data);
+        setRelocationData(response.data);
       })
       .catch((error) => {
         console.error('Error fetching location data:', error);
@@ -33,15 +33,15 @@ function InstallationBatch() {
       </nav>
       <div className="container my-5 text-center">
       <h1 style={{ fontFamily: 'Montserrat', color: '#219C90', fontWeight: 'bold' }}>
-        Installation Requests
+        Relocation Requests
       </h1>
       </div>
       <div className="mt-5">
-        <InstallationBatchTable batchdata={installationData} />
+        <RelocationBatchTable batchdata={relocationData} />
       </div>
 
     </div>
   );
 }
 
-export default InstallationBatch;
+export default RelocationBatch;

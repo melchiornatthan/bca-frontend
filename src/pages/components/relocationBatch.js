@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function InstallationBatchTable({ batchdata }) {
+function RelocationBatchTable({ batchdata }) {
   const [isHoveredFirst, setIsHoveredFirst] = useState(false);
   const tableStyle = {
     maxHeight: '600px',
@@ -18,8 +18,8 @@ function InstallationBatchTable({ batchdata }) {
     return new Date(dateString).toLocaleString(undefined, options);
   }
 
-  const toDetails = (batchid) => {
-    window.location.href = '/installationDetails?batchid=' + batchid + '';
+  const toDetails = (id) => {
+    window.location.href = '/relocationDetails?id=' + id + '';
   };
 
   return (
@@ -40,6 +40,8 @@ function InstallationBatchTable({ batchdata }) {
             <tr>
               <th>Requested at</th>
               <th>Request ID</th>
+              <th>Old Location</th>
+              <th>New Location</th>
               <th>Status</th>
               <th>Details</th>
             </tr>
@@ -48,7 +50,9 @@ function InstallationBatchTable({ batchdata }) {
             {batchdata.map((entry, index) => (
               <tr key={index}>
                 <td>{formatCustomDate(entry.createdAt)}</td>
-                <td>{entry.batchid}</td>
+                <td>{entry.id}</td>
+                <td>{entry.old_location}</td>
+                <td>{entry.new_location}</td>
                 <td style={{
                   color: entry.status === 'pending' ? '#FFA500' : entry.status === 'approved' ? 'green' : 'black',
                 }}>
@@ -56,7 +60,7 @@ function InstallationBatchTable({ batchdata }) {
                 </td>
                 <td>
                   {entry.status === 'approved' && (
-                    <button className="btn btn-primary" onClick={() => toDetails(entry.batchid)}>
+                    <button className="btn btn-primary" onClick={() => toDetails(entry.id)}>
                       Details
                     </button>
                   )}
@@ -70,4 +74,4 @@ function InstallationBatchTable({ batchdata }) {
   );
 }
 
-export default InstallationBatchTable;
+export default RelocationBatchTable;
