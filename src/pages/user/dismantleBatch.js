@@ -3,8 +3,7 @@ import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import DismantleBatchTable from "../components/dismantleBatch";
-
+import DismantleService from "../components/DismantleService";
 function DismantleBatch() {
 
   const [dismantleData, setDismantleData] = useState([]);
@@ -36,7 +35,7 @@ function DismantleBatch() {
       </h1>
       </div>
       <div className="mt-5">
-        <DismantleBatchTable batchdata={dismantleData} />
+        <DismantleService batchdata={dismantleData} isAdmin={false}  />
       </div>
 
     </div>

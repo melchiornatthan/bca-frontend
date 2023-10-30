@@ -5,7 +5,8 @@ import { useState } from 'react';
 import BackLogo from '../assets/Back-Sign.svg';
 import bcaLogo from '../assets/white-bca.svg';
 import axios from 'axios';
-import AdminDismantleTable from '../components/adminDismantleTable';
+
+import DismantleService from '../components/DismantleService';
 
 
 
@@ -36,8 +37,12 @@ function AdminDismantleBatch() {
                 <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
                 <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
             </nav>
+            
             <div className='py-5 mx-auto text-center'>
-               <AdminDismantleTable batchdata={data}/>
+                <h1 style={{ fontFamily: 'Montserrat', color: '#219C90', fontWeight: 'bold' }}>
+        Dismantle Requests
+      </h1>
+            <DismantleService batchdata={data} isAdmin={true} />
             </div>
            
         </div>

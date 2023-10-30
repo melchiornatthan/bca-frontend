@@ -43,11 +43,6 @@ function InstallationReqTable({ installationData }) {
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.area}</td>
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.communication}</td>
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.status}</td>
-                {/* <td>
-                  {entry.status === 'approved' && (
-                    <button className="btn btn-primary">Details</button>
-                  )}
-                </td> */}
               </tr>
             ))}
           </tbody>
