@@ -1,4 +1,4 @@
-import AdminBatchTable from "../components/adminInstallationBatch";
+import BatchTable from "../components/installationBatchService";
 import axios from "axios";
 import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
@@ -30,7 +30,7 @@ function AdminInstallationReq() {
                 <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
             </nav>
             <div className='py-5 mx-auto text-center'>
-        <AdminBatchTable batchdata={installationData}/>
+            <BatchTable batchdata={installationData} isAdmin={true} />
         </div>
       </div>
     );

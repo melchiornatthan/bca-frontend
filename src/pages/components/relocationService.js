@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-function InstallationBatchTable({ batchdata }) {
-  const [isHoveredFirst, setIsHoveredFirst] = useState(false);
+function RelocationBatchTable({ batchdata, isAdmin = false }) {
+  const [isHovered, setIsHovered] = useState(false);
   const tableStyle = {
     maxHeight: '600px',
     overflowY: 'auto',
@@ -18,20 +18,21 @@ function InstallationBatchTable({ batchdata }) {
     return new Date(dateString).toLocaleString(undefined, options);
   }
 
-  const toDetails = (batchid) => {
-    window.location.href = '/installationDetails?batchid=' + batchid + '';
+  const toDetails = (id) => {
+    const path = isAdmin ? '/admin/relocationDetails' : '/relocationDetails';
+    window.location.href = `${path}?id=${id}`;
   };
 
   return (
     <div
       style={{
         borderRadius: '17px',
-            padding: '20px',
-            boxShadow: isHoveredFirst ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
-            transition: 'box-shadow 0.5s',
+        padding: '20px',
+        boxShadow: isHovered ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
+        transition: 'box-shadow 0.5s',
       }}
-      onMouseEnter={() => setIsHoveredFirst(true)}
-      onMouseLeave={() => setIsHoveredFirst(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className='text-center w-75 mx-auto px-5'
     >
       <div style={tableStyle}>
@@ -40,6 +41,8 @@ function InstallationBatchTable({ batchdata }) {
             <tr>
               <th>Requested at</th>
               <th>Request ID</th>
+              <th>Old Location</th>
+              {isAdmin && <th>New Location</th>}
               <th>Status</th>
               <th>Details</th>
             </tr>
@@ -48,15 +51,17 @@ function InstallationBatchTable({ batchdata }) {
             {batchdata.map((entry, index) => (
               <tr key={index}>
                 <td>{formatCustomDate(entry.createdAt)}</td>
-                <td>{entry.batchid}</td>
+                <td>{entry.id}</td>
+                <td>{entry.old_location}</td>
+                {isAdmin && <td>{entry.new_location}</td>}
                 <td style={{
                   color: entry.status === 'pending' ? '#FFA500' : entry.status === 'approved' ? 'green' : 'black',
                 }}>
                   <strong>{entry.status}</strong>
                 </td>
                 <td>
-                  {entry.status === 'approved' && (
-                    <button className="btn btn-primary" onClick={() => toDetails(entry.batchid)}>
+                  {(entry.status === 'approved' || isAdmin) && (
+                    <button className="btn btn-primary" onClick={() => toDetails(entry.id)}>
                       Details
                     </button>
                   )}
@@ -70,4 +75,4 @@ function InstallationBatchTable({ batchdata }) {
   );
 }
 
-export default InstallationBatchTable;
+export default RelocationBatchTable;

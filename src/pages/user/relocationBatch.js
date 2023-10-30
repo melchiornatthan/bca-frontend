@@ -3,7 +3,7 @@ import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import RelocationBatchTable from "../components/relocationBatch";
+import RelocationBatchTable from "../components/relocationService";
 
 
 function RelocationBatch() {
@@ -37,7 +37,7 @@ function RelocationBatch() {
       </h1>
       </div>
       <div className="mt-5">
-        <RelocationBatchTable batchdata={relocationData} />
+      <RelocationBatchTable batchdata={relocationData} isAdmin={false} />
       </div>
 
     </div>

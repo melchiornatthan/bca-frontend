@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function DismantleService({ batchdata, isAdmin }) {
@@ -27,9 +27,7 @@ function DismantleService({ batchdata, isAdmin }) {
     return new Date(dateString).toLocaleString(undefined, options);
   }
 
-  const toDetails = (id) => {
-    window.location.href = `/dismantleDetails?id=${id}`;
-  };
+  
 
   const updateDismantle = async (id, installation_id) => {
     if (isAdmin) {

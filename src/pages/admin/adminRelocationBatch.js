@@ -1,11 +1,10 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import BackLogo from '../assets/Back-Sign.svg';
 import bcaLogo from '../assets/white-bca.svg';
 import axios from 'axios';
-import AdminRelocationBatchTable from '../components/adminRelocationTable';
+import RelocationBatchTable from '../components/relocationService';
 
 
 function AdminRelocationBatch() {
@@ -35,7 +34,7 @@ function AdminRelocationBatch() {
                 <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
             </nav>
             <div className='py-5 mx-auto text-center'>
-               <AdminRelocationBatchTable batchdata={data}/>
+            <RelocationBatchTable batchdata={data} isAdmin={true} />
             </div>
 
         </div>

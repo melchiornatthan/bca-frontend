@@ -3,7 +3,7 @@ import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import InstallationBatchTable from "../components/installationBatch";
+import BatchTable from "../components/installationBatchService";
 
 
 
@@ -37,7 +37,7 @@ function InstallationBatch() {
       </h1>
       </div>
       <div className="mt-5">
-        <InstallationBatchTable batchdata={installationData} />
+        <BatchTable batchdata={installationData} isAdmin={false} />
       </div>
 
     </div>

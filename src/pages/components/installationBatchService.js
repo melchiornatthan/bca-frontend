@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function RelocationBatchTable({ batchdata }) {
-  const [isHoveredFirst, setIsHoveredFirst] = useState(false);
+function BatchTable({ batchdata, isAdmin }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setData(batchdata);
+    }, [batchdata]);
+
   const tableStyle = {
     maxHeight: '600px',
     overflowY: 'auto',
@@ -18,20 +24,21 @@ function RelocationBatchTable({ batchdata }) {
     return new Date(dateString).toLocaleString(undefined, options);
   }
 
-  const toDetails = (id) => {
-    window.location.href = '/relocationDetails?id=' + id + '';
+  const toDetails = (batchid) => {
+    const url = isAdmin ? `/admin/installationDetails?batchid=${batchid}` : `/installationDetails?batchid=${batchid}`;
+    window.location.href = url;
   };
 
   return (
     <div
       style={{
         borderRadius: '17px',
-            padding: '20px',
-            boxShadow: isHoveredFirst ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
-            transition: 'box-shadow 0.5s',
+        padding: '20px',
+        boxShadow: isHovered ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
+        transition: 'box-shadow 0.5s',
       }}
-      onMouseEnter={() => setIsHoveredFirst(true)}
-      onMouseLeave={() => setIsHoveredFirst(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className='text-center w-75 mx-auto px-5'
     >
       <div style={tableStyle}>
@@ -40,27 +47,23 @@ function RelocationBatchTable({ batchdata }) {
             <tr>
               <th>Requested at</th>
               <th>Request ID</th>
-              <th>Old Location</th>
-              <th>New Location</th>
               <th>Status</th>
               <th>Details</th>
             </tr>
           </thead>
           <tbody>
-            {batchdata.map((entry, index) => (
+            {data.map((entry, index) => (
               <tr key={index}>
                 <td>{formatCustomDate(entry.createdAt)}</td>
-                <td>{entry.id}</td>
-                <td>{entry.old_location}</td>
-                <td>{entry.new_location}</td>
+                <td>{entry.batchid}</td>
                 <td style={{
                   color: entry.status === 'pending' ? '#FFA500' : entry.status === 'approved' ? 'green' : 'black',
                 }}>
                   <strong>{entry.status}</strong>
                 </td>
                 <td>
-                  {entry.status === 'approved' && (
-                    <button className="btn btn-primary" onClick={() => toDetails(entry.id)}>
+                  {(entry.status === 'approved' || isAdmin) && (
+                    <button className="btn btn-primary" onClick={() => toDetails(entry.batchid)}>
                       Details
                     </button>
                   )}
@@ -74,4 +77,4 @@ function RelocationBatchTable({ batchdata }) {
   );
 }
 
-export default RelocationBatchTable;
+export default BatchTable;
