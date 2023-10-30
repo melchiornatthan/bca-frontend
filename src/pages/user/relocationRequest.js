@@ -15,10 +15,10 @@ import CustomButton from "../components/button";
 
 function RelocationReq() {
     const location = useLocation();
-    const [area, setArea] = useState('');
+    const [area, setArea] = useState('Jakarta');
     const [newPic, setNewPic] = useState('');
     const [areas, setAreas] = useState([]);
-    const [areaId, setAreaId] = useState();
+    const [areaId, setAreaId] = useState(1);
     const [newCommunication, setNewCommunication] = useState('VSAT');
     const [data, setData] = useState({});
     const [newLocation, setNewLocation] = useState('');
@@ -54,9 +54,12 @@ function RelocationReq() {
                 console.error('Error fetching location data:', error);
             });
     };
+
     useEffect(() => {
         getAreaId();
     }, [area]);
+
+
     const getAreaId = async () => {
         await axios.get('http://localhost:3333/bca-app/locationByArea/' + area + '')
         .then((response) => {
@@ -82,18 +85,18 @@ function RelocationReq() {
             old_communication: data.communication,
             new_communication: newCommunication
         };
+        console.log(areaId)
         const response = await axios.post('http://localhost:3333/bca-app/relocation-request', requestData, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         }).then((res) => {
             toast.success('Request submitted successfully');
-            window.location.href = '/installationSelect';
         })
         .catch((error) => {
             console.error('Error fetching location data:', error);
         });
-        
+         window.location.href = '/installationSelect';
     };
     return (
         <div>

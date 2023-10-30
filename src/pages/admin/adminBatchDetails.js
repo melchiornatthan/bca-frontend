@@ -5,7 +5,7 @@ import { useState } from 'react';
 import BackLogo from '../assets/Back-Sign.svg';
 import bcaLogo from '../assets/white-bca.svg';
 import axios from 'axios';
-import AdminInstallationDetails from '../components/AdminInstallationDetails';
+import AdminInstallationDetails from '../components/adminInstallationTable';
 
 
 function AdminBatchDetails() {

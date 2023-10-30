@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function SelectInstallation({ installationData }) {
-  const [pendingDismantleIds, setPendingDismantleIds] = useState([]); // State to track pending dismantle requests
+  const [installations, setInstallations] = useState([]); // State to store installation data
 
   const tableStyle = {
     maxHeight: '600px',
     overflowY: 'auto',
   };
+
+  useEffect(() => {
+   setInstallations(installationData);
+  }, [installationData]);
 
   const toRelocation = (id) => {
     window.location.href = '/relocationRequest?id=' + id + '';
@@ -22,17 +26,19 @@ function SelectInstallation({ installationData }) {
       };
 
       try {
-        const dismantleReq = await axios.post(`http://localhost:3333/bca-app/dismantle-request`, body, {
+        await axios.post(`http://localhost:3333/bca-app/dismantle-request`, body, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
-
-        // If the request is successful, add the id to the pendingDismantleIds array
-        setPendingDismantleIds((prevIds) => [...prevIds, id]);
       } catch (error) {
         console.error('Dismantle request failed', error);
       }
+      setInstallations((installation) =>
+          installation.map((entry) =>
+            entry.id === id ? { ...entry, dismantle_status: true } : entry
+          )
+        );
     }
   };
 
@@ -52,7 +58,7 @@ function SelectInstallation({ installationData }) {
             </tr>
           </thead>
           <tbody>
-            {installationData.map((entry, index) => (
+            {installations.map((entry, index) => (
               <tr key={index}>
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.location}</td>
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.address}</td>
@@ -61,26 +67,24 @@ function SelectInstallation({ installationData }) {
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.communication}</td>
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.provider}</td>
                 <td>
-                  <div className='row'>
-                    <div className='col'>
-                      {entry.relocation_status ? (
-                        'Pending'
-                      ) : (
+                  {entry.relocation_status ? (
+                    'Relocation Pending'
+                  ) : entry.dismantle_status ? (
+                    'Dismantle Pending'
+                  ) : (
+                    <div className='row'>
+                      <div className='col'>
                         <button className="btn btn-warning" onClick={() => toRelocation(entry.id)}>
                           Relocate
                         </button>
-                      )}
-                    </div>
-                    <div className='col'>
-                      {entry.dismantle_status || pendingDismantleIds.includes(entry.id) ? (
-                        'Pending'
-                      ) : (
+                      </div>
+                      <div className='col'>
                         <button className="btn btn-danger" onClick={() => deleteInstallation(entry.id)}>
                           Dismantle
                         </button>
-                      )}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </td>
               </tr>
             ))}

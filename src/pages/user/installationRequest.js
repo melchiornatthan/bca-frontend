@@ -114,27 +114,27 @@ function InstallationReq() {
   };
 
   return (
-    <div>
+    <div >
       <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
         <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
         <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
       </nav>
-      <div className="container mt-5">
-        <div className="text-center pb-5" style={{ fontFamily: 'Montserrat' }}>
+      <div className="container-fluid">
+        <div className="text-center my-5" style={{ fontFamily: 'Montserrat' }}>
           <h1 style={{ color: '#219C90', fontWeight: 'bold' }}>Installation Request</h1>
         </div>
         <div
           style={{
-            border: '1px solid #219C90',
             borderRadius: '33px',
             padding: '20px',
             boxShadow: isHoveredFirst ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
             transition: 'box-shadow 0.3s',
           }}
+          className='w-75 mx-auto'
           onMouseEnter={() => setIsHoveredFirst(true)}
           onMouseLeave={() => setIsHoveredFirst(false)}
         >
-          <div className="row py-5 w-75 mx-auto">
+          <div className="row py-3 mx-auto">
             <div className="col-md">
               <div className="form-group">
                 <InputWithLabel
@@ -192,9 +192,8 @@ function InstallationReq() {
         </div>
         {submittedRequests.length > 0 && (
           <div
-            className="mt-5"
+            className="my-5 w-75 mx-auto"
             style={{
-              border: '1px solid #219C90',
               borderRadius: '33px',
               padding: '20px',
               boxShadow: isHoveredSecond ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',

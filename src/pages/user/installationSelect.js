@@ -17,6 +17,7 @@ function InstallationSelect() {
         await axios.get('http://localhost:3333/bca-app/filtered-installation'
         ).then((response) => {
             setInstallationData(response.data);
+            console.log(response.data);
         })
             .catch((error) => {
                 console.error('Error fetching location data:', error);

@@ -1,4 +1,4 @@
-import AdminBatchTable from "../components/adminBatchTable";
+import AdminBatchTable from "../components/adminInstallationBatch";
 import axios from "axios";
 import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";

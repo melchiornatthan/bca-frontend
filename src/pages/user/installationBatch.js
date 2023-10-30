@@ -3,7 +3,7 @@ import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import BatchTable from "../components/batchTable";
+import BatchTable from "../components/installationBatch";
 
 
 function Invoice() {
@@ -31,7 +31,12 @@ function Invoice() {
         <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
         <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
       </nav>
-      <div className="py-5">
+      <div className="container my-5 text-center">
+      <h1 style={{ fontFamily: 'Montserrat', color: '#219C90', fontWeight: 'bold' }}>
+        Installation Requests
+      </h1>
+      </div>
+      <div className="mt-5">
         <BatchTable batchdata={installationData} />
       </div>
 

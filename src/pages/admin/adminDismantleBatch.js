@@ -8,6 +8,7 @@ import axios from 'axios';
 import AdminDismantleTable from '../components/adminDismantleTable';
 
 
+
 function AdminDismantleBatch() {
     const [data, setData] = useState([]);
     
@@ -38,7 +39,7 @@ function AdminDismantleBatch() {
             <div className='py-5 mx-auto text-center'>
                <AdminDismantleTable batchdata={data}/>
             </div>
-
+           
         </div>
     );
 }

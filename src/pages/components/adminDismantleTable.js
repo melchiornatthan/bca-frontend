@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AdminDismantleTable({ batchdata }) {
+    const [data, setData] = React.useState([]);
+    useEffect(() => {
+        setData(batchdata);
+    }, [batchdata]);
+
     const tableStyle = {
         maxHeight: '600px',
         overflowY: 'auto',
@@ -35,11 +42,17 @@ function AdminDismantleTable({ batchdata }) {
                 }
             )
                 .then((response) => {
-                    window.location.href = '/admin/dismantleBatch';
+                    if (response.status === 200) {
+                        toast.success('Request update successful');
+                    }
                 })
                 .catch((error) => {
                     console.error('Error updating installation data:', error);
                 });
+                setData((installation) =>
+                    installation.map((entry) =>
+                    entry.id === id ? { ...entry, status: 'approved' } : entry
+                    ));
         }
     };
 
@@ -67,30 +80,29 @@ function AdminDismantleTable({ batchdata }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {batchdata.map((entry, index) => (
-                            <tr key={index}>
-                                <td style={nonBoldCellStyle}>{formatCustomDate(entry.createdAt)}</td>
-                                <td style={nonBoldCellStyle}>{entry.installation.location}</td>
-                                <td style={{
-                                    ...cellStyle,
-                                    color: entry.status === 'pending' ? '#FFA500' : (entry.status === 'approved' ? 'green' : 'black')
-                                }}>
-                                    {entry.status}
-                                </td>
-                                <td>
-                                    {entry.relocation_status ? (
-                                        'Pending'
-                                    ) : (
-                                        <button className="btn btn-danger" onClick={() => updateDismantle(entry.id, entry.installation_id)}>
-                                            Dismantle
-                                        </button>
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
+                    {data.map((entry, index) => (
+                        <tr key={index}>
+                            <td style={nonBoldCellStyle}>{formatCustomDate(entry.createdAt)}</td>
+                            <td style={nonBoldCellStyle}>{entry.installation.location}</td>
+                            <td style={{
+                                ...cellStyle,
+                                color: entry.status === 'pending' ? '#FFA500' : (entry.status === 'approved' ? 'green' : 'black')
+                            }}>
+                                {entry.status}
+                            </td>
+                            <td>
+                                {entry.status !== 'approved' && !entry.relocation_status && (
+                                    <button className="btn btn-danger" onClick={() => updateDismantle(entry.id, entry.installation_id)}>
+                                        Dismantle
+                                    </button>
+                                )}
+                            </td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>
+            <ToastContainer position="top-right" autoClose={3000} />
         </div>
     );
 }

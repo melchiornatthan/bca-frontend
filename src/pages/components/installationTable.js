@@ -9,14 +9,9 @@ function ClientInstallationDetails({ installationData }) {
 
   return (
     <div
-      style={{
-        border: '1px solid #219C90',
-        borderRadius: '33px',
-        padding: '20px',
-      }}
-      className='text-center w-75 mx-auto px-5'
+      className='text-center px-5 mx-auto'
     >
-      <h1 style={{ fontFamily: 'Montserrat', color: '#219C90', fontWeight: 'bold' }}>Batch Requests</h1>
+      <h1 style={{ fontFamily: 'Montserrat', fontWeight: 'bold' }}>Batch Requests</h1>
       <div style={tableStyle}>
         <table className="table mt-3">
           <thead>
