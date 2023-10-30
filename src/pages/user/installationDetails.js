@@ -5,7 +5,8 @@ import { useState } from 'react';
 import BackLogo from '../assets/Back-Sign.svg';
 import bcaLogo from '../assets/white-bca.svg';
 import axios from 'axios';
-import InstallationDetails from '../components/installationTable';
+import InstallationService from '../components/installationService';
+
 
 
 function BatchDetails() {
@@ -41,7 +42,7 @@ function BatchDetails() {
         <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
       </nav>
       <div className='py-5 mx-auto text-center'>
-        <InstallationDetails installationData={data} />
+        <InstallationService installationData={data} />
       </div>
     </div>
   );
