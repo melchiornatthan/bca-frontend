@@ -17,7 +17,7 @@ import AdminRelocationDetails from './pages/admin/adminRelocationDetails';
 import AdminDismantleBatch from './pages/admin/adminDismantleBatch';
 import RelocationBatch from './pages/user/relocationBatch';
 import RelocationDetails from './pages/user/relocationDetails';
-import DismantleBatch from './pages/user/dismantleBatch';
+import DismantleBatch from './pages/user/dismantleBatch'
 class App extends Component {
   render() {
     return (

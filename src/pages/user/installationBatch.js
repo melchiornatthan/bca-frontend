@@ -6,8 +6,8 @@ import { useState, useEffect } from "react";
 import InstallationBatchTable from "../components/installationBatch";
 
 
-function InstallationBatch() {
 
+function InstallationBatch() {
   const [installationData, setInstallationData] = useState([]);
 
   useEffect(() => {

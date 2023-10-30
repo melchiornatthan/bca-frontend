@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-function ClientInstallationDetails({ installationData }) {
+function InstallationDetails({ installationData }) {
   const tableStyle = {
     maxHeight: '600px',
     overflowY: 'auto',
   };
-  const [isHoveredFirst, setIsHoveredFirst] = useState(false);
+ 
 
   return (
     <div
@@ -51,4 +51,4 @@ function ClientInstallationDetails({ installationData }) {
   );
 }
 
-export default ClientInstallationDetails;
+export default InstallationDetails;
