@@ -33,7 +33,7 @@ function Login() {
       .then((response) => {
         if (response.data.message === "User logged in successfully") {
           toast.success('Login successful');
-          window.location.href = '/installationrequest';
+          window.location.href = '/main';
         }
       })
       .catch((error) => {

@@ -12,15 +12,14 @@ import RnDLogo from '../assets/rnd-logo.svg';
 function Main() {
 
   const [isHoveredFirst, setIsHoveredFirst] = useState(false);
-  const [isColHovered, setIsColHovered] = useState(false); // New state variable
   const [isHoveredSecond, setIsHoveredSecond] = useState(false);
-  const [isColTwoHovered, setColTwoHovered] = useState(false);
+
   const [isHoveredThird, setIsHoveredThird] = useState(false);
-  const [isColThreeHovered, setColThreeHovered] = useState(false);
+
   const [isHoveredFourth, setIsHoveredFourth] = useState(false);
-  const [isColFourHovered, setColFourHovered] = useState(false);
+
   const [isHoveredFifth, setIsHoveredFifth] = useState(false);
-  const [isColFiveHovered, setColFiveHovered] = useState(false);
+
   return (
     <div>
       <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
@@ -30,20 +29,29 @@ function Main() {
       <div className="container-fluid text-center" style={{
         height: '25vh',
       }}>
-        <div className='my-5'>
-          <h1 style={{ fontFamily: 'Montserrat', color: '#0060AF', fontWeight: 'bold' }}>
-            Welcome to BCA App
+        <div className='container-fluid mt-3'style={{
+        backgroundColor: '#0060AF',
+        borderRadius: '15px',
+        paddingTop: '10vh',
+          height: '25vh',
+      }} // Change background color on hover
+        >
+          <h1 style={{ fontFamily: 'Montserrat', color: '#FFFFFF', fontWeight: 'bold' }}>
+            Welcome to Memo Hub
           </h1>
         </div>
       </div>
       <div className="container-fluid text-center " style={{
         height: '85vh',
+        marginTop: '10vh',
+        marginBottom: '10vh',
+        
       }}>
         <div className="row w-75 mx-auto centered-row">
           <div className='col-5'>
             <div
               style={{
-                backgroundColor: isColHovered ? 'white' : 'transparent', // Change background color on hover
+                backgroundColor: isHoveredFirst ? 'white' : 'transparent', // Change background color on hover
                 borderRadius: '33px',
                 padding: '20px',
                 boxShadow: isHoveredFirst ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
@@ -52,11 +60,9 @@ function Main() {
               }}
               onMouseEnter={() => {
                 setIsHoveredFirst(true);
-                setIsColHovered(true); // Set hover state to true on mouse enter
               }}
               onMouseLeave={() => {
                 setIsHoveredFirst(false);
-                setIsColHovered(false); // Set hover state to false on mouse leave
               }}
               onClick={() => window.location.href = "/installationrequest"}
               className='d-flex align-items-center justify-content-center'>
@@ -74,7 +80,7 @@ function Main() {
           <div className='col-5'>
             <div
               style={{
-                backgroundColor: isColTwoHovered ? 'white' : 'transparent', // Change background color on hover
+                backgroundColor: isHoveredSecond ? 'white' : 'transparent', // Change background color on hover
                 borderRadius: '33px',
                 padding: '20px',
                 boxShadow: isHoveredSecond ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
@@ -83,11 +89,11 @@ function Main() {
               }}
               onMouseEnter={() => {
                 setIsHoveredSecond(true);
-                setColTwoHovered(true); // Set hover state to true on mouse enter
+
               }}
               onMouseLeave={() => {
                 setIsHoveredSecond(false);
-                setColTwoHovered(false); // Set hover state to false on mouse leave
+
               }}
               onClick={() => window.location.href = "/installationselect"}
               className='d-flex align-items-center justify-content-center'>
@@ -97,79 +103,122 @@ function Main() {
         </div>
       </div>
       <div className="container-fluid text-center" style={{
-        height: '30vh',
+        backgroundColor: '#0060AF', // Change background color on hover
+        
       }}>
-        <h2 style={{ fontFamily: 'Montserrat', color: '#0060AF', fontWeight: 'bold' }}>
+        <div className='py-5'>
+          <h2 style={{ fontFamily: 'Montserrat', color: '#FFFFFF', fontWeight: 'bold', fontSize: '7vh'}}>
             Requests History
           </h2>
+        </div>
+
         <div className="row mx-auto centered-row py-5">
-          <div className='col align-items-center justify-content-center'>
+          <div className='col-sm align-items-center justify-content-center'>
             <div
               style={{
-                backgroundColor: isColThreeHovered ? 'white' : 'transparent', // Change background color on hover
+                backgroundColor: isHoveredThird ? 'white' : 'transparent',
                 borderRadius: '33px',
                 padding: '20px',
                 boxShadow: isHoveredThird ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
-                transition: 'box-shadow 0.3s',
-                height: '300px',
+                transition: 'background-color 0.2s, box-shadow 0.2s',
+                height: '40vh',
+                position: 'relative', // Set the position to relative
               }}
               onMouseEnter={() => {
-                setColThreeHovered(true);
-                setIsHoveredThird(true) // Set hover state to true on mouse enter
+                setIsHoveredThird(true);
               }}
               onMouseLeave={() => {
-                setColThreeHovered(false);
-                setIsHoveredThird(false) // Set hover state to false on mouse leave
+                setIsHoveredThird(false);
               }}
               onClick={() => window.location.href = "/relocationbatch"}
               className='d-flex align-items-center justify-content-center'>
-              <img src={ClockOne} alt="Logo" style={{ height: '40px' }} />
+              <div className='row'>
+                <img src={ClockOne} alt="Logo" style={{ height: '5vh' }} />
+                <div style={{ height: '5vh' }}>
+                  <h3
+                    style={{
+                      marginTop: '5vh',
+                      visibility: isHoveredThird ? 'visible' : 'hidden', // Show text on hover
+                      opacity: isHoveredThird ? 1 : 0, // Set opacity on hover
+                      transition: 'visibility 0s, opacity 0.2s',
+                    }}
+                  >
+                    Relocation
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
-          <div className='col align-items-center justify-content-center'>
+          <div className='col-sm align-items-center justify-content-center'>
             <div
               style={{
-                backgroundColor: isColFourHovered ? 'white' : 'transparent', // Change background color on hover
+                backgroundColor: isHoveredFourth ? 'white' : 'transparent',
                 borderRadius: '33px',
                 padding: '20px',
                 boxShadow: isHoveredFourth ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
-                transition: 'box-shadow 0.3s',
-                height: '300px',
+                transition: 'background-color 0.2s, box-shadow 0.2s',
+                height: '40vh',
+                position: 'relative', // Set the position to relative
               }}
               onMouseEnter={() => {
                 setIsHoveredFourth(true);
-                setColFourHovered(true); // Set hover state to true on mouse enter
               }}
               onMouseLeave={() => {
                 setIsHoveredFourth(false);
-                setColFourHovered(false); // Set hover state to false on mouse leave
               }}
               onClick={() => window.location.href = "/dismantlebatch"}
               className='d-flex align-items-center justify-content-center'>
-              <img src={ClockTwo} alt="Logo" style={{ height: '40px' }} />
+              <div className='row'>
+                <img src={ClockTwo} alt="Logo" style={{ height: '5vh' }} />
+                <div style={{ height: '5vh' }}>
+                  <h3
+                    style={{
+                      marginTop: '5vh',
+                      visibility: isHoveredFourth ? 'visible' : 'hidden', // Show text on hover
+                      opacity: isHoveredFourth ? 1 : 0, // Set opacity on hover
+                      transition: 'visibility 0s, opacity 0.2s',
+                    }}
+                  >
+                    Dismantle
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
-          <div className='col align-items-center justify-content-center'>
+          <div className='col-sm align-items-center justify-content-center'>
             <div
               style={{
-                backgroundColor: isColFiveHovered ? 'white' : 'transparent', // Change background color on hover
+                backgroundColor: isHoveredFifth ? 'white' : 'transparent',
                 borderRadius: '33px',
                 padding: '20px',
                 boxShadow: isHoveredFifth ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
-                transition: 'box-shadow 0.3s',
-                height: '300px',
+                transition: 'background-color 0.2s, box-shadow 0.2s',
+                height: '40vh',
+                position: 'relative', // Set the position to relative
               }}
               onMouseEnter={() => {
                 setIsHoveredFifth(true);
-                setColFiveHovered(true); // Set hover state to true on mouse enter
               }}
               onMouseLeave={() => {
                 setIsHoveredFifth(false);
-                setColFiveHovered(false); // Set hover state to false on mouse leave
               }}
               onClick={() => window.location.href = "/installationbatch"}
               className='d-flex align-items-center justify-content-center'>
-              <img src={ClockThree} alt="Logo" style={{ height: '40px' }} />
+              <div className='row'>
+                <img src={ClockThree} alt="Logo" style={{ height: '5vh' }} />
+                <div style={{ height: '5vh' }}>
+                  <h3
+                    style={{
+                      marginTop: '5vh',
+                      visibility: isHoveredFifth ? 'visible' : 'hidden', // Show text on hover
+                      opacity: isHoveredFifth ? 1 : 0, // Set opacity on hover
+                      transition: 'visibility 0s, opacity 0.2s',
+                    }}
+                  >
+                    Installation
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
         </div>

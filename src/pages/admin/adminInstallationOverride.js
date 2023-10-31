@@ -9,9 +9,9 @@ import SelectProviders from "../components/providers";
 
 function InstallationOverride() {
   const location = useLocation();
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [provData, setProvData] = useState([]);
-  const [provider, setProvider] = useState();
+  const [provider, setProvider] = useState(1);
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get('id');
 
@@ -21,13 +21,11 @@ function InstallationOverride() {
 
   useEffect(() => {
     getInstallationById();
-    
+
   }, []);
 
   useEffect(() => {
-   
-getProviderAlternatives();
-    
+    getProviderAlternatives();
   }, [
     data
   ]);
