@@ -58,7 +58,7 @@ function DismantleService({ batchdata, isAdmin }) {
       style={{
         borderRadius: '17px',
         padding: '20px',
-        boxShadow: isHoveredFirst ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
+        boxShadow: isHoveredFirst ? '10px 10px 20px rgba(216, 63, 49, 0.3)' : 'none',
         transition: 'box-shadow 0.5s',
       }}
       onMouseEnter={() => setIsHoveredFirst(true)}

@@ -13,28 +13,28 @@ function Main() {
 
   const [isHoveredFirst, setIsHoveredFirst] = useState(false);
   const [isHoveredSecond, setIsHoveredSecond] = useState(false);
-
   const [isHoveredThird, setIsHoveredThird] = useState(false);
-
   const [isHoveredFourth, setIsHoveredFourth] = useState(false);
-
   const [isHoveredFifth, setIsHoveredFifth] = useState(false);
 
   return (
     <div>
       <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
-        <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
+        <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} onClick={() => {
+          localStorage.removeItem('isAuthorized')
+          window.location.href = "/login"
+        }} />
         <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
       </nav>
       <div className="container-fluid text-center" style={{
         height: '25vh',
       }}>
-        <div className='container-fluid mt-3'style={{
-        backgroundColor: '#0060AF',
-        borderRadius: '15px',
-        paddingTop: '10vh',
+        <div className='container-fluid mt-3' style={{
+          backgroundColor: '#0060AF',
+          borderRadius: '7px',
+          paddingTop: '10vh',
           height: '25vh',
-      }} // Change background color on hover
+        }} // Change background color on hover
         >
           <h1 style={{ fontFamily: 'Montserrat', color: '#FFFFFF', fontWeight: 'bold' }}>
             Welcome to Memo Hub
@@ -45,7 +45,7 @@ function Main() {
         height: '85vh',
         marginTop: '10vh',
         marginBottom: '10vh',
-        
+
       }}>
         <div className="row w-75 mx-auto centered-row">
           <div className='col-5'>
@@ -57,6 +57,7 @@ function Main() {
                 boxShadow: isHoveredFirst ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
                 transition: 'box-shadow 0.3s',
                 height: '300px',
+                border: '3px solid #219C90',
               }}
               onMouseEnter={() => {
                 setIsHoveredFirst(true);
@@ -83,9 +84,10 @@ function Main() {
                 backgroundColor: isHoveredSecond ? 'white' : 'transparent', // Change background color on hover
                 borderRadius: '33px',
                 padding: '20px',
-                boxShadow: isHoveredSecond ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
+                boxShadow: isHoveredSecond ? '10px 10px 20px rgba(233, 184, 36, 0.3)' : 'none',
                 transition: 'box-shadow 0.3s',
                 height: '300px',
+                border: '3px solid #E9B824',
               }}
               onMouseEnter={() => {
                 setIsHoveredSecond(true);
@@ -104,10 +106,10 @@ function Main() {
       </div>
       <div className="container-fluid text-center" style={{
         backgroundColor: '#0060AF', // Change background color on hover
-        
+
       }}>
         <div className='py-5'>
-          <h2 style={{ fontFamily: 'Montserrat', color: '#FFFFFF', fontWeight: 'bold', fontSize: '7vh'}}>
+          <h2 style={{ fontFamily: 'Montserrat', color: '#FFFFFF', fontWeight: 'bold', fontSize: '7vh' }}>
             Requests History
           </h2>
         </div>
@@ -122,6 +124,7 @@ function Main() {
                 boxShadow: isHoveredThird ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
                 transition: 'background-color 0.2s, box-shadow 0.2s',
                 height: '40vh',
+
                 position: 'relative', // Set the position to relative
               }}
               onMouseEnter={() => {

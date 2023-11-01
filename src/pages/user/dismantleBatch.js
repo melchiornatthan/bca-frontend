@@ -30,7 +30,7 @@ function DismantleBatch() {
         <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
       </nav>
       <div className="container my-5 text-center">
-      <h1 style={{ fontFamily: 'Montserrat', color: '#219C90', fontWeight: 'bold' }}>
+      <h1 style={{ fontFamily: 'Montserrat', color: '#D83F31', fontWeight: 'bold' }}>
         Dismantle Requests
       </h1>
       </div>

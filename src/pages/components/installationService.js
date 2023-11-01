@@ -50,6 +50,8 @@ function InstallationService({ installationData, isAdminView }) {
     }
   };
 
+
+
   return (
     <div className='text-center w-75 mx-auto'>
       <h1 style={{ fontFamily: 'Montserrat' }}>
