@@ -13,7 +13,7 @@ function BatchDetails() {
   const [data, setData] = useState([]);
   // const [batchId, setBatchId] = useState('200000001');
   const location = useLocation();
-
+  const [date, setDate] = useState(new Date());
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get('batchid'), 10);
@@ -36,7 +36,8 @@ function BatchDetails() {
   };
 
   const exportToJson = async () => {
-    const keysToExclude = ['relocation_status', 'dismantle_status','provider','price', 'provider_id', 'price_id', 'area_id', 'days'];
+    setDate(new Date());
+    const keysToExclude = ['relocation_status', 'dismantle_status','provider','price', 'provider_id', 'price_id', 'area_id', 'days','createdAt', 'updatedAt'];
     const headers = Object.keys(data[0]).filter(key => !keysToExclude.includes(key));
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Data');
@@ -44,10 +45,42 @@ function BatchDetails() {
       headers, // First row contains headers
       ...data.map(obj => headers.map(key => obj[key])),
     ];
+
+    worksheet.mergeCells('A1', 'H3');
+    worksheet.getCell('A1').value = 'PERMOHONAN INSTALASI ATM';
+    worksheet.getCell('A1').alignment = { horizontal: 'center', vertical: 'middle' };
+    worksheet.getCell('A1').font = { bold: true };
+
+    // Use the 'id-ID' locale option to display the date in Indonesian format
+    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZoneName: 'short', localeMatcher: 'best fit' };
+    const formattedDate = date.toLocaleDateString('id-ID', dateOptions);
+
+    worksheet.mergeCells('A4', 'B5');
+    worksheet.getCell('A4').value = `Tanggal Permohonan : ${formattedDate}`;
+    worksheet.getCell('A4').font = { bold: true };
+    worksheet.getCell('A4').alignment = { horizontal: 'left', vertical: 'middle' };
+
     arrayOfArrays.forEach((row) => {
-      worksheet.addRow(row);
+      const excelRow = worksheet.addRow(row);
+      excelRow.eachCell({ includeEmpty: true }, (cell) => {
+        cell.border = {
+          top: { style: 'thin' },
+          left: { style: 'thin' },
+          bottom: { style: 'thin' },
+          right: { style: 'thin' },
+        };
+      });
     });
+    
+
     // Generate a blob from the Excel workbook
+    worksheet.getColumn(2).width = 50;
+    worksheet.getColumn(3).width = 50;
+    worksheet.getColumn(4).width = 20;
+    worksheet.getColumn(5).width = 20;
+    worksheet.getColumn(7).width = 15;
+    worksheet.getColumn(8).width = 20;
+
     const blob = await workbook.xlsx.writeBuffer();
 
     // Create a blob URL for the Excel file
@@ -56,7 +89,7 @@ function BatchDetails() {
     // Create a download link
     const link = document.createElement('a');
     link.href = blobUrl;
-    link.download = 'data.xlsx';
+    link.download = 'ATM Memo Instalasi.xlsx';
     link.click();
 
     // Revoke the blob URL to release resources

@@ -17,7 +17,7 @@ function InstallationReq() {
   const [data, setData] = useState([]);
   const [area, setArea] = useState('Jakarta');
   const [communication, setCommunication] = useState('VSAT');
-  const [batchId, setBatchId] = useState();
+  const [batchId, setBatchId] = useState(200000000);
   const [batchData, setBatchData] = useState([]);
   const [submittedRequests, setSubmittedRequests] = useState([]);
   const [isHoveredFirst, setIsHoveredFirst] = useState(false);

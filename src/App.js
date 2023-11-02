@@ -18,6 +18,7 @@ import AdminDismantleBatch from './pages/admin/adminDismantleBatch';
 import RelocationBatch from './pages/user/relocationBatch';
 import RelocationDetails from './pages/user/relocationDetails';
 import DismantleBatch from './pages/user/dismantleBatch';
+import AdminMain from './pages/admin/adminMain';
 
 
 class App extends Component {
@@ -48,7 +49,7 @@ class App extends Component {
               // These routes are only accessible if isAdmin is true
               <> */}
                 <Route path='/admin/installationBatch' element={<AdminInstallationReq />} />
-              
+                <Route path='/admin/main' element={<AdminMain />} />
                 <Route path='/admin/installationDetails' element={<AdminBatchDetails />} />
                 <Route path='/admin/installationOverride' element={<InstallationOverride />} />
                 <Route path='/admin/relocationBatch' element={<AdminRelocationBatch />} />

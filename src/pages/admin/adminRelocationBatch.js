@@ -34,7 +34,7 @@ function AdminRelocationBatch() {
                 <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
             </nav>
             <div className='py-5 mx-auto text-center'>
-                <h1 style={{ fontFamily: 'Montserrat', color: '#219C90', fontWeight: 'bold' }}>
+                <h1 style={{ fontFamily: 'Montserrat', color: '#E9B824', fontWeight: 'bold' }}>
                     Relocation Requests
                 </h1>
                 <RelocationBatchTable batchdata={data} isAdmin={true} />
