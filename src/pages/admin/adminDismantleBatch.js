@@ -39,7 +39,7 @@ function AdminDismantleBatch() {
             </nav>
             
             <div className='py-5 mx-auto text-center'>
-                <h1 style={{ fontFamily: 'Montserrat', color: '#219C90', fontWeight: 'bold' }}>
+                <h1 style={{ fontFamily: 'Montserrat', color: '#D83F31', fontWeight: 'bold' }}>
         Dismantle Requests
       </h1>
             <DismantleService batchdata={data} isAdmin={true} />

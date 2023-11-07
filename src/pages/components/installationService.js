@@ -1,12 +1,20 @@
 import React from 'react';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 function InstallationService({ installationData, isAdminView }) {
   const [data, setData] = React.useState(installationData);
+  const [hasPending, setHasPending] = React.useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setData(installationData);
+    setHasPending(installationData.some(entry => entry.status === 'pending'));
   }, [installationData]);
+
+  useEffect(() => {
+    console.log(hasPending);
+  }, [hasPending]);
+
 
   const tableStyle = {
     maxHeight: '600px',
@@ -66,8 +74,12 @@ function InstallationService({ installationData, isAdminView }) {
               <th style={{ fontFamily: 'Montserrat' }}>Branch PIC</th>
               <th style={{ fontFamily: 'Montserrat' }}>Area</th>
               <th style={{ fontFamily: 'Montserrat' }}>Communication</th>
+              {(isAdminView || !hasPending ) && (
               <th style={{ fontFamily: 'Montserrat' }}>Provider</th>
+              )}
+              {(isAdminView || !hasPending ) && (
               <th style={{ fontFamily: 'Montserrat' }}>Status</th>
+              )}
               {isAdminView && (
                 <th style={{ fontFamily: 'Montserrat' }}>Approve or Override</th>
               )}
@@ -81,8 +93,12 @@ function InstallationService({ installationData, isAdminView }) {
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.branch_pic}</td>
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.area}</td>
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.communication}</td>
+                {(isAdminView || !hasPending ) && (
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.provider}</td>
+                )}
+                 {(isAdminView || !hasPending ) && (
                 <td style={{ fontFamily: 'Montserrat' }}>{entry.status}</td>
+                )}
                 {isAdminView && (
                   <td>
                     <div className='row'>

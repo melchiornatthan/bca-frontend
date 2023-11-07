@@ -70,6 +70,7 @@ function RelocationReq() {
         });
     };
     const submitRelocation = async () => {
+        console.log(data)
         const requestData = {
             installation_id: intId,
             old_location: data.location,
@@ -85,7 +86,7 @@ function RelocationReq() {
             old_communication: data.communication,
             new_communication: newCommunication
         };
-        console.log(areaId)
+        
         const response = await axios.post('http://localhost:3333/bca-app/relocation-request', requestData, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

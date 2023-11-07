@@ -14,6 +14,7 @@ function BatchDetails() {
   // const [batchId, setBatchId] = useState('200000001');
   const location = useLocation();
   const [date, setDate] = useState(new Date());
+  const [hasPending, setHasPending] = useState(false);
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get('batchid'), 10);
@@ -21,6 +22,10 @@ function BatchDetails() {
   useEffect(() => {
     getInstallationData();
   }, []);
+
+  useEffect(() => {
+    setHasPending(data.some(entry => entry.status === 'pending'));
+  }, [data]);
 
   const getInstallationData = async () => {
     const body = {
@@ -74,9 +79,11 @@ function BatchDetails() {
     
 
     // Generate a blob from the Excel workbook
+    worksheet.getColumn(1).alignment = { horizontal: 'center', vertical: 'middle' };
     worksheet.getColumn(2).width = 50;
-    worksheet.getColumn(3).width = 50;
-    worksheet.getColumn(4).width = 20;
+    worksheet.getColumn(3).width = 15;
+    worksheet.getColumn(3).alignment = { horizontal: 'center', vertical: 'middle' };
+    worksheet.getColumn(4).width = 50;
     worksheet.getColumn(5).width = 20;
     worksheet.getColumn(7).width = 15;
     worksheet.getColumn(8).width = 20;
@@ -105,7 +112,9 @@ function BatchDetails() {
       </nav>
       <div className='py-5 mx-auto text-center'>
         <InstallationService installationData={data} />
+        {!hasPending && (
         <button className="btn btn-primary"  onClick={() => exportToJson()}>Export to Excel</button>
+        )}
       </div>
     </div>
   );

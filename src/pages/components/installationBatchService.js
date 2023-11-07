@@ -62,11 +62,10 @@ function BatchTable({ batchdata, isAdmin }) {
                   <strong>{entry.status}</strong>
                 </td>
                 <td>
-                  {(entry.status === 'approved' || isAdmin) && (
+                  
                     <button className="btn btn-primary" onClick={() => toDetails(entry.batchid)}>
                       Details
                     </button>
-                  )}
                 </td>
               </tr>
             ))}

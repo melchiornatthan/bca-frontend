@@ -46,7 +46,7 @@ function Main() {
       <div className="container-fluid text-center" style={{
         height: '25vh',
       }}>
-        <div className='container w-75 mt-3' style={{
+        <div className='container mt-3' style={{
           backgroundColor: '#96B6C5',
           borderRadius: '20px',
           paddingTop: '10vh',
@@ -149,7 +149,7 @@ function Main() {
                             onMouseLeave={() => {
                                 setIsHoveredThird(false);
                             }}
-                            onClick={() => window.location.href = `/admin/relocationbatch`}
+                            onClick={() => window.location.href = `relocationbatch`}
                             className='d-flex align-items-center justify-content-center'>
                             <div className='row'>
                                 <img src={ClockOne} alt="Logo" style={{ height: '5vh' }} />
@@ -186,7 +186,7 @@ function Main() {
                             onMouseLeave={() => {
                                 setIsHoveredFourth(false);
                             }}
-                            onClick={() => window.location.href = "/admin/dismantlebatch"}
+                            onClick={() => window.location.href = "dismantlebatch"}
                             className='d-flex align-items-center justify-content-center'>
                             <div className='row'>
                                 <img src={ClockTwo} alt="Logo" style={{ height: '5vh' }} />
@@ -223,7 +223,7 @@ function Main() {
                             onMouseLeave={() => {
                                 setIsHoveredFifth(false);
                             }}
-                            onClick={() => window.location.href = "/admin/installationbatch"}
+                            onClick={() => window.location.href = "installationbatch"}
                             className='d-flex align-items-center justify-content-center'>
                             <div className='row'>
                                 <img src={ClockThree} alt="Logo" style={{ height: '5vh' }} />
