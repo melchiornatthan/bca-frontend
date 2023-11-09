@@ -186,7 +186,7 @@ function Main() {
                             onMouseLeave={() => {
                                 setIsHoveredFourth(false);
                             }}
-                            onClick={() => window.location.href = "dismantlebatch"}
+                            onClick={() => window.location.href = "dismantleHistory"}
                             className='d-flex align-items-center justify-content-center'>
                             <div className='row'>
                                 <img src={ClockTwo} alt="Logo" style={{ height: '5vh' }} />

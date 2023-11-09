@@ -22,6 +22,11 @@ import AdminLogin from './pages/admin/adminLogin';
 import RelocationReq from './pages/user/RelocationRequest';
 import AdminRelocationDetails from './pages/admin/adminRelocationDetails';
 import RelocationDetails from './pages/user/relocationDetails';
+import DismantleRequest from './pages/user/dismantleRequest';
+import DismantleHistory from './pages/user/dismantleHistory';
+import AdminDismantleHistory from './pages/admin/adminDismantleHistory';
+import DismantleDetails from './pages/user/dismantleDetails';
+import AdminDismantleDetails from './pages/admin/adminDismantleDetails';
 
 
 class App extends Component {
@@ -48,7 +53,9 @@ class App extends Component {
             <Route path='/installationSelect' element={<Select />} />
             <Route path='/relocationDetails' element={<RelocationDetails />} />
             <Route path='/relocationRequest' element={<RelocationReq />} />
-
+            <Route path='/dismantleRequest' element={<DismantleRequest />} />
+            <Route path='/dismantleHistory' element={<DismantleHistory />} />
+            <Route path='/dismantleDetails' element={<DismantleDetails />} />
             {/* {isAdmin && (
               // These routes are only accessible if isAdmin is true
               <> */}
@@ -60,6 +67,8 @@ class App extends Component {
                 <Route path='/admin/relocationHistory' element={<AdminRelocationHistory />} />
                 <Route path='/admin/relocationBatch' element={<AdminRelocationBatch />} />
                 <Route path='/admin/dismantleBatch' element={<AdminDismantleBatch />} />
+                <Route path='/admin/dismantleHistory' element={<AdminDismantleHistory />} />
+                <Route path='/admin/dismantleDetails' element={<AdminDismantleDetails />} />
                 <Route path='/admin/relocationDetails' element={<AdminRelocationDetails />} />
               {/* </> */}
             {/* )} */}

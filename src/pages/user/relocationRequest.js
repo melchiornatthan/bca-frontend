@@ -30,6 +30,7 @@ function RelocationReq() {
 
   const handleSelect = (id) => {
     fetchInstallationbyId(id);
+    generateBatchId();
   };
 
   async function generateBatchId() {
@@ -38,6 +39,7 @@ function RelocationReq() {
         const currentBatchId = parseInt(response.data.batchid, 10);
         const newBatchId = currentBatchId + 1;
         setBatchId(newBatchId);
+        console.log(batchId);
       })
       .catch((error) => {
         console.error('Error fetching location data:', error);

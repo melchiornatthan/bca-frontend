@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState } from 'react';
 
-function DismantleService({ batchdata, isAdmin }) {
-  const [isHoveredFirst, setIsHoveredFirst] = useState(false);
-  const [dismantleData, setDismantleData] = useState([]);
-
-    useEffect(() => {
-        setDismantleData(batchdata);
-    }, [batchdata]);
-
+function DismantleServiceTable({ batchdata, isAdmin = false }) {
+  const [isHovered, setIsHovered] = useState(false);
   const tableStyle = {
     maxHeight: '600px',
     overflowY: 'auto',
   };
+
+  
 
   function formatCustomDate(dateString) {
     const options = {
@@ -27,30 +20,9 @@ function DismantleService({ batchdata, isAdmin }) {
     return new Date(dateString).toLocaleString(undefined, options);
   }
 
-  
-
-  const updateDismantle = async (id, installation_id) => {
-    if (isAdmin) {
-      const confirmed = window.confirm('Are you sure you want to approve this request?');
-
-      if (confirmed) {
-        const body = {
-          id: id,
-          installation_id: installation_id,
-        };
-        const response = await axios.put('http://localhost:3333/bca-app/update-dismantle', body, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        if (response.status === 200) {
-          toast.success('Request update successful');
-        }
-        setDismantleData((dismantle) =>
-            dismantle.map((entry) => (entry.id === id ? { ...entry, status: 'approved' } : entry))
-            );
-      }
-    }
+  const toDetails = (batchid) => {
+    const path = isAdmin ? '/admin/dismantleBatch' : '/dismantleBatch';
+    window.location.href = `${path}?batchid=${batchid}`;
   };
 
   return (
@@ -58,44 +30,38 @@ function DismantleService({ batchdata, isAdmin }) {
       style={{
         borderRadius: '17px',
         padding: '20px',
-        boxShadow: isHoveredFirst ? '10px 10px 20px rgba(216, 63, 49, 0.3)' : 'none',
+        boxShadow: isHovered ? '10px 10px 20px rgba(233, 184, 36, 0.3)' : 'none',
         transition: 'box-shadow 0.5s',
       }}
-      onMouseEnter={() => setIsHoveredFirst(true)}
-      onMouseLeave={() => setIsHoveredFirst(false)}
-      className="text-center w-75 mx-auto px-5"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className='text-center w-75 mx-auto px-5'
     >
       <div style={tableStyle}>
         <table className="table">
           <thead>
             <tr>
               <th>Requested at</th>
-              <th>Request ID</th>
-              <th>Location</th>
+              <th>Batch ID</th>
               <th>Status</th>
-              {isAdmin && <th>Actions</th>}
+              <th>Details</th>
             </tr>
           </thead>
           <tbody>
-            {dismantleData.map((entry, index) => (
+            {batchdata.map((entry, index) => (
               <tr key={index}>
                 <td>{formatCustomDate(entry.createdAt)}</td>
-                <td>{entry.id}</td>
-                <td>{entry.location}</td>
+                <td>{entry.batchid}</td>
                 <td style={{
                   color: entry.status === 'pending' ? '#FFA500' : entry.status === 'approved' ? 'green' : 'black',
                 }}>
                   <strong>{entry.status}</strong>
                 </td>
-                {isAdmin && (
-                  <td>
-                    {entry.status !== 'approved' && !entry.relocation_status && (
-                      <button className="btn btn-danger" onClick={() => updateDismantle(entry.id, entry.installation_id)}>
-                        Dismantle
-                      </button>
-                    )}
-                  </td>
-                )}
+                <td>
+                    <button className="btn btn-primary" onClick={() => toDetails(entry.batchid)}>
+                      Details
+                    </button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -105,4 +71,4 @@ function DismantleService({ batchdata, isAdmin }) {
   );
 }
 
-export default DismantleService;
+export default DismantleServiceTable;

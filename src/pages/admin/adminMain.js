@@ -154,7 +154,7 @@ function AdminMain() {
                                         onMouseLeave={() => {
                                             setIsHoveredFourth(false);
                                         }}
-                                        onClick={() => window.location.href = "/admin/dismantlebatch"}
+                                        onClick={() => window.location.href = "/admin/dismantleHistory"}
                                         className='d-flex align-items-center justify-content-center'>
                                         <div className='row'>
                                             <img src={ClockTwo} alt="Logo" style={{ height: '5vh' }} />
