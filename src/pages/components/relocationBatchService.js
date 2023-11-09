@@ -44,7 +44,6 @@ function RelocationByBatchIdTable({ batchdata, isAdmin = false }) {
       className='text-center w-75 mx-auto px-5'
     >
       <div style={tableStyle}>
-      <h2>Submitted Requests</h2>
               <table className="table">
                 <thead>
                   <tr>

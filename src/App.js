@@ -11,15 +11,17 @@ import BatchDetails from './pages/user/installationDetails';
 import AdminBatchDetails from './pages/admin/adminBatchDetails';
 import InstallationOverride from './pages/admin/adminInstallationOverride';
 import Select from './pages/user/installationSelect';
+import AdminRelocationHistory from './pages/admin/adminRelocationHistory';
 import AdminRelocationBatch from './pages/admin/adminRelocationBatch';
-import AdminRelocationDetails from './pages/admin/adminRelocationDetails';
 import AdminDismantleBatch from './pages/admin/adminDismantleBatch';
+import RelocationHistory from './pages/user/relocationHistory';
 import RelocationBatch from './pages/user/relocationBatch';
-import RelocationDetails from './pages/user/relocationDetails';
 import DismantleBatch from './pages/user/dismantleBatch';
 import AdminMain from './pages/admin/adminMain';
 import AdminLogin from './pages/admin/adminLogin';
 import RelocationReq from './pages/user/RelocationRequest';
+import AdminRelocationDetails from './pages/admin/adminRelocationDetails';
+import RelocationDetails from './pages/user/relocationDetails';
 
 
 class App extends Component {
@@ -40,10 +42,11 @@ class App extends Component {
             <Route path='/installationRequest' element={<InstallationReq />} />
             <Route path='/installationBatch' element={<InstallationBatch />} />
             <Route path='/dismantleBatch' element={<DismantleBatch />} />
-            <Route path='/relocationBatch' element={<RelocationBatch />} />
+            <Route path='/relocationHistory' element={<RelocationHistory />} />
             <Route path='/installationDetails' element={<BatchDetails />} />
-            <Route path='/relocationDetails' element={<RelocationDetails />} />
+            <Route path='/relocationBatch' element={<RelocationBatch />} />
             <Route path='/installationSelect' element={<Select />} />
+            <Route path='/relocationDetails' element={<RelocationDetails />} />
             <Route path='/relocationRequest' element={<RelocationReq />} />
 
             {/* {isAdmin && (
@@ -54,9 +57,10 @@ class App extends Component {
                 <Route path='/admin/login' element={<AdminLogin />} />
                 <Route path='/admin/installationDetails' element={<AdminBatchDetails />} />
                 <Route path='/admin/installationOverride' element={<InstallationOverride />} />
+                <Route path='/admin/relocationHistory' element={<AdminRelocationHistory />} />
                 <Route path='/admin/relocationBatch' element={<AdminRelocationBatch />} />
-                <Route path='/admin/relocationDetails' element={<AdminRelocationDetails />} />
                 <Route path='/admin/dismantleBatch' element={<AdminDismantleBatch />} />
+                <Route path='/admin/relocationDetails' element={<AdminRelocationDetails />} />
               {/* </> */}
             {/* )} */}
           </Routes>

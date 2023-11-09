@@ -117,7 +117,7 @@ function AdminMain() {
                                         onMouseLeave={() => {
                                             setIsHoveredThird(false);
                                         }}
-                                        onClick={() => window.location.href = `/admin/relocationbatch`}
+                                        onClick={() => window.location.href = `/admin/relocationHistory`}
                                         className='d-flex align-items-center justify-content-center'>
                                         <div className='row'>
                                             <img src={ClockOne} alt="Logo" style={{ height: '5vh' }} />

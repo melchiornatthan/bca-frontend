@@ -149,7 +149,7 @@ function Main() {
                             onMouseLeave={() => {
                                 setIsHoveredThird(false);
                             }}
-                            onClick={() => window.location.href = `relocationbatch`}
+                            onClick={() => window.location.href = `relocationHistory`}
                             className='d-flex align-items-center justify-content-center'>
                             <div className='row'>
                                 <img src={ClockOne} alt="Logo" style={{ height: '5vh' }} />

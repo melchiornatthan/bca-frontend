@@ -1,28 +1,28 @@
 import React from 'react';
 import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
+import 'react-toastify/dist/ReactToastify.css';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import UneditableInputWithLabel from "../components/uneditableInput";
-import RelocationByBatchIdTable from '../components/relocationBatchService';
+import RelocationDetailService from '../components/relocationDetailsService';
 
 
 function RelocationDetails() {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
     const location = useLocation();
-    // Parse the URL parameters and extract the 'data' parameter
-    const searchParams = new URLSearchParams(location.search);
-    const batchid = parseInt(searchParams.get('batchid'), 10);
+     // Parse the URL parameters and extract the 'data' parameter
+     const searchParams = new URLSearchParams(location.search);
+     const int_id = parseInt(searchParams.get('id'), 10);
 
     useEffect(() => {
         getRelocationData();
         console.log(data);
-    }, [batchid]);
+    }, [int_id]);
 
     const getRelocationData = async () => {
-        await axios.get('http://localhost:3333/bca-app/getRelocationsbyBatchID/' + batchid + ''
+        await axios.get('http://localhost:3333/bca-app/relocations/' + int_id + ''
         ).then((response) => {
             setData(response.data);
             console.log(data);
@@ -31,7 +31,6 @@ function RelocationDetails() {
                 console.error('Error fetching location data:', error);
             });
     };
-
 
     return (
         <div>
@@ -42,7 +41,7 @@ function RelocationDetails() {
             <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' }}>
                 <h1>Relocation Request</h1>
             </div>
-           <RelocationByBatchIdTable batchdata={data} isAdmin={false} />
+           <RelocationDetailService batchdata={data} isAdmin={false} />
         </div>
     );
 }
