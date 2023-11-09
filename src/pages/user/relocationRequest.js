@@ -1,64 +1,63 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import InputWithLabel from '../components/input';
 import { useState } from 'react';
 import axios from 'axios';
-import UneditableInputWithLabel from "../components/uneditableInput";
-import InputWithLabel from "../components/input";
-import SelectLocation from "../components/locations";
-import VsatSelect from "../components/communication";
-import CustomButton from "../components/button";
+import InstallationSearchTable from '../components/searchInstallationTable';
+import UneditableInputWithLabel from '../components/uneditableInput';
+import SelectLocation from '../components/locations';
+import VsatSelect from '../components/communication';
+import CustomButton from '../components/button';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 function RelocationReq() {
-    const location = useLocation();
-    const [area, setArea] = useState('Jakarta');
-    const [newPic, setNewPic] = useState('');
-    const [areas, setAreas] = useState([]);
-    const [areaId, setAreaId] = useState(1);
-    const [newCommunication, setNewCommunication] = useState('VSAT');
-    const [data, setData] = useState({});
+    const [location, setLocation] = useState('');
+    const [data, setData] = useState([]);
+    const [selectedData, setSelectedData] = useState();
     const [newLocation, setNewLocation] = useState('');
     const [newAddress, setNewAddress] = useState('');
-    // Parse the URL parameters and extract the 'data' parameter
-    const searchParams = new URLSearchParams(location.search);
-    const intId = parseInt(searchParams.get('id'), 10);
-    const handleInputChange = (event, setStateFunction) => {
-        setStateFunction(event.target.value);
-    };
-    useEffect(() => {
-        fetchLocationData();
-        getInstallationData();
-    }, [intId]);
+    const [area, setArea] = useState('Jakarta');
+    const [newPic, setNewPic] = useState('');
+    const [newCommunication, setNewCommunication] = useState('VSAT');
+    const [areas, setAreas] = useState([]);
+    const [batchId, setBatchId] = useState(200000000);
+    const [areaId, setAreaId] = useState(1);
+    const [batchData, setBatchData] = useState([]);
+  const [submittedRequests, setSubmittedRequests] = useState([]);
+    const [isHoveredSecond, setIsHoveredSecond] = useState(false);
 
-    const fetchLocationData = () => {
-        axios.get('http://localhost:3333/bca-app/locations')
+    const handleSelect = (id) => {
+        fetchInstallationbyId(id);
+    };
+
+    async function generateBatchId() {
+        await axios.get('http://localhost:3333/bca-app/getRelocationBatchId')
           .then((response) => {
-            setAreas(response.data.list);
+            const currentBatchId = parseInt(response.data.batchid, 10);
+            const newBatchId = currentBatchId + 1;
+            setBatchId(newBatchId);
           })
           .catch((error) => {
             console.error('Error fetching location data:', error);
           });
-      };
+      }
 
-    const getInstallationData = async () => {
-        await axios.get('http://localhost:3333/bca-app/installationsById/' + intId + '')
-            .then((response) => {
-                console.log(response);
-                setData(response.data[0]);
-            })
-            .catch((error) => {
-                console.error('Error fetching location data:', error);
-            });
+    const handleInputChange = (event, setStateFunction) => {
+        setStateFunction(event.target.value);
     };
+    useEffect(() => {
+        fetchInstallationData();
+    }, [location]);
+
+    useEffect(() => {
+        fetchLocationData();
+    }, []);
 
     useEffect(() => {
         getAreaId();
     }, [area]);
-
 
     const getAreaId = async () => {
         await axios.get('http://localhost:3333/bca-app/locationByArea/' + area + '')
@@ -69,35 +68,89 @@ function RelocationReq() {
             console.error('Error fetching location data:', error);
         });
     };
-    const submitRelocation = async () => {
-        console.log(data)
+
+    const handleSubmit = () => {
+    
         const requestData = {
-            installation_id: intId,
-            old_location: data.location,
+            installation_id: selectedData.id,
+            old_location: selectedData.location,
             new_location: newLocation,
-            old_address: data.address,
+            old_address: selectedData.address,
             new_address: newAddress,
-            old_area: data.area,
+            old_area: selectedData.area,
             new_area: area,
-            old_branch_pic: data.branch_pic,
-            old_area_id: data.area_id,
+            old_branch_pic: selectedData.branch_pic,
+            old_area_id: selectedData.area_id,
             new_area_id: areaId,
             new_branch_pic: newPic,
-            old_communication: data.communication,
+            old_communication: selectedData.communication,
             new_communication: newCommunication
         };
-        
-        const response = await axios.post('http://localhost:3333/bca-app/relocation-request', requestData, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        }).then((res) => {
-            toast.success('Request submitted successfully');
-        })
-        .catch((error) => {
+    
+        setBatchData([...batchData, requestData]);
+        setSubmittedRequests([...submittedRequests, requestData]);
+    
+      };
+    
+      // Submit batch data
+      const submitBatchData = async () => {
+        if (batchData.length === 0) {
+          return; // No data to submit
+        }
+    
+        try {
+          setBatchId(generateBatchId());
+          let date = new Date();
+          for (let i = 0; i < batchData.length; i++) {
+            batchData[i].batchid = batchId;
+            batchData[i].createdAt = date;
+            const requestData = batchData[i];
+            console.log(batchId)
+            const response = await axios.post('http://localhost:3333/bca-app/relocation-request', requestData, {
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+            });
+          }
+          toast.success('Request submitted successfully');
+          setBatchData([]); // Clear the batch data
+          setSubmittedRequests([]); // Clear the previous requests
+          setBatchId(generateBatchId());
+        } catch (error) {
+          console.error('Error submitting batch data:', error);
+          toast.error('Error submitting batch data');
+        }
+      };
+
+    const fetchLocationData = async () => {
+        await axios.get('http://localhost:3333/bca-app/locations')
+          .then((response) => {
+            setAreas(response.data.list);
+          })
+          .catch((error) => {
             console.error('Error fetching location data:', error);
-        });
-         window.location.href = '/installationSelect';
+          });
+      };
+
+    const fetchInstallationData = async () => {
+        await axios.get('http://localhost:3333/bca-app/installationByLocation/' + location + '')
+            .then((response) => {
+                setData(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching location data:', error);
+            });
+    };
+
+    const fetchInstallationbyId = async (id) => {
+        await axios.get('http://localhost:3333/bca-app/installationsById/' + id + '')
+            .then((response) => {
+                console.log(response.data[0]);
+                setSelectedData(response.data[0]);
+            })
+            .catch((error) => {
+                console.error('Error fetching location data:', error);
+            });
     };
     return (
         <div>
@@ -110,22 +163,42 @@ function RelocationReq() {
             </div>
             <div className="row py-5 w-75 mx-auto">
                 <div className="col-md">
+                    <InputWithLabel
+                        label="Select Instalation"
+                        value={location}
+                        name="pic"
+                        placeholder="Enter the installation location"
+                        onChange={(e) => handleInputChange(e, setLocation)}
+                    />
+                </div>
+                <div className="col-md">
+                    <div className=' mx-auto'>
+                        <InstallationSearchTable batchdata={data} onSelect={handleSelect} />
+                    </div>
+                </div>
+
+            
+            </div>
+            {selectedData && (
+            <div>
+            <div className="row py-5 w-75 mx-auto">
+                <div className="col-md">
                     <div className="form-group">
                         <UneditableInputWithLabel
                             label="Location"
-                            value={data.location}
+                            value={selectedData?.location}
                             name="location"
                         />
                         <UneditableInputWithLabel
                             label="Address"
-                            value={data.address}
+                            value={selectedData?.address}
                             name="address"
                         />
                     </div>
                     <div>
                         <UneditableInputWithLabel
                             label="Area"
-                            value={data.area}
+                            value={selectedData?.area}
                             name="area"
                         />
                     </div>
@@ -134,22 +207,19 @@ function RelocationReq() {
                     <div className="form-group">
                         <UneditableInputWithLabel
                             label="Branch PIC"
-                            value={data.branch_pic}
+                            value={selectedData?.branch_pic}
                             name="pic"
                         />
                         <div className="py-1">
                             <UneditableInputWithLabel
                                 label="Communication"
-                                value={data.communication}
+                                value={selectedData?.communication}
                                 name="communication"
                             />
                         </div>
-
-
-
                     </div>
                 </div>
-            </div>
+            </div> 
             <div className="row w-75 mx-auto">
                 <div className="col-lg">
                     <InputWithLabel
@@ -196,15 +266,66 @@ function RelocationReq() {
                                 <CustomButton
                                     text="Submit"
                                     color="primary"
-                                    onClick={() => submitRelocation()}
+                                    onClick={handleSubmit}
                                 />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+            </div>
+            )}
+             {submittedRequests.length > 0 && (
+          <div
+            className="my-5 w-75 mx-auto"
+            style={{
+              borderRadius: '33px',
+              padding: '20px',
+              boxShadow: isHoveredSecond ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
+              transition: 'box-shadow 0.3s',
+            }}
+            onMouseEnter={() => setIsHoveredSecond(true)}
+            onMouseLeave={() => setIsHoveredSecond(false)}
+          >
+            <div className="row py-4 mx-auto">
+              <div className="col-md text-center">
+                <h2>Submitted Requests</h2>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Old Location</th>
+                      <th>New Location</th>
+                      <th>New Address</th>
+                        <th>New Area</th>
+                        <th>New Branch PIC</th>
+                        <th>New Communication</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {submittedRequests.map((request, index) => (
+                      <tr key={index}>
+                        <td>{request.old_location}</td>
+                        <td>{request.new_location}</td>
+                        <td>{request.new_address}</td>
+                        <td>{request.new_area}</td>
+                        <td>{request.new_branch_pic}</td>
+                        <td>{request.new_communication}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="text-center mx-auto">
+                  <CustomButton
+                    text="Submit Batch"
+                    color="primary"
+                    onClick={() => submitBatchData()}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+             <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
         </div>
     );
 }

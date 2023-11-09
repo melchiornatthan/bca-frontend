@@ -11,7 +11,6 @@ import BatchDetails from './pages/user/installationDetails';
 import AdminBatchDetails from './pages/admin/adminBatchDetails';
 import InstallationOverride from './pages/admin/adminInstallationOverride';
 import Select from './pages/user/installationSelect';
-import RelocationReq from './pages/user/relocationRequest';
 import AdminRelocationBatch from './pages/admin/adminRelocationBatch';
 import AdminRelocationDetails from './pages/admin/adminRelocationDetails';
 import AdminDismantleBatch from './pages/admin/adminDismantleBatch';
@@ -20,6 +19,7 @@ import RelocationDetails from './pages/user/relocationDetails';
 import DismantleBatch from './pages/user/dismantleBatch';
 import AdminMain from './pages/admin/adminMain';
 import AdminLogin from './pages/admin/adminLogin';
+import RelocationReq from './pages/user/relocationRequest';
 
 
 class App extends Component {

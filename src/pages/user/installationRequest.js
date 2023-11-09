@@ -25,7 +25,7 @@ function InstallationReq() {
 
   // Batch ID generator
   async function generateBatchId() {
-    await axios.get('http://localhost:3333/bca-app/getBatchId')
+    await axios.get('http://localhost:3333/bca-app/getInstallationBatchId')
       .then((response) => {
         const currentBatchId = parseInt(response.data.batchid, 10);
         const newBatchId = currentBatchId + 1;
