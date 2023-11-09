@@ -15,7 +15,7 @@ function RelocationBatch() {
   }, []);
 
   const getInstallationData = () => {
-    axios.get('http://localhost:3333/bca-app/relocations')
+    axios.get('http://localhost:3333/bca-app/getBatchRelocation')
       .then((response) => {
         console.log(response.data);
         setRelocationData(response.data);

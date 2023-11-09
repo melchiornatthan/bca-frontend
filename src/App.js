@@ -19,7 +19,7 @@ import RelocationDetails from './pages/user/relocationDetails';
 import DismantleBatch from './pages/user/dismantleBatch';
 import AdminMain from './pages/admin/adminMain';
 import AdminLogin from './pages/admin/adminLogin';
-import RelocationReq from './pages/user/relocationRequest';
+import RelocationReq from './pages/user/RelocationRequest';
 
 
 class App extends Component {

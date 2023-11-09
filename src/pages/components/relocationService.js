@@ -7,6 +7,8 @@ function RelocationBatchTable({ batchdata, isAdmin = false }) {
     overflowY: 'auto',
   };
 
+  
+
   function formatCustomDate(dateString) {
     const options = {
       year: 'numeric',
@@ -18,9 +20,9 @@ function RelocationBatchTable({ batchdata, isAdmin = false }) {
     return new Date(dateString).toLocaleString(undefined, options);
   }
 
-  const toDetails = (id) => {
+  const toDetails = (batchid) => {
     const path = isAdmin ? '/admin/relocationDetails' : '/relocationDetails';
-    window.location.href = `${path}?id=${id}`;
+    window.location.href = `${path}?batchid=${batchid}`;
   };
 
   return (
@@ -40,9 +42,7 @@ function RelocationBatchTable({ batchdata, isAdmin = false }) {
           <thead>
             <tr>
               <th>Requested at</th>
-              <th>Request ID</th>
-              <th>Old Location</th>
-              {isAdmin && <th>New Location</th>}
+              <th>Batch ID</th>
               <th>Status</th>
               <th>Details</th>
             </tr>
@@ -51,20 +51,16 @@ function RelocationBatchTable({ batchdata, isAdmin = false }) {
             {batchdata.map((entry, index) => (
               <tr key={index}>
                 <td>{formatCustomDate(entry.createdAt)}</td>
-                <td>{entry.id}</td>
-                <td>{entry.old_location}</td>
-                {isAdmin && <td>{entry.new_location}</td>}
+                <td>{entry.batchid}</td>
                 <td style={{
                   color: entry.status === 'pending' ? '#FFA500' : entry.status === 'approved' ? 'green' : 'black',
                 }}>
                   <strong>{entry.status}</strong>
                 </td>
                 <td>
-                  {(entry.status === 'approved' || isAdmin) && (
-                    <button className="btn btn-primary" onClick={() => toDetails(entry.id)}>
+                    <button className="btn btn-primary" onClick={() => toDetails(entry.batchid)}>
                       Details
                     </button>
-                  )}
                 </td>
               </tr>
             ))}
