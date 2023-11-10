@@ -30,9 +30,6 @@ function AdminBatchDetails() {
     };
     
 
-
-    
-
     return (
         <div>
             <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>

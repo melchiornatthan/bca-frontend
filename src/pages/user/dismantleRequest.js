@@ -129,7 +129,7 @@ function DismantleRequest() {
                 <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
             </nav>
             <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' }}>
-                <h1>Relocation Request</h1>
+                <h1>Dismantle Request</h1>
             </div>
             <div className="row py-5 w-75 mx-auto">
                 <div className="col-md">

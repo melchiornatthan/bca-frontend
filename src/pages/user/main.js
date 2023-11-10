@@ -8,8 +8,11 @@ import RnD from '../assets/RND-Text.svg';
 import ClockOne from '../assets/time-icon/clock1.svg';
 import ClockTwo from '../assets/time-icon/clock2.svg';
 import ClockThree from '../assets/time-icon/image 11.svg';
+import DismantleLogo from '../assets/image 8.svg';
 import RnDLogo from '../assets/rnd-logo.svg';
 import axios from 'axios';
+
+
 function Main() {
   const [isHoveredFirst, setIsHoveredFirst] = useState(false);
   const [isHoveredSecond, setIsHoveredSecond] = useState(false);
@@ -64,8 +67,8 @@ function Main() {
         marginTop: '10vh',
         marginBottom: '10vh',
       }}>
-        <div className="row w-75 mx-auto centered-row">
-          <div className='col-lg'>
+        <div className="row mx-auto centered-row">
+          <div className='col-sm'>
             <div
               style={{
                 backgroundColor: 'white', // Change background color on hover
@@ -90,7 +93,7 @@ function Main() {
             </h2>
             </div>
           </div>
-          <div className='col-lg align-items-center justify-content-center'>
+          <div className='col-sm align-items-center justify-content-center'>
             <div
               style={{
                 backgroundColor: 'white', // Change background color on hover
@@ -109,11 +112,38 @@ function Main() {
                 setIsHoveredSecond(false);
 
               }}
-              onClick={() => window.location.href = "/installationselect"}
+              onClick={() => window.location.href = "/relocationRequest"}
               className='align-items-center justify-content-center'>
               <img src={RnDLogo} alt="Logo" style={{ height: '75px', marginTop:'8vh'}} />
               <h2 style={{ marginTop:'3vh', textAlign: 'center', fontFamily: 'montserrat', color: '#D83F31', fontSize: '5vh' , fontWeight: 'bold'}}>
-                Relocation and Dismantle
+                Relocation
+            </h2>
+            </div>
+          </div>
+          <div className='col-sm align-items-center justify-content-center'>
+            <div
+              style={{
+                backgroundColor: 'white', // Change background color on hover
+                borderRadius: '33px',
+                padding: '20px',
+                boxShadow: isHoveredSecond ? '10px 10px 20px rgba(233, 184, 36, 0.3)' : 'none',
+                transition: 'box-shadow 0.3s',
+                height: '300px',
+                border: '3px solid #E9B824',
+              }}
+              onMouseEnter={() => {
+                setIsHoveredSecond(true);
+
+              }}
+              onMouseLeave={() => {
+                setIsHoveredSecond(false);
+
+              }}
+              onClick={() => window.location.href = "/dismantleRequest"}
+              className='align-items-center justify-content-center'>
+              <img src={DismantleLogo} alt="Logo" style={{ height: '75px', marginTop:'8vh'}} />
+              <h2 style={{ marginTop:'3vh', textAlign: 'center', fontFamily: 'montserrat', color: '#D83F31', fontSize: '5vh' , fontWeight: 'bold'}}>
+                Dismantle
             </h2>
             </div>
           </div>
