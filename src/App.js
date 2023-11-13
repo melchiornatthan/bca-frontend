@@ -41,10 +41,10 @@ class App extends Component {
           {/* Check for authorization and isAdmin, and redirect if not authorized */}
           {!isAuthorized && <Navigate to="/login" />}
           <Routes>
-          <Route path='' element={<Login />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/main' element={<Main />} />
-            <Route path='/installationRequest' element={<InstallationReq />} />
+          <Route path='' element={<Login />} /> /* Check */
+            <Route path='/login' element={<Login />} /> /* Check */
+            <Route path='/main' element={<Main />} /> /* Check */
+            <Route path='/installationRequest' element={<InstallationReq />} />/* Check */
             <Route path='/installationBatch' element={<InstallationBatch />} />
             <Route path='/dismantleBatch' element={<DismantleBatch />} />
             <Route path='/relocationHistory' element={<RelocationHistory />} />

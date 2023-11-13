@@ -119,6 +119,14 @@ function InstallationReq() {
         <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
         <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
       </nav>
+      <div className='row mx-auto text-center'>
+        <div className="col-md">
+
+        </div>
+        <div className="col-md">
+
+        </div>
+      </div>
       <div className="container-fluid">
         <div className="text-center my-5" style={{ fontFamily: 'Montserrat' }}>
           <h1 style={{ color: '#219C90', fontWeight: 'bold' }}>Installation Request</h1>
