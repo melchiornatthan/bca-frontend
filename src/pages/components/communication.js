@@ -9,6 +9,7 @@ function VsatSelect({ value, onChange }) {
       onChange={onChange}
     >
       <option style={{'font-family': 'Montserrat'}} value="VSAT">VSAT</option>
+      <option style={{'font-family': 'Montserrat'}} value="M2M">M2M</option>
     </select>
   );
 }

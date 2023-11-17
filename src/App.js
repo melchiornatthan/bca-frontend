@@ -10,7 +10,6 @@ import AdminInstallationReq from './pages/admin/adminInstallationReq';
 import BatchDetails from './pages/user/installationDetails';
 import AdminBatchDetails from './pages/admin/adminBatchDetails';
 import InstallationOverride from './pages/admin/adminInstallationOverride';
-import Select from './pages/user/installationSelect';
 import AdminRelocationHistory from './pages/admin/adminRelocationHistory';
 import AdminRelocationBatch from './pages/admin/adminRelocationBatch';
 import AdminDismantleBatch from './pages/admin/adminDismantleBatch';
@@ -29,49 +28,47 @@ import DismantleDetails from './pages/user/dismantleDetails';
 import AdminDismantleDetails from './pages/admin/adminDismantleDetails';
 
 
+
 class App extends Component {
   render() {
     // Check if the user is authorized (logged in) and isAdmin by inspecting localStorage
     const isAuthorized = localStorage.getItem('isAuthorized') === 'true';
     const isAdmin = localStorage.getItem('isAdmin') === 'true';
-    
+
     return (
       <Router>
         <div>
           {/* Check for authorization and isAdmin, and redirect if not authorized */}
           {!isAuthorized && <Navigate to="/login" />}
           <Routes>
-          <Route path='' element={<Login />} /> /* Check */
+            <Route path='' element={<Login />} /> /* Check */
             <Route path='/login' element={<Login />} /> /* Check */
             <Route path='/main' element={<Main />} /> /* Check */
             <Route path='/installationRequest' element={<InstallationReq />} />/* Check */
-            <Route path='/installationBatch' element={<InstallationBatch />} />
-            <Route path='/dismantleBatch' element={<DismantleBatch />} />
-            <Route path='/relocationHistory' element={<RelocationHistory />} />
-            <Route path='/installationDetails' element={<BatchDetails />} />
-            <Route path='/relocationBatch' element={<RelocationBatch />} />
-            <Route path='/installationSelect' element={<Select />} />
-            <Route path='/relocationDetails' element={<RelocationDetails />} />
-            <Route path='/relocationRequest' element={<RelocationReq />} />
-            <Route path='/dismantleRequest' element={<DismantleRequest />} />
-            <Route path='/dismantleHistory' element={<DismantleHistory />} />
-            <Route path='/dismantleDetails' element={<DismantleDetails />} />
-            {/* {isAdmin && (
-              // These routes are only accessible if isAdmin is true
-              <> */}
-                <Route path='/admin/installationBatch' element={<AdminInstallationReq />} />
-                <Route path='/admin/main' element={<AdminMain />} />
-                <Route path='/admin/login' element={<AdminLogin />} />
-                <Route path='/admin/installationDetails' element={<AdminBatchDetails />} />
-                <Route path='/admin/installationOverride' element={<InstallationOverride />} />
-                <Route path='/admin/relocationHistory' element={<AdminRelocationHistory />} />
-                <Route path='/admin/relocationBatch' element={<AdminRelocationBatch />} />
-                <Route path='/admin/dismantleBatch' element={<AdminDismantleBatch />} />
-                <Route path='/admin/dismantleHistory' element={<AdminDismantleHistory />} />
-                <Route path='/admin/dismantleDetails' element={<AdminDismantleDetails />} />
-                <Route path='/admin/relocationDetails' element={<AdminRelocationDetails />} />
-              {/* </> */}
-            {/* )} */}
+            <Route path='/installationBatch' element={<InstallationBatch />} />/* Check */
+            <Route path='/dismantleBatch' element={<DismantleBatch />} />/* Check */
+            <Route path='/relocationHistory' element={<RelocationHistory />} />/* Check */
+            <Route path='/installationDetails' element={<BatchDetails />} />/* Check */
+            <Route path='/relocationBatch' element={<RelocationBatch />} />/* Check */
+            <Route path='/relocationDetails' element={<RelocationDetails />} />/* Check */
+            <Route path='/relocationRequest' element={<RelocationReq />} />/* Check */
+            <Route path='/dismantleRequest' element={<DismantleRequest />} />/* Check */
+            <Route path='/dismantleHistory' element={<DismantleHistory />} />/* Check */
+            <Route path='/dismantleDetails' element={<DismantleDetails />} />/* Check */
+           
+
+            <Route path='/admin/installationBatch' element={<AdminInstallationReq />} />/* Check */
+            <Route path='/admin/main' element={<AdminMain />} />/* Check */
+            <Route path='/admin/login' element={<AdminLogin />} />
+            <Route path='/admin/installationDetails' element={<AdminBatchDetails />} />/* Check */
+            <Route path='/admin/installationOverride' element={<InstallationOverride />} />/* Check */
+            <Route path='/admin/relocationHistory' element={<AdminRelocationHistory />} />/* Check */
+            <Route path='/admin/relocationBatch' element={<AdminRelocationBatch />} />/* Check */
+            <Route path='/admin/dismantleBatch' element={<AdminDismantleBatch />} />/* Check */
+            <Route path='/admin/dismantleHistory' element={<AdminDismantleHistory />} />/* Check */
+            <Route path='/admin/dismantleDetails' element={<AdminDismantleDetails />} />/* Check */
+            <Route path='/admin/relocationDetails' element={<AdminRelocationDetails />} />/* Check */
+
           </Routes>
         </div>
       </Router>

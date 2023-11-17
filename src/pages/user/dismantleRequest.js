@@ -27,12 +27,18 @@ function DismantleRequest() {
        console.log(batchId);
     };
 
+   
     async function generateBatchId() {
         await axios.get('http://localhost:3333/bca-app/getDismantleBatchId')
             .then((response) => {
-                const currentBatchId = parseInt(response.data.batchid, 10);
-                const newBatchId = currentBatchId + 1;
-                setBatchId(newBatchId);
+                if(response.data == null){
+                    setBatchId(200000000);
+                }else{
+                    const currentBatchId = parseInt(response.data.batchid, 10);
+                setBatchId(currentBatchId + 1);
+                }
+                
+
             })
             .catch((error) => {
                 console.error('Error fetching location data:', error);
@@ -62,6 +68,8 @@ function DismantleRequest() {
 
         setBatchData([...batchData, requestData]);
         setSubmittedRequests([...submittedRequests, requestData]);
+        setSelectedData();
+        setData([]);
 
     };
 
@@ -72,8 +80,9 @@ function DismantleRequest() {
         }
 
         try {
-            setBatchId(generateBatchId());
+            generateBatchId();
             let date = new Date();
+            console.log(batchId);
             for (let i = 0; i < batchData.length; i++) {
                 batchData[i].batchid = batchId;
                 batchData[i].createdAt = date;
@@ -94,6 +103,8 @@ function DismantleRequest() {
             setBatchData([]); // Clear the batch data
             setSubmittedRequests([]); // Clear the previous requests
             setBatchId(generateBatchId());
+            setSelectedData(null);
+            setData([]);
         } catch (error) {
             console.error('Error submitting batch data:', error);
             toast.error('Error submitting batch data');
@@ -103,14 +114,17 @@ function DismantleRequest() {
 
 
     const fetchInstallationData = async () => {
-        await axios.get('http://localhost:3333/bca-app/installationByLocation/' + location + '')
-            .then((response) => {
-                setData(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching location data:', error);
-            });
-    };
+        try {
+          const response = await axios.get(`http://localhost:3333/bca-app/installationByLocation/${location}`);
+          const filteredData = response.data.filter(installation => {
+            // Check if the installation_id is not present in batchData
+            return !batchData.some(request => request.installation_id === installation.id);
+          });
+          setData(filteredData);
+        } catch (error) {
+          console.error('Error fetching location data:', error);
+        }
+      };
 
     const fetchInstallationbyId = async (id) => {
         await axios.get('http://localhost:3333/bca-app/installationsById/' + id + '')
@@ -124,11 +138,26 @@ function DismantleRequest() {
     };
     return (
         <div>
+            
             <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
                 <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
                 <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
             </nav>
-            <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' }}>
+            <div className="container my-3">
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
+                        <li className="breadcrumb-item">
+                            <a className="link-body-emphasis" href="/main">
+                              Main
+                            </a>
+                        </li>
+                        <li className="breadcrumb-item active" aria-current="page">
+                            Dismantle Request
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' , fontSize: '6vh'}}>
                 <h1>Dismantle Request</h1>
             </div>
             <div className="row py-5 w-75 mx-auto">

@@ -12,9 +12,9 @@ import RelocationDetailService from '../components/relocationDetailsService';
 function RelocationDetails() {
     const [data, setData] = useState({});
     const location = useLocation();
-     // Parse the URL parameters and extract the 'data' parameter
-     const searchParams = new URLSearchParams(location.search);
-     const int_id = parseInt(searchParams.get('id'), 10);
+    // Parse the URL parameters and extract the 'data' parameter
+    const searchParams = new URLSearchParams(location.search);
+    const int_id = parseInt(searchParams.get('id'), 10);
 
     useEffect(() => {
         getRelocationData();
@@ -34,14 +34,41 @@ function RelocationDetails() {
 
     return (
         <div>
-            <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
-                <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
-                <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
-            </nav>
-            <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' }}>
+             <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
+        <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} onClick={() => {
+          localStorage.removeItem('isAuthorized')
+          window.location.href = "/login"
+        }} />
+        <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
+      </nav>
+            <div className="container my-3">
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
+                    <li className="breadcrumb-item">
+                            <a className="link-body-emphasis" href="/main">
+                              Main
+                            </a>
+                            </li>
+                        <li className="breadcrumb-item">
+                            <a className="link-body-emphasis fw-semibold text-decoration-none" href="/relocationHistory">
+                                History
+                            </a>
+                        </li>
+                        <li className="breadcrumb-item">
+                            <a className="link-body-emphasis fw-semibold text-decoration-none" href={`/relocationBatch?batchid=${data.batchid}`} >
+                                Batch
+                            </a>
+                        </li>
+                        <li className="breadcrumb-item active" aria-current="page">
+                            Details
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div className="text-center mt-2" style={{ fontFamily: 'Montserrat', fontSize: '6vh' }}>
                 <h1>Relocation Request</h1>
             </div>
-           <RelocationDetailService batchdata={data} isAdmin={false} />
+            <RelocationDetailService batchdata={data} isAdmin={false} />
         </div>
     );
 }

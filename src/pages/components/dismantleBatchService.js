@@ -27,7 +27,7 @@ function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
   }
 
   const toDetails = (int_id , dismatle_id, batchid) => {
-    const path = isAdmin ? `/admin/dismantleDetails?id=${int_id}&dismantle_id=${dismatle_id}&batchid=${batchid}` : `/dismantleDetails?id=${int_id}`;
+    const path = isAdmin ? `/admin/dismantleDetails?id=${int_id}&dismantle_id=${dismatle_id}&batchid=${batchid}` : `/dismantleDetails?id=${int_id}&batchid=${batchid}`;
     window.location.href = path;
   };
   
@@ -37,7 +37,7 @@ function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
       style={{
         borderRadius: '17px',
         padding: '20px',
-        boxShadow: isHovered ? '10px 10px 20px rgba(233, 184, 36, 0.3)' : 'none',
+        boxShadow: isHovered ? '10px 10px 20px rgba(216, 63, 49, 0.3)' : 'none',
         transition: 'box-shadow 0.5s',
       }}
       onMouseEnter={() => setIsHovered(true)}

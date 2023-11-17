@@ -28,7 +28,7 @@ function RelocationBatchTable({ batchdata, isAdmin = false }) {
   return (
     <div
       style={{
-        borderRadius: '17px',
+        borderRadius: '5px',
         padding: '20px',
         boxShadow: isHovered ? '10px 10px 20px rgba(233, 184, 36, 0.3)' : 'none',
         transition: 'box-shadow 0.5s',

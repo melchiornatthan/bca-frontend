@@ -44,7 +44,7 @@ function AdminMain() {
     };
 
     return (
-        <div style={{ backgroundColor: '#96B6C5' }}>
+        <div>
             <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
                 <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} onClick={() => {
                     localStorage.removeItem('isAuthorized')
@@ -56,21 +56,21 @@ function AdminMain() {
                 <div className="col-sm">
                     <div className="container-fluid">
                         <div className="row" style={{ height: '45vh', marginTop: '1vh', marginBottom: '2vh', padding: '2vh' }}>
-                            <div className="col-md" style={{ marginRight: '1vh', background: '#0F6292', borderRadius: '2vh', boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.3)' }}>
+                            <div className="col-md" style={{ marginRight: '1vh', background: '#0F6292', borderRadius: '5px', boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.3)' }}>
                                 <h1 style={{ textAlign: 'center', fontFamily: 'montserrat', color: 'var(--bs-body-bg)', marginTop: '10vh' }}>Primacom</h1>
                                 <h1 style={{ textAlign: 'center', fontFamily: 'montserrat', color: 'var(--bs-body-bg)', marginTop: '2vh', fontSize: '10vh' }}>{providerCount.primacom}</h1>
                             </div>
-                            <div className="col-md" style={{ background: '#F94C10', borderRadius: '2vh', marginLeft: '2vh', boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.3)' }}>
+                            <div className="col-md" style={{ background: '#F94C10', borderRadius: '5px', marginLeft: '2vh', boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.3)' }}>
                                 <h1 style={{ textAlign: 'center', fontFamily: 'montserrat', color: 'var(--bs-body-bg)', marginTop: '10vh' }}>Tangara</h1>
                                 <h2 style={{ textAlign: 'center', fontFamily: 'montserrat', color: 'var(--bs-body-bg)', marginTop: '2vh', fontSize: '10vh' }}>{providerCount.tangara}</h2>
                             </div>
                         </div>
                         <div className="row" style={{ height: '45vh', marginTop: '2vh', marginBottom: '2vh', padding: '2vh' }}>
-                            <div className="col-md" style={{ marginRight: '1vh', background: '#004225', borderRadius: '2vh', boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.3)' }}>
+                            <div className="col-md" style={{ marginRight: '1vh', background: '#004225', borderRadius: '5px', boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.3)' }}>
                                 <h1 style={{ textAlign: 'center', fontFamily: 'montserrat', color: 'var(--bs-body-bg)', marginTop: '10vh' }}>IForte</h1>
                                 <h2 style={{ textAlign: 'center', fontFamily: 'montserrat', color: 'var(--bs-body-bg)', marginTop: '2vh', fontSize: '10vh' }}>{providerCount.iforte}</h2>
                             </div>
-                            <div className="col-md" style={{ background: '#FFD93D', borderRadius: '2vh', marginLeft: '2vh', boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.3)' }}>
+                            <div className="col-md" style={{ background: '#FFD93D', borderRadius: '5px', marginLeft: '2vh', boxShadow: '10px 10px 20px rgba(0, 0, 0, 0.3)' }}>
                                 <h1 style={{ textAlign: 'center', fontFamily: 'montserrat', color: 'var(--bs-emphasis-color)', marginTop: '10vh' }}>Indonet</h1>
                                 <h2 style={{ textAlign: 'center', fontFamily: 'montserrat', color: 'var(--bs-body-bg)', marginTop: '2vh', fontSize: '10vh' }}>{providerCount.indonet}</h2>
                             </div>
@@ -79,9 +79,9 @@ function AdminMain() {
                 </div>
                 <div className="col-lg text-center px-5" >
                     <div className="row">
-                        <div style={{ background: '#FFFFFF', marginTop: '2vh', height: '30vh', paddingTop: '3vh', borderRadius: '2vh', boxShadow: '10px 10px 20px rgba(33, 156, 144, 0.3)' }} className='mx-2'>
-                            <h1 style={{ textAlign: 'center', fontFamily: 'montserrat', color: 'var(--bs-emphasis-color)', fontSize: '8vh', }}>Provider Count</h1>
-                            <h2 style={{ textAlign: 'center', fontFamily: 'montserrat', color: 'var(--bs-emphasis-color)', fontSize: '5vh' }}>
+                        <div style={{ background: '#0C356A', marginTop: '2vh', height: '30vh', paddingTop: '3vh', borderRadius: '5px', boxShadow: '10px 10px 20px rgba(33, 156, 144, 0.3)' }} className='mx-2'>
+                            <h1 style={{ textAlign: 'center', fontFamily: 'montserrat', fontSize: '8vh', color: '#FFC436'}}>Provider Count</h1>
+                            <h2 style={{ textAlign: 'center', fontFamily: 'montserrat', fontSize: '5vh',color: '#F0F0F0' }}>
                                 Data Update : {date.toDateString()} {date.toLocaleTimeString()}
                             </h2>
                         </div>
@@ -89,11 +89,11 @@ function AdminMain() {
                         <div className="container-fluid text-center mr-3 mt-3 mb-3" style={{
                             backgroundColor: '#ADC4CE', 
                             height: '60vh',
-                            borderRadius: '2vh'
+                            borderRadius: '5px'
                         }}>
 
                             <div className='mt-5'>
-                                <h2 style={{ fontFamily: 'Montserrat', color: '#FFFFFF', fontWeight: 'bold', fontSize: '4vh' }}>
+                                <h2 style={{ fontFamily: 'Montserrat', color: '#FFFFFF', fontWeight: 'bold', fontSize: '5vh' }}>
                                     Requests History
                                 </h2>
                             </div>
@@ -103,12 +103,12 @@ function AdminMain() {
                                     <div
                                         style={{
                                             backgroundColor: isHoveredThird ? 'white' : 'transparent',
-                                            borderRadius: '33px',
-                                            padding: '20px',
+                                            borderRadius: '5px',
+                                           
                                             boxShadow: isHoveredThird ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
                                             transition: 'background-color 0.2s, box-shadow 0.2s',
                                             height: '35vh',
-
+                                            
                                             position: 'relative', // Set the position to relative
                                         }}
                                         onMouseEnter={() => {
@@ -141,11 +141,12 @@ function AdminMain() {
                                     <div
                                         style={{
                                             backgroundColor: isHoveredFourth ? 'white' : 'transparent',
-                                            borderRadius: '33px',
-                                            padding: '20px',
+                                            borderRadius: '5px',
+                                           
                                             boxShadow: isHoveredFourth ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
                                             transition: 'background-color 0.2s, box-shadow 0.2s',
                                             height: '35vh',
+                                            
                                             position: 'relative', // Set the position to relative
                                         }}
                                         onMouseEnter={() => {
@@ -178,11 +179,12 @@ function AdminMain() {
                                     <div
                                         style={{
                                             backgroundColor: isHoveredFifth ? 'white' : 'transparent',
-                                            borderRadius: '33px',
-                                            padding: '20px',
+                                            borderRadius: '5px',
+                                            
                                             boxShadow: isHoveredFifth ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
                                             transition: 'background-color 0.2s, box-shadow 0.2s',
                                             height: '35vh',
+                                           
                                             position: 'relative', // Set the position to relative
                                         }}
                                         onMouseEnter={() => {

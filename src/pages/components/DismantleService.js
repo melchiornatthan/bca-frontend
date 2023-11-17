@@ -30,7 +30,7 @@ function DismantleServiceTable({ batchdata, isAdmin = false }) {
       style={{
         borderRadius: '17px',
         padding: '20px',
-        boxShadow: isHovered ? '10px 10px 20px rgba(233, 184, 36, 0.3)' : 'none',
+        boxShadow: isHovered ? '10px 10px 20px rgba(216, 63, 49, 0.3)' : 'none',
         transition: 'box-shadow 0.5s',
       }}
       onMouseEnter={() => setIsHovered(true)}

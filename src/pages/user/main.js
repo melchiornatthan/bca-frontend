@@ -13,6 +13,7 @@ import RnDLogo from '../assets/rnd-logo.svg';
 import axios from 'axios';
 
 
+
 function Main() {
   const [isHoveredFirst, setIsHoveredFirst] = useState(false);
   const [isHoveredSecond, setIsHoveredSecond] = useState(false);
@@ -39,6 +40,7 @@ function Main() {
   };
 
   return (
+   
     <div >
       <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
         <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} onClick={() => {
@@ -47,21 +49,20 @@ function Main() {
         }} />
         <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
       </nav>
-
       <div className='row mx-auto text-center'>
         <div className='col-md'>
           <div className="container-fluid text-center" style={{
               height: '95vh',
             }}>
             <div className='container mt-3' style={{
-              backgroundColor: '#0060AF',
+              backgroundColor: '#F4CE14',
               borderRadius: '5px',
               paddingTop: '20vh',
               height: '50vh',
               boxShadow: '10px 10px 20px rgba(190, 190,190, 0.3)'
             }} // Change background color on hover
             >
-              <h1 style={{ fontFamily: 'Montserrat', color: '#FFFFFF', fontWeight: 'bold', fontSize:'5vh'}}>
+              <h1 style={{ fontFamily: 'Montserrat', color: '#0F0F0F', fontWeight: 'bold', fontSize:'5vh'}}>
                 Welcome to Memo Hub
               </h1>
             </div>
@@ -178,7 +179,6 @@ function Main() {
                   style={{
                     backgroundColor: isHoveredThird ? 'white' : 'transparent',
                     borderRadius: '5px',
-                    padding: '20px',
                     boxShadow: isHoveredThird ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
                     transition: 'background-color 0.2s, box-shadow 0.2s',
                     height: '35vh',
@@ -216,7 +216,7 @@ function Main() {
                   style={{
                     backgroundColor: isHoveredFourth ? 'white' : 'transparent',
                     borderRadius: '5px',
-                    padding: '20px',
+                   
                     boxShadow: isHoveredFourth ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
                     transition: 'background-color 0.2s, box-shadow 0.2s',
                     height: '35vh',
@@ -253,7 +253,7 @@ function Main() {
                   style={{
                     backgroundColor: isHoveredFifth ? 'white' : 'transparent',
                     borderRadius: '5px',
-                    padding: '20px',
+                   
                     boxShadow: isHoveredFifth ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
                     transition: 'background-color 0.2s, box-shadow 0.2s',
                     height: '35vh',
@@ -289,9 +289,6 @@ function Main() {
           </div>
         </div>
       </div>
-
-
-
     </div>
   );
 }

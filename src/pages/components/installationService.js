@@ -103,7 +103,7 @@ function InstallationService({ installationData, isAdminView }) {
                   <td>
                     <div className='row'>
                       <div className='col'>
-                        {entry.status !== 'approved' && (
+                        {entry.status === 'pending' && (
                           <button
                             className="btn btn-success"
                             onClick={() => updateRequestStatus(entry.id)}
@@ -111,17 +111,19 @@ function InstallationService({ installationData, isAdminView }) {
                             Approve
                           </button>
                         )}
-                      </div>
+                      </div> 
+                      {(entry.status === 'pending' && entry.communication === 'VSAT') && (
                       <div className='col'>
-                        {entry.status !== 'approved' && (
+                       
                           <button
                             className="btn btn-danger"
                             onClick={() => toDetails(entry.id)}
                           >
                             Override
                           </button>
-                        )}
+                        
                       </div>
+                      )}
                     </div>
                   </td>
                 )}

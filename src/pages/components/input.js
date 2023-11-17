@@ -12,8 +12,8 @@ import React from 'react';
  */
 function InputWithLabel({ label, placeholder, value, onChange, id }) {
     return (
-        <div className="form-group py-1">
-            <label className='py-1'>{label}</label>
+        <div className="form-group">
+            <label>{label}</label>
             <input
                 type="text" 
                 className="form-control"

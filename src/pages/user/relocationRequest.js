@@ -91,7 +91,13 @@ function RelocationReq() {
 
     setBatchData([...batchData, requestData]);
     setSubmittedRequests([...submittedRequests, requestData]);
-
+    setNewAddress('');
+    setNewLocation('');
+    setNewPic('');
+    setNewCommunication('VSAT');
+    setArea('Jakarta');
+    setSelectedData(null);
+    setData([]);
   };
 
   // Submit batch data
@@ -135,14 +141,18 @@ function RelocationReq() {
   };
 
   const fetchInstallationData = async () => {
-    await axios.get('http://localhost:3333/bca-app/installationByLocation/' + location + '')
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching location data:', error);
+    try {
+      const response = await axios.get(`http://localhost:3333/bca-app/installationByLocation/${location}`);
+      const filteredData = response.data.filter(installation => {
+        // Check if the installation_id is not present in batchData
+        return !batchData.some(request => request.installation_id === installation.id);
       });
+      setData(filteredData);
+    } catch (error) {
+      console.error('Error fetching location data:', error);
+    }
   };
+  
 
   const fetchInstallationbyId = async (id) => {
     await axios.get('http://localhost:3333/bca-app/installationsById/' + id + '')
@@ -160,7 +170,21 @@ function RelocationReq() {
         <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
         <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
       </nav>
-      <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' }}>
+      <div className="container my-3">
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
+                        <li className="breadcrumb-item">
+                            <a className="link-body-emphasis" href="/main">
+                              Main
+                            </a>
+                        </li>
+                        <li className="breadcrumb-item active" aria-current="page">
+                            Relocation Request
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+      <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' , fontSize: '6vh'}}>
         <h1>Relocation Request</h1>
       </div>
       <div className="row py-5 w-75 mx-auto">

@@ -11,7 +11,7 @@ import React from 'react';
  */
 const SelectLocation = ({ options, label, value, onChange }) => {
   return (
-    <div className="form-group py-1">
+    <div className="form-group">
       <label htmlFor={label} style={{'font-family': 'Montserrat'}}>{label}</label>
       <select
         className="form-control"
