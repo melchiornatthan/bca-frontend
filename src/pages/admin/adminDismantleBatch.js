@@ -7,7 +7,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import RelocationByBatchIdTable from '../components/relocationBatchService';
 import DismantleByBatchIdTable from '../components/dismantleBatchService';
-
+import 'typeface-inter';
 
 function AdminDismantleBatch() {
     const [data, setData] = useState([]);
@@ -35,11 +35,26 @@ function AdminDismantleBatch() {
 
     return (
         <div>
-            <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
-                <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
-                <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
-            </nav>
-            <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' }}>
+             <div className="container my-3">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb breadcrumb-chevron p-3">
+            <li className="breadcrumb-item">
+              <a className="link-body-emphasis" href="/main">
+                Main
+              </a>
+            </li>
+            <li className="breadcrumb-item">
+              <a className="link-body-emphasis fw-semibold text-decoration-none" href="/dismantleHistory">
+                History
+              </a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Batch
+            </li>
+          </ol>
+        </nav>
+      </div>
+            <div className="text-center mt-5" style={{ fontFamily: 'inter' }}>
                 <h1>Dismantle Request</h1>
             </div>
            <DismantleByBatchIdTable batchdata={data} isAdmin={true} />

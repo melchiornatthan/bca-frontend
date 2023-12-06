@@ -1,6 +1,6 @@
 // VsatSelect.js
 import React from 'react';
-
+import 'typeface-inter';
 function VsatSelect({ value, onChange }) {
   return (
     <select 
@@ -8,8 +8,8 @@ function VsatSelect({ value, onChange }) {
       value={value}
       onChange={onChange}
     >
-      <option style={{'font-family': 'Montserrat'}} value="VSAT">VSAT</option>
-      <option style={{'font-family': 'Montserrat'}} value="M2M">M2M</option>
+      <option style={{'font-family': 'inter'}} value="VSAT">VSAT</option>
+      <option style={{'font-family': 'inter'}} value="M2M">M2M</option>
     </select>
   );
 }

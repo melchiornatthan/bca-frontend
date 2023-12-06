@@ -49,6 +49,8 @@ function AdminLogin() {
       backgroundImage: `url(${background})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      position: 'relative',
       height: '100vh',
       display: 'flex',
       alignItems: 'center',

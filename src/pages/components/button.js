@@ -17,7 +17,7 @@ const CustomButton = ({ text, color, onClick }) => {
 
   return (
     <button
-      className="btn btn-primary" // Apply Bootstrap classes
+      className="btn my-2 btn-primary" // Apply Bootstrap classes
       style={buttonStyle}
       onClick={onClick}
     >

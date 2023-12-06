@@ -7,10 +7,9 @@ import CustomButton from "../components/button";
 import background from "../assets/background.svg";
 
 function Login() {
-  const [isHoveredFirst, setIsHoveredFirst] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isColHovered, setIsColHovered] = useState(false); // New state variable
+
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -49,30 +48,26 @@ function Login() {
       backgroundImage: `url(${background})`,
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      position: 'relative',
       height: '100vh',
       display: 'flex',
       alignItems: 'center',
     }}>
-      <div className="row w-50 mx-auto centered-row">
-        <div className="col-md text center">
-          <img src={MemoApp} alt="Logo" style={{ height: '250px' }} />
+      <div className="row mx-auto centered-row" style={{backgroundColor: 'white' , // Change background color on hover
+          borderRadius: '5px',
+          width: '65%',
+          border: '2px solid #1E56A0',
+          boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.1)',
+          padding: '2vh',}}>
+        <div className="col-sm mx-auto">
+          <img  src={MemoApp} alt="Logo" style={{ height: '40vh' }} />
         </div>
-        <div className="col-md" style={{
-          backgroundColor: isColHovered ? 'white' : 'transparent', // Change background color on hover
-          borderRadius: '33px',
-          padding: '20px',
-          boxShadow: isHoveredFirst ? '10px 10px 20px rgba(0, 96, 175, 0.3)' : 'none',
-          transition: 'box-shadow 0.3s',
-        }}
-          onMouseEnter={() => {
-            setIsHoveredFirst(true);
-            setIsColHovered(true); // Set hover state to true on mouse enter
-          }}
-          onMouseLeave={() => {
-            setIsHoveredFirst(false);
-            setIsColHovered(false); // Set hover state to false on mouse leave
-          }}>
-          <form onSubmit={handleSubmit}>
+        <div className="col-md">
+        <h1 className="text-center"style={{ fontFamily: 'Inter', fontWeight:'bold' , color:'#1E56A0', fontSize: '4vh',marginTop: '3vh'}}>
+                Login
+          </h1>
+          <form onSubmit={handleSubmit} style={{ marginTop: '3vh' }}>
             <InputWithLabel
               label="Username"
               value={username}
@@ -85,6 +80,7 @@ function Login() {
               value={password}
               name='password'
               type="password"
+              hideInput={true}
               placeholder="Enter your password"
               onChange={(e) => handleInputChange(e, setPassword)}
             />

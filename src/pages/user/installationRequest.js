@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import BackLogo from '../assets/Back-Sign.svg';
-import bcaLogo from '../assets/white-bca.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomButton from '../components/button';
 import InputWithLabel from '../components/input';
 import VsatSelect from '../components/communication';
 import SelectLocation from '../components/locations';
+import 'typeface-inter';
 
 function InstallationReq() {
   // State variables
@@ -22,12 +21,19 @@ function InstallationReq() {
   const [batchData, setBatchData] = useState([]);
   const [submittedRequests, setSubmittedRequests] = useState([]);
   const [isHoveredFirst, setIsHoveredFirst] = useState(false);
-  const [isHoveredSecond, setIsHoveredSecond] = useState(false);
-
+  const [province, setProvince] = useState('Jawa Barat');
 
   useEffect(() => {
     console.log(communication);
   }, [communication]);
+
+  // Fetch data from the server
+  useEffect(() => {
+    generateBatchId();
+    fetchLocationData();
+    fetchSpecialLocationData();
+  }, []);
+
   // Batch ID generator
   async function generateBatchId() {
     await axios.get('http://localhost:3333/bca-app/getInstallationBatchId')
@@ -46,13 +52,6 @@ function InstallationReq() {
     setStateFunction(event.target.value);
   };
 
-  // Fetch data from the server
-  useEffect(() => {
-    generateBatchId();
-    fetchLocationData();
-    fetchSpecialLocationData();
-  }, []);
-
   const fetchLocationData = async () => {
     await axios.get('http://localhost:3333/bca-app/locations')
       .then((response) => {
@@ -66,7 +65,9 @@ function InstallationReq() {
   const fetchSpecialLocationData = async () => {
     await axios.get('http://localhost:3333/bca-app/special-locations')
       .then((response) => {
-        setSpecialData(response.data.list);
+        console.log(response.data.list);
+        setSpecialData([...response.data.list, { location: 'NA' }]);
+        setArea(response.data.list[0].location)
       })
       .catch((error) => {
         console.error('Error fetching location data:', error);
@@ -81,41 +82,59 @@ function InstallationReq() {
       return;
     }
 
-    const requestData = {
-      location,
-      address,
-      branch_pic: pic,
-      area,
-      communication,
+    if (area === 'NA') {
+      const requestData = {
+        location,
+        address,
+        branch_pic: pic,
+        area: province,
+        communication,
+      };
+
+      setBatchData([...batchData, requestData]);
+      setSubmittedRequests([...submittedRequests, requestData]);
+      setLocation('');
+      setAddress('');
+      setPic('');
+
+    } else {
+
+      const requestData = {
+        location,
+        address,
+        branch_pic: pic,
+        area,
+        communication,
+      };
+
+      setBatchData([...batchData, requestData]);
+      setSubmittedRequests([...submittedRequests, requestData]);
+
+      setLocation('');
+      setAddress('');
+      setPic('');
     };
-
-    setBatchData([...batchData, requestData]);
-    setSubmittedRequests([...submittedRequests, requestData]);
-
-    setLocation('');
-    setAddress('');
-    setPic('');
   };
 
   const specialAreaRequest = () => {
     // Display a confirmation dialog
     const confirmed = window.confirm('Apakah lokasi instalasi termasuk dalam daerah ini ? Bekasi, Depok, Tangerang, Bogor');
 
-    
-};
+
+  };
 
   const handleDeleteRow = (index) => {
     // Remove the row from submittedRequests
     const updatedSubmittedRequests = [...submittedRequests];
     updatedSubmittedRequests.splice(index, 1);
     setSubmittedRequests(updatedSubmittedRequests);
-  
+
     // Remove the corresponding row from batchData
     const updatedBatchData = [...batchData];
     updatedBatchData.splice(index, 1);
     setBatchData(updatedBatchData);
   };
-  
+
 
   // Submit batch data
   const submitBatchData = async () => {
@@ -154,13 +173,9 @@ function InstallationReq() {
 
   return (
     <div >
-      <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
-        <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '4vh' }} />
-        <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
-      </nav>
-      <div className="container my-3" >
-        <nav aria-label="breadcrumb" >
-          <ol className="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3" >
+      <div className="container my-3"  >
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb breadcrumb-chevron p-3 rounded-3" >
             <li className="breadcrumb-item">
               <a className="link-body-emphasis" href="/main">
                 Main
@@ -173,15 +188,14 @@ function InstallationReq() {
         </nav>
       </div>
       <div className="text-center my-5" >
-        <h1 style={{ color: '#219C90', fontWeight: 'bold'}}>Installation Request</h1>
+        <h1 style={{ color: '#219C90', fontWeight: 'bold', fontFamily: 'inter'}}>Installation Request</h1>
       </div>
-
       <div
         style={{
           borderRadius: '5px',
           width: '90%',
           padding: '3vh',
-          boxShadow: isHoveredFirst ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
+          boxShadow: isHoveredFirst ? '5px 5px 10px rgba(33, 156, 144, 0.3)' : 'none',
           transition: 'box-shadow 0.3s',
         }}
         className='mx-auto'
@@ -207,7 +221,8 @@ function InstallationReq() {
               onChange={(e) => handleInputChange(e, setAddress)}
             />
           </div>
-           <div className="col-sm mx-auto my-auto">
+          <div className="col-sm mx-auto my-auto"
+          >
             <SelectLocation
               options={specialData}
               label="Select the City"
@@ -215,15 +230,14 @@ function InstallationReq() {
               onChange={(e) => handleInputChange(e, setArea)}
             />
           </div>
-          <div className="col-sm mx-auto my-auto">
+          {(area === 'NA') && (<div className="col-sm mx-auto my-auto">
             <SelectLocation
               options={data}
               label="Select the Province"
-              value={area}
-              onChange={(e) => handleInputChange(e, setArea)}
+              value={province}
+              onChange={(e) => handleInputChange(e, setProvince)}
             />
-          </div>
-         
+          </div>)}
           <div className="col-sm mx-auto my-auto">
             <InputWithLabel
               label="Branch PIC"
@@ -234,7 +248,7 @@ function InstallationReq() {
             />
           </div>
           <div className="col-sm mx-auto my-auto">
-            <label htmlFor="communication" style={{ fontFamily: 'Montserrat' }}>Communication</label>
+            <label htmlFor="communication" style={{ fontFamily: 'inter' }}>Communication</label>
             <VsatSelect
               value={communication}
               onChange={(e) => handleInputChange(e, setCommunication)}
@@ -245,72 +259,64 @@ function InstallationReq() {
               text="Add"
               color="primary"
               onClick={handleSubmit}
+              
             />
           </div>
         </div>
       </div>
-
-
-
-
-
       {
         submittedRequests.length > 0 && (
-          
-            <div
-              className="mx-auto mt-3"
-              style={{
-                borderRadius: '5px',
-                padding: '2vh',
-                width: '90%',
-              }}
-            >
-              <div className="row mx-auto">
-                <div className="col-md">
-                  <table className="table">
-                    <thead>
-                      
-                      <tr>
-                        <th>Location</th>
-                        <th>Address</th>
-                        <th>Area</th>
-                        <th>Branch PIC</th>
-                        <th>Communication</th>
-                        <th>Action</th> {/* New column for delete button */}
-                      </tr>
-                    </thead>
-                    <tbody>
+          <div
+            className="mx-auto mt-3"
+            style={{
+              borderRadius: '5px',
+              padding: '2vh',
+              width: '90%',
+            }}
+          >
+            <div className="row mx-auto">
+              <div className="col-md">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Location</th>
+                      <th>Address</th>
+                      <th>Area</th>
+                      <th>Branch PIC</th>
+                      <th>Communication</th>
+                      <th>Action</th> {/* New column for delete button */}
+                    </tr>
+                  </thead>
+                  <tbody>
                     {submittedRequests.slice().reverse().map((request, index) => (
-                        <tr key={index}>
-                          <td>{request.location}</td>
-                          <td>{request.address}</td>
-                          <td>{request.area}</td>
-                          <td>{request.branch_pic}</td>
-                          <td>{request.communication}</td>
-                          <td>
-                            <button
-                              className="btn btn-danger btn-md"
-                              onClick={() => handleDeleteRow(index)}
-                            >
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-
-                  </table>
-                  <div className="text-center mx-auto">
-                    <CustomButton
-                      text="Submit Batch"
-                      color="primary"
-                      onClick={() => submitBatchData()}
-                    />
-                  </div>
+                      <tr key={index}>
+                        <td>{request.location}</td>
+                        <td>{request.address}</td>
+                        <td>{request.area}</td>
+                        <td>{request.branch_pic}</td>
+                        <td>{request.communication}</td>
+                        <td>
+                          <button
+                            className="btn btn-danger btn-md"
+                            onClick={() => handleDeleteRow(index)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="text-center mx-auto">
+                  <CustomButton
+                    text="Submit Batch"
+                    color="primary"
+                    onClick={() => submitBatchData()}
+                  />
                 </div>
               </div>
             </div>
-          
+          </div>
         )
       }
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />

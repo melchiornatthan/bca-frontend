@@ -1,5 +1,5 @@
 import React from 'react';
-
+import 'typeface-inter';
 function formatCustomDate(dateString) {
   const options = {
     year: 'numeric',
@@ -20,29 +20,29 @@ function InstallationReqTable({ installationData }) {
 
   return (
     <div className='text-center w-75 mx-auto'>
-      <h1 style={{ fontFamily: 'Montserrat' }}>Service Requests</h1>
+      <h1 style={{ fontFamily: 'inter' }}>Service Requests</h1>
       <div style={tableStyle}>
         <table className="table mt-3">
           <thead>
             <tr>
-              <th style={{ fontFamily: 'Montserrat' }}>Location</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Address</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Branch PIC</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Area</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Communication</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Status</th>
-              {/* <th style={{ fontFamily: 'Montserrat' }}>Details</th> New column for the Details button */}
+              <th style={{ fontFamily: 'inter' }}>Location</th>
+              <th style={{ fontFamily: 'inter' }}>Address</th>
+              <th style={{ fontFamily: 'inter' }}>Branch PIC</th>
+              <th style={{ fontFamily: 'inter' }}>Area</th>
+              <th style={{ fontFamily: 'inter' }}>Communication</th>
+              <th style={{ fontFamily: 'inter' }}>Status</th>
+              {/* <th style={{ fontFamily: 'inter' }}>Details</th> New column for the Details button */}
             </tr>
           </thead>
           <tbody>
             {installationData.map((entry, index) => (
               <tr key={index}>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.location}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.address}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.branch_pic}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.area}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.communication}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.status}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.location}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.address}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.branch_pic}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.area}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.communication}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.status}</td>
               </tr>
             ))}
           </tbody>

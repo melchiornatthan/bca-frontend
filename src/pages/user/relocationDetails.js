@@ -1,13 +1,11 @@
 import React from 'react';
-import BackLogo from "../assets/Back-Sign.svg";
-import bcaLogo from "../assets/white-bca.svg";
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import RelocationDetailService from '../components/relocationDetailsService';
-
+import 'typeface-inter';
 
 function RelocationDetails() {
     const [data, setData] = useState({});
@@ -34,16 +32,9 @@ function RelocationDetails() {
 
     return (
         <div>
-             <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
-        <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} onClick={() => {
-          localStorage.removeItem('isAuthorized')
-          window.location.href = "/login"
-        }} />
-        <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
-      </nav>
             <div className="container my-3">
                 <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
+                    <ol className="breadcrumb breadcrumb-chevron p-3">
                     <li className="breadcrumb-item">
                             <a className="link-body-emphasis" href="/main">
                               Main
@@ -65,7 +56,7 @@ function RelocationDetails() {
                     </ol>
                 </nav>
             </div>
-            <div className="text-center mt-2" style={{ fontFamily: 'Montserrat', fontSize: '6vh' }}>
+            <div className="text-center mt-2" style={{ fontFamily: 'inter', fontSize: '6vh' }}>
                 <h1>Relocation Request</h1>
             </div>
             <RelocationDetailService batchdata={data} isAdmin={false} />

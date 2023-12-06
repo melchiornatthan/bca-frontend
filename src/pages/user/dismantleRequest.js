@@ -93,7 +93,7 @@ function DismantleRequest() {
                     createdAt: requestData.createdAt,
                 }
                 console.log(batchId)
-                const response = await axios.post('http://localhost:3333/bca-app/dismantle-request', body , {
+                await axios.post('http://localhost:3333/bca-app/dismantle-request', body , {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
@@ -137,15 +137,10 @@ function DismantleRequest() {
             });
     };
     return (
-        <div>
-            
-            <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
-                <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
-                <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
-            </nav>
+        <div style={{height: '120vh'}}>
             <div className="container my-3">
                 <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
+                    <ol className="breadcrumb breadcrumb-chevron p-3">
                         <li className="breadcrumb-item">
                             <a className="link-body-emphasis" href="/main">
                               Main
@@ -157,10 +152,10 @@ function DismantleRequest() {
                     </ol>
                 </nav>
             </div>
-            <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' , fontSize: '6vh'}}>
-                <h1>Dismantle Request</h1>
-            </div>
-            <div className="row py-5 w-75 mx-auto">
+            <div className="text-center my-5" >
+        <h1 style={{ color: '#D83F31', fontWeight: 'bold'}}>Dismantle Request</h1>
+      </div>
+            <div className="row py-5 w-75 mx-auto" >
                 <div className="col-md">
                     <InputWithLabel
                         label="Select Instalation"
@@ -185,19 +180,19 @@ function DismantleRequest() {
                             <div className="form-group">
                                 <UneditableInputWithLabel
                                     label="Location"
-                                    value={selectedData?.location}
+                                    value={selectedData.location}
                                     name="location"
                                 />
                                 <UneditableInputWithLabel
                                     label="Address"
-                                    value={selectedData?.address}
+                                    value={selectedData.address}
                                     name="address"
                                 />
                             </div>
                             <div>
                                 <UneditableInputWithLabel
                                     label="Area"
-                                    value={selectedData?.area}
+                                    value={selectedData.area}
                                     name="area"
                                 />
                             </div>
@@ -206,14 +201,21 @@ function DismantleRequest() {
                             <div className="form-group">
                                 <UneditableInputWithLabel
                                     label="Branch PIC"
-                                    value={selectedData?.branch_pic}
+                                    value={selectedData.branch_pic}
                                     name="pic"
                                 />
-                                <div className="py-1">
+                                <div>
                                     <UneditableInputWithLabel
                                         label="Communication"
-                                        value={selectedData?.communication}
+                                        value={selectedData.communication}
                                         name="communication"
+                                    />
+                                </div>
+                                <div>
+                                    <UneditableInputWithLabel
+                                        label="Provider"
+                                        value={selectedData.provider}
+                                        name="provider"
                                     />
                                 </div>
                             </div>
@@ -249,10 +251,10 @@ function DismantleRequest() {
                                 <thead>
                                     <tr>
                                         <th>Location</th>
-                                        <th>New Address</th>
-                                        <th>New Area</th>
-                                        <th>New Branch PIC</th>
-                                        <th>New Communication</th>
+                                        <th>Address</th>
+                                        <th>Area</th>
+                                        <th>Branch PIC</th>
+                                        <th>Communication</th>
                                     </tr>
                                 </thead>
                                 <tbody>

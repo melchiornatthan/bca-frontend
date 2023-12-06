@@ -1,5 +1,5 @@
 import React from 'react';
-
+import 'typeface-inter';
 /**
  * SelectLocation Component
  *
@@ -12,7 +12,7 @@ import React from 'react';
 const SelectProviders = ({ options, label, value, onChange }) => {
   return (
     <div className="form-group py-1">
-      <label htmlFor={label} style={{ fontFamily: 'Montserrat' }}>
+      <label htmlFor={label} style={{ fontFamily: 'inter' }}>
         {label}
       </label>
       <select
@@ -23,7 +23,7 @@ const SelectProviders = ({ options, label, value, onChange }) => {
       >
         {options.map((option) => (
           <option
-            style={{ fontFamily: 'Montserrat' }}
+            style={{ fontFamily: 'inter' }}
             key={option.provider.id}
             value={option.provider.id}
           >

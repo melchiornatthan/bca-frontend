@@ -22,11 +22,26 @@ function RelocationReq() {
   const [newPic, setNewPic] = useState('');
   const [newCommunication, setNewCommunication] = useState('VSAT');
   const [areas, setAreas] = useState([]);
+  const [specialData, setSpecialData] = useState([]);
   const [batchId, setBatchId] = useState(200000000);
   const [areaId, setAreaId] = useState(1);
   const [batchData, setBatchData] = useState([]);
   const [submittedRequests, setSubmittedRequests] = useState([]);
   const [isHoveredSecond, setIsHoveredSecond] = useState(false);
+  const [province, setProvince] = useState('Jakarta');
+
+  useEffect(() => {
+    fetchInstallationData();
+  }, [location]);
+
+  useEffect(() => {
+    fetchLocationData();
+    fetchSpecialLocationData();
+  }, []);
+
+  useEffect(() => {
+    getAreaId();
+  }, [area]);
 
   const handleSelect = (id) => {
     fetchInstallationbyId(id);
@@ -49,17 +64,7 @@ function RelocationReq() {
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
   };
-  useEffect(() => {
-    fetchInstallationData();
-  }, [location]);
 
-  useEffect(() => {
-    fetchLocationData();
-  }, []);
-
-  useEffect(() => {
-    getAreaId();
-  }, [area]);
 
   const getAreaId = async () => {
     await axios.get('http://localhost:3333/bca-app/locationByArea/' + area + '')
@@ -73,6 +78,33 @@ function RelocationReq() {
 
   const handleSubmit = () => {
 
+    if(area === 'NA'){ 
+    const requestData = {
+      installation_id: selectedData.id,
+      old_location: selectedData.location,
+      new_location: newLocation,
+      old_address: selectedData.address,
+      new_address: newAddress,
+      old_area: selectedData.area,
+      new_area: province,
+      old_branch_pic: selectedData.branch_pic,
+      old_area_id: selectedData.area_id,
+      new_area_id: areaId,
+      new_branch_pic: newPic,
+      old_communication: selectedData.communication,
+      new_communication: selectedData.communication
+    };
+
+    setBatchData([...batchData, requestData]);
+    setSubmittedRequests([...submittedRequests, requestData]);
+    setNewAddress('');
+    setNewLocation('');
+    setNewPic('');
+    setNewCommunication('VSAT');
+    setArea('Jakarta');
+    setSelectedData(null);
+    setData([]);
+  } else {
     const requestData = {
       installation_id: selectedData.id,
       old_location: selectedData.location,
@@ -86,7 +118,7 @@ function RelocationReq() {
       new_area_id: areaId,
       new_branch_pic: newPic,
       old_communication: selectedData.communication,
-      new_communication: newCommunication
+      new_communication: selectedData.communication
     };
 
     setBatchData([...batchData, requestData]);
@@ -98,6 +130,7 @@ function RelocationReq() {
     setArea('Jakarta');
     setSelectedData(null);
     setData([]);
+  };
   };
 
   // Submit batch data
@@ -114,7 +147,7 @@ function RelocationReq() {
         batchData[i].createdAt = date;
         const requestData = batchData[i];
         console.log(batchId)
-        const response = await axios.post('http://localhost:3333/bca-app/relocation-request', requestData, {
+        await axios.post('http://localhost:3333/bca-app/relocation-request', requestData, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
@@ -128,12 +161,25 @@ function RelocationReq() {
       console.error('Error submitting batch data:', error);
       toast.error('Error submitting batch data');
     }
+    
   };
 
   const fetchLocationData = async () => {
     await axios.get('http://localhost:3333/bca-app/locations')
       .then((response) => {
         setAreas(response.data.list);
+      })
+      .catch((error) => {
+        console.error('Error fetching location data:', error);
+      });
+  };
+
+  const fetchSpecialLocationData = async () => {
+    await axios.get('http://localhost:3333/bca-app/special-locations')
+      .then((response) => {
+        console.log(response.data.list);
+        setSpecialData([...response.data.list, { location: 'NA' }]);
+        setArea(response.data.list[0].location);
       })
       .catch((error) => {
         console.error('Error fetching location data:', error);
@@ -152,7 +198,6 @@ function RelocationReq() {
       console.error('Error fetching location data:', error);
     }
   };
-  
 
   const fetchInstallationbyId = async (id) => {
     await axios.get('http://localhost:3333/bca-app/installationsById/' + id + '')
@@ -164,33 +209,30 @@ function RelocationReq() {
         console.error('Error fetching location data:', error);
       });
   };
+
   return (
     <div>
-      <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
-        <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
-        <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
-      </nav>
       <div className="container my-3">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
-                        <li className="breadcrumb-item">
-                            <a className="link-body-emphasis" href="/main">
-                              Main
-                            </a>
-                        </li>
-                        <li className="breadcrumb-item active" aria-current="page">
-                            Relocation Request
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-      <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' , fontSize: '6vh'}}>
-        <h1>Relocation Request</h1>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb breadcrumb-chevron p-3 rounded-3">
+            <li className="breadcrumb-item">
+              <a className="link-body-emphasis" href="/main">
+                Main
+              </a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Relocation Request
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <div className="text-center my-5" >
+        <h1 style={{ color: '#E9B824', fontWeight: 'bold' }}>Relocation Request</h1>
       </div>
       <div className="row py-5 w-75 mx-auto">
         <div className="col-md">
           <InputWithLabel
-            label="Select Instalation"
+            label="Enter Location"
             value={location}
             name="pic"
             placeholder="Enter the installation location"
@@ -202,29 +244,27 @@ function RelocationReq() {
             <InstallationSearchTable batchdata={data} onSelect={handleSelect} />
           </div>
         </div>
-
-
       </div>
       {selectedData && (
-        <div>
+        <div id="form">
           <div className="row py-5 w-75 mx-auto">
             <div className="col-md">
               <div className="form-group">
                 <UneditableInputWithLabel
                   label="Location"
-                  value={selectedData?.location}
+                  value={selectedData.location}
                   name="location"
                 />
                 <UneditableInputWithLabel
                   label="Address"
-                  value={selectedData?.address}
+                  value={selectedData.address}
                   name="address"
                 />
               </div>
               <div>
                 <UneditableInputWithLabel
                   label="Area"
-                  value={selectedData?.area}
+                  value={selectedData.area}
                   name="area"
                 />
               </div>
@@ -233,14 +273,21 @@ function RelocationReq() {
               <div className="form-group">
                 <UneditableInputWithLabel
                   label="Branch PIC"
-                  value={selectedData?.branch_pic}
+                  value={selectedData.branch_pic}
                   name="pic"
                 />
-                <div className="py-1">
+                <div>
                   <UneditableInputWithLabel
                     label="Communication"
-                    value={selectedData?.communication}
+                    value={selectedData.communication}
                     name="communication"
+                  />
+                </div>
+                <div>
+                  <UneditableInputWithLabel
+                    label="Provider"
+                    value={selectedData.provider}
+                    name="provider"
                   />
                 </div>
               </div>
@@ -262,14 +309,28 @@ function RelocationReq() {
                 placeholder="Enter the new address"
                 onChange={(e) => handleInputChange(e, setNewAddress)}
               />
-              <div>
-                <SelectLocation
-                  options={areas}
-                  label="Select the Area"
-                  value={area}
-                  onChange={(e) => handleInputChange(e, setArea)}
-                />
+              <div className='row'>
+                <div className="col mx-auto">
+                <div>
+                  <SelectLocation
+                    options={specialData}
+                    label="Select the City"
+                    value={area}
+                    onChange={(e) => handleInputChange(e, setArea)}
+                  />
+                </div>
               </div>
+              {(area === 'NA') && (
+                <div className="col-sm mx-auto">
+                  <SelectLocation
+                    options={areas}
+                    label="Select the Province"
+                    value={province}
+                    onChange={(e) => handleInputChange(e, setProvince)}
+                  />
+                </div>)}
+                </div>
+              
             </div>
             <div className="col-lg">
               <div className="form-group">
@@ -280,17 +341,24 @@ function RelocationReq() {
                   placeholder="Enter the Branch PIC"
                   onChange={(e) => handleInputChange(e, setNewPic)}
                 />
-                <div className="py-1">
-                  <label htmlFor="communication" style={{ fontFamily: 'Montserrat' }} className="py-1">Communication</label>
-                  <VsatSelect
-                    value={newCommunication}
-                    onChange={(e) => handleInputChange(e, setNewCommunication)}
+                <div>
+                  <UneditableInputWithLabel
+                    label="Communication"
+                    value={selectedData.communication}
+                    name="communication"
+                  />
+                </div>
+                <div>
+                  <UneditableInputWithLabel
+                    label="Provider"
+                    value={selectedData.provider}
+                    name="communication"
                   />
                 </div>
                 <div className="row py-4 mx-auto text-center">
                   <div className="col-md">
                     <CustomButton
-                      text="Submit"
+                      text="Add"
                       color="primary"
                       onClick={handleSubmit}
                     />

@@ -1,11 +1,9 @@
 import axios from "axios";
-import BackLogo from "../assets/Back-Sign.svg";
-import bcaLogo from "../assets/white-bca.svg";
 import { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
 import UneditableInputWithLabel from "../components/uneditableInput";
 import SelectProviders from "../components/providers";
-
+import 'typeface-inter';
 
 function InstallationOverride() {
   const location = useLocation();
@@ -44,7 +42,7 @@ function InstallationOverride() {
     console.log(data.area_id);
     await axios.get(`http://localhost:3333/bca-app/getProvidersbyArea/${data.area_id}`)
       .then((response) => {
-        setProvData(response.data.list);
+        setProvData([...response.data.list, {provider : { id: 5, provider: 'Telkomsel (M2M)'} }]);
         console.log(response.data.list);
       })
       .catch((error) => {
@@ -72,11 +70,31 @@ function InstallationOverride() {
 
   return (
     <div>
-      <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
-        <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
-        <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
-      </nav>
-      <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' }}>
+       <div className="container my-3">
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb breadcrumb-chevron p-3">
+                        <li className="breadcrumb-item">
+                            <a className="link-body-emphasis" href="/admin/main">
+                              Main
+                            </a>
+                        </li>
+                        <li className="breadcrumb-item">
+                            <a className="link-body-emphasis fw-semibold text-decoration-none" href="/admin/installationBatch">
+                                History
+                            </a>
+                        </li>
+                        <li className="breadcrumb-item">
+                            <a className="link-body-emphasis fw-semibold text-decoration-none" href={`/admin/installationDetails?batchid=${data.batchid}`}>
+                                Details
+                            </a>
+                        </li>
+                        <li className="breadcrumb-item active" aria-current="page">
+                            Override
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+      <div className="text-center mt-5" style={{ fontFamily: 'inter' }}>
         <h1>Installation Override</h1>
       </div>
       <div className="row py-5 w-75 mx-auto">

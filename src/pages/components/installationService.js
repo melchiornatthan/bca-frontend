@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
-
+import 'typeface-inter';
 function InstallationService({ installationData, isAdminView }) {
   const [data, setData] = React.useState(installationData);
   const [hasPending, setHasPending] = React.useState(false);
@@ -62,42 +62,42 @@ function InstallationService({ installationData, isAdminView }) {
 
   return (
     <div className='text-center w-75 mx-auto'>
-      <h1 style={{ fontFamily: 'Montserrat' }}>
+     <h1 style={{ fontFamily: 'inter', color: '#219C90', fontWeight: 'bold', fontSize: '6vh' }}>
         {isAdminView ? 'Service Requests' : 'Batch Requests'}
       </h1>
       <div style={tableStyle}>
         <table className="table mt-3">
           <thead>
             <tr>
-              <th style={{ fontFamily: 'Montserrat' }}>Location</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Address</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Branch PIC</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Area</th>
-              <th style={{ fontFamily: 'Montserrat' }}>Communication</th>
+              <th style={{ fontFamily: 'inter' }}>Location</th>
+              <th style={{ fontFamily: 'inter' }}>Address</th>
+              <th style={{ fontFamily: 'inter' }}>Branch PIC</th>
+              <th style={{ fontFamily: 'inter' }}>Area</th>
+              <th style={{ fontFamily: 'inter' }}>Communication</th>
               {(isAdminView || !hasPending ) && (
-              <th style={{ fontFamily: 'Montserrat' }}>Provider</th>
+              <th style={{ fontFamily: 'inter' }}>Provider</th>
               )}
               {(isAdminView || !hasPending ) && (
-              <th style={{ fontFamily: 'Montserrat' }}>Status</th>
+              <th style={{ fontFamily: 'inter' }}>Status</th>
               )}
               {isAdminView && (
-                <th style={{ fontFamily: 'Montserrat' }}>Approve or Override</th>
+                <th style={{ fontFamily: 'inter' }}>Approve or Override</th>
               )}
             </tr>
           </thead>
           <tbody>
             {data.map((entry, index) => (
               <tr key={index}>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.location}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.address}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.branch_pic}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.area}</td>
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.communication}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.location}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.address}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.branch_pic}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.area}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.communication}</td>
                 {(isAdminView || !hasPending ) && (
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.provider}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.provider}</td>
                 )}
                  {(isAdminView || !hasPending ) && (
-                <td style={{ fontFamily: 'Montserrat' }}>{entry.status}</td>
+                <td style={{ fontFamily: 'inter' }}>{entry.status}</td>
                 )}
                 {isAdminView && (
                   <td>

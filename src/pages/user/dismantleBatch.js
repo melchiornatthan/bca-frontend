@@ -1,72 +1,73 @@
-import React from 'react';
-import BackLogo from "../assets/Back-Sign.svg";
-import bcaLogo from "../assets/white-bca.svg";
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import axios from 'axios';
-import RelocationByBatchIdTable from '../components/relocationBatchService';
+import BackLogo from '../assets/Back-Sign.svg';
+import bcaLogo from '../assets/white-bca.svg';
 import DismantleByBatchIdTable from '../components/dismantleBatchService';
-
-
+import 'typeface-inter';
 function DismantleBatch() {
-    const [data, setData] = useState([]);
-    const location = useLocation();
-    // Parse the URL parameters and extract the 'data' parameter
-    const searchParams = new URLSearchParams(location.search);
-    const batchid = parseInt(searchParams.get('batchid'), 10);
+  // State to hold the data retrieved from the API
+  const [data, setData] = useState([]);
 
-    useEffect(() => {
-        getRelocationData();
-        console.log(data);
-    }, [batchid]);
+  // Get the current URL location
+  const location = useLocation();
 
-    const getRelocationData = async () => {
-        await axios.get('http://localhost:3333/bca-app/getDismantlebyBatchID/' + batchid + ''
-        ).then((response) => {
-            setData(response.data);
-            console.log(data);
-        })
-            .catch((error) => {
-                console.error('Error fetching location data:', error);
-            });
-    };
+  // Parse the URL parameters and extract the 'batchid' parameter
+  const searchParams = new URLSearchParams(location.search);
+  const batchid = parseInt(searchParams.get('batchid'), 10);
 
+  // Fetch data from the API when the component mounts or when batchid changes
+  useEffect(() => {
+    getDismantleData();
+  }, [batchid]);
 
-    return (
-        <div>
-             <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
-        <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} onClick={() => {
-          localStorage.removeItem('isAuthorized')
-          window.location.href = "/login"
-        }} />
-        <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
-      </nav>
-           <div className="container my-3">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
-                        <li className="breadcrumb-item">
-                            <a className="link-body-emphasis" href="/main">
-                              Main
-                            </a>
-                        </li>
-                        <li className="breadcrumb-item">
-                            <a className="link-body-emphasis fw-semibold text-decoration-none" href="/dismantleHistory">
-                                History
-                            </a>
-                        </li>
-                        <li className="breadcrumb-item active" aria-current="page">
-                            Batch
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-            <div className="text-center mt-5">
-                <h1 style={{ fontFamily: 'Montserrat', color: '#D83F31', fontWeight: 'bold', fontSize: '4vh'}}>Dismantle Batch {batchid}</h1>
-            </div>
-           <DismantleByBatchIdTable batchdata={data} isAdmin={false} />
-        </div>
-    );
+  // Function to fetch dismantle data based on batchid
+  const getDismantleData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3333/bca-app/getDismantlebyBatchID/${batchid}`);
+      setData(response.data);
+    } catch (error) {
+      console.error('Error fetching dismantle data:', error);
+      // Handle error gracefully, show a user-friendly message, or redirect if necessary
+    }
+  };
+
+  // JSX rendering
+  return (
+    <div>
+
+      {/* Breadcrumb navigation */}
+      <div className="container my-3">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb breadcrumb-chevron p-3">
+            <li className="breadcrumb-item">
+              <a className="link-body-emphasis" href="/main">
+                Main
+              </a>
+            </li>
+            <li className="breadcrumb-item">
+              <a className="link-body-emphasis fw-semibold text-decoration-none" href="/dismantleHistory">
+                History
+              </a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Batch
+            </li>
+          </ol>
+        </nav>
+      </div>
+
+      {/* Title */}
+      <div className="text-center mt-5">
+        <h1 style={{ fontFamily: 'inter', color: '#D83F31', fontWeight: 'bold', fontSize: '4vh' }}>
+          Dismantle Batch {batchid}
+        </h1>
+      </div>
+
+      {/* DismantleByBatchIdTable component */}
+      <DismantleByBatchIdTable batchdata={data} isAdmin={false} />
+    </div>
+  );
 }
 
 export default DismantleBatch;

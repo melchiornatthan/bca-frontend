@@ -36,6 +36,7 @@ class App extends Component {
     const isAdmin = localStorage.getItem('isAdmin') === 'true';
 
     return (
+      
       <Router>
         <div>
           {/* Check for authorization and isAdmin, and redirect if not authorized */}

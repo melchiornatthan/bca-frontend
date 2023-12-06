@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import UneditableInputWithLabel from './uneditableInput';
-
+import 'typeface-inter';
 function RelocationDetailService({ batchdata = {}, isAdmin = false, updateRequestStatus }) {
     const [data, setData] = useState({});
     useEffect(() => {
@@ -9,7 +9,7 @@ function RelocationDetailService({ batchdata = {}, isAdmin = false, updateReques
 
     return (
         <div>
-            <div className='text-center mt-5' style={{ fontFamily: 'Montserrat' }}>
+            <div className='text-center mt-5' style={{ fontFamily: 'inter' }}>
                 <h2>Old Location</h2>
             </div>
             <div className="row w-75 mx-auto mt-5">
@@ -51,7 +51,7 @@ function RelocationDetailService({ batchdata = {}, isAdmin = false, updateReques
                     </div>
                 </div>
             </div>
-            <div className='text-center mt-5' style={{ fontFamily: 'Montserrat' }}>
+            <div className='text-center mt-5' style={{ fontFamily: 'inter' }}>
                 <h2>New Location</h2>
             </div>
             <div className="row w-75 mx-auto mt-4">

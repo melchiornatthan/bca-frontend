@@ -1,5 +1,5 @@
 import React from 'react';
-
+import 'typeface-inter';
 /**
  * SelectLocation Component
  *
@@ -9,18 +9,19 @@ import React from 'react';
  * @param {string} props.value - The selected value.
  * @param {function} props.onChange - The function to handle selection changes.
  */
-const SelectLocation = ({ options, label, value, onChange }) => {
+const SelectLocation = ({ options, label, value, onChange, isDisabled = false}) => {
   return (
     <div className="form-group">
-      <label htmlFor={label} style={{'font-family': 'Montserrat'}}>{label}</label>
+      <label htmlFor={label} style={{'font-family': 'inter'}}>{label}</label>
       <select
         className="form-control"
         id={label}
         value={value}
         onChange={onChange}
+        disabled={isDisabled}
       >
         {options.map((option) => (
-          <option style={{'fontFamily': 'Montserrat'}} key={option.id} value={option.location}>
+          <option style={{'fontFamily': 'inter'}} key={option.id} value={option.location}>
             {option.location}
           </option>
         ))}

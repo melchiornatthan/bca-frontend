@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import RelocationByBatchIdTable from '../components/relocationBatchService';
-
+import 'typeface-inter';
 
 function AdminRelocationBatch() {
     const [data, setData] = useState([]);
@@ -33,15 +33,30 @@ function AdminRelocationBatch() {
 
 
     return (
-        <div>
-            <nav className="navbar" style={{ backgroundColor: '#0060AF' }}>
-                <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '20px' }} />
-                <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }} onClick={() => window.location.href = "/login"} />
-            </nav>
-            <div className="text-center mt-5" style={{ fontFamily: 'Montserrat' }}>
-                <h1>Relocation Request</h1>
+        <div className='text-center'>
+            <div className="container my-3">
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb breadcrumb-chevron p-3">
+                        <li className="breadcrumb-item">
+                            <a className="link-body-emphasis" href="/admin/main">
+                                Main
+                            </a>
+                        </li>
+                        <li className="breadcrumb-item">
+                            <a className="link-body-emphasis fw-semibold text-decoration-none" href="/admin/relocationHistory">
+                                History
+                            </a>
+                        </li>
+                        <li className="breadcrumb-item active" aria-current="page">
+                            Batch
+                        </li>
+                    </ol>
+                </nav>
             </div>
-           <RelocationByBatchIdTable batchdata={data} isAdmin={true} />
+            <h1 className="mx-auto" style={{ fontFamily: 'inter', color: '#E9B824', fontWeight: 'bold', fontSize: '6vh' }}>
+                Relocation Requests
+            </h1>
+            <RelocationByBatchIdTable batchdata={data} isAdmin={true} />
         </div>
     );
 }
