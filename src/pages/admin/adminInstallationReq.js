@@ -1,12 +1,10 @@
-
 import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
-import 'typeface-inter';
-
+import "typeface-inter";
 
 function AdminInstallationReq() {
   const [installationData, setInstallationData] = useState([]);
@@ -21,20 +19,22 @@ function AdminInstallationReq() {
   };
 
   const getInstallationData = () => {
-    axios.get('http://localhost:3333/bca-app/getBatchInstallations/'+ batchid + '')
+    axios
+      .get(
+        "http://localhost:3333/bca-app/getBatchInstallations/" + batchid + ""
+      )
       .then((response) => {
         console.log(response.data);
         setInstallationData(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching location data:', error);
+        console.error("Error fetching location data:", error);
       });
   };
 
   useEffect(() => {
     getInstallationData();
   }, [batchid]);
-
 
   return (
     <div>
@@ -53,7 +53,14 @@ function AdminInstallationReq() {
         </nav>
       </div>
       <div className="container my-5 text-center">
-        <h1 style={{ fontFamily: 'inter', color: '#219C90', fontWeight: 'bold', fontSize: '6vh' }}>
+        <h1
+          style={{
+            fontFamily: "inter",
+            color: "#219C90",
+            fontWeight: "bold",
+            fontSize: "6vh",
+          }}
+        >
           Installation Requests
         </h1>
       </div>
@@ -69,7 +76,6 @@ function AdminInstallationReq() {
       <div className="mt-5">
         <BatchTable batchdata={installationData} isAdmin={true} />
       </div>
-
     </div>
   );
 }

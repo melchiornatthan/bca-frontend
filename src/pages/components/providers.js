@@ -1,5 +1,5 @@
-import React from 'react';
-import 'typeface-inter';
+import React from "react";
+import "typeface-inter";
 /**
  * SelectLocation Component
  *
@@ -12,7 +12,7 @@ import 'typeface-inter';
 const SelectProviders = ({ options, label, value, onChange }) => {
   return (
     <div className="form-group py-1">
-      <label htmlFor={label} style={{ fontFamily: 'inter' }}>
+      <label htmlFor={label} style={{ fontFamily: "inter" }}>
         {label}
       </label>
       <select
@@ -23,7 +23,7 @@ const SelectProviders = ({ options, label, value, onChange }) => {
       >
         {options.map((option) => (
           <option
-            style={{ fontFamily: 'inter' }}
+            style={{ fontFamily: "inter" }}
             key={option.provider.id}
             value={option.provider.id}
           >
@@ -38,8 +38,8 @@ const SelectProviders = ({ options, label, value, onChange }) => {
 // Set default values for the props
 SelectProviders.defaultProps = {
   options: [],
-  label: 'Select Provider',
-  value: '',
+  label: "Select Provider",
+  value: "",
   onChange: () => {}, // You can provide a default function or leave it as an empty function
 };
 

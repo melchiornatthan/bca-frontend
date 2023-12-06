@@ -1,7 +1,14 @@
-import React from 'react';
-import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
+import React from "react";
+import {
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+  Tooltip,
+} from "recharts";
 
-const colors = ['#7189BF', '#DF7599', '#FFC785', '#72D6C9', '#0088fe']; // Add more colors if needed
+const colors = ["#7189BF", "#DF7599", "#FFC785", "#72D6C9", "#0088fe"]; // Add more colors if needed
 
 const ResponsiveDoughnutChart = ({ data }) => {
   return (

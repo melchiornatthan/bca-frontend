@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 /**
  * CustomButton Component
@@ -10,9 +10,9 @@ import React from 'react';
  */
 const CustomButton = ({ text, color, onClick }) => {
   const buttonStyle = {
-    backgroundColor: color || '#0060AF', // Set the background color to #0060AF
-    color: 'white',
-    padding: '1vh 6vh'
+    backgroundColor: color || "#0060AF", // Set the background color to #0060AF
+    color: "white",
+    padding: "1vh 6vh",
   };
 
   return (

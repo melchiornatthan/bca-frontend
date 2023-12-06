@@ -1,26 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
-import InputWithLabel from '../components/input';
-import { useState } from 'react';
-import axios from 'axios';
-import InstallationSearchTable from '../components/searchInstallationTable';
-import UneditableInputWithLabel from '../components/uneditableInput';
-import SelectLocation from '../components/locations';
-import VsatSelect from '../components/communication';
-import CustomButton from '../components/button';
-import { ToastContainer, toast } from 'react-toastify';
-
+import InputWithLabel from "../components/input";
+import { useState } from "react";
+import axios from "axios";
+import InstallationSearchTable from "../components/searchInstallationTable";
+import UneditableInputWithLabel from "../components/uneditableInput";
+import SelectLocation from "../components/locations";
+import VsatSelect from "../components/communication";
+import CustomButton from "../components/button";
+import { ToastContainer, toast } from "react-toastify";
 
 function RelocationReq() {
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState("");
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState();
-  const [newLocation, setNewLocation] = useState('');
-  const [newAddress, setNewAddress] = useState('');
-  const [area, setArea] = useState('Jakarta');
-  const [newPic, setNewPic] = useState('');
-  const [newCommunication, setNewCommunication] = useState('VSAT');
+  const [newLocation, setNewLocation] = useState("");
+  const [newAddress, setNewAddress] = useState("");
+  const [area, setArea] = useState("Jakarta");
+  const [newPic, setNewPic] = useState("");
+  const [newCommunication, setNewCommunication] = useState("VSAT");
   const [areas, setAreas] = useState([]);
   const [specialData, setSpecialData] = useState([]);
   const [batchId, setBatchId] = useState(200000000);
@@ -28,7 +27,7 @@ function RelocationReq() {
   const [batchData, setBatchData] = useState([]);
   const [submittedRequests, setSubmittedRequests] = useState([]);
   const [isHoveredSecond, setIsHoveredSecond] = useState(false);
-  const [province, setProvince] = useState('Jakarta');
+  const [province, setProvince] = useState("Jakarta");
 
   useEffect(() => {
     fetchInstallationData();
@@ -49,7 +48,8 @@ function RelocationReq() {
   };
 
   async function generateBatchId() {
-    await axios.get('http://localhost:3333/bca-app/getRelocationBatchId')
+    await axios
+      .get("http://localhost:3333/bca-app/getRelocationBatchId")
       .then((response) => {
         const currentBatchId = parseInt(response.data.batchid, 10);
         const newBatchId = currentBatchId + 1;
@@ -57,7 +57,7 @@ function RelocationReq() {
         console.log(batchId);
       })
       .catch((error) => {
-        console.error('Error fetching location data:', error);
+        console.error("Error fetching location data:", error);
       });
   }
 
@@ -65,72 +65,71 @@ function RelocationReq() {
     setStateFunction(event.target.value);
   };
 
-
   const getAreaId = async () => {
-    await axios.get('http://localhost:3333/bca-app/locationByArea/' + area + '')
+    await axios
+      .get("http://localhost:3333/bca-app/locationByArea/" + area + "")
       .then((response) => {
         setAreaId(response.data[0].id);
       })
       .catch((error) => {
-        console.error('Error fetching location data:', error);
+        console.error("Error fetching location data:", error);
       });
   };
 
   const handleSubmit = () => {
+    if (area === "NA") {
+      const requestData = {
+        installation_id: selectedData.id,
+        old_location: selectedData.location,
+        new_location: newLocation,
+        old_address: selectedData.address,
+        new_address: newAddress,
+        old_area: selectedData.area,
+        new_area: province,
+        old_branch_pic: selectedData.branch_pic,
+        old_area_id: selectedData.area_id,
+        new_area_id: areaId,
+        new_branch_pic: newPic,
+        old_communication: selectedData.communication,
+        new_communication: selectedData.communication,
+      };
 
-    if(area === 'NA'){ 
-    const requestData = {
-      installation_id: selectedData.id,
-      old_location: selectedData.location,
-      new_location: newLocation,
-      old_address: selectedData.address,
-      new_address: newAddress,
-      old_area: selectedData.area,
-      new_area: province,
-      old_branch_pic: selectedData.branch_pic,
-      old_area_id: selectedData.area_id,
-      new_area_id: areaId,
-      new_branch_pic: newPic,
-      old_communication: selectedData.communication,
-      new_communication: selectedData.communication
-    };
+      setBatchData([...batchData, requestData]);
+      setSubmittedRequests([...submittedRequests, requestData]);
+      setNewAddress("");
+      setNewLocation("");
+      setNewPic("");
+      setNewCommunication("VSAT");
+      setArea("Jakarta");
+      setSelectedData(null);
+      setData([]);
+    } else {
+      const requestData = {
+        installation_id: selectedData.id,
+        old_location: selectedData.location,
+        new_location: newLocation,
+        old_address: selectedData.address,
+        new_address: newAddress,
+        old_area: selectedData.area,
+        new_area: area,
+        old_branch_pic: selectedData.branch_pic,
+        old_area_id: selectedData.area_id,
+        new_area_id: areaId,
+        new_branch_pic: newPic,
+        old_communication: selectedData.communication,
+        new_communication: selectedData.communication,
+      };
 
-    setBatchData([...batchData, requestData]);
-    setSubmittedRequests([...submittedRequests, requestData]);
-    setNewAddress('');
-    setNewLocation('');
-    setNewPic('');
-    setNewCommunication('VSAT');
-    setArea('Jakarta');
-    setSelectedData(null);
-    setData([]);
-  } else {
-    const requestData = {
-      installation_id: selectedData.id,
-      old_location: selectedData.location,
-      new_location: newLocation,
-      old_address: selectedData.address,
-      new_address: newAddress,
-      old_area: selectedData.area,
-      new_area: area,
-      old_branch_pic: selectedData.branch_pic,
-      old_area_id: selectedData.area_id,
-      new_area_id: areaId,
-      new_branch_pic: newPic,
-      old_communication: selectedData.communication,
-      new_communication: selectedData.communication
-    };
-
-    setBatchData([...batchData, requestData]);
-    setSubmittedRequests([...submittedRequests, requestData]);
-    setNewAddress('');
-    setNewLocation('');
-    setNewPic('');
-    setNewCommunication('VSAT');
-    setArea('Jakarta');
-    setSelectedData(null);
-    setData([]);
-  };
+      setBatchData([...batchData, requestData]);
+      setSubmittedRequests([...submittedRequests, requestData]);
+      setNewAddress("");
+      setNewLocation("");
+      setNewPic("");
+      setNewCommunication("VSAT");
+      setArea("Jakarta");
+      setSelectedData(null);
+      setData([]);
+    }
   };
 
   // Submit batch data
@@ -146,67 +145,77 @@ function RelocationReq() {
         batchData[i].batchid = batchId;
         batchData[i].createdAt = date;
         const requestData = batchData[i];
-        console.log(batchId)
-        await axios.post('http://localhost:3333/bca-app/relocation-request', requestData, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        });
+        console.log(batchId);
+        await axios.post(
+          "http://localhost:3333/bca-app/relocation-request",
+          requestData,
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        );
       }
-      toast.success('Request submitted successfully');
+      toast.success("Request submitted successfully");
       setBatchData([]); // Clear the batch data
       setSubmittedRequests([]); // Clear the previous requests
       setBatchId(generateBatchId());
     } catch (error) {
-      console.error('Error submitting batch data:', error);
-      toast.error('Error submitting batch data');
+      console.error("Error submitting batch data:", error);
+      toast.error("Error submitting batch data");
     }
-    
   };
 
   const fetchLocationData = async () => {
-    await axios.get('http://localhost:3333/bca-app/locations')
+    await axios
+      .get("http://localhost:3333/bca-app/locations")
       .then((response) => {
         setAreas(response.data.list);
       })
       .catch((error) => {
-        console.error('Error fetching location data:', error);
+        console.error("Error fetching location data:", error);
       });
   };
 
   const fetchSpecialLocationData = async () => {
-    await axios.get('http://localhost:3333/bca-app/special-locations')
+    await axios
+      .get("http://localhost:3333/bca-app/special-locations")
       .then((response) => {
         console.log(response.data.list);
-        setSpecialData([...response.data.list, { location: 'NA' }]);
+        setSpecialData([...response.data.list, { location: "NA" }]);
         setArea(response.data.list[0].location);
       })
       .catch((error) => {
-        console.error('Error fetching location data:', error);
+        console.error("Error fetching location data:", error);
       });
   };
 
   const fetchInstallationData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3333/bca-app/installationByLocation/${location}`);
-      const filteredData = response.data.filter(installation => {
+      const response = await axios.get(
+        `http://localhost:3333/bca-app/installationByLocation/${location}`
+      );
+      const filteredData = response.data.filter((installation) => {
         // Check if the installation_id is not present in batchData
-        return !batchData.some(request => request.installation_id === installation.id);
+        return !batchData.some(
+          (request) => request.installation_id === installation.id
+        );
       });
       setData(filteredData);
     } catch (error) {
-      console.error('Error fetching location data:', error);
+      console.error("Error fetching location data:", error);
     }
   };
 
   const fetchInstallationbyId = async (id) => {
-    await axios.get('http://localhost:3333/bca-app/installationsById/' + id + '')
+    await axios
+      .get("http://localhost:3333/bca-app/installationsById/" + id + "")
       .then((response) => {
         console.log(response.data[0]);
         setSelectedData(response.data[0]);
       })
       .catch((error) => {
-        console.error('Error fetching location data:', error);
+        console.error("Error fetching location data:", error);
       });
   };
 
@@ -226,8 +235,10 @@ function RelocationReq() {
           </ol>
         </nav>
       </div>
-      <div className="text-center my-5" >
-        <h1 style={{ color: '#E9B824', fontWeight: 'bold' }}>Relocation Request</h1>
+      <div className="text-center my-5">
+        <h1 style={{ color: "#E9B824", fontWeight: "bold" }}>
+          Relocation Request
+        </h1>
       </div>
       <div className="row py-5 w-75 mx-auto">
         <div className="col-md">
@@ -240,7 +251,7 @@ function RelocationReq() {
           />
         </div>
         <div className="col-md">
-          <div className=' mx-auto'>
+          <div className=" mx-auto">
             <InstallationSearchTable batchdata={data} onSelect={handleSelect} />
           </div>
         </div>
@@ -309,28 +320,28 @@ function RelocationReq() {
                 placeholder="Enter the new address"
                 onChange={(e) => handleInputChange(e, setNewAddress)}
               />
-              <div className='row'>
+              <div className="row">
                 <div className="col mx-auto">
-                <div>
-                  <SelectLocation
-                    options={specialData}
-                    label="Select the City"
-                    value={area}
-                    onChange={(e) => handleInputChange(e, setArea)}
-                  />
+                  <div>
+                    <SelectLocation
+                      options={specialData}
+                      label="Select the City"
+                      value={area}
+                      onChange={(e) => handleInputChange(e, setArea)}
+                    />
+                  </div>
                 </div>
+                {area === "NA" && (
+                  <div className="col-sm mx-auto">
+                    <SelectLocation
+                      options={areas}
+                      label="Select the Province"
+                      value={province}
+                      onChange={(e) => handleInputChange(e, setProvince)}
+                    />
+                  </div>
+                )}
               </div>
-              {(area === 'NA') && (
-                <div className="col-sm mx-auto">
-                  <SelectLocation
-                    options={areas}
-                    label="Select the Province"
-                    value={province}
-                    onChange={(e) => handleInputChange(e, setProvince)}
-                  />
-                </div>)}
-                </div>
-              
             </div>
             <div className="col-lg">
               <div className="form-group">
@@ -373,10 +384,12 @@ function RelocationReq() {
         <div
           className="my-5 w-75 mx-auto"
           style={{
-            borderRadius: '33px',
-            padding: '20px',
-            boxShadow: isHoveredSecond ? '10px 10px 20px rgba(33, 156, 144, 0.3)' : 'none',
-            transition: 'box-shadow 0.3s',
+            borderRadius: "33px",
+            padding: "20px",
+            boxShadow: isHoveredSecond
+              ? "10px 10px 20px rgba(33, 156, 144, 0.3)"
+              : "none",
+            transition: "box-shadow 0.3s",
           }}
           onMouseEnter={() => setIsHoveredSecond(true)}
           onMouseLeave={() => setIsHoveredSecond(false)}

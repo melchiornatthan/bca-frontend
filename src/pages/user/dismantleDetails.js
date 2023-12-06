@@ -12,11 +12,11 @@ import 'typeface-inter';
 function DismantleDetails() {
     const [data, setData] = useState({});
     const location = useLocation();
-     // Parse the URL parameters and extract the 'data' parameter
-     const searchParams = new URLSearchParams(location.search);
-     const int_id = parseInt(searchParams.get('id'), 10);
-     const batchid = parseInt(searchParams.get('batchid'), 10);
-     
+    // Parse the URL parameters and extract the 'data' parameter
+    const searchParams = new URLSearchParams(location.search);
+    const int_id = parseInt(searchParams.get('id'), 10);
+    const batchid = parseInt(searchParams.get('batchid'), 10);
+
 
     useEffect(() => {
         getRelocationData();
@@ -39,11 +39,11 @@ function DismantleDetails() {
             <div className="container my-3">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb breadcrumb-chevron p-3">
-                    <li className="breadcrumb-item">
+                        <li className="breadcrumb-item">
                             <a className="link-body-emphasis" href="/main">
-                              Main
+                                Main
                             </a>
-                            </li>
+                        </li>
                         <li className="breadcrumb-item">
                             <a className="link-body-emphasis fw-semibold text-decoration-none" href="/dismantleHistory">
                                 History
@@ -61,9 +61,9 @@ function DismantleDetails() {
                 </nav>
             </div>
             <div className="text-center mt-5" >
-                <h1 style={{ fontFamily: 'inter', color: '#D83F31', fontWeight: 'bold', fontSize: '4vh'}}>Dismantle Request</h1>
+                <h1 style={{ fontFamily: 'inter', color: '#D83F31', fontWeight: 'bold', fontSize: '4vh' }}>Dismantle Request</h1>
             </div>
-           <DismantleDetailsService batchdata={data} isAdmin={false} />
+            <DismantleDetailsService batchdata={data} isAdmin={false} />
         </div>
     );
 }

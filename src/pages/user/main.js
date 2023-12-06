@@ -28,9 +28,9 @@ function Main() {
     { name: 'Primacom', value: parseInt(providerCount.primacom) },
     { name: 'Tangara', value: parseInt(providerCount.tangara) },
     { name: 'IFORTE', value: parseInt(providerCount.iforte) },
-    { name: 'Indonet', value: parseInt(providerCount.indonet)}
+    { name: 'Indonet', value: parseInt(providerCount.indonet) }
   ];
-  
+
 
   useEffect(() => {
     getRequestCount();
@@ -172,7 +172,7 @@ function Main() {
                     <h2 style={{ textAlign: 'center', fontFamily: 'inter', fontSize: '2vh', color: '#163172' }}>
                       Data Update : {date.toDateString()} {date.toLocaleTimeString()}
                     </h2>
-                    <p style={{ textAlign: 'center', fontFamily: 'inter', color: '#163172' , marginTop:'5vh'}}> Primacom : {providerCount.primacom}/2550 </p>
+                    <p style={{ textAlign: 'center', fontFamily: 'inter', color: '#163172', marginTop: '5vh' }}> Primacom : {providerCount.primacom}/2550 </p>
                     <p style={{ textAlign: 'center', fontFamily: 'inter', color: '#163172' }}> Iforte : {providerCount.iforte}/2550 </p>
                     <p style={{ textAlign: 'center', fontFamily: 'inter', color: '#163172' }}> Tangara : {providerCount.tangara}/2550 </p>
                     <p style={{ textAlign: 'center', fontFamily: 'inter', color: '#163172' }}> Indonet : {providerCount.indonet}/2550 </p>
@@ -217,7 +217,7 @@ function Main() {
                     <div className='row'>
                       <img src={ClockTwo} alt="Logo" style={{ height: '5vh' }} />
                       <div style={{ height: '5vh' }}>
-                        <h2 style={{ textAlign: 'center', fontFamily: 'inter', color: '#D83F31', fontSize: '5vh', marginTop: '10vh'}}>{reqCount.dismantle}</h2>
+                        <h2 style={{ textAlign: 'center', fontFamily: 'inter', color: '#D83F31', fontSize: '5vh', marginTop: '10vh' }}>{reqCount.dismantle}</h2>
                       </div>
                     </div>
                   </div>
@@ -240,7 +240,7 @@ function Main() {
                     <div className='row'>
                       <img src={ClockOne} alt="Logo" style={{ height: '5vh' }} />
                       <div style={{ height: '5vh' }}>
-                        <h2 style={{ textAlign: 'center', fontFamily: 'inter', color: ' #E9B824', fontSize: '5vh', marginTop:'10vh' }}>{reqCount.relocation}</h2>
+                        <h2 style={{ textAlign: 'center', fontFamily: 'inter', color: ' #E9B824', fontSize: '5vh', marginTop: '10vh' }}>{reqCount.relocation}</h2>
                       </div>
                     </div>
                   </div>
@@ -263,7 +263,7 @@ function Main() {
                     <div className='row'>
                       <img src={ClockThree} alt="Logo" style={{ height: '5vh' }} />
                       <div style={{ height: '5vh' }}>
-                        <h2 style={{ textAlign: 'center', fontFamily: 'inter', color: '#219C90', fontSize: '5vh', marginTop:'10vh'}}>{reqCount.installation}</h2>
+                        <h2 style={{ textAlign: 'center', fontFamily: 'inter', color: '#219C90', fontSize: '5vh', marginTop: '10vh' }}>{reqCount.installation}</h2>
                       </div>
                     </div>
                   </div>

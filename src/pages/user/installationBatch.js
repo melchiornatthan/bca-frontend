@@ -2,8 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
-import 'typeface-inter';
-
+import "typeface-inter";
 
 function InstallationBatch() {
   const [installationData, setInstallationData] = useState([]);
@@ -18,20 +17,22 @@ function InstallationBatch() {
   };
 
   const getInstallationData = () => {
-    axios.get('http://localhost:3333/bca-app/getBatchInstallations/'+ batchid + '')
+    axios
+      .get(
+        "http://localhost:3333/bca-app/getBatchInstallations/" + batchid + ""
+      )
       .then((response) => {
         console.log(response.data);
         setInstallationData(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching location data:', error);
+        console.error("Error fetching location data:", error);
       });
   };
 
   useEffect(() => {
     getInstallationData();
   }, [batchid]);
-
 
   return (
     <div>
@@ -50,7 +51,14 @@ function InstallationBatch() {
         </nav>
       </div>
       <div className="container my-5 text-center">
-        <h1 style={{ fontFamily: 'inter', color: '#219C90', fontWeight: 'bold', fontSize: '6vh' }}>
+        <h1
+          style={{
+            fontFamily: "inter",
+            color: "#219C90",
+            fontWeight: "bold",
+            fontSize: "6vh",
+          }}
+        >
           Installation Requests
         </h1>
       </div>
@@ -66,7 +74,6 @@ function InstallationBatch() {
       <div className="mt-5">
         <BatchTable batchdata={installationData} isAdmin={false} />
       </div>
-
     </div>
   );
 }

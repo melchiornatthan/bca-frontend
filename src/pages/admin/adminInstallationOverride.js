@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import UneditableInputWithLabel from "../components/uneditableInput";
 import SelectProviders from "../components/providers";
-import 'typeface-inter';
+import "typeface-inter";
 
 function InstallationOverride() {
   const location = useLocation();
@@ -11,7 +11,7 @@ function InstallationOverride() {
   const [provData, setProvData] = useState([]);
   const [provider, setProvider] = useState(1);
   const searchParams = new URLSearchParams(location.search);
-  const id = searchParams.get('id');
+  const id = searchParams.get("id");
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -19,34 +19,36 @@ function InstallationOverride() {
 
   useEffect(() => {
     getInstallationById();
-
   }, []);
 
   useEffect(() => {
     getProviderAlternatives();
-  }, [
-    data
-  ]);
+  }, [data]);
 
   const getInstallationById = async () => {
-    await axios.get('http://localhost:3333/bca-app/installationsById/' + id + '')
+    await axios
+      .get("http://localhost:3333/bca-app/installationsById/" + id + "")
       .then((response) => {
         setData(response.data[0]);
       })
       .catch((error) => {
-        console.error('Error fetching location data:', error);
+        console.error("Error fetching location data:", error);
       });
   };
 
   const getProviderAlternatives = async () => {
     console.log(data.area_id);
-    await axios.get(`http://localhost:3333/bca-app/getProvidersbyArea/${data.area_id}`)
+    await axios
+      .get(`http://localhost:3333/bca-app/getProvidersbyArea/${data.area_id}`)
       .then((response) => {
-        setProvData([...response.data.list, {provider : { id: 5, provider: 'Telkomsel (M2M)'} }]);
+        setProvData([
+          ...response.data.list,
+          { provider: { id: 5, provider: "Telkomsel (M2M)" } },
+        ]);
         console.log(response.data.list);
       })
       .catch((error) => {
-        console.error('Error fetching Provider data:', error);
+        console.error("Error fetching Provider data:", error);
       });
   };
 
@@ -54,47 +56,54 @@ function InstallationOverride() {
     console.log(data.id);
     console.log(provider);
     console.log(data.area);
-    await axios.post('http://localhost:3333/bca-app/installation-override', {
-      id: data.id,
-      id_prov: provider,
-      location: data.area
-    })
+    await axios
+      .post("http://localhost:3333/bca-app/installation-override", {
+        id: data.id,
+        id_prov: provider,
+        location: data.area,
+      })
       .then((response) => {
         console.log(response);
-        window.location.href=`/admin/installationDetails?batchid=${data.batchid}`
+        window.location.href = `/admin/installationDetails?batchid=${data.batchid}`;
       })
       .catch((error) => {
-        console.error('Error fetching location data:', error);
+        console.error("Error fetching location data:", error);
       });
   };
 
   return (
     <div>
-       <div className="container my-3">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb breadcrumb-chevron p-3">
-                        <li className="breadcrumb-item">
-                            <a className="link-body-emphasis" href="/admin/main">
-                              Main
-                            </a>
-                        </li>
-                        <li className="breadcrumb-item">
-                            <a className="link-body-emphasis fw-semibold text-decoration-none" href="/admin/installationBatch">
-                                History
-                            </a>
-                        </li>
-                        <li className="breadcrumb-item">
-                            <a className="link-body-emphasis fw-semibold text-decoration-none" href={`/admin/installationDetails?batchid=${data.batchid}`}>
-                                Details
-                            </a>
-                        </li>
-                        <li className="breadcrumb-item active" aria-current="page">
-                            Override
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-      <div className="text-center mt-5" style={{ fontFamily: 'inter' }}>
+      <div className="container my-3">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb breadcrumb-chevron p-3">
+            <li className="breadcrumb-item">
+              <a className="link-body-emphasis" href="/admin/main">
+                Main
+              </a>
+            </li>
+            <li className="breadcrumb-item">
+              <a
+                className="link-body-emphasis fw-semibold text-decoration-none"
+                href="/admin/installationBatch"
+              >
+                History
+              </a>
+            </li>
+            <li className="breadcrumb-item">
+              <a
+                className="link-body-emphasis fw-semibold text-decoration-none"
+                href={`/admin/installationDetails?batchid=${data.batchid}`}
+              >
+                Details
+              </a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Override
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <div className="text-center mt-5" style={{ fontFamily: "inter" }}>
         <h1>Installation Override</h1>
       </div>
       <div className="row py-5 w-75 mx-auto">
@@ -140,9 +149,13 @@ function InstallationOverride() {
               onChange={(e) => handleInputChange(e, setProvider)}
             />
             <div className="text-center mt-3">
-              <button className="btn btn-danger" onClick={() => overrideInstallation()}>Override</button>
+              <button
+                className="btn btn-danger"
+                onClick={() => overrideInstallation()}
+              >
+                Override
+              </button>
             </div>
-
           </div>
         </div>
       </div>

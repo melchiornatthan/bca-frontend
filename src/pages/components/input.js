@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 /**
  * InputWithLabel Component
@@ -11,23 +11,31 @@ import React from 'react';
  * @param {string} props.id - The unique ID for the input.
  * @param {boolean} props.hideInput - Flag to determine whether to hide the input.
  */
-function InputWithLabel({ label, placeholder, value, onChange, id, hideInput = false , isDisabled = false}) {
-    const inputType = hideInput ? 'password' : 'text';
+function InputWithLabel({
+  label,
+  placeholder,
+  value,
+  onChange,
+  id,
+  hideInput = false,
+  isDisabled = false,
+}) {
+  const inputType = hideInput ? "password" : "text";
 
-    return (
-        <div className="form-group">
-            <label>{label}</label>
-            <input
-                type={inputType}
-                className="form-control"
-                placeholder={placeholder}
-                id={id}
-                value={value}
-                onChange={onChange}
-                disabled={isDisabled}
-            />
-        </div>
-    );
+  return (
+    <div className="form-group">
+      <label>{label}</label>
+      <input
+        type={inputType}
+        className="form-control"
+        placeholder={placeholder}
+        id={id}
+        value={value}
+        onChange={onChange}
+        disabled={isDisabled}
+      />
+    </div>
+  );
 }
 
 export default InputWithLabel;
