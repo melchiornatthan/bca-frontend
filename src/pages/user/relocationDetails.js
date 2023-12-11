@@ -9,9 +9,11 @@ import "typeface-inter";
 import UserSidebar from "../components/sidebarUser";
 import { MdAccountCircle } from "react-icons/md";
 import bcaLogo from '../assets/white-bca.svg';
+
 function RelocationDetails() {
   const [data, setData] = useState({});
   const location = useLocation();
+
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const int_id = parseInt(searchParams.get("id"), 10);
@@ -20,6 +22,7 @@ function RelocationDetails() {
     getRelocationData();
     console.log(data);
   }, [int_id]);
+
 
   const getRelocationData = async () => {
     await axios
