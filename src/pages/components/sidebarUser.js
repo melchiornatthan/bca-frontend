@@ -1,15 +1,14 @@
-// OffCanvasSidebar.js
+// UserSidebar.js
 import React, { useState } from "react";
 import { Offcanvas, Button } from "react-bootstrap";
-import burgerLogo from "../assets/Menu icon.svg";
 import {
   HiCubeTransparent,
   HiChip,
   HiOutlineXCircle,
-  HiOutlineArrowSmLeft,
 } from "react-icons/hi";
+import { MdDashboard } from "react-icons/md";
 
-const OffCanvasSidebar = () => {
+const UserSidebar = () => {
   const [showMain, setShowMain] = useState(false);
   const [showSecondary, setShowSecondary] = useState(false);
   const [showTertiary, setShowTertiary] = useState(false);
@@ -25,18 +24,14 @@ const OffCanvasSidebar = () => {
 
   return (
     <>
-      <img
-        src={burgerLogo}
-        className="mx-3"
-        variant="primary"
-        onClick={handleShowMain}
-        style={{ height: "2vh" }}
-      />
+      <MdDashboard onClick={handleShowMain} className="mx-4" style={{color:'#1E56A0', fontSize:'3vh'}}/>
 
       <Offcanvas show={showMain} onHide={handleCloseMain} style={{ backgroundColor: '#ffffff', width: "30vh" }}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <strong style={{ fontSize: '3vh', color: "#000000" }}>Memo Application.</strong>
+            
+            <strong style={{ fontSize: '3vh', color: "#000000" }}> Memo Application.</strong>
+            
           </Offcanvas.Title>
         </Offcanvas.Header>
 
@@ -176,4 +171,4 @@ const OffCanvasSidebar = () => {
   );
 };
 
-export default OffCanvasSidebar;
+export default UserSidebar;

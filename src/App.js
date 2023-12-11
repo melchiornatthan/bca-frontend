@@ -38,9 +38,7 @@ class App extends Component {
     return (
       
       <Router>
-        <div>
-          {/* Check for authorization and isAdmin, and redirect if not authorized */}
-          {!isAuthorized && <Navigate to="/login" />}
+        
           <Routes>
             <Route path='' element={<Login />} /> /* Check */
             <Route path='/login' element={<Login />} /> /* Check */
@@ -71,7 +69,7 @@ class App extends Component {
             <Route path='/admin/relocationDetails' element={<AdminRelocationDetails />} />/* Check */
 
           </Routes>
-        </div>
+        
       </Router>
     );
   }

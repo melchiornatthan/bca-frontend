@@ -8,7 +8,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import DismantleDetailsService from '../components/dismantleDetailsService';
 import 'typeface-inter';
-import OffCanvasSidebar from '../components/sidebar';
+import UserSidebar from '../components/sidebarUser';
+import { MdAccountCircle } from "react-icons/md";
 
 function DismantleDetails() {
     const [data, setData] = useState({});
@@ -37,10 +38,25 @@ function DismantleDetails() {
 
     return (
         <div>
-            <nav className="navbar" style={{ backgroundColor: '#1E56A0' }}> 
-      <OffCanvasSidebar/>
-        <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '4vh' }} onClick={() => window.location.href = "/main"}/>
-        <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }}  />
+            <nav
+        className="navbar"
+        style={{
+          backgroundColor: "#FFFFFF",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <UserSidebar />
+        <img
+          className="px-3"
+          src={bcaLogo}
+          alt="Back"
+          style={{ height: "6vh" }} onClick={() => window.location.href="main"}
+        />
+        <MdAccountCircle
+          className="mx-3"
+          style={{ fontSize: "3vh", color: "#1E56A0" }}
+        />
       </nav>
             <div className="container my-3">
                 <nav aria-label="breadcrumb">

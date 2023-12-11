@@ -1,5 +1,6 @@
 import React from "react";
-import BackLogo from "../assets/Back-Sign.svg";
+import { MdAccountCircle } from "react-icons/md";
+import SidebarAdmin from "../components/sidebarAdmin";
 import bcaLogo from "../assets/white-bca.svg";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -35,8 +36,28 @@ function AdminRelocationBatch() {
   };
 
   return (
-    <div className="text-center">
-      <div className="container my-3">
+    <div>
+      <nav
+        className="navbar"
+        style={{
+          backgroundColor: "#FFFFFF",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+       <SidebarAdmin/>
+        <img
+          className="px-3"
+          src={bcaLogo}
+          alt="Back"
+          style={{ height: "6vh" }} onClick={() => window.location.href="/admin/main"}
+        />
+        <MdAccountCircle
+          className="mx-3"
+          style={{ fontSize: "3vh", color: "#1E56A0" }}
+        />
+      </nav>
+      <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
             <li className="breadcrumb-item">
