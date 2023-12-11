@@ -58,7 +58,7 @@ function RelocationBatch() {
     ];
 
     worksheet.mergeCells("A1", "H3");
-    worksheet.getCell("A1").value = "PERMOHONAN INSTALASI ATM";
+    worksheet.getCell("A1").value = "PERMOHONAN RELOKASI ATM";
     worksheet.getCell("A1").alignment = {
       horizontal: "center",
       vertical: "middle",
