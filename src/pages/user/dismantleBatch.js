@@ -5,6 +5,7 @@ import BackLogo from "../assets/Back-Sign.svg";
 import bcaLogo from "../assets/white-bca.svg";
 import DismantleByBatchIdTable from "../components/dismantleBatchService";
 import "typeface-inter";
+import OffCanvasSidebar from "../components/sidebar";
 function DismantleBatch() {
   // State to hold the data retrieved from the API
   const [data, setData] = useState([]);
@@ -38,6 +39,11 @@ function DismantleBatch() {
   return (
     <div>
       {/* Breadcrumb navigation */}
+      <nav className="navbar" style={{ backgroundColor: '#1E56A0' }}> 
+      <OffCanvasSidebar/>
+        <img className="px-3" src={bcaLogo} style={{ height: '4vh' }} onClick={() => window.location.href = "/main"}/>
+        <img className="px-3" src={BackLogo}  style={{ height: '20px' }} />
+      </nav>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

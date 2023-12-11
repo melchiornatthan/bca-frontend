@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import 'typeface-inter';
 import DismantleServiceTable from "../components/DismantleService";
 import InputWithLabel from "../components/input";
-
+import OffCanvasSidebar from "../components/sidebar";
+import BackLogo from '../assets/Back-Sign.svg';
+import bcaLogo from '../assets/white-bca.svg';
 
 function DismantleHistory() {
 
@@ -19,7 +21,7 @@ function DismantleHistory() {
   }, []);
 
   const getInstallationData = () => {
-    axios.get('http://192.168.88.143:3333/bca-app/getBatchDismantle/' + batchid + '')
+    axios.get('http://localhost:3333/bca-app/getBatchDismantle/' + batchid + '')
       .then((response) => {
         console.log(response.data);
         setData(response.data);
@@ -35,6 +37,11 @@ function DismantleHistory() {
 
   return (
     <div>
+      <nav className="navbar" style={{ backgroundColor: '#1E56A0' }}> 
+      <OffCanvasSidebar/>
+        <img className="px-3" src={bcaLogo} alt="Back" style={{ height: '4vh' }} onClick={() => window.location.href = "/main"}/>
+        <img className="px-3" src={BackLogo} alt="Back" style={{ height: '20px' }}  />
+      </nav>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
