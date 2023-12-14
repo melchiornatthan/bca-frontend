@@ -9,6 +9,7 @@ import bcaLogo from '../assets/white-bca.svg';
 import CustomButton from "../components/button";
 import { ToastContainer, toast } from "react-toastify";
 import UserSidebar from "../components/sidebarUser";
+import UserNavbar from "../components/userNavbar";
 
 function DismantleRequest() {
   const [location, setLocation] = useState("");
@@ -134,27 +135,8 @@ function DismantleRequest() {
       });
   };
   return (
-    <div>
-      <nav
-        className="navbar"
-        style={{
-          backgroundColor: "#FFFFFF",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <UserSidebar />
-        <img
-          className="px-3"
-          src={bcaLogo}
-          alt="Back"
-          style={{ height: "6vh" }} onClick={() => window.location.href="main"}
-        />
-        <MdAccountCircle
-          className="mx-3"
-          style={{ fontSize: "3vh", color: "#1E56A0" }}
-        />
-      </nav>
+    <div className="container-fluid pt-3">
+      <UserNavbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

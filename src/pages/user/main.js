@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "typeface-inter";
 import axios from "axios";
-import bcaLogo from "../assets/white-bca.svg";
 import ResponsiveDoughnutChart from "../components/doughnutChart";
-import UserSidebar from "../components/sidebarUser";
+
 import { FaConciergeBell } from "react-icons/fa";
 import { MdBuildCircle } from "react-icons/md";
 import { FaTruckMoving } from "react-icons/fa";
 import { IoMdRemoveCircle } from "react-icons/io";
-import { MdAccountCircle } from "react-icons/md";
+import UserNavbar from "../components/userNavbar";
 
 function Main() {
   ChartJS.register(ArcElement, Tooltip, Legend);
@@ -54,28 +53,8 @@ function Main() {
   };
 
   return (
-    <div className="container-fluid" style={{ height: "100vh" }}>
-      <nav
-        className="navbar"
-        style={{
-          backgroundColor: "#FFFFFF",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <UserSidebar />
-        <img
-          className="px-3"
-          src={bcaLogo}
-          alt="Back"
-          style={{ height: "6vh" }}
-          onClick={() => (window.location.href = "main")}
-        />
-        <MdAccountCircle
-          className="mx-3"
-          style={{ fontSize: "3vh", color: "#1E56A0" }}
-        />
-      </nav>
+    <div className="container-fluid pt-3 pb-3" style={{ backgroundColor:'#F3F8FF' }}>
+      <UserNavbar/>
       <div className="container-fluid my-3">
         <div className="row mx-auto centered-row">
           <div
@@ -86,7 +65,7 @@ function Main() {
               backgroundColor: "#FFFFFF",
               borderRadius: "1vh",
               paddingBottom: "3vh",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+              boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
             }}
           >
             <div className="container">
@@ -265,7 +244,7 @@ function Main() {
                     marginRight: "1vh",
                     backgroundColor: "#FFFFFF",
                     borderRadius: "1vh",
-                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
                   }}
                 >
                   <div
@@ -321,7 +300,7 @@ function Main() {
                     backgroundColor: "#FFFFFF",
                     marginRight: "1vh",
                     borderRadius: "1vh",
-                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
                   }}
                 >
                   <div
@@ -375,7 +354,7 @@ function Main() {
                     marginBottom: "1vh",
                     backgroundColor: "#FFFFFF",
                     borderRadius: "1vh",
-                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
                   }}
                 >
                   <div

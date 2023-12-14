@@ -10,6 +10,7 @@ import { MdAccountCircle } from "react-icons/md";
 import bcaLogo from "../assets/white-bca.svg";
 import ExcelJS from "exceljs";
 import CustomButton from "../components/button";
+import UserNavbar from "../components/userNavbar";
 function RelocationBatch() {
   const [data, setData] = useState([]);
   const location = useLocation();
@@ -136,28 +137,8 @@ function RelocationBatch() {
   };
 
   return (
-    <div>
-      <nav
-        className="navbar"
-        style={{
-          backgroundColor: "#FFFFFF",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <UserSidebar />
-        <img
-          className="px-3"
-          src={bcaLogo}
-          alt="Back"
-          style={{ height: "6vh" }}
-          onClick={() => (window.location.href = "main")}
-        />
-        <MdAccountCircle
-          className="mx-3"
-          style={{ fontSize: "3vh", color: "#1E56A0" }}
-        />
-      </nav>
+    <div className="container-fluid pt-3">
+      <UserNavbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

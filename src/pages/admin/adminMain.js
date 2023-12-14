@@ -10,6 +10,7 @@ import { FaTruckMoving } from "react-icons/fa";
 import { IoMdRemoveCircle } from "react-icons/io";
 import { MdAccountCircle } from "react-icons/md";
 import SidebarAdmin from "../components/sidebarAdmin";
+import AdminNavbar from "../components/adminNavbar";
 function AdminMain() {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const [providerCount, setProviderCount] = useState([]);
@@ -53,28 +54,8 @@ function AdminMain() {
   };
 
   return (
-    <div className="container-fluid" style={{ height: "100vh" }}>
-      <nav
-        className="navbar"
-        style={{
-          backgroundColor: "#FFFFFF",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <SidebarAdmin />
-        <img
-          className="px-3"
-          src={bcaLogo}
-          alt="Back"
-          style={{ height: "6vh" }}
-          onClick={() => (window.location.href = "/admin/main")}
-        />
-        <MdAccountCircle
-          className="mx-3"
-          style={{ fontSize: "3vh", color: "#1E56A0" }}
-        />
-      </nav>
+    <div className="container-fluid">
+      <AdminNavbar/>
       <div className="container-fluid my-3">
         <div className="row mx-auto centered-row">
           <div

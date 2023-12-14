@@ -99,6 +99,7 @@ function Login() {
               type="password"
               hideInput={true}
               placeholder="Enter your password"
+              showIcon={true}
               onChange={(e) => handleInputChange(e, setPassword)}
             />
             <div className="text-center mt-3">

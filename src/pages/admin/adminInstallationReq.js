@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
 import "typeface-inter";
+import AdminNavbar from "../components/adminNavbar";
 
 function AdminInstallationReq() {
   const [installationData, setInstallationData] = useState([]);
@@ -39,26 +40,7 @@ function AdminInstallationReq() {
 
   return (
     <div>
-      <nav
-        className="navbar"
-        style={{
-          backgroundColor: "#FFFFFF",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-       <SidebarAdmin/>
-        <img
-          className="px-3"
-          src={bcaLogo}
-          alt="Back"
-          style={{ height: "6vh" }} onClick={() => window.location.href="/admin/main"}
-        />
-        <MdAccountCircle
-          className="mx-3"
-          style={{ fontSize: "3vh", color: "#1E56A0" }}
-        />
-      </nav>
+      <AdminNavbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

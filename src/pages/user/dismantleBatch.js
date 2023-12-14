@@ -7,6 +7,7 @@ import DismantleByBatchIdTable from "../components/dismantleBatchService";
 import "typeface-inter";
 import UserSidebar from "../components/sidebarUser";
 import { MdAccountCircle } from "react-icons/md";
+import UserNavbar from "../components/userNavbar";
 function DismantleBatch() {
   // State to hold the data retrieved from the API
   const [data, setData] = useState([]);
@@ -136,28 +137,9 @@ function DismantleBatch() {
 
   // JSX rendering
   return (
-    <div>
+    <div className="container-fluid pt-3">
       {/* Breadcrumb navigation */}
-      <nav
-        className="navbar"
-        style={{
-          backgroundColor: "#FFFFFF",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <UserSidebar />
-        <img
-          className="px-3"
-          src={bcaLogo}
-          alt="Back"
-          style={{ height: "6vh" }} onClick={() => window.location.href="main"}
-        />
-        <MdAccountCircle
-          className="mx-3"
-          style={{ fontSize: "3vh", color: "#1E56A0" }}
-        />
-      </nav>
+      <UserNavbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

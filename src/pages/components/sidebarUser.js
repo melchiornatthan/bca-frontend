@@ -26,7 +26,7 @@ const UserSidebar = () => {
     <>
       <MdDashboard onClick={handleShowMain} className="mx-4" style={{color:'#1E56A0', fontSize:'3vh'}}/>
 
-      <Offcanvas show={showMain} onHide={handleCloseMain} style={{ backgroundColor: '#ffffff', width: "30vh" }}>
+      <Offcanvas show={showMain} onHide={handleCloseMain}  style={{ backgroundColor: '#ffffff', width: "30vh"}}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
             

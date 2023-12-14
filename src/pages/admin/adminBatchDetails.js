@@ -7,6 +7,7 @@ import SidebarAdmin from "../components/sidebarAdmin";
 import bcaLogo from "../assets/white-bca.svg";
 import axios from "axios";
 import InstallationService from "../components/installationService";
+import AdminNavbar from "../components/adminNavbar";
 
 function AdminBatchDetails() {
   const [data, setData] = useState([]);
@@ -37,26 +38,7 @@ function AdminBatchDetails() {
 
   return (
     <div>
-      <nav
-        className="navbar"
-        style={{
-          backgroundColor: "#FFFFFF",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-       <SidebarAdmin/>
-        <img
-          className="px-3"
-          src={bcaLogo}
-          alt="Back"
-          style={{ height: "6vh" }} onClick={() => window.location.href="/admin/main"}
-        />
-        <MdAccountCircle
-          className="mx-3"
-          style={{ fontSize: "3vh", color: "#1E56A0" }}
-        />
-      </nav>
+      <AdminNavbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

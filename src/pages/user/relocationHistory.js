@@ -6,6 +6,7 @@ import "typeface-inter";
 import UserSidebar from "../components/sidebarUser";
 import { MdAccountCircle } from "react-icons/md";
 import bcaLogo from '../assets/white-bca.svg';
+import UserNavbar from "../components/userNavbar";
 function RelocationHistory() {
   const [relocationData, setRelocationData] = useState([]);
   const [batchid, setBatchId] = useState("");
@@ -35,27 +36,8 @@ function RelocationHistory() {
   }, [batchid]);
 
   return (
-    <div>
-     <nav
-        className="navbar"
-        style={{
-          backgroundColor: "#FFFFFF",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <UserSidebar />
-        <img
-          className="px-3"
-          src={bcaLogo}
-          alt="Back"
-          style={{ height: "6vh" }} onClick={() => window.location.href="main"}
-        />
-        <MdAccountCircle
-          className="mx-3"
-          style={{ fontSize: "3vh", color: "#1E56A0" }}
-        />
-      </nav>
+    <div className="container-fluid pt-3">
+     <UserNavbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

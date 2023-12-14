@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from "recharts";
 
-const colors = ["#F11A7B", "#C70039", "#F94C10", "#9400FF", "#0088fe"]; // Add more colors if needed
+const colors = ["#F875AA", "#00A9FF", "#F9B572", "#BEADFA", "#0088fe"]; // Add more colors if needed
 
 const ResponsiveDoughnutChart = ({ data }) => {
   return (

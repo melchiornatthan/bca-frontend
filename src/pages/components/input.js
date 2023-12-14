@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
 
 /**
  * InputWithLabel Component
@@ -10,6 +11,8 @@ import React from "react";
  * @param {function} props.onChange - The function to handle input changes.
  * @param {string} props.id - The unique ID for the input.
  * @param {boolean} props.hideInput - Flag to determine whether to hide the input.
+ * @param {boolean} props.isDisabled - Flag to determine whether the input is disabled.
+ * @param {boolean} props.showIcon - Flag to determine whether to show the input icon.
  */
 function InputWithLabel({
   label,
@@ -19,21 +22,42 @@ function InputWithLabel({
   id,
   hideInput = false,
   isDisabled = false,
+  showIcon = false,
 }) {
-  const inputType = hideInput ? "password" : "text";
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  const inputType = hideInput ? (passwordVisible ? "text" : "password") : "text";
 
   return (
     <div className="form-group">
       <label>{label}</label>
-      <input
-        type={inputType}
-        className="form-control"
-        placeholder={placeholder}
-        id={id}
-        value={value}
-        onChange={onChange}
-        disabled={isDisabled}
-      />
+      <div className="input-group">
+        <input
+          type={inputType}
+          className="form-control"
+          placeholder={placeholder}
+          id={id}
+          value={value}
+          onChange={onChange}
+          disabled={isDisabled}
+        />
+        {showIcon && hideInput && (
+          <div className="input-group-append">
+            <button
+              className="btn btn-outline-primary mx-1"
+              type="button"
+              onClick={togglePasswordVisibility}
+              style={{ borderColor: "#ffffff" }}
+            >
+              {passwordVisible ? <RiEyeLine /> : <RiEyeCloseLine />}
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
