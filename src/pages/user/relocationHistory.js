@@ -10,6 +10,7 @@ import UserNavbar from "../components/userNavbar";
 function RelocationHistory() {
   const [relocationData, setRelocationData] = useState([]);
   const [batchid, setBatchId] = useState("");
+  const token = localStorage.getItem("token");
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -21,7 +22,11 @@ function RelocationHistory() {
 
   const getInstallationData = () => {
     axios
-      .get("http://localhost:3333/bca-app/getBatchRelocation/" + batchid + "")
+      .get("http://localhost:3333/bca-app/getBatchRelocation/" + batchid + "", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response.data);
         setRelocationData(response.data);

@@ -13,6 +13,7 @@ import AdminNavbar from "../components/adminNavbar";
 function AdminRelocationBatch() {
   const [data, setData] = useState([]);
   const location = useLocation();
+  const token = localStorage.getItem("token");
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
@@ -25,7 +26,11 @@ function AdminRelocationBatch() {
   const getRelocationData = async () => {
     await axios
       .get(
-        "http://localhost:3333/bca-app/getRelocationsbyBatchID/" + batchid + ""
+        "http://localhost:3333/bca-app/getRelocationsbyBatchID/" + batchid + "", {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
       )
       .then((response) => {
         setData(response.data);
@@ -62,7 +67,7 @@ function AdminRelocationBatch() {
         </nav>
       </div>
       <h1
-        className="mx-auto"
+        className="mx-auto text-center"
         style={{
           fontFamily: "inter",
           color: "#E9B824",

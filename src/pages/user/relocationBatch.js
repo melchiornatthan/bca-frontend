@@ -18,6 +18,7 @@ function RelocationBatch() {
   const searchParams = new URLSearchParams(location.search);
   const [date, setDate] = useState(new Date());
   const batchid = parseInt(searchParams.get("batchid"), 10);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getRelocationData();
@@ -27,7 +28,11 @@ function RelocationBatch() {
   const getRelocationData = async () => {
     await axios
       .get(
-        "http://localhost:3333/bca-app/getRelocationsbyBatchID/" + batchid + ""
+        "http://localhost:3333/bca-app/getRelocationsbyBatchID/" + batchid + "", {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
       )
       .then((response) => {
         setData(response.data);

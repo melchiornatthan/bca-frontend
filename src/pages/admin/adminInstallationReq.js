@@ -11,6 +11,7 @@ import AdminNavbar from "../components/adminNavbar";
 function AdminInstallationReq() {
   const [installationData, setInstallationData] = useState([]);
   const [batchid, setBatchId] = useState("");
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getInstallationData();
@@ -23,7 +24,11 @@ function AdminInstallationReq() {
   const getInstallationData = () => {
     axios
       .get(
-        "http://localhost:3333/bca-app/getBatchInstallations/" + batchid + ""
+        "http://localhost:3333/bca-app/getBatchInstallations/" + batchid + "", {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
       )
       .then((response) => {
         console.log(response.data);

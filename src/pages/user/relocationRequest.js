@@ -15,6 +15,7 @@ import UserNavbar from "../components/userNavbar";
 function RelocationReq() {
   const [location, setLocation] = useState("");
   const [data, setData] = useState([]);
+  const token = localStorage.getItem("token");
   const [selectedData, setSelectedData] = useState();
   const [newLocation, setNewLocation] = useState("");
   const [newAddress, setNewAddress] = useState("");
@@ -50,7 +51,11 @@ function RelocationReq() {
 
   async function generateBatchId() {
     await axios
-      .get("http://localhost:3333/bca-app/getRelocationBatchId")
+      .get("http://localhost:3333/bca-app/getRelocationBatchId", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         const currentBatchId = parseInt(response.data.batchid, 10);
         const newBatchId = currentBatchId + 1;
@@ -68,7 +73,11 @@ function RelocationReq() {
 
   const getAreaId = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/locationByArea/" + area + "")
+      .get("http://localhost:3333/bca-app/locationByArea/" + area + "", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setAreaId(response.data[0].id);
       })
@@ -153,6 +162,7 @@ function RelocationReq() {
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
+              "Authorization": `Bearer ${token}`,
             },
           }
         );
@@ -169,7 +179,11 @@ function RelocationReq() {
 
   const fetchLocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/locations")
+      .get("http://localhost:3333/bca-app/locations", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setAreas(response.data.list);
       })
@@ -180,7 +194,11 @@ function RelocationReq() {
 
   const fetchSpecialLocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/special-locations")
+      .get("http://localhost:3333/bca-app/special-locations", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response.data.list);
         setSpecialData([...response.data.list, { location: "NA" }]);
@@ -194,7 +212,11 @@ function RelocationReq() {
   const fetchInstallationData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3333/bca-app/installationByLocation/${location}`
+        `http://localhost:3333/bca-app/installationByLocation/${location}`, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
       );
       const filteredData = response.data.filter((installation) => {
         // Check if the installation_id is not present in batchData
@@ -210,7 +232,11 @@ function RelocationReq() {
 
   const fetchInstallationbyId = async (id) => {
     await axios
-      .get("http://localhost:3333/bca-app/installationsById/" + id + "")
+      .get("http://localhost:3333/bca-app/installationsById/" + id + "", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response.data[0]);
         setSelectedData(response.data[0]);

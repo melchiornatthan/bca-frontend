@@ -10,12 +10,14 @@ import "typeface-inter";
 import AdminNavbar from "../components/adminNavbar";
 
 function InstallationOverride() {
+  const token = localStorage.getItem("token");
   const location = useLocation();
   const [data, setData] = useState([]);
   const [provData, setProvData] = useState([]);
   const [provider, setProvider] = useState(1);
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
+  
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -30,8 +32,13 @@ function InstallationOverride() {
   }, [data]);
 
   const getInstallationById = async () => {
+    
     await axios
-      .get("http://localhost:3333/bca-app/installationsById/" + id + "")
+      .get("http://localhost:3333/bca-app/installationsById/" + id + "", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setData(response.data[0]);
       })
@@ -43,7 +50,11 @@ function InstallationOverride() {
   const getProviderAlternatives = async () => {
     console.log(data.area_id);
     await axios
-      .get(`http://localhost:3333/bca-app/getProvidersbyArea/${data.area_id}`)
+      .get(`http://localhost:3333/bca-app/getProvidersbyArea/${data.area_id}`,{
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setProvData([
           ...response.data.list,
@@ -65,6 +76,10 @@ function InstallationOverride() {
         id: data.id,
         id_prov: provider,
         location: data.area,
+      },{
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
       })
       .then((response) => {
         console.log(response);

@@ -12,6 +12,7 @@ function DismantleBatch() {
   // State to hold the data retrieved from the API
   const [data, setData] = useState([]);
   const [date, setDate] = useState(new Date());
+  const token = localStorage.getItem("token");
   // Get the current URL location
   const location = useLocation();
 
@@ -28,7 +29,11 @@ function DismantleBatch() {
   const getDismantleData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3333/bca-app/getDismantlebyBatchID/${batchid}`
+        `http://localhost:3333/bca-app/getDismantlebyBatchID/${batchid}`, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
       );
       setData(response.data);
     } catch (error) {

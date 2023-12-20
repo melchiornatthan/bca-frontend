@@ -14,7 +14,7 @@ import UserNavbar from "../components/userNavbar";
 function RelocationDetails() {
   const [data, setData] = useState({});
   const location = useLocation();
-
+  const token = localStorage.getItem("token");
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const int_id = parseInt(searchParams.get("id"), 10);
@@ -27,7 +27,11 @@ function RelocationDetails() {
 
   const getRelocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/relocations/" + int_id + "")
+      .get("http://localhost:3333/bca-app/relocations/" + int_id + "", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setData(response.data);
         console.log(data);
@@ -38,7 +42,7 @@ function RelocationDetails() {
   };
 
   return (
-    <div className="container-fluid pt-3">
+    <div className="container-fluid pt-3 pb-3">
       <UserNavbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">

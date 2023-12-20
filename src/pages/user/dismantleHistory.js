@@ -12,6 +12,7 @@ function DismantleHistory() {
 
   const [data, setData] = useState([]);
   const [batchid, setBatchId] = useState("");
+  const token = localStorage.getItem("token");
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -22,7 +23,11 @@ function DismantleHistory() {
   }, []);
 
   const getInstallationData = () => {
-    axios.get('http://localhost:3333/bca-app/getBatchDismantle/' + batchid + '')
+    axios.get('http://localhost:3333/bca-app/getBatchDismantle/' + batchid + '', {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    })
       .then((response) => {
         console.log(response.data);
         setData(response.data);

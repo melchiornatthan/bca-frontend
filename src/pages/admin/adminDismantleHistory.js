@@ -11,6 +11,7 @@ import AdminNavbar from "../components/adminNavbar";
 function AdminDismantleHistory() {
   const [data, setData] = useState([]);
   const [batchid, setBatchId] = useState("");
+  const token = localStorage.getItem("token");
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -22,7 +23,11 @@ function AdminDismantleHistory() {
 
   const getInstallationData = () => {
     axios
-      .get("http://localhost:3333/bca-app/getBatchDismantle/" + batchid + "")
+      .get("http://localhost:3333/bca-app/getBatchDismantle/" + batchid + "",{
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response.data);
         setData(response.data);

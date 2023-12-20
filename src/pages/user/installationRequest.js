@@ -17,6 +17,7 @@ function InstallationReq() {
   const [address, setAddress] = useState("");
   const [pic, setPic] = useState("");
   const [data, setData] = useState([]);
+  const token = localStorage.getItem("token");
   const [area, setArea] = useState("Jakarta");
   const [specialData, setSpecialData] = useState([]);
   const [communication, setCommunication] = useState("VSAT");
@@ -40,7 +41,11 @@ function InstallationReq() {
   // Batch ID generator
   async function generateBatchId() {
     await axios
-      .get("http://localhost:3333/bca-app/getInstallationBatchId")
+      .get("http://localhost:3333/bca-app/getInstallationBatchId", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         const currentBatchId = parseInt(response.data.batchid, 10);
         const newBatchId = currentBatchId + 1;
@@ -58,7 +63,11 @@ function InstallationReq() {
 
   const fetchLocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/locations")
+      .get("http://localhost:3333/bca-app/locations", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setData(response.data.list);
       })
@@ -69,7 +78,11 @@ function InstallationReq() {
 
   const fetchSpecialLocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/special-locations")
+      .get("http://localhost:3333/bca-app/special-locations", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response.data.list);
         setSpecialData([...response.data.list, { location: "NA" }]);
@@ -159,6 +172,7 @@ function InstallationReq() {
           {
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
+              "Authorization": `Bearer ${token}`,
             },
           }
         );

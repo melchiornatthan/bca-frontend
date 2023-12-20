@@ -12,10 +12,12 @@ import UserSidebar from "../components/sidebarUser";
 import UserNavbar from "../components/userNavbar";
 
 function DismantleRequest() {
+  const token = localStorage.getItem("token");
   const [location, setLocation] = useState("");
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState();
   const [batchId, setBatchId] = useState(generateBatchId());
+  
   const [batchData, setBatchData] = useState([]);
   const [submittedRequests, setSubmittedRequests] = useState([]);
   const [isHoveredSecond, setIsHoveredSecond] = useState(false);
@@ -27,7 +29,11 @@ function DismantleRequest() {
 
   async function generateBatchId() {
     await axios
-      .get("http://localhost:3333/bca-app/getDismantleBatchId")
+      .get("http://localhost:3333/bca-app/getDismantleBatchId", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         if (response.data == null) {
           setBatchId(200000000);
@@ -89,7 +95,7 @@ function DismantleRequest() {
           body,
           {
             headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
+              "Authorization": `Bearer ${token}`,
             },
           }
         );
@@ -109,7 +115,11 @@ function DismantleRequest() {
   const fetchInstallationData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3333/bca-app/installationByLocation/${location}`
+        `http://localhost:3333/bca-app/installationByLocation/${location}`, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
       );
       const filteredData = response.data.filter((installation) => {
         // Check if the installation_id is not present in batchData
@@ -125,7 +135,11 @@ function DismantleRequest() {
 
   const fetchInstallationbyId = async (id) => {
     await axios
-      .get("http://localhost:3333/bca-app/installationsById/" + id + "")
+      .get("http://localhost:3333/bca-app/installationsById/" + id + "", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log(response.data[0]);
         setSelectedData(response.data[0]);

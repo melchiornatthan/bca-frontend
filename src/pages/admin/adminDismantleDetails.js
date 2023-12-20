@@ -19,6 +19,7 @@ function AdminDismantleDetails() {
   const int_id = parseInt(searchParams.get("id"), 10);
   const dismantle_id = parseInt(searchParams.get("dismantle_id"), 10);
   const batchid = parseInt(searchParams.get("batchid"), 10);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getRelocationData();
@@ -26,7 +27,11 @@ function AdminDismantleDetails() {
 
   const getRelocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/installationsById/" + int_id + "")
+      .get("http://localhost:3333/bca-app/installationsById/" + int_id + "",{
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setData(response.data[0]);
       })
@@ -48,7 +53,11 @@ function AdminDismantleDetails() {
       };
       // User clicked "OK" in the confirmation dialog, proceed with the request
       await axios
-        .put(`http://localhost:3333/bca-app/update-dismantle/`, body)
+        .put(`http://localhost:3333/bca-app/update-dismantle/`, body, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           window.location.href =
             "/admin/dismantleBatch?batchid=" + batchid + "";

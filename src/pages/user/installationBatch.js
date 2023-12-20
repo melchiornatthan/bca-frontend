@@ -9,6 +9,7 @@ import bcaLogo from '../assets/white-bca.svg';
 import UserNavbar from "../components/userNavbar";
 function InstallationBatch() {
   const [installationData, setInstallationData] = useState([]);
+  const token = localStorage.getItem("token");
   const [batchid, setBatchId] = useState("");
 
   useEffect(() => {
@@ -22,7 +23,11 @@ function InstallationBatch() {
   const getInstallationData = () => {
     axios
       .get(
-        "http://localhost:3333/bca-app/getBatchInstallations/" + batchid + ""
+        "http://localhost:3333/bca-app/getBatchInstallations/" + batchid + "", {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
       )
       .then((response) => {
         console.log(response.data);

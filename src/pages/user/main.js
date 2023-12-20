@@ -14,6 +14,7 @@ function Main() {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const [providerCount, setProviderCount] = useState([]);
   const [reqCount, setReqCount] = useState([]);
+  const token = localStorage.getItem("token");
   const [date, setDate] = useState(new Date());
   const data = [
     { name: "Primacom", value: parseInt(providerCount.primacom) },
@@ -30,7 +31,11 @@ function Main() {
   const getRequestCount = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3333/bca-app/requestsCount"
+        "http://localhost:3333/bca-app/requestsCount", {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
       );
       setReqCount(response.data);
       console.log("Request Count:", response.data);
@@ -41,7 +46,11 @@ function Main() {
 
   const getProviderCount = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/providerCount")
+      .get("http://localhost:3333/bca-app/providerCount", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setProviderCount(response.data);
         console.log(response);
@@ -53,7 +62,7 @@ function Main() {
   };
 
   return (
-    <div className="container-fluid pt-3 pb-3" style={{ backgroundColor:'#F3F8FF' }}>
+    <div className="container-fluid pt-3 pb-3">
       <UserNavbar/>
       <div className="container-fluid my-3">
         <div className="row mx-auto centered-row">

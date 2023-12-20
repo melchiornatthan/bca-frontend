@@ -3,8 +3,10 @@ import axios from "axios";
 import { useEffect } from "react";
 import "typeface-inter";
 function InstallationService({ installationData, isAdminView }) {
+  const token = localStorage.getItem("token");
   const [data, setData] = React.useState(installationData);
   const [hasPending, setHasPending] = React.useState(false);
+  
 
   useEffect(() => {
     setData(installationData);
@@ -42,7 +44,13 @@ function InstallationService({ installationData, isAdminView }) {
         const response = await axios.put(
           isAdminView
             ? `http://localhost:3333/bca-app/update-installations/${id}`
-            : `http://localhost:3333/user-app/update-installations/${id}`
+            : `http://localhost:3333/user-app/update-installations/${id}`,
+          null, // Pass null as the second parameter since you are making a PUT request
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
 
         console.log(response.status);

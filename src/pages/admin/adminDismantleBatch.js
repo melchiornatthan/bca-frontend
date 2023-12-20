@@ -16,6 +16,7 @@ function AdminDismantleBatch() {
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getRelocationData();
@@ -26,7 +27,11 @@ function AdminDismantleBatch() {
     await axios
       .get(
         "http://localhost:3333/bca-app/getDismantlebyBatchID/" + batchid + ""
-      )
+        ,{
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        })
       .then((response) => {
         setData(response.data);
         console.log(data);

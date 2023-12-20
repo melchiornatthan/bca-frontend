@@ -12,6 +12,7 @@ import AdminNavbar from "../components/adminNavbar";
 function AdminBatchDetails() {
   const [data, setData] = useState([]);
   const location = useLocation();
+  const token = localStorage.getItem("token");
 
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
@@ -27,7 +28,11 @@ function AdminBatchDetails() {
         "http://localhost:3333/bca-app/getInstallationsbyBatchID/" +
           batchid +
           ""
-      )
+      ,{
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setData(response.data);
       })

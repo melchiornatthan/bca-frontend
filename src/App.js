@@ -32,8 +32,17 @@ import AdminDismantleDetails from './pages/admin/adminDismantleDetails';
 class App extends Component {
   render() {
     // Check if the user is authorized (logged in) and isAdmin by inspecting localStorage
-    const isAuthorized = localStorage.getItem('isAuthorized') === 'true';
-    const isAdmin = localStorage.getItem('isAdmin') === 'true';
+    const isAuthorized = localStorage.getItem("token") !== null;
+    if (!isAuthorized) {
+      return (
+        <Router>
+          <Navigate to="/login" />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Router>
+      );
+    }
 
     return (
       

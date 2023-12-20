@@ -15,6 +15,7 @@ import UserNavbar from '../components/userNavbar';
 function DismantleDetails() {
     const [data, setData] = useState({});
     const location = useLocation();
+    const token = localStorage.getItem("token");
     // Parse the URL parameters and extract the 'data' parameter
     const searchParams = new URLSearchParams(location.search);
     const int_id = parseInt(searchParams.get('id'), 10);
@@ -27,7 +28,11 @@ function DismantleDetails() {
     }, [int_id]);
 
     const getRelocationData = async () => {
-        await axios.get('http://localhost:3333/bca-app/installationsById/' + int_id + ''
+        await axios.get('http://localhost:3333/bca-app/installationsById/' + int_id + '', {
+            headers: {
+              "Authorization": `Bearer ${token}`,
+            },
+          }
         ).then((response) => {
             setData(response.data[0]);
             console.log(data);

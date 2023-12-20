@@ -16,6 +16,7 @@ function AdminMain() {
   const [providerCount, setProviderCount] = useState([]);
   const [reqCount, setReqCount] = useState([]);
   const [date, setDate] = useState(new Date());
+  const token = localStorage.getItem("token");
   const data = [
     { name: "Primacom", value: parseInt(providerCount.primacom) },
     { name: "Tangara", value: parseInt(providerCount.tangara) },
@@ -31,7 +32,11 @@ function AdminMain() {
   const getRequestCount = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3333/bca-app/requestsCount"
+        "http://localhost:3333/bca-app/requestsCount", {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
       );
       setReqCount(response.data);
       console.log("Request Count:", response.data);
@@ -42,7 +47,11 @@ function AdminMain() {
 
   const getProviderCount = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/providerCount")
+      .get("http://localhost:3333/bca-app/providerCount", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setProviderCount(response.data);
         console.log(response);

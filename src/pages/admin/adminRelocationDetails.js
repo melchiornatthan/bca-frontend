@@ -14,6 +14,7 @@ import AdminNavbar from "../components/adminNavbar";
 function AdminRelocationDetails() {
   const [data, setData] = useState({});
   const location = useLocation();
+  const token = localStorage.getItem("token");
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const int_id = parseInt(searchParams.get("id"), 10);
@@ -25,7 +26,11 @@ function AdminRelocationDetails() {
 
   const getRelocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/relocations/" + int_id + "")
+      .get("http://localhost:3333/bca-app/relocations/" + int_id + "", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setData(response.data);
         console.log(data);
@@ -54,7 +59,11 @@ function AdminRelocationDetails() {
       };
       // User clicked "OK" in the confirmation dialog, proceed with the request
       await axios
-        .put(`http://localhost:3333/bca-app/update-relocations/`, body)
+        .put(`http://localhost:3333/bca-app/update-relocations/`,body, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           window.location.href =
             "/admin/relocationBatch?batchid=" + data.batchid + "";
@@ -66,7 +75,7 @@ function AdminRelocationDetails() {
   };
 
   return (
-    <div>
+    <div className="pb-5">
       <AdminNavbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
