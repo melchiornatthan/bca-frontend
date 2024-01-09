@@ -1,7 +1,5 @@
-import { MdAccountCircle } from "react-icons/md";
-import SidebarAdmin from "../components/sidebarAdmin";
-import bcaLogo from "../assets/white-bca.svg";
-import axios from "axios";
+
+import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import RelocationBatchTable from "../components/relocationService";
 import InputWithLabel from "../components/input";
@@ -11,7 +9,7 @@ import AdminNavbar from "../components/adminNavbar";
 function AdminRelocationHistory() {
   const [relocationData, setRelocationData] = useState([]);
   const [batchid, setBatchId] = useState("");
-  const token = localStorage.getItem("token");
+  
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -23,11 +21,7 @@ function AdminRelocationHistory() {
 
   const getInstallationData = () => {
     axios
-      .get("http://localhost:3333/bca-app/getBatchRelocation/" + batchid + "", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("getBatchRelocation/" + batchid + "")
       .then((response) => {
         console.log(response.data);
         setRelocationData(response.data);

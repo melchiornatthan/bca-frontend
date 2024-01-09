@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CustomButton from "../components/button";
@@ -7,9 +7,7 @@ import InputWithLabel from "../components/input";
 import VsatSelect from "../components/communication";
 import SelectLocation from "../components/locations";
 import "typeface-inter";
-import UserSidebar from "../components/sidebarUser";
-import { MdAccountCircle } from "react-icons/md";
-import bcaLogo from '../assets/white-bca.svg';
+
 import UserNavbar from "../components/userNavbar";
 function InstallationReq() {
   // State variables
@@ -41,11 +39,7 @@ function InstallationReq() {
   // Batch ID generator
   async function generateBatchId() {
     await axios
-      .get("http://localhost:3333/bca-app/getInstallationBatchId", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("getInstallationBatchId")
       .then((response) => {
         const currentBatchId = parseInt(response.data.batchid, 10);
         const newBatchId = currentBatchId + 1;
@@ -63,11 +57,7 @@ function InstallationReq() {
 
   const fetchLocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/locations", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("locations")
       .then((response) => {
         setData(response.data.list);
       })
@@ -78,11 +68,7 @@ function InstallationReq() {
 
   const fetchSpecialLocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/special-locations", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("special-locations")
       .then((response) => {
         console.log(response.data.list);
         setSpecialData([...response.data.list, { location: "NA" }]);
@@ -167,14 +153,8 @@ function InstallationReq() {
         const requestData = batchData[i];
         console.log(batchId);
         const response = await axios.post(
-          "http://localhost:3333/bca-app/installation-request",
+          "installation-request",
           requestData,
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-              "Authorization": `Bearer ${token}`,
-            },
-          }
         );
         if (response.data.message === "No provider available") {
           toast.error(

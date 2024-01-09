@@ -67,7 +67,7 @@ const UserSidebar = () => {
               className="btn mx-1 mb-1 text-start btn-outline-danger"
               onClick={() => 
                 {
-                localStorage.removeItem("isAuthorized")
+                localStorage.removeItem("token")
                 window.location.href="/login"
                 }
               }

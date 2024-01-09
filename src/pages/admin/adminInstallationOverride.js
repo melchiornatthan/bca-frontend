@@ -1,11 +1,9 @@
-import axios from "axios";
+import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import UneditableInputWithLabel from "../components/uneditableInput";
 import SelectProviders from "../components/providers";
-import { MdAccountCircle } from "react-icons/md";
-import SidebarAdmin from "../components/sidebarAdmin";
-import bcaLogo from "../assets/white-bca.svg";
+
 import "typeface-inter";
 import AdminNavbar from "../components/adminNavbar";
 

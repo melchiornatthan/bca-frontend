@@ -1,12 +1,9 @@
 import React from "react";
-import { MdAccountCircle } from "react-icons/md";
-import SidebarAdmin from "../components/sidebarAdmin";
-import bcaLogo from "../assets/white-bca.svg";
 import "react-toastify/dist/ReactToastify.css";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import DismantleDetailsService from "../components/dismantleDetailsService";
 import "typeface-inter";
 import AdminNavbar from "../components/adminNavbar";
@@ -19,7 +16,6 @@ function AdminDismantleDetails() {
   const int_id = parseInt(searchParams.get("id"), 10);
   const dismantle_id = parseInt(searchParams.get("dismantle_id"), 10);
   const batchid = parseInt(searchParams.get("batchid"), 10);
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getRelocationData();
@@ -27,11 +23,7 @@ function AdminDismantleDetails() {
 
   const getRelocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/installationsById/" + int_id + "",{
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("installationsById/" + int_id + "")
       .then((response) => {
         setData(response.data[0]);
       })
@@ -53,11 +45,7 @@ function AdminDismantleDetails() {
       };
       // User clicked "OK" in the confirmation dialog, proceed with the request
       await axios
-        .put(`http://localhost:3333/bca-app/update-dismantle/`, body, {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        })
+        .put(`update-dismantle/`, body)
         .then((response) => {
           window.location.href =
             "/admin/dismantleBatch?batchid=" + batchid + "";

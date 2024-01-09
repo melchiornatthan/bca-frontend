@@ -1,18 +1,14 @@
-import axios from "axios";
+import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import 'typeface-inter';
 import DismantleServiceTable from "../components/DismantleService";
 import InputWithLabel from "../components/input";
-import UserSidebar from "../components/sidebarUser";
-import { MdAccountCircle } from "react-icons/md";
-import bcaLogo from '../assets/white-bca.svg';
 import UserNavbar from "../components/userNavbar";
 
 function DismantleHistory() {
 
   const [data, setData] = useState([]);
   const [batchid, setBatchId] = useState("");
-  const token = localStorage.getItem("token");
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -23,11 +19,7 @@ function DismantleHistory() {
   }, []);
 
   const getInstallationData = () => {
-    axios.get('http://localhost:3333/bca-app/getBatchDismantle/' + batchid + '', {
-      headers: {
-        "Authorization": `Bearer ${token}`,
-      },
-    })
+    axios.get('getBatchDismantle/' + batchid + '')
       .then((response) => {
         console.log(response.data);
         setData(response.data);

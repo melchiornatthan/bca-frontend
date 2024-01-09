@@ -1,7 +1,5 @@
-import { MdAccountCircle } from "react-icons/md";
-import SidebarAdmin from "../components/sidebarAdmin";
-import bcaLogo from "../assets/white-bca.svg";
-import axios from "axios";
+
+import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
@@ -11,7 +9,6 @@ import AdminNavbar from "../components/adminNavbar";
 function AdminInstallationReq() {
   const [installationData, setInstallationData] = useState([]);
   const [batchid, setBatchId] = useState("");
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
     getInstallationData();
@@ -24,11 +21,7 @@ function AdminInstallationReq() {
   const getInstallationData = () => {
     axios
       .get(
-        "http://localhost:3333/bca-app/getBatchInstallations/" + batchid + "", {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        }
+        "getBatchInstallations/" + batchid + ""
       )
       .then((response) => {
         console.log(response.data);

@@ -1,14 +1,11 @@
 import React, { useEffect } from "react";
 import InputWithLabel from "../components/input";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import InstallationSearchTable from "../components/searchInstallationTable";
 import UneditableInputWithLabel from "../components/uneditableInput";
-import { MdAccountCircle } from "react-icons/md";
-import bcaLogo from '../assets/white-bca.svg';
 import CustomButton from "../components/button";
 import { ToastContainer, toast } from "react-toastify";
-import UserSidebar from "../components/sidebarUser";
 import UserNavbar from "../components/userNavbar";
 
 function DismantleRequest() {
@@ -29,11 +26,7 @@ function DismantleRequest() {
 
   async function generateBatchId() {
     await axios
-      .get("http://localhost:3333/bca-app/getDismantleBatchId", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("getDismantleBatchId")
       .then((response) => {
         if (response.data == null) {
           setBatchId(200000000);
@@ -91,13 +84,8 @@ function DismantleRequest() {
         };
         console.log(batchId);
         await axios.post(
-          "http://localhost:3333/bca-app/dismantle-request",
-          body,
-          {
-            headers: {
-              "Authorization": `Bearer ${token}`,
-            },
-          }
+          "dismantle-request",
+          body
         );
       }
       toast.success("Request submitted successfully");
@@ -115,11 +103,7 @@ function DismantleRequest() {
   const fetchInstallationData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3333/bca-app/installationByLocation/${location}`, {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        }
+        `locationByArea/${location}`
       );
       const filteredData = response.data.filter((installation) => {
         // Check if the installation_id is not present in batchData
@@ -135,11 +119,7 @@ function DismantleRequest() {
 
   const fetchInstallationbyId = async (id) => {
     await axios
-      .get("http://localhost:3333/bca-app/installationsById/" + id + "", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("installationsById/" + id + "")
       .then((response) => {
         console.log(response.data[0]);
         setSelectedData(response.data[0]);

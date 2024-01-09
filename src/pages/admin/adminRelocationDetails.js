@@ -1,12 +1,9 @@
 import React from "react";
-import { MdAccountCircle } from "react-icons/md";
-import SidebarAdmin from "../components/sidebarAdmin";
-import bcaLogo from "../assets/white-bca.svg";
 import "react-toastify/dist/ReactToastify.css";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import RelocationDetailService from "../components/relocationDetailsService";
 import "typeface-inter";
 import AdminNavbar from "../components/adminNavbar";
@@ -26,11 +23,7 @@ function AdminRelocationDetails() {
 
   const getRelocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/relocations/" + int_id + "", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("relocations/" + int_id + "")
       .then((response) => {
         setData(response.data);
         console.log(data);
@@ -59,11 +52,7 @@ function AdminRelocationDetails() {
       };
       // User clicked "OK" in the confirmation dialog, proceed with the request
       await axios
-        .put(`http://localhost:3333/bca-app/update-relocations/`,body, {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        })
+        .put(`update-relocations/`,body)
         .then((response) => {
           window.location.href =
             "/admin/relocationBatch?batchid=" + data.batchid + "";

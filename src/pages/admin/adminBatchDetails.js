@@ -2,17 +2,14 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import { MdAccountCircle } from "react-icons/md";
-import SidebarAdmin from "../components/sidebarAdmin";
-import bcaLogo from "../assets/white-bca.svg";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import InstallationService from "../components/installationService";
 import AdminNavbar from "../components/adminNavbar";
 
 function AdminBatchDetails() {
   const [data, setData] = useState([]);
   const location = useLocation();
-  const token = localStorage.getItem("token");
+  
 
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
@@ -25,14 +22,10 @@ function AdminBatchDetails() {
   const getInstallationData = async () => {
     await axios
       .get(
-        "http://localhost:3333/bca-app/getInstallationsbyBatchID/" +
+        "getInstallationsbyBatchID/" +
           batchid +
           ""
-      ,{
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      )
       .then((response) => {
         setData(response.data);
       })

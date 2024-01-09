@@ -1,15 +1,11 @@
-import axios from "axios";
+import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
 import "typeface-inter";
-import UserSidebar from "../components/sidebarUser";
-import { MdAccountCircle } from "react-icons/md";
-import bcaLogo from '../assets/white-bca.svg';
 import UserNavbar from "../components/userNavbar";
 function InstallationBatch() {
   const [installationData, setInstallationData] = useState([]);
-  const token = localStorage.getItem("token");
   const [batchid, setBatchId] = useState("");
 
   useEffect(() => {
@@ -23,14 +19,9 @@ function InstallationBatch() {
   const getInstallationData = () => {
     axios
       .get(
-        "http://localhost:3333/bca-app/getBatchInstallations/" + batchid + "", {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        }
+        "getBatchInstallations/" + batchid + ""
       )
       .then((response) => {
-        console.log(response.data);
         setInstallationData(response.data);
       })
       .catch((error) => {

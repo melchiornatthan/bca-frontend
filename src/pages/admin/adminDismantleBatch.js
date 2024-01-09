@@ -1,11 +1,10 @@
 import React from "react";
-import bcaLogo from "../assets/white-bca.svg";
+
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import { MdAccountCircle } from "react-icons/md";
-import SidebarAdmin from "../components/sidebarAdmin";
+
 import DismantleByBatchIdTable from "../components/dismantleBatchService";
 import "typeface-inter";
 import AdminNavbar from "../components/adminNavbar";
@@ -16,7 +15,7 @@ function AdminDismantleBatch() {
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
-  const token = localStorage.getItem("token");
+  
 
   useEffect(() => {
     getRelocationData();
@@ -26,12 +25,8 @@ function AdminDismantleBatch() {
   const getRelocationData = async () => {
     await axios
       .get(
-        "http://localhost:3333/bca-app/getDismantlebyBatchID/" + batchid + ""
-        ,{
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        })
+        "getDismantlebyBatchID/" + batchid + ""
+        )
       .then((response) => {
         setData(response.data);
         console.log(data);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import ExcelJS from "exceljs";
 import bcaLogo from "../assets/white-bca.svg";
 import DismantleByBatchIdTable from "../components/dismantleBatchService";
@@ -29,11 +29,7 @@ function DismantleBatch() {
   const getDismantleData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3333/bca-app/getDismantlebyBatchID/${batchid}`, {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        }
+        `getDismantlebyBatchID/${batchid}`
       );
       setData(response.data);
     } catch (error) {

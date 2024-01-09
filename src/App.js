@@ -18,7 +18,7 @@ import RelocationBatch from './pages/user/relocationBatch';
 import DismantleBatch from './pages/user/dismantleBatch';
 import AdminMain from './pages/admin/adminMain';
 import AdminLogin from './pages/admin/adminLogin';
-import RelocationReq from './pages/user/RelocationRequest';
+import RelocationReq from './pages/user/relocationRequest';
 import AdminRelocationDetails from './pages/admin/adminRelocationDetails';
 import RelocationDetails from './pages/user/relocationDetails';
 import DismantleRequest from './pages/user/dismantleRequest';
@@ -26,6 +26,7 @@ import DismantleHistory from './pages/user/dismantleHistory';
 import AdminDismantleHistory from './pages/admin/adminDismantleHistory';
 import DismantleDetails from './pages/user/dismantleDetails';
 import AdminDismantleDetails from './pages/admin/adminDismantleDetails';
+import axios from 'axios';
 
 
 
@@ -33,6 +34,8 @@ class App extends Component {
   render() {
     // Check if the user is authorized (logged in) and isAdmin by inspecting localStorage
     const isAuthorized = localStorage.getItem("token") !== null;
+
+
     if (!isAuthorized) {
       return (
         <Router>
@@ -43,6 +46,8 @@ class App extends Component {
         </Router>
       );
     }
+
+    
 
     return (
       

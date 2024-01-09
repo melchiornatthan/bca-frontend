@@ -3,12 +3,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import RelocationDetailService from "../components/relocationDetailsService";
 import "typeface-inter";
-import UserSidebar from "../components/sidebarUser";
-import { MdAccountCircle } from "react-icons/md";
-import bcaLogo from '../assets/white-bca.svg';
 import UserNavbar from "../components/userNavbar";
 
 function RelocationDetails() {
@@ -27,11 +24,7 @@ function RelocationDetails() {
 
   const getRelocationData = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/relocations/" + int_id + "", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("relocations/" + int_id + "")
       .then((response) => {
         setData(response.data);
         console.log(data);

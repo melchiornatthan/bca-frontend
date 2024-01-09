@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "typeface-inter";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import ResponsiveDoughnutChart from "../components/doughnutChart";
 
 import { FaConciergeBell } from "react-icons/fa";
@@ -30,13 +30,7 @@ function Main() {
 
   const getRequestCount = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3333/bca-app/requestsCount", {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get("requestsCount");
       setReqCount(response.data);
       console.log("Request Count:", response.data);
     } catch (error) {
@@ -46,11 +40,7 @@ function Main() {
 
   const getProviderCount = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/providerCount", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("providerCount")
       .then((response) => {
         setProviderCount(response.data);
         console.log(response);
@@ -63,7 +53,7 @@ function Main() {
 
   return (
     <div className="container-fluid pt-3 pb-3">
-      <UserNavbar/>
+      <UserNavbar />
       <div className="container-fluid my-3">
         <div className="row mx-auto centered-row">
           <div
@@ -87,6 +77,7 @@ function Main() {
                   textAlign: "center",
                   fontFamily: "inter",
                   fontSize: "4vh",
+                  fontWeight: "bold",
                   color: "#163172",
                   marginTop: "4vh",
                 }}
@@ -124,10 +115,10 @@ function Main() {
                     >
                       <strong>Primacom</strong>
                     </h1>
-                    <h2 style={{ color: "#004225" }}>
+                    <strong style={{ fontSize: "4vh",color: "#004225" }}>
                       {" "}
                       {providerCount.primacom}{" "}
-                    </h2>
+                    </strong>
                   </div>
                 </div>
                 <div
@@ -148,10 +139,10 @@ function Main() {
                       <strong>Tangara</strong>
                     </h1>
 
-                    <h2 style={{ color: "#004225" }}>
+                    <strong style={{ fontSize: "4vh",color: "#004225" }}>
                       {" "}
                       {providerCount.tangara}{" "}
-                    </h2>
+                    </strong>
                   </div>
                 </div>
               </div>
@@ -174,10 +165,10 @@ function Main() {
                       <strong>IForte</strong>
                     </h1>
 
-                    <h2 style={{ color: "#004225" }}>
+                    <strong style={{ fontSize: "4vh",color: "#004225" }}>
                       {" "}
                       {providerCount.iforte}{" "}
-                    </h2>
+                    </strong>
                   </div>
                 </div>
                 <div
@@ -198,10 +189,10 @@ function Main() {
                       <strong>Indonet</strong>
                     </h1>
 
-                    <h2 style={{ color: "#004225" }}>
+                    <strong style={{ fontSize: "4vh",color: "#004225" }}>
                       {" "}
                       {providerCount.indonet}{" "}
-                    </h2>
+                    </strong>
                   </div>
                 </div>
               </div>
@@ -215,13 +206,26 @@ function Main() {
                   style={{
                     color: "#1E56A0",
                     fontFamily: "inter",
-                    fontSize: "4vh",
-                    marginTop: "20vh",
-                    marginBottom: "25vh",
+                    fontSize: "8vh",
+                    fontWeight: "bold",
+                    marginTop: "14vh",
+                    marginBottom: "1vh",
                   }}
                 >
-                  Welcome to Memo Hub
+                  Welcome to
+                  <div style={{ color: "#86B6F6" }}>Memo Hub</div>
                 </strong>
+                <p
+                  style={{
+                    color: "#FFB000",
+                    fontFamily: "inter",
+                    fontSize: "2vh",
+                    fontWeight: "bold",
+                    marginBottom: "9vh",
+                  }}
+                >
+                  Made with NIS-B
+                </p>
                 <div
                   className="row"
                   style={{ marginBottom: "5vh", marginTop: "5vh" }}

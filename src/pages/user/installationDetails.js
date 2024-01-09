@@ -2,12 +2,10 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import InstallationService from "../components/installationService";
 import ExcelJS from "exceljs";
-import UserSidebar from "../components/sidebarUser";
-import { MdAccountCircle } from "react-icons/md";
-import bcaLogo from '../assets/white-bca.svg';
+
 import UserNavbar from "../components/userNavbar";
 function BatchDetails() {
   const [data, setData] = useState([]);

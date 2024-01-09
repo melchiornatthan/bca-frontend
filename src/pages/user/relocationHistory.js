@@ -1,11 +1,8 @@
-import axios from "axios";
+import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import RelocationBatchTable from "../components/relocationService";
 import InputWithLabel from "../components/input";
 import "typeface-inter";
-import UserSidebar from "../components/sidebarUser";
-import { MdAccountCircle } from "react-icons/md";
-import bcaLogo from '../assets/white-bca.svg';
 import UserNavbar from "../components/userNavbar";
 function RelocationHistory() {
   const [relocationData, setRelocationData] = useState([]);
@@ -22,11 +19,7 @@ function RelocationHistory() {
 
   const getInstallationData = () => {
     axios
-      .get("http://localhost:3333/bca-app/getBatchRelocation/" + batchid + "", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("getBatchRelocation/" + batchid + "")
       .then((response) => {
         console.log(response.data);
         setRelocationData(response.data);

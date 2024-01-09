@@ -1,15 +1,11 @@
 import React from 'react';
-import BackLogo from "../assets/Back-Sign.svg";
-import bcaLogo from "../assets/white-bca.svg";
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import axios from 'axios';
+import axios from "../../axiosConfig";
 import DismantleDetailsService from '../components/dismantleDetailsService';
 import 'typeface-inter';
-import UserSidebar from '../components/sidebarUser';
-import { MdAccountCircle } from "react-icons/md";
 import UserNavbar from '../components/userNavbar';
 
 function DismantleDetails() {
@@ -28,18 +24,15 @@ function DismantleDetails() {
     }, [int_id]);
 
     const getRelocationData = async () => {
-        await axios.get('http://localhost:3333/bca-app/installationsById/' + int_id + '', {
-            headers: {
-              "Authorization": `Bearer ${token}`,
-            },
-          }
-        ).then((response) => {
-            setData(response.data[0]);
-            console.log(data);
+      await axios
+        .get("installationsById/" + int_id + "")
+        .then((response) => {
+          setData(response.data[0]);
+          console.log(data);
         })
-            .catch((error) => {
-                console.error('Error fetching location data:', error);
-            });
+        .catch((error) => {
+          console.error("Error fetching location data:", error);
+        });
     };
 
     return (

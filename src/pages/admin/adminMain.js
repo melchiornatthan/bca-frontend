@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "typeface-inter";
-import axios from "axios";
-import bcaLogo from "../assets/white-bca.svg";
+import axios from "../../axiosConfig";
 import ResponsiveDoughnutChart from "../components/doughnutChart";
 import { FaConciergeBell } from "react-icons/fa";
 import { MdBuildCircle } from "react-icons/md";
 import { FaTruckMoving } from "react-icons/fa";
 import { IoMdRemoveCircle } from "react-icons/io";
-import { MdAccountCircle } from "react-icons/md";
-import SidebarAdmin from "../components/sidebarAdmin";
 import AdminNavbar from "../components/adminNavbar";
 function AdminMain() {
   ChartJS.register(ArcElement, Tooltip, Legend);
@@ -32,11 +29,7 @@ function AdminMain() {
   const getRequestCount = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3333/bca-app/requestsCount", {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        }
+        "requestsCount"
       );
       setReqCount(response.data);
       console.log("Request Count:", response.data);
@@ -87,6 +80,7 @@ function AdminMain() {
                 style={{
                   textAlign: "center",
                   fontFamily: "inter",
+                  fontWeight: "bold",
                   fontSize: "4vh",
                   color: "#163172",
                   marginTop: "4vh",
@@ -125,10 +119,10 @@ function AdminMain() {
                     >
                       <strong>Primacom</strong>
                     </h1>
-                    <h2 style={{ color: "#004225", fontSize: "3vh" }}>
+                    <strong style={{ fontSize: "3vh",color: "#004225" }}>
                       {" "}
                       {providerCount.primacom}/2550{" "}
-                    </h2>
+                    </strong>
                   </div>
                 </div>
                 <div
@@ -149,10 +143,10 @@ function AdminMain() {
                       <strong>Tangara</strong>
                     </h1>
 
-                    <h2 style={{ color: "#004225", fontSize: "3vh" }}>
+                    <strong style={{ fontSize: "3vh",color: "#004225" }}>
                       {" "}
                       {providerCount.tangara}/2550{" "}
-                    </h2>
+                    </strong>
                   </div>
                 </div>
               </div>
@@ -175,10 +169,10 @@ function AdminMain() {
                       <strong>IForte</strong>
                     </h1>
 
-                    <h2 style={{ color: "#004225", fontSize: "3vh" }}>
+                    <strong style={{ fontSize: "3vh",color: "#004225" }}>
                       {" "}
                       {providerCount.iforte}/2550{" "}
-                    </h2>
+                    </strong>
                   </div>
                 </div>
                 <div
@@ -199,10 +193,10 @@ function AdminMain() {
                       <strong>Indonet</strong>
                     </h1>
 
-                    <h2 style={{ color: "#004225", fontSize: "3vh" }}>
+                    <strong style={{ fontSize: "3vh",color: "#004225" }}>
                       {" "}
                       {providerCount.indonet}/2550{" "}
-                    </h2>
+                    </strong>
                   </div>
                 </div>
               </div>
@@ -211,18 +205,31 @@ function AdminMain() {
           <div className="col-md mx-3">
             <div className="row">
               <div className="row text-center">
-                <strong
+              <strong
                   className="mx-auto"
                   style={{
                     color: "#1E56A0",
                     fontFamily: "inter",
-                    fontSize: "4vh",
-                    marginTop: "20vh",
-                    marginBottom: "25vh",
+                    fontSize: "8vh",
+                    fontWeight: "bold",
+                    marginTop: "14vh",
+                    marginBottom: "1vh",
                   }}
                 >
-                  Welcome to Memo Hub
+                  Welcome to
+                  <div style={{ color: "#86B6F6" }}>Memo Hub</div>
                 </strong>
+                <p
+                  style={{
+                    color: "#FFB000",
+                    fontFamily: "inter",
+                    fontSize: "2vh",
+                    fontWeight: "bold",
+                    marginBottom: "9vh",
+                  }}
+                >
+                  Made with NIS-B
+                </p>
                 <div
                   className="row"
                   style={{ marginBottom: "5vh", marginTop: "5vh" }}

@@ -2,15 +2,12 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import RelocationByBatchIdTable from "../components/relocationBatchService";
 import "typeface-inter";
-import UserSidebar from "../components/sidebarUser";
-import { MdAccountCircle } from "react-icons/md";
-import bcaLogo from "../assets/white-bca.svg";
 import ExcelJS from "exceljs";
-import CustomButton from "../components/button";
 import UserNavbar from "../components/userNavbar";
+
 function RelocationBatch() {
   const [data, setData] = useState([]);
   const location = useLocation();
@@ -28,11 +25,7 @@ function RelocationBatch() {
   const getRelocationData = async () => {
     await axios
       .get(
-        "http://localhost:3333/bca-app/getRelocationsbyBatchID/" + batchid + "", {
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        }
+        "getRelocationsbyBatchID/" + batchid + ""
       )
       .then((response) => {
         setData(response.data);
