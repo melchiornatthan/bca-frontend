@@ -18,9 +18,7 @@ function InstallationBatch() {
 
   const getInstallationData = () => {
     axios
-      .get(
-        "getBatchInstallations/" + batchid + ""
-      )
+      .get("getBatchInstallations/" + batchid + "")
       .then((response) => {
         setInstallationData(response.data);
       })
@@ -35,7 +33,7 @@ function InstallationBatch() {
 
   return (
     <div className="container-fluid pt-3">
-      <UserNavbar/>
+      <UserNavbar />
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

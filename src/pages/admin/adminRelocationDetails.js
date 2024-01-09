@@ -12,7 +12,6 @@ function AdminRelocationDetails() {
   const [data, setData] = useState({});
   const location = useLocation();
   const token = localStorage.getItem("token");
-  // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const int_id = parseInt(searchParams.get("id"), 10);
 
@@ -52,7 +51,7 @@ function AdminRelocationDetails() {
       };
       // User clicked "OK" in the confirmation dialog, proceed with the request
       await axios
-        .put(`update-relocations/`,body)
+        .put(`update-relocations/`, body)
         .then((response) => {
           window.location.href =
             "/admin/relocationBatch?batchid=" + data.batchid + "";
@@ -65,7 +64,7 @@ function AdminRelocationDetails() {
 
   return (
     <div className="pb-5">
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

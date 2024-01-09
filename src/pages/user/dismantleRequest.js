@@ -9,12 +9,10 @@ import { ToastContainer, toast } from "react-toastify";
 import UserNavbar from "../components/userNavbar";
 
 function DismantleRequest() {
-  const token = localStorage.getItem("token");
   const [location, setLocation] = useState("");
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState();
   const [batchId, setBatchId] = useState(generateBatchId());
-  
   const [batchData, setBatchData] = useState([]);
   const [submittedRequests, setSubmittedRequests] = useState([]);
   const [isHoveredSecond, setIsHoveredSecond] = useState(false);
@@ -83,10 +81,7 @@ function DismantleRequest() {
           createdAt: requestData.createdAt,
         };
         console.log(batchId);
-        await axios.post(
-          "dismantle-request",
-          body
-        );
+        await axios.post("dismantle-request", body);
       }
       toast.success("Request submitted successfully");
       setBatchData([]); // Clear the batch data
@@ -102,9 +97,7 @@ function DismantleRequest() {
 
   const fetchInstallationData = async () => {
     try {
-      const response = await axios.get(
-        `locationByArea/${location}`
-      );
+      const response = await axios.get(`locationByArea/${location}`);
       const filteredData = response.data.filter((installation) => {
         // Check if the installation_id is not present in batchData
         return !batchData.some(
@@ -130,7 +123,7 @@ function DismantleRequest() {
   };
   return (
     <div className="container-fluid pt-3">
-      <UserNavbar/>
+      <UserNavbar />
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

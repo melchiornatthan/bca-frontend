@@ -1,4 +1,3 @@
-
 import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import RelocationBatchTable from "../components/relocationService";
@@ -9,7 +8,6 @@ import AdminNavbar from "../components/adminNavbar";
 function AdminRelocationHistory() {
   const [relocationData, setRelocationData] = useState([]);
   const [batchid, setBatchId] = useState("");
-  
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -37,7 +35,7 @@ function AdminRelocationHistory() {
 
   return (
     <div>
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

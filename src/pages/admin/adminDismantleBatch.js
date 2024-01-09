@@ -1,10 +1,8 @@
 import React from "react";
-
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-
 import DismantleByBatchIdTable from "../components/dismantleBatchService";
 import "typeface-inter";
 import AdminNavbar from "../components/adminNavbar";
@@ -15,7 +13,6 @@ function AdminDismantleBatch() {
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
-  
 
   useEffect(() => {
     getRelocationData();
@@ -24,9 +21,7 @@ function AdminDismantleBatch() {
 
   const getRelocationData = async () => {
     await axios
-      .get(
-        "getDismantlebyBatchID/" + batchid + ""
-        )
+      .get("getDismantlebyBatchID/" + batchid + "")
       .then((response) => {
         setData(response.data);
         console.log(data);
@@ -38,7 +33,7 @@ function AdminDismantleBatch() {
 
   return (
     <div>
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

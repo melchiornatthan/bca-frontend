@@ -32,13 +32,9 @@ function BatchDetails() {
     };
     await axios
       .get(
-        "http://localhost:3333/bca-app/getInstallationsbyBatchID/" +
+        "getInstallationsbyBatchID/" +
           batchid +
-          "", {
-            headers: {
-              "Authorization": `Bearer ${token}`,
-            },
-          }
+          ""
       )
       .then((response) => {
         setData(response.data);

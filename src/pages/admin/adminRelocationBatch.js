@@ -1,5 +1,4 @@
 import React from "react";
-
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -22,9 +21,7 @@ function AdminRelocationBatch() {
 
   const getRelocationData = async () => {
     await axios
-      .get(
-        "getRelocationsbyBatchID/" + batchid + ""
-      )
+      .get("getRelocationsbyBatchID/" + batchid + "")
       .then((response) => {
         setData(response.data);
         console.log(data);
@@ -36,7 +33,7 @@ function AdminRelocationBatch() {
 
   return (
     <div>
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

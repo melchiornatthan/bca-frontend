@@ -2,18 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "../../axiosConfig";
 import ExcelJS from "exceljs";
-import bcaLogo from "../assets/white-bca.svg";
 import DismantleByBatchIdTable from "../components/dismantleBatchService";
 import "typeface-inter";
-import UserSidebar from "../components/sidebarUser";
-import { MdAccountCircle } from "react-icons/md";
 import UserNavbar from "../components/userNavbar";
+
 function DismantleBatch() {
   // State to hold the data retrieved from the API
   const [data, setData] = useState([]);
   const [date, setDate] = useState(new Date());
   const token = localStorage.getItem("token");
-  // Get the current URL location
+  const [hasPending, setHasPending] = useState(false);
   const location = useLocation();
 
   // Parse the URL parameters and extract the 'batchid' parameter
@@ -25,12 +23,14 @@ function DismantleBatch() {
     getDismantleData();
   }, [batchid]);
 
+  useEffect(() => {
+    setHasPending(data.some((entry) => entry.status === "pending"));
+  }, [data]);
+
   // Function to fetch dismantle data based on batchid
   const getDismantleData = async () => {
     try {
-      const response = await axios.get(
-        `getDismantlebyBatchID/${batchid}`
-      );
+      const response = await axios.get(`getDismantlebyBatchID/${batchid}`);
       setData(response.data);
     } catch (error) {
       console.error("Error fetching dismantle data:", error);
@@ -140,7 +140,7 @@ function DismantleBatch() {
   return (
     <div className="container-fluid pt-3">
       {/* Breadcrumb navigation */}
-      <UserNavbar/>
+      <UserNavbar />
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
@@ -178,11 +178,18 @@ function DismantleBatch() {
         </h1>
       </div>
       <div className="py-5 mx-auto text-center">
-      {/* DismantleByBatchIdTable component */}
-      <DismantleByBatchIdTable batchdata={data} isAdmin={false} />
-      <button style={{marginTop:'5vh'}} className="btn btn-primary" onClick={() => exportToJson()}>
+        {/* DismantleByBatchIdTable component */}
+        <DismantleByBatchIdTable batchdata={data} isAdmin={false} />
+
+        {!hasPending && (
+        <button
+          style={{ marginTop: "3vh" }}
+          className="btn btn-primary"
+          onClick={() => exportToJson()}
+        >
           Export to Excel
         </button>
+      )}
       </div>
     </div>
   );

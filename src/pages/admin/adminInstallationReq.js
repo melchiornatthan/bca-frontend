@@ -1,4 +1,3 @@
-
 import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import BatchTable from "../components/installationBatchService";
@@ -20,9 +19,7 @@ function AdminInstallationReq() {
 
   const getInstallationData = () => {
     axios
-      .get(
-        "getBatchInstallations/" + batchid + ""
-      )
+      .get("getBatchInstallations/" + batchid + "")
       .then((response) => {
         console.log(response.data);
         setInstallationData(response.data);
@@ -38,7 +35,7 @@ function AdminInstallationReq() {
 
   return (
     <div>
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

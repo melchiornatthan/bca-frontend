@@ -8,6 +8,7 @@ import { MdBuildCircle } from "react-icons/md";
 import { FaTruckMoving } from "react-icons/fa";
 import { IoMdRemoveCircle } from "react-icons/io";
 import AdminNavbar from "../components/adminNavbar";
+
 function AdminMain() {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const [providerCount, setProviderCount] = useState([]);
@@ -28,9 +29,7 @@ function AdminMain() {
 
   const getRequestCount = async () => {
     try {
-      const response = await axios.get(
-        "requestsCount"
-      );
+      const response = await axios.get("requestsCount");
       setReqCount(response.data);
       console.log("Request Count:", response.data);
     } catch (error) {
@@ -40,11 +39,7 @@ function AdminMain() {
 
   const getProviderCount = async () => {
     await axios
-      .get("http://localhost:3333/bca-app/providerCount", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("providerCount")
       .then((response) => {
         setProviderCount(response.data);
         console.log(response);
@@ -57,7 +52,7 @@ function AdminMain() {
 
   return (
     <div className="container-fluid">
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="container-fluid my-3">
         <div className="row mx-auto centered-row">
           <div
@@ -119,7 +114,7 @@ function AdminMain() {
                     >
                       <strong>Primacom</strong>
                     </h1>
-                    <strong style={{ fontSize: "3vh",color: "#004225" }}>
+                    <strong style={{ fontSize: "3vh", color: "#004225" }}>
                       {" "}
                       {providerCount.primacom}/2550{" "}
                     </strong>
@@ -143,7 +138,7 @@ function AdminMain() {
                       <strong>Tangara</strong>
                     </h1>
 
-                    <strong style={{ fontSize: "3vh",color: "#004225" }}>
+                    <strong style={{ fontSize: "3vh", color: "#004225" }}>
                       {" "}
                       {providerCount.tangara}/2550{" "}
                     </strong>
@@ -169,7 +164,7 @@ function AdminMain() {
                       <strong>IForte</strong>
                     </h1>
 
-                    <strong style={{ fontSize: "3vh",color: "#004225" }}>
+                    <strong style={{ fontSize: "3vh", color: "#004225" }}>
                       {" "}
                       {providerCount.iforte}/2550{" "}
                     </strong>
@@ -193,7 +188,7 @@ function AdminMain() {
                       <strong>Indonet</strong>
                     </h1>
 
-                    <strong style={{ fontSize: "3vh",color: "#004225" }}>
+                    <strong style={{ fontSize: "3vh", color: "#004225" }}>
                       {" "}
                       {providerCount.indonet}/2550{" "}
                     </strong>
@@ -205,7 +200,7 @@ function AdminMain() {
           <div className="col-md mx-3">
             <div className="row">
               <div className="row text-center">
-              <strong
+                <strong
                   className="mx-auto"
                   style={{
                     color: "#1E56A0",

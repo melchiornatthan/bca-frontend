@@ -1,12 +1,11 @@
 import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
-import 'typeface-inter';
+import "typeface-inter";
 import DismantleServiceTable from "../components/DismantleService";
 import InputWithLabel from "../components/input";
 import UserNavbar from "../components/userNavbar";
 
 function DismantleHistory() {
-
   const [data, setData] = useState([]);
   const [batchid, setBatchId] = useState("");
 
@@ -19,13 +18,14 @@ function DismantleHistory() {
   }, []);
 
   const getInstallationData = () => {
-    axios.get('getBatchDismantle/' + batchid + '')
+    axios
+      .get("getBatchDismantle/" + batchid + "")
       .then((response) => {
         console.log(response.data);
         setData(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching location data:', error);
+        console.error("Error fetching location data:", error);
       });
   };
 
@@ -35,7 +35,7 @@ function DismantleHistory() {
 
   return (
     <div className="container-fluid pt-3">
-      <UserNavbar/>
+      <UserNavbar />
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
@@ -51,10 +51,16 @@ function DismantleHistory() {
         </nav>
       </div>
       <div className="container my-5 text-center">
-        <h1 style={{ fontFamily: 'inter', color: '#D83F31', fontWeight: 'bold', fontSize: '6vh' }}>
+        <h1
+          style={{
+            fontFamily: "inter",
+            color: "#D83F31",
+            fontWeight: "bold",
+            fontSize: "6vh",
+          }}
+        >
           Dismantle Requests
         </h1>
-
       </div>
       <div className="container w-50">
         <InputWithLabel
@@ -68,7 +74,6 @@ function DismantleHistory() {
       <div className="mt-5">
         <DismantleServiceTable batchdata={data} isAdmin={false} />
       </div>
-
     </div>
   );
 }

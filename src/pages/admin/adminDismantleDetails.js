@@ -11,7 +11,6 @@ import AdminNavbar from "../components/adminNavbar";
 function AdminDismantleDetails() {
   const [data, setData] = useState({});
   const location = useLocation();
-  // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const int_id = parseInt(searchParams.get("id"), 10);
   const dismantle_id = parseInt(searchParams.get("dismantle_id"), 10);
@@ -33,7 +32,6 @@ function AdminDismantleDetails() {
   };
 
   const updateRequestStatus = async () => {
-    // Display a confirmation dialog
     const confirmed = window.confirm(
       "Are you sure you want to approve this request?"
     );
@@ -43,7 +41,6 @@ function AdminDismantleDetails() {
         id: dismantle_id,
         installation_id: data.id,
       };
-      // User clicked "OK" in the confirmation dialog, proceed with the request
       await axios
         .put(`update-dismantle/`, body)
         .then((response) => {
@@ -58,7 +55,7 @@ function AdminDismantleDetails() {
 
   return (
     <div>
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

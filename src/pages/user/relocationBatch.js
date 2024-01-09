@@ -15,12 +15,16 @@ function RelocationBatch() {
   const searchParams = new URLSearchParams(location.search);
   const [date, setDate] = useState(new Date());
   const batchid = parseInt(searchParams.get("batchid"), 10);
-  const token = localStorage.getItem("token");
+  const [hasPending, setHasPending] = useState(false);
 
   useEffect(() => {
     getRelocationData();
     console.log(data);
   }, [batchid]);
+
+  useEffect(() => {
+    setHasPending(data.some((entry) => entry.status === "pending"));
+  }, [data]);
 
   const getRelocationData = async () => {
     await axios
@@ -174,9 +178,11 @@ function RelocationBatch() {
       <div>
       <div className="py-5 mx-auto text-center">
          <RelocationByBatchIdTable batchdata={data} isAdmin={false} />
-        <button style={{marginTop:'5vh'}} className="btn btn-primary" onClick={() => exportToJson()}>
+         {!hasPending && (
+        <button style={{marginTop:'3vh'}} className="btn btn-primary" onClick={() => exportToJson()}>
           Export to Excel
         </button>
+      )}
         </div>
        
       </div>

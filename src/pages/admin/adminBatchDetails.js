@@ -9,7 +9,6 @@ import AdminNavbar from "../components/adminNavbar";
 function AdminBatchDetails() {
   const [data, setData] = useState([]);
   const location = useLocation();
-  
 
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
@@ -21,11 +20,7 @@ function AdminBatchDetails() {
 
   const getInstallationData = async () => {
     await axios
-      .get(
-        "getInstallationsbyBatchID/" +
-          batchid +
-          ""
-      )
+      .get("getInstallationsbyBatchID/" + batchid + "")
       .then((response) => {
         setData(response.data);
       })
@@ -36,7 +31,7 @@ function AdminBatchDetails() {
 
   return (
     <div>
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

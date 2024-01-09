@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import UneditableInputWithLabel from "../components/uneditableInput";
 import SelectProviders from "../components/providers";
-
 import "typeface-inter";
 import AdminNavbar from "../components/adminNavbar";
 
@@ -15,7 +14,6 @@ function InstallationOverride() {
   const [provider, setProvider] = useState(1);
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
-  
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -30,13 +28,8 @@ function InstallationOverride() {
   }, [data]);
 
   const getInstallationById = async () => {
-    
     await axios
-      .get("http://localhost:3333/bca-app/installationsById/" + id + "", {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get("installationsById/" + id + "")
       .then((response) => {
         setData(response.data[0]);
       })
@@ -48,11 +41,7 @@ function InstallationOverride() {
   const getProviderAlternatives = async () => {
     console.log(data.area_id);
     await axios
-      .get(`http://localhost:3333/bca-app/getProvidersbyArea/${data.area_id}`,{
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .get(`getProvidersbyArea/${data.area_id}`)
       .then((response) => {
         setProvData([
           ...response.data.list,
@@ -70,15 +59,14 @@ function InstallationOverride() {
     console.log(provider);
     console.log(data.area);
     await axios
-      .post("http://localhost:3333/bca-app/installation-override", {
-        id: data.id,
-        id_prov: provider,
-        location: data.area,
-      },{
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      })
+      .post(
+        "installation-override",
+        {
+          id: data.id,
+          id_prov: provider,
+          location: data.area,
+        }
+      )
       .then((response) => {
         console.log(response);
         window.location.href = `/admin/installationDetails?batchid=${data.batchid}`;
@@ -90,7 +78,7 @@ function InstallationOverride() {
 
   return (
     <div>
-      <AdminNavbar/>
+      <AdminNavbar />
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
