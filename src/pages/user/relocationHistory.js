@@ -14,10 +14,10 @@ function RelocationHistory() {
   };
 
   useEffect(() => {
-    getInstallationData();
+    getRelocationData();
   }, []);
 
-  const getInstallationData = () => {
+  const getInstallationDataByBatchID = () => {
     axios
       .get("getBatchRelocation/" + batchid + "")
       .then((response) => {
@@ -29,8 +29,20 @@ function RelocationHistory() {
       });
   };
 
+  const getRelocationData = () => {
+    axios
+      .get("relocations")
+      .then((response) => {
+        console.log(response.data);
+        setRelocationData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching location data:", error);
+      });
+  };
+
   useEffect(() => {
-    getInstallationData();
+    getInstallationDataByBatchID();
   }, [batchid]);
 
   return (

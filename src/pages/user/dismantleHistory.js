@@ -14,10 +14,10 @@ function DismantleHistory() {
   };
 
   useEffect(() => {
-    getInstallationData();
+    getDismantleData();
   }, []);
 
-  const getInstallationData = () => {
+  const getDismantleDataByBatchID = () => {
     axios
       .get("getBatchDismantle/" + batchid + "")
       .then((response) => {
@@ -29,8 +29,20 @@ function DismantleHistory() {
       });
   };
 
+  const getDismantleData = () => {
+    axios
+      .get("dismantles")
+      .then((response) => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching location data:", error);
+      });
+  };
+
   useEffect(() => {
-    getInstallationData();
+    getDismantleDataByBatchID();
   }, [batchid]);
 
   return (

@@ -16,7 +16,7 @@ function InstallationBatch() {
     setStateFunction(event.target.value);
   };
 
-  const getInstallationData = () => {
+  const getInstallationDatabyBatchID = () => {
     axios
       .get("getBatchInstallations/" + batchid + "")
       .then((response) => {
@@ -27,8 +27,19 @@ function InstallationBatch() {
       });
   };
 
+  const getInstallationData = () => {
+    axios
+      .get("installations")
+      .then((response) => {
+        setInstallationData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching location data:", error);
+      });
+  };
+
   useEffect(() => {
-    getInstallationData();
+    getInstallationDatabyBatchID();
   }, [batchid]);
 
   return (
