@@ -46,7 +46,7 @@ function RelocationHistory() {
   }, [batchid]);
 
   return (
-    <div className="container-fluid pt-3">
+    <div className="container-fluid py-3">
      <UserNavbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
@@ -83,7 +83,7 @@ function RelocationHistory() {
           onChange={(e) => handleInputChange(e, setBatchId)}
         />
       </div>
-      <div className="mt-5">
+      <div className="my-5">
         <RelocationBatchTable batchdata={relocationData} isAdmin={false} />
       </div>
     </div>

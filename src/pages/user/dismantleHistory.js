@@ -83,7 +83,7 @@ function DismantleHistory() {
           onChange={(e) => handleInputChange(e, setBatchId)}
         />
       </div>
-      <div className="mt-5">
+      <div className="my-5">
         <DismantleServiceTable batchdata={data} isAdmin={false} />
       </div>
     </div>
