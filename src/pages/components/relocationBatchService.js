@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 
 function RelocationByBatchIdTable({ batchdata, isAdmin = false }) {
-  const [isHovered, setIsHovered] = useState(false);
+  
   const [data, setData] = useState([]);
   const [hasPending, setHasPending] = useState(false);
   const tableStyle = {
@@ -15,16 +15,7 @@ function RelocationByBatchIdTable({ batchdata, isAdmin = false }) {
     setHasPending(batchdata.some((entry) => entry.status === "pending"));
   }, [batchdata]);
 
-  function formatCustomDate(dateString) {
-    const options = {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    return new Date(dateString).toLocaleString(undefined, options);
-  }
+  
 
   const toDetails = (id) => {
     const path = isAdmin ? "/admin/relocationDetails" : "/relocationDetails";
@@ -36,13 +27,9 @@ function RelocationByBatchIdTable({ batchdata, isAdmin = false }) {
       style={{
         borderRadius: "17px",
         padding: "20px",
-        boxShadow: isHovered
-          ? "10px 10px 20px rgba(233, 184, 36, 0.3)"
-          : "none",
-        transition: "box-shadow 0.5s",
+       
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+     
       className="text-center w-75 mx-auto px-5"
     >
       <div style={tableStyle}>

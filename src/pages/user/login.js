@@ -33,7 +33,7 @@ function Login() {
         if (response.data.message === "User logged in successfully") {
           toast.success("Login successful");
           localStorage.setItem("token", response.data.token);
-          window.location.href = "/main";
+          response.data.isAdmin ?  window.location.href = "/admin/main" :  window.location.href = "/main"
         }
       })
       .catch((error) => {
@@ -60,10 +60,8 @@ function Login() {
         className="row mx-auto centered-row"
         style={{
           backgroundColor: "white", // Change background color on hover
-          borderRadius: "5px",
+          borderRadius: "1vh",
           width: "65%",
-          border: "2px solid #1E56A0",
-          boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.1)",
           padding: "2vh",
         }}
       >
@@ -77,7 +75,7 @@ function Login() {
               fontFamily: "Inter",
               fontWeight: "bold",
               color: "#1E56A0",
-              fontSize: "4vh",
+              fontSize: "6vh",
               marginTop: "3vh",
             }}
           >

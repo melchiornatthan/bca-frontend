@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 
 function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
-  const [isHovered, setIsHovered] = useState(false);
   const [data, setData] = useState([]);
   const [hasPending, setHasPending] = useState(false);
   const tableStyle = {
@@ -38,11 +37,8 @@ function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
       style={{
         borderRadius: "17px",
         padding: "20px",
-        boxShadow: isHovered ? "10px 10px 20px rgba(216, 63, 49, 0.3)" : "none",
-        transition: "box-shadow 0.5s",
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+     
       className="text-center w-75 mx-auto px-5"
     >
       <div style={tableStyle}>

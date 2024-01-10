@@ -52,7 +52,8 @@ function Main() {
   };
 
   return (
-    <div className="container-fluid pt-3 pb-3">
+    <div className="container-fluid py-2"
+    >
       <UserNavbar />
       <div className="container-fluid my-3">
         <div className="row mx-auto centered-row">
@@ -64,7 +65,6 @@ function Main() {
               backgroundColor: "#FFFFFF",
               borderRadius: "1vh",
               paddingBottom: "3vh",
-              boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
             }}
           >
             <div className="container">
@@ -265,6 +265,7 @@ function Main() {
                     style={{
                       borderColor: "#ffffff",
                     }}
+                    onClick={() => {window.location.href = "/installationBatch"}}
                   >
                     <div class="card-body">
                       <div className="row">
@@ -321,6 +322,7 @@ function Main() {
                     style={{
                       borderColor: "#ffffff",
                     }}
+                    onClick={() => {window.location.href = "/relocationHistory"}}
                   >
                     <div class="card-body">
                       <div className="row">
@@ -375,6 +377,7 @@ function Main() {
                     style={{
                       borderColor: "#ffffff",
                     }}
+                    onClick={() => {window.location.href = "/dismantleHistory"}}
                   >
                     <div class="card-body">
                       <div className="row">

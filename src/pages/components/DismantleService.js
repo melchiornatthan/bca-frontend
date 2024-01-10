@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 function DismantleServiceTable({ batchdata, isAdmin = false }) {
-  const [isHovered, setIsHovered] = useState(false);
+ 
   const tableStyle = {
     maxHeight: "600px",
     overflowY: "auto",
@@ -19,7 +19,7 @@ function DismantleServiceTable({ batchdata, isAdmin = false }) {
   }
 
   const toDetails = (batchid) => {
-    const path = isAdmin ? "/admin/dismantleBatch" : "/dismantleBatch";
+    const path = isAdmin ? "dismantleBatch" : "admin/dismantleBatch";
     window.location.href = `${path}?batchid=${batchid}`;
   };
 
@@ -28,11 +28,9 @@ function DismantleServiceTable({ batchdata, isAdmin = false }) {
       style={{
         borderRadius: "17px",
         padding: "20px",
-        boxShadow: isHovered ? "10px 10px 20px rgba(216, 63, 49, 0.3)" : "none",
-        transition: "box-shadow 0.5s",
+       
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+     
       className="text-center w-75 mx-auto px-5"
     >
       <div style={tableStyle}>

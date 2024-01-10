@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../axiosConfig";
 import DismantleByBatchIdTable from "../components/dismantleBatchService";
 import "typeface-inter";
 import AdminNavbar from "../components/adminNavbar";
@@ -38,14 +38,14 @@ function AdminDismantleBatch() {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
             <li className="breadcrumb-item">
-              <a className="link-body-emphasis" href="/main">
+              <a className="link-body-emphasis" href="/admin/main">
                 Main
               </a>
             </li>
             <li className="breadcrumb-item">
               <a
                 className="link-body-emphasis fw-semibold text-decoration-none"
-                href="/dismantleHistory"
+                href="/admin/dismantleHistory"
               >
                 History
               </a>
@@ -57,7 +57,16 @@ function AdminDismantleBatch() {
         </nav>
       </div>
       <div className="text-center mt-5" style={{ fontFamily: "inter" }}>
-        <h1>Dismantle Request</h1>
+      <h1
+          style={{
+            fontFamily: "inter",
+            color: "#D83F31",
+            fontWeight: "bold",
+            fontSize: "6vh",
+          }}
+        >
+          Dismantle Requests
+        </h1>
       </div>
       <DismantleByBatchIdTable batchdata={data} isAdmin={true} />
     </div>

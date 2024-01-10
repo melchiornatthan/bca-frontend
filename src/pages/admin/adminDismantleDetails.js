@@ -60,7 +60,7 @@ function AdminDismantleDetails() {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
             <li className="breadcrumb-item">
-              <a className="link-body-emphasis" href="/main">
+              <a className="link-body-emphasis" href="/admin/main">
                 Main
               </a>
             </li>
@@ -87,7 +87,16 @@ function AdminDismantleDetails() {
         </nav>
       </div>
       <div className="text-center mt-5" style={{ fontFamily: "inter" }}>
-        <h1>Dismantle Request</h1>
+      <h1
+          style={{
+            fontFamily: "inter",
+            color: "#D83F31",
+            fontWeight: "bold",
+            fontSize: "6vh",
+          }}
+        >
+          Dismantle Requests
+        </h1>
       </div>
       <DismantleDetailsService
         batchdata={data}

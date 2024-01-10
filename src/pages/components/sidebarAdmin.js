@@ -78,7 +78,7 @@ const SidebarAdmin = () => {
           type="button"
           style={{ borderColor: "#FFFFFF" }}
           className="btn mx-1 mb-1 text-start btn-outline-danger"
-          onClick={() => (window.location.href = "/admin/login")}
+          onClick={() => (window.location.href = "/login")}
         >
           <div className="my-1 ">
             <HiOutlineXCircle />
