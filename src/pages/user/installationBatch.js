@@ -29,7 +29,7 @@ function InstallationBatch() {
 
   const getInstallationData = () => {
     axios
-      .get("installations")
+      .get("getBatchInstallations/" + 2 + "")
       .then((response) => {
         setInstallationData(response.data);
       })

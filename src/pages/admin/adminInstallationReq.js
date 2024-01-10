@@ -10,14 +10,14 @@ function AdminInstallationReq() {
   const [batchid, setBatchId] = useState("");
 
   useEffect(() => {
-    getInstallationData();
+    getInstallations();
   }, []);
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
   };
 
-  const getInstallationData = () => {
+  const getInstallationByBatchID = () => {
     axios
       .get("getBatchInstallations/" + batchid + "")
       .then((response) => {
@@ -29,8 +29,20 @@ function AdminInstallationReq() {
       });
   };
 
+  const getInstallations= () => {
+    axios
+      .get("getBatchInstallations/" + 2 + "")
+      .then((response) => {
+        console.log(response.data);
+        setInstallationData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching location data:", error);
+      });
+  };
+
   useEffect(() => {
-    getInstallationData();
+    getInstallationByBatchID();
   }, [batchid]);
 
   return (

@@ -31,7 +31,7 @@ function RelocationHistory() {
 
   const getRelocationData = () => {
     axios
-      .get("relocations")
+      .get("getBatchRelocation/" + 2 + "")
       .then((response) => {
         console.log(response.data);
         setRelocationData(response.data);

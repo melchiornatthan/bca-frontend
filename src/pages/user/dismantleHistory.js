@@ -31,7 +31,7 @@ function DismantleHistory() {
 
   const getDismantleData = () => {
     axios
-      .get("dismantles")
+      .get("getBatchDismantle/" + 2 + "")
       .then((response) => {
         console.log(response.data);
         setData(response.data);

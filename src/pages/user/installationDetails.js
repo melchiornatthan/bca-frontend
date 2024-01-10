@@ -10,7 +10,6 @@ import UserNavbar from "../components/userNavbar";
 function BatchDetails() {
   const [data, setData] = useState([]);
   const location = useLocation();
-  const token = localStorage.getItem("token");
   const [date, setDate] = useState(new Date());
   const [hasPending, setHasPending] = useState(false);
   

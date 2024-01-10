@@ -15,7 +15,6 @@ function InstallationReq() {
   const [address, setAddress] = useState("");
   const [pic, setPic] = useState("");
   const [data, setData] = useState([]);
-  const token = localStorage.getItem("token");
   const [area, setArea] = useState("Jakarta");
   const [specialData, setSpecialData] = useState([]);
   const [communication, setCommunication] = useState("VSAT");
@@ -152,10 +151,7 @@ function InstallationReq() {
         batchData[i].createdAt = date;
         const requestData = batchData[i];
         console.log(batchId);
-        const response = await axios.post(
-          "installation-request",
-          requestData,
-        );
+        const response = await axios.post("installation-request", requestData);
         if (response.data.message === "No provider available") {
           toast.error(
             "Threshold limit reached for " +
@@ -177,9 +173,9 @@ function InstallationReq() {
 
   return (
     <div className="container-fluid pt-3">
-      <UserNavbar/>
+      <UserNavbar />
       <div className="container my-3">
-        <nav aria-label="breadcrumb" >
+        <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3 rounded-3">
             <li className="breadcrumb-item">
               <a className="link-body-emphasis" href="/main">

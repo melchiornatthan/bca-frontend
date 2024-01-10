@@ -182,14 +182,14 @@ function DismantleBatch() {
         <DismantleByBatchIdTable batchdata={data} isAdmin={false} />
 
         {!hasPending && (
-        <button
-          style={{ marginTop: "3vh" }}
-          className="btn btn-primary"
-          onClick={() => exportToJson()}
-        >
-          Export to Excel
-        </button>
-      )}
+          <button
+            style={{ marginTop: "3vh" }}
+            className="btn btn-primary"
+            onClick={() => exportToJson()}
+          >
+            Export to Excel
+          </button>
+        )}
       </div>
     </div>
   );
