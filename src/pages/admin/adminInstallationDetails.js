@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "../../axiosConfig";
 import InstallationService from "../components/installationService";
-import AdminNavbar from "../components/adminNavbar";
+import Navbar from "../components/navbar";
 
 function AdminBatchDetails() {
   const [data, setData] = useState([]);
@@ -31,7 +31,7 @@ function AdminBatchDetails() {
 
   return (
     <div>
-      <AdminNavbar />
+       <Navbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

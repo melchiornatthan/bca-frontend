@@ -8,7 +8,7 @@ import VsatSelect from "../components/communication";
 import SelectLocation from "../components/locations";
 import "typeface-inter";
 
-import UserNavbar from "../components/userNavbar";
+import Navbar from "../components/navbar";
 function InstallationReq() {
   // State variables
   const [location, setLocation] = useState("");
@@ -118,12 +118,7 @@ function InstallationReq() {
     }
   };
 
-  const specialAreaRequest = () => {
-    // Display a confirmation dialog
-    const confirmed = window.confirm(
-      "Apakah lokasi instalasi termasuk dalam daerah ini ? Bekasi, Depok, Tangerang, Bogor"
-    );
-  };
+  
 
   const handleDeleteRow = (index) => {
     // Remove the row from submittedRequests
@@ -173,7 +168,7 @@ function InstallationReq() {
 
   return (
     <div className="container-fluid pt-3">
-      <UserNavbar />
+     <Navbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3 rounded-3">

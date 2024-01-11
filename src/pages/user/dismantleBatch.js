@@ -4,13 +4,12 @@ import axios from "../../axiosConfig";
 import ExcelJS from "exceljs";
 import DismantleByBatchIdTable from "../components/dismantleBatchService";
 import "typeface-inter";
-import UserNavbar from "../components/userNavbar";
+import Navbar from "../components/navbar";
 
 function DismantleBatch() {
   // State to hold the data retrieved from the API
   const [data, setData] = useState([]);
   const [date, setDate] = useState(new Date());
-  const token = localStorage.getItem("token");
   const [hasPending, setHasPending] = useState(false);
   const location = useLocation();
 
@@ -140,7 +139,7 @@ function DismantleBatch() {
   return (
     <div className="container-fluid pt-3">
       {/* Breadcrumb navigation */}
-      <UserNavbar />
+     <Navbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

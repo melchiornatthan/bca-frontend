@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import RelocationBatchTable from "../components/relocationService";
 import InputWithLabel from "../components/input";
 import "typeface-inter";
-import AdminNavbar from "../components/adminNavbar";
+import Navbar from "../components/navbar";
 
 function AdminRelocationHistory() {
   const [relocationData, setRelocationData] = useState([]);
@@ -47,7 +47,7 @@ function AdminRelocationHistory() {
 
   return (
     <div>
-      <AdminNavbar />
+       <Navbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

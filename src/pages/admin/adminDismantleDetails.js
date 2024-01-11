@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "../../axiosConfig";
 import DismantleDetailsService from "../components/dismantleDetailsService";
 import "typeface-inter";
-import AdminNavbar from "../components/adminNavbar";
+import Navbar from "../components/navbar";
 
 function AdminDismantleDetails() {
   const [data, setData] = useState({});
@@ -55,7 +55,7 @@ function AdminDismantleDetails() {
 
   return (
     <div>
-      <AdminNavbar />
+       <Navbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

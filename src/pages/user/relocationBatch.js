@@ -6,7 +6,7 @@ import axios from "../../axiosConfig";
 import RelocationByBatchIdTable from "../components/relocationBatchService";
 import "typeface-inter";
 import ExcelJS from "exceljs";
-import UserNavbar from "../components/userNavbar";
+import Navbar from "../components/navbar";
 
 function RelocationBatch() {
   const [data, setData] = useState([]);
@@ -140,7 +140,7 @@ function RelocationBatch() {
 
   return (
     <div className="container-fluid pt-3">
-      <UserNavbar/>
+      <Navbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

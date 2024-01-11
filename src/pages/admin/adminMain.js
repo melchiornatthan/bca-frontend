@@ -7,14 +7,13 @@ import { FaConciergeBell } from "react-icons/fa";
 import { MdBuildCircle } from "react-icons/md";
 import { FaTruckMoving } from "react-icons/fa";
 import { IoMdRemoveCircle } from "react-icons/io";
-import AdminNavbar from "../components/adminNavbar";
+import Navbar from "../components/navbar";
 
 function AdminMain() {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const [providerCount, setProviderCount] = useState([]);
   const [reqCount, setReqCount] = useState([]);
   const [date, setDate] = useState(new Date());
-  const token = localStorage.getItem("token");
   const data = [
     { name: "Primacom", value: parseInt(providerCount.primacom) },
     { name: "Tangara", value: parseInt(providerCount.tangara) },
@@ -52,7 +51,7 @@ function AdminMain() {
 
   return (
     <div className="container-fluid">
-      <AdminNavbar />
+       <Navbar/>
       <div className="container-fluid my-3">
         <div className="row mx-auto centered-row">
           <div

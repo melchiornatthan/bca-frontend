@@ -9,12 +9,11 @@ import SelectLocation from "../components/locations";
 import CustomButton from "../components/button";
 import { ToastContainer, toast } from "react-toastify";
 
-import UserNavbar from "../components/userNavbar";
+import Navbar from "../components/navbar";
 
 function RelocationReq() {
   const [location, setLocation] = useState("");
   const [data, setData] = useState([]);
-  const token = localStorage.getItem("token");
   const [selectedData, setSelectedData] = useState();
   const [newLocation, setNewLocation] = useState("");
   const [newAddress, setNewAddress] = useState("");
@@ -217,7 +216,7 @@ function RelocationReq() {
 
   return (
     <div className="container-fluid pt-3">
-     <UserNavbar/>
+     <Navbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3 rounded-3">

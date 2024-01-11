@@ -4,10 +4,9 @@ import { useLocation } from "react-router-dom";
 import UneditableInputWithLabel from "../components/uneditableInput";
 import SelectProviders from "../components/providers";
 import "typeface-inter";
-import AdminNavbar from "../components/adminNavbar";
+import Navbar from "../components/navbar";
 
 function InstallationOverride() {
-  const token = localStorage.getItem("token");
   const location = useLocation();
   const [data, setData] = useState([]);
   const [provData, setProvData] = useState([]);
@@ -78,7 +77,7 @@ function InstallationOverride() {
 
   return (
     <div>
-      <AdminNavbar />
+       <Navbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

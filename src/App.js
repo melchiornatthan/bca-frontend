@@ -6,9 +6,9 @@ import Login from './pages/user/login';
 import InstallationReq from './pages/user/installationRequest';
 import InstallationBatch from './pages/user/installationBatch';
 import Main from './pages/user/main';
-import AdminInstallationReq from './pages/admin/adminInstallationReq';
+import AdminInstallationReq from './pages/admin/adminInstallationBatch';
 import BatchDetails from './pages/user/installationDetails';
-import AdminBatchDetails from './pages/admin/adminBatchDetails';
+import AdminBatchDetails from './pages/admin/adminInstallationDetails';
 import InstallationOverride from './pages/admin/adminInstallationOverride';
 import AdminRelocationHistory from './pages/admin/adminRelocationHistory';
 import AdminRelocationBatch from './pages/admin/adminRelocationBatch';
@@ -51,20 +51,20 @@ class App extends Component {
           <Routes>
             <Route path='/login' element={<Login />} />
             <Route path='/main' element={<Main />} />
-            <Route path='' element={<Main />} /> /* Check */
-            <Route path='/login' element={<Login />} /> /* Check */
-            <Route path='/main' element={<Main />} /> /* Check */
-            <Route path='/installationRequest' element={<InstallationReq />} />/* Check */
-            <Route path='/installationBatch' element={<InstallationBatch />} />/* Check */
-            <Route path='/dismantleBatch' element={<DismantleBatch />} />/* Check */
-            <Route path='/relocationHistory' element={<RelocationHistory />} />/* Check */
-            <Route path='/installationDetails' element={<BatchDetails />} />/* Check */
-            <Route path='/relocationBatch' element={<RelocationBatch />} />/* Check */
-            <Route path='/relocationDetails' element={<RelocationDetails />} />/* Check */
-            <Route path='/relocationRequest' element={<RelocationReq />} />/* Check */
-            <Route path='/dismantleRequest' element={<DismantleRequest />} />/* Check */
-            <Route path='/dismantleHistory' element={<DismantleHistory />} />/* Check */
-            <Route path='/dismantleDetails' element={<DismantleDetails />} />/* Check */
+            <Route path='' element={<Main />} />
+            <Route path='/login' element={<Login />} /> 
+            <Route path='/main' element={<Main />} /> 
+            <Route path='/installationRequest' element={<InstallationReq />} /> 
+            <Route path='/installationBatch' element={<InstallationBatch />} /> 
+            <Route path='/dismantleBatch' element={<DismantleBatch />} /> 
+            <Route path='/relocationHistory' element={<RelocationHistory />} /> 
+            <Route path='/installationDetails' element={<BatchDetails />} /> 
+            <Route path='/relocationBatch' element={<RelocationBatch />} /> 
+            <Route path='/relocationDetails' element={<RelocationDetails />} /> 
+            <Route path='/relocationRequest' element={<RelocationReq />} /> 
+            <Route path='/dismantleRequest' element={<DismantleRequest />} /> 
+            <Route path='/dismantleHistory' element={<DismantleHistory />} /> 
+            <Route path='/dismantleDetails' element={<DismantleDetails />} /> 
           </Routes>
         </Router>
       );
@@ -74,18 +74,18 @@ class App extends Component {
     return (
       <Router>
         <Routes>
-        <Route path='/admin/installationBatch' element={<AdminInstallationReq />} />/* Check */
-            <Route path='/admin/main' element={<AdminMain />} />/* Check */
+        <Route path='/admin/installationBatch' element={<AdminInstallationReq />} /> 
+            <Route path='/admin/main' element={<AdminMain />} /> 
             <Route path='login' element={<Login />} />
             <Route path='' element={<AdminMain />} /> 
-            <Route path='/admin/installationDetails' element={<AdminBatchDetails />} />/* Check */
-            <Route path='/admin/installationOverride' element={<InstallationOverride />} />/* Check */
-            <Route path='/admin/relocationHistory' element={<AdminRelocationHistory />} />/* Check */
-            <Route path='/admin/relocationBatch' element={<AdminRelocationBatch />} />/* Check */
-            <Route path='/admin/dismantleBatch' element={<AdminDismantleBatch />} />/* Check */
-            <Route path='/admin/dismantleHistory' element={<AdminDismantleHistory />} />/* Check */
-            <Route path='/admin/dismantleDetails' element={<AdminDismantleDetails />} />/* Check */
-            <Route path='/admin/relocationDetails' element={<AdminRelocationDetails />} />/* Check */
+            <Route path='/admin/installationDetails' element={<AdminBatchDetails />} /> 
+            <Route path='/admin/installationOverride' element={<InstallationOverride />} /> 
+            <Route path='/admin/relocationHistory' element={<AdminRelocationHistory />} /> 
+            <Route path='/admin/relocationBatch' element={<AdminRelocationBatch />} /> 
+            <Route path='/admin/dismantleBatch' element={<AdminDismantleBatch />} /> 
+            <Route path='/admin/dismantleHistory' element={<AdminDismantleHistory />} /> 
+            <Route path='/admin/dismantleDetails' element={<AdminDismantleDetails />} /> 
+            <Route path='/admin/relocationDetails' element={<AdminRelocationDetails />} /> 
         </Routes>
       </Router>
     );

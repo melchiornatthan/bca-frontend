@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
 import "typeface-inter";
-import UserNavbar from "../components/userNavbar";
+import Navbar from "../components/navbar";
 function InstallationBatch() {
   const [installationData, setInstallationData] = useState([]);
   const [batchid, setBatchId] = useState("");
@@ -44,7 +44,7 @@ function InstallationBatch() {
 
   return (
     <div className="container-fluid py-3">
-      <UserNavbar />
+      <Navbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

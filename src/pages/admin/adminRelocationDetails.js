@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "../../axiosConfig";
 import RelocationDetailService from "../components/relocationDetailsService";
 import "typeface-inter";
-import AdminNavbar from "../components/adminNavbar";
+import Navbar from "../components/navbar";
 
 function AdminRelocationDetails() {
   const [data, setData] = useState({});
@@ -64,7 +64,7 @@ function AdminRelocationDetails() {
 
   return (
     <div className="pb-5">
-      <AdminNavbar />
+       <Navbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from "../../axiosConfig";
 import RelocationByBatchIdTable from "../components/relocationBatchService";
 import "typeface-inter";
-import AdminNavbar from "../components/adminNavbar";
+import Navbar from "../components/navbar";
 
 function AdminRelocationBatch() {
   const [data, setData] = useState([]);
@@ -33,7 +33,7 @@ function AdminRelocationBatch() {
 
   return (
     <div>
-      <AdminNavbar />
+       <Navbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

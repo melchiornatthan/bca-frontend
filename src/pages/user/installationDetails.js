@@ -6,7 +6,7 @@ import axios from "../../axiosConfig";
 import InstallationService from "../components/installationService";
 import ExcelJS from "exceljs";
 
-import UserNavbar from "../components/userNavbar";
+import Navbar from "../components/navbar";
 function BatchDetails() {
   const [data, setData] = useState([]);
   const location = useLocation();
@@ -26,9 +26,6 @@ function BatchDetails() {
   }, [data]);
 
   const getInstallationData = async () => {
-    const body = {
-      batchid: batchid,
-    };
     await axios
       .get(
         "getInstallationsbyBatchID/" +
@@ -146,7 +143,7 @@ function BatchDetails() {
 
   return (
     <div className="container-fluid pt-3">
-      <UserNavbar/>
+      <Navbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

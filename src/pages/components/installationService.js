@@ -80,7 +80,7 @@ function InstallationService({ installationData, isAdminView }) {
         {isAdminView ? "Service Requests" : "Batch Requests"}
       </h1>
       <div style={tableStyle}>
-        <table className="table mt-3">
+        <table className="table table-hover mt-3">
           <thead>
             <tr>
               <th style={{ fontFamily: "inter" }}>Location</th>
@@ -101,7 +101,7 @@ function InstallationService({ installationData, isAdminView }) {
           </thead>
           <tbody>
             {data.map((entry, index) => (
-              <tr key={index}>
+              <tr key={index} >
                 <td style={{ fontFamily: "inter" }}>{entry.location}</td>
                 <td style={{ fontFamily: "inter" }}>{entry.address}</td>
                 <td style={{ fontFamily: "inter" }}>{entry.branch_pic}</td>

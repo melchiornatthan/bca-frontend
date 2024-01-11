@@ -6,7 +6,7 @@ import InstallationSearchTable from "../components/searchInstallationTable";
 import UneditableInputWithLabel from "../components/uneditableInput";
 import CustomButton from "../components/button";
 import { ToastContainer, toast } from "react-toastify";
-import UserNavbar from "../components/userNavbar";
+import Navbar from "../components/navbar";
 
 function DismantleRequest() {
   const [location, setLocation] = useState("");
@@ -123,7 +123,7 @@ function DismantleRequest() {
   };
   return (
     <div className="container-fluid pt-3">
-      <UserNavbar />
+     <Navbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

@@ -27,7 +27,7 @@ function InstallationSearchTable({ batchdata, onSelect }) {
       className="text-center mx-auto px-5"
     >
       <div style={tableStyle}>
-        <table className="table">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th>Location</th>

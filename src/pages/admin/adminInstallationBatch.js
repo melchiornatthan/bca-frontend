@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
 import "typeface-inter";
-import AdminNavbar from "../components/adminNavbar";
+import Navbar from "../components/navbar";
 
 function AdminInstallationReq() {
   const [installationData, setInstallationData] = useState([]);
@@ -47,7 +47,7 @@ function AdminInstallationReq() {
 
   return (
     <div>
-      <AdminNavbar />
+     <Navbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

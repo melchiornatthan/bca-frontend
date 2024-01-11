@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 import RelocationBatchTable from "../components/relocationService";
 import InputWithLabel from "../components/input";
 import "typeface-inter";
-import UserNavbar from "../components/userNavbar";
+import Navbar from "../components/navbar";
 function RelocationHistory() {
   const [relocationData, setRelocationData] = useState([]);
   const [batchid, setBatchId] = useState("");
-  const token = localStorage.getItem("token");
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -47,7 +46,7 @@ function RelocationHistory() {
 
   return (
     <div className="container-fluid py-3">
-     <UserNavbar/>
+     <Navbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

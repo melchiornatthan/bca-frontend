@@ -6,12 +6,11 @@ import { useState } from "react";
 import axios from "../../axiosConfig";
 import RelocationDetailService from "../components/relocationDetailsService";
 import "typeface-inter";
-import UserNavbar from "../components/userNavbar";
+import Navbar from "../components/navbar";
 
 function RelocationDetails() {
   const [data, setData] = useState({});
   const location = useLocation();
-  const token = localStorage.getItem("token");
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const int_id = parseInt(searchParams.get("id"), 10);
@@ -36,7 +35,7 @@ function RelocationDetails() {
 
   return (
     <div className="container-fluid pt-3 pb-3">
-      <UserNavbar/>
+      <Navbar/>
       <div className="container my-3">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

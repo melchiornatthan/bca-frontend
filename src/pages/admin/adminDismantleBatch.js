@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from "../../axiosConfig";
 import DismantleByBatchIdTable from "../components/dismantleBatchService";
 import "typeface-inter";
-import AdminNavbar from "../components/adminNavbar";
+import Navbar from "../components/navbar";
 
 function AdminDismantleBatch() {
   const [data, setData] = useState([]);
@@ -33,7 +33,7 @@ function AdminDismantleBatch() {
 
   return (
     <div>
-      <AdminNavbar />
+       <Navbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

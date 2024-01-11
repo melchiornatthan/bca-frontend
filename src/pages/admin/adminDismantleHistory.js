@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "typeface-inter";
 import DismantleServiceTable from "../components/DismantleService";
 import InputWithLabel from "../components/input";
-import AdminNavbar from "../components/adminNavbar";
+import Navbar from "../components/navbar";
 
 function AdminDismantleHistory() {
   const [data, setData] = useState([]);
@@ -47,7 +47,7 @@ function AdminDismantleHistory() {
 
   return (
     <div>
-      <AdminNavbar />
+       <Navbar/>
       <div className="container">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">

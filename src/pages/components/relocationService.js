@@ -33,7 +33,7 @@ function RelocationBatchTable({ batchdata, isAdmin = false }) {
       className="text-center w-75 mx-auto px-5"
     >
       <div style={tableStyle}>
-        <table className="table">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th>Requested at</th>
