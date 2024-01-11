@@ -22,8 +22,9 @@ const SelectLocation = ({
         {label}
       </label>
       <select
-        className="form-control"
+        className="form-control mt-1"
         id={label}
+        style={{height: "6vh"}}
         value={value}
         onChange={onChange}
         disabled={isDisabled}

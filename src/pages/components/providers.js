@@ -16,7 +16,7 @@ const SelectProviders = ({ options, label, value, onChange }) => {
         {label}
       </label>
       <select
-        className="form-control"
+        className="form-control mt-1"
         id={label}
         value={value}
         onChange={onChange}

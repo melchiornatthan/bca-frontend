@@ -74,7 +74,7 @@ function DismantleHistory() {
           Dismantle Requests
         </h1>
       </div>
-      <div className="container w-50">
+      <div className="container " style={{ width: "45%" }}>
         <InputWithLabel
           label="Enter Batch ID"
           value={batchid}

@@ -78,7 +78,7 @@ function Login() {
           >
             Memo Hub.
           </h1>
-          <form onSubmit={handleSubmit} style={{ marginTop: "3vh" }}>
+          <form className="mx-auto" onSubmit={handleSubmit} style={{ marginTop: "3vh", width: "70%"}}>
             <InputWithLabel
               label="Username"
               value={username}

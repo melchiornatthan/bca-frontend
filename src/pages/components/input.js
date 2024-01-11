@@ -33,11 +33,12 @@ function InputWithLabel({
   const inputType = hideInput ? (passwordVisible ? "text" : "password") : "text";
 
   return (
-    <div className="form-group">
+    <div className="form-group my-1">
       <label>{label}</label>
-      <div className="input-group">
+      <div className="input-group mt-1">
         <input
           type={inputType}
+          style={{height: "6vh"}}
           className="form-control"
           placeholder={placeholder}
           id={id}
@@ -51,7 +52,7 @@ function InputWithLabel({
               className="btn btn-outline-primary mx-1"
               type="button"
               onClick={togglePasswordVisibility}
-              style={{ borderColor: "#ffffff" }}
+              style={{ height: "6vh" , borderColor: "#ffffff" }}
             >
               {passwordVisible ? <RiEyeLine /> : <RiEyeCloseLine />}
             </button>

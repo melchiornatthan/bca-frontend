@@ -4,8 +4,9 @@ import "typeface-inter";
 function VsatSelect({ value, onChange }) {
   return (
     <select
-      className="form-control" // Apply Bootstrap form-control class
+      className="form-control mt-1" // Apply Bootstrap form-control class
       value={value}
+      style={{height: "6vh"}}
       onChange={onChange}
     >
       <option style={{ "font-family": "inter" }} value="VSAT">

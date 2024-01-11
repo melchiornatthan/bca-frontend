@@ -7,7 +7,8 @@ class UneditableInputWithLabel extends React.Component {
         <label htmlFor={this.props.id}>{this.props.label}</label>
         <input
           type="text"
-          className="form-control"
+          style={{height: "6vh"}}
+          className="form-control mt-1"
           id={this.props.id}
           value={this.props.value}
           disabled={true}

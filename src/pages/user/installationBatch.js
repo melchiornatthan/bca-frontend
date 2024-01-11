@@ -71,12 +71,13 @@ function InstallationBatch() {
           Installation Requests
         </h1>
       </div>
-      <div className="container w-75">
+      <div className="container" style={{ width: "45%" }}>
         <InputWithLabel
           label="Enter Batch ID"
           value={batchid}
           name="pic"
-          placeholder="Enter the installation location"
+          
+          placeholder="Enter the installation Batch ID"
           onChange={(e) => handleInputChange(e, setBatchId)}
         />
       </div>
