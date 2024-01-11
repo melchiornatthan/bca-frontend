@@ -45,7 +45,7 @@ function Login() {
 
   return (
     <div
-      className="container-fluid"
+      className="container-fluid p-5"
       style={{
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
@@ -58,18 +58,14 @@ function Login() {
       }}
     >
       <div
-        className="row mx-auto centered-row"
+        className="row mx-auto"
         style={{
           backgroundColor: "white", // Change background color on hover
           borderRadius: "1vh",
-          width: "65%",
-          padding: "2vh",
+          padding: "3vh",
         }}
       >
-        <div className="col-sm mx-auto">
-          <img src={MemoApp} alt="Logo" style={{ height: "40vh" }} />
-        </div>
-        <div className="col-md">
+       
           <h1
             className="text-center"
             style={{
@@ -80,7 +76,7 @@ function Login() {
               marginTop: "3vh",
             }}
           >
-            Login
+            Memo Hub.
           </h1>
           <form onSubmit={handleSubmit} style={{ marginTop: "3vh" }}>
             <InputWithLabel
@@ -104,7 +100,7 @@ function Login() {
               <CustomButton text="Login" color="primary" type="submit" />
             </div>
           </form>
-        </div>
+       
       </div>
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>

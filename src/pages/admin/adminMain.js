@@ -264,6 +264,7 @@ function AdminMain() {
                     style={{
                       borderColor: "#ffffff",
                     }}
+                    onClick={() => {window.location.href = "/admin/installationBatch"}}
                   >
                     <div class="card-body">
                       <div className="row">
@@ -320,6 +321,7 @@ function AdminMain() {
                     style={{
                       borderColor: "#ffffff",
                     }}
+                    onClick={() => {window.location.href = "/admin/relocationHistory"}}
                   >
                     <div class="card-body">
                       <div className="row">
@@ -374,6 +376,7 @@ function AdminMain() {
                     style={{
                       borderColor: "#ffffff",
                     }}
+                    onClick={() => {window.location.href = "/admin/dismantleHistory"}}
                   >
                     <div class="card-body">
                       <div className="row">

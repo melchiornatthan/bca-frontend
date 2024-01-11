@@ -37,6 +37,7 @@ class App extends Component {
         <Router>
           <Navigate to="/login" />
           <Routes>
+          <Route path='' element={<Login />} /> 
             <Route path="/login" element={<Login />} />
           </Routes>
         </Router>
@@ -50,7 +51,7 @@ class App extends Component {
           <Routes>
             <Route path='/login' element={<Login />} />
             <Route path='/main' element={<Main />} />
-            <Route path='' element={<Login />} /> /* Check */
+            <Route path='' element={<Main />} /> /* Check */
             <Route path='/login' element={<Login />} /> /* Check */
             <Route path='/main' element={<Main />} /> /* Check */
             <Route path='/installationRequest' element={<InstallationReq />} />/* Check */
@@ -76,6 +77,7 @@ class App extends Component {
         <Route path='/admin/installationBatch' element={<AdminInstallationReq />} />/* Check */
             <Route path='/admin/main' element={<AdminMain />} />/* Check */
             <Route path='login' element={<Login />} />
+            <Route path='' element={<AdminMain />} /> 
             <Route path='/admin/installationDetails' element={<AdminBatchDetails />} />/* Check */
             <Route path='/admin/installationOverride' element={<InstallationOverride />} />/* Check */
             <Route path='/admin/relocationHistory' element={<AdminRelocationHistory />} />/* Check */

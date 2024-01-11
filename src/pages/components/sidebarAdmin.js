@@ -78,7 +78,11 @@ const SidebarAdmin = () => {
           type="button"
           style={{ borderColor: "#FFFFFF" }}
           className="btn mx-1 mb-1 text-start btn-outline-danger"
-          onClick={() => (window.location.href = "/login")}
+          onClick={() => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("isAdmin");
+            window.location.href = "/login";
+          }}
         >
           <div className="my-1 ">
             <HiOutlineXCircle />
