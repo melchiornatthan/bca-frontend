@@ -36,7 +36,7 @@ function RelocationBatch() {
         console.log(data);
       })
       .catch((error) => {
-        console.error("Error fetching location data:", error);
+        console.error("Error fetching location data:", error) ;
       });
   };
 
