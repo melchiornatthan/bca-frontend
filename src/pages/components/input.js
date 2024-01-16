@@ -33,7 +33,7 @@ function InputWithLabel({
   const inputType = hideInput ? (passwordVisible ? "text" : "password") : "text";
 
   return (
-    <div className="form-group my-1">
+    <div className="form-group my-1" >
       <label>{label}</label>
       <div className="input-group mt-1">
         <input
