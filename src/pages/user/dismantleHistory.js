@@ -84,7 +84,7 @@ function DismantleHistory() {
         />
       </div>
       <div className="my-5">
-        <DismantleServiceTable batchdata={data} isAdmin={false} />
+        <DismantleServiceTable batchdata={data}  />
       </div>
     </div>
   );
