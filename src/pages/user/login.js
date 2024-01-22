@@ -33,6 +33,7 @@ function Login() {
         if (response.data.message === "User logged in successfully") {
           toast.success("Login successful");
           localStorage.setItem("token", response.data.token);
+          localStorage.setItem("username", username);
           response.data.isAdmin ?  localStorage.setItem("isAdmin", true) : localStorage.setItem("isAdmin", false)
           response.data.isAdmin ?  window.location.href = "/admin/main" :  window.location.href = "/main"
         }

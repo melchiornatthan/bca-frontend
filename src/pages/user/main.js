@@ -52,6 +52,7 @@ function Main() {
 
   return (
     <div className="container-fluid py-2"
+    style={{backgroundColor:"#FFFFFF"}}
     >
      <Navbar/>
       <div className="container-fluid my-3">
@@ -78,7 +79,7 @@ function Main() {
                   fontSize: "4vh",
                   fontWeight: "bold",
                   color: "#163172",
-                  marginTop: "4vh",
+                  marginTop: "6vh",
                 }}
               >
                 Provider Count
@@ -95,7 +96,7 @@ function Main() {
                 Data Update : {date.toDateString()} {date.toLocaleTimeString()}
               </h2>
             </div>
-            <div className="row text-center" style={{ marginTop: "3vh" }}>
+            <div className="row text-center" style={{ marginTop: "6vh" }}>
               <div className="col">
                 <div
                   className="card"

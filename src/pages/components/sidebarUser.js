@@ -73,6 +73,7 @@ const UserSidebar = () => {
           onClick={() => {
             localStorage.removeItem("token");
             localStorage.removeItem("isAdmin");
+            localStorage.removeItem("username");
             window.location.href = "/login";
           }}
         >

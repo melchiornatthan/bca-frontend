@@ -47,7 +47,7 @@ function DismantleDetailsService({ batchdata, isAdmin, updateRequestStatus }) {
               />
             </div>
           </div>
-          {isAdmin && data.dismantle_status == true && (
+          {isAdmin && data.dismantle_status === true && (
             <div className="text-center mt-3">
               <button
                 className="btn btn-danger"

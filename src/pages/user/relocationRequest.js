@@ -75,62 +75,44 @@ function RelocationReq() {
         console.error("Error fetching location data:", error);
       });
   };
-
   const handleSubmit = () => {
-    if (area === "NA") {
-      const requestData = {
-        installation_id: selectedData.id,
-        old_location: selectedData.location,
-        new_location: newLocation,
-        old_address: selectedData.address,
-        new_address: newAddress,
-        old_area: selectedData.area,
-        new_area: province,
-        old_branch_pic: selectedData.branch_pic,
-        old_area_id: selectedData.area_id,
-        new_area_id: areaId,
-        new_branch_pic: newPic,
-        old_communication: selectedData.communication,
-        new_communication: selectedData.communication,
-      };
-
-      setBatchData([...batchData, requestData]);
-      setSubmittedRequests([...submittedRequests, requestData]);
-      setNewAddress("");
-      setNewLocation("");
-      setNewPic("");
-      setNewCommunication("VSAT");
-      setArea("Jakarta");
-      setSelectedData(null);
-      setData([]);
-    } else {
-      const requestData = {
-        installation_id: selectedData.id,
-        old_location: selectedData.location,
-        new_location: newLocation,
-        old_address: selectedData.address,
-        new_address: newAddress,
-        old_area: selectedData.area,
-        new_area: area,
-        old_branch_pic: selectedData.branch_pic,
-        old_area_id: selectedData.area_id,
-        new_area_id: areaId,
-        new_branch_pic: newPic,
-        old_communication: selectedData.communication,
-        new_communication: selectedData.communication,
-      };
-
-      setBatchData([...batchData, requestData]);
-      setSubmittedRequests([...submittedRequests, requestData]);
-      setNewAddress("");
-      setNewLocation("");
-      setNewPic("");
-      setNewCommunication("VSAT");
-      setArea("Jakarta");
-      setSelectedData(null);
-      setData([]);
+    // Check if all required fields are filled
+    if (
+      newLocation.trim() === "" ||
+      newAddress.trim() === "" ||
+      newPic.trim() === ""
+    ) {
+      toast.error("Please fill in all required fields");
+      return;
     }
+  
+    const requestData = {
+      installation_id: selectedData.id,
+      old_location: selectedData.location,
+      new_location: newLocation,
+      old_address: selectedData.address,
+      new_address: newAddress,
+      old_area: selectedData.area,
+      new_area: area === "NA" ? province : area,
+      old_branch_pic: selectedData.branch_pic,
+      old_area_id: selectedData.area_id,
+      new_area_id: areaId,
+      new_branch_pic: newPic,
+      old_communication: selectedData.communication,
+      new_communication: selectedData.communication,
+    };
+  
+    setBatchData([...batchData, requestData]);
+    setSubmittedRequests([...submittedRequests, requestData]);
+    setNewAddress("");
+    setNewLocation("");
+    setNewPic("");
+    setNewCommunication("VSAT");
+    setArea("Jakarta");
+    setSelectedData(null);
+    setData([]);
   };
+  
 
   // Submit batch data
   const submitBatchData = async () => {

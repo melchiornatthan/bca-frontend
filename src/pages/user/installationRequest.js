@@ -134,37 +134,45 @@ function InstallationReq() {
 
   // Submit batch data
   const submitBatchData = async () => {
-    if (batchData.length === 0) {
-      return; // No data to submit
-    }
-
     try {
+      if (batchData.length === 0) {
+        return; // No data to submit
+      }
+  
       setBatchId(generateBatchId());
-      let date = new Date();
-      for (let i = 0; i < batchData.length; i++) {
-        batchData[i].batchid = batchId;
-        batchData[i].createdAt = date;
-        const requestData = batchData[i];
-        console.log(batchId);
-        const response = await axios.post("installation-request", requestData);
-        if (response.data.message === "No provider available") {
-          toast.error(
-            "Threshold limit reached for " +
-              requestData.area +
-              ", please contact the Administrator."
-          );
-        } else {
-          toast.success("Installation request submitted successfully.");
+      const date = new Date();
+  
+      for (const data of batchData) {
+        data.batchid = batchId;
+        data.createdAt = date;
+  
+        try {
+          const response = await axios.post("installation-request", data);
+  
+          if (response.data.message === "No provider available") {
+            throw new Error(
+              `Threshold limit reached for ${data.area}, please contact the Administrator.`
+            );
+          }
+  
+          // Additional processing for successful response, if needed
+        } catch (innerError) {
+          console.error("Error submitting installation request:", innerError);
+          toast.error("Error submitting installation request");
+          // Handle specific error scenarios if necessary
         }
       }
+  
+      toast.success("Installation requests submitted successfully.");
       setBatchData([]); // Clear the batch data
       setSubmittedRequests([]); // Clear the previous requests
       setBatchId(generateBatchId());
     } catch (error) {
-      console.error("Error submitting batch data:", error);
-      toast.error("Error submitting batch data");
+      console.error("Error processing batch data:", error);
+      toast.error("Error processing batch data");
     }
   };
+  
 
   return (
     <div className="container-fluid pt-3">

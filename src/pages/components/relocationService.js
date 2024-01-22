@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function RelocationBatchTable({ batchdata, isAdmin = false }) {
-  const [isHovered, setIsHovered] = useState(false);
   const tableStyle = {
     maxHeight: "600px",
     overflowY: "auto",

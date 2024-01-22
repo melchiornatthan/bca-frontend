@@ -54,7 +54,7 @@ function AdminMain() {
        <Navbar/>
       <div className="container-fluid my-3">
         <div className="row mx-auto centered-row">
-          <div
+        <div
             className="col-md"
             style={{
               marginTop: "1vh",
@@ -62,7 +62,6 @@ function AdminMain() {
               backgroundColor: "#FFFFFF",
               borderRadius: "1vh",
               paddingBottom: "3vh",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
             }}
           >
             <div className="container">
@@ -77,7 +76,7 @@ function AdminMain() {
                   fontWeight: "bold",
                   fontSize: "4vh",
                   color: "#163172",
-                  marginTop: "4vh",
+                  marginTop: "6vh",
                 }}
               >
                 Provider Count
@@ -94,7 +93,7 @@ function AdminMain() {
                 Data Update : {date.toDateString()} {date.toLocaleTimeString()}
               </h2>
             </div>
-            <div className="row text-center" style={{ marginTop: "3vh" }}>
+            <div className="row text-center" style={{ marginTop: "6vh" }}>
               <div className="col">
                 <div
                   className="card"

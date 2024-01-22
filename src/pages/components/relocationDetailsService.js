@@ -92,7 +92,7 @@ function RelocationDetailService({
             </div>
           </div>
           <div className="text-center mt-3">
-            {isAdmin && data.status == "pending" && (
+            {isAdmin && data.status === "pending" && (
               <button
                 className="btn btn-warning"
                 onClick={() => updateRequestStatus(data.id)}
