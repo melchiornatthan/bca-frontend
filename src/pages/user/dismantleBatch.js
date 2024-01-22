@@ -14,7 +14,7 @@ function DismantleBatch() {
   const location = useLocation();
 
   // Parse the URL parameters and extract the 'batchid' parameter
-  const searchParams = new URLSearchParams(location.search);
+  const searchParams =  new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
 
   // Fetch data from the API when the component mounts or when batchid changes
