@@ -267,7 +267,9 @@ function InstallationReq() {
               onChange={(e) => handleInputChange(e, setCommunication)}
             />
           </div>
-          <div className="col-sm mx-auto my-auto">
+          <div className="col-sm mx-auto" style={{
+            marginTop: "3vh",
+          }}>
             <CustomButton text="Add" color="primary" onClick={handleSubmit} />
           </div>
         </div>
@@ -283,7 +285,7 @@ function InstallationReq() {
         >
           <div className="row mx-auto">
             <div className="col-md">
-              <table className="table">
+              <table className="table table-hover">
                 <thead>
                   <tr>
                     <th>Location</th>

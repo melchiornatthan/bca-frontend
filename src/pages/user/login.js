@@ -37,6 +37,7 @@ function Login() {
           response.data.isAdmin ?  localStorage.setItem("isAdmin", true) : localStorage.setItem("isAdmin", false)
           response.data.isAdmin ?  window.location.href = "/admin/main" :  window.location.href = "/main"
         }
+        toast.error("Invalid username or password");
       })
       .catch((error) => {
         toast.error("Login failed");

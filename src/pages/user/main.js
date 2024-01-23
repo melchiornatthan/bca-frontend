@@ -255,15 +255,16 @@ function Main() {
                   style={{
                     marginBottom: "1vh",
                     marginRight: "1vh",
-                    backgroundColor: "#FFFFFF",
-                    borderRadius: "1vh",
-                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
+                   
                   }}
                 >
                   <div
                     class="card"
                     style={{
-                      borderColor: "#ffffff",
+                      borderColor: "#F2FFE9", 
+                      backgroundColor: "#F2FFE9",
+                    borderRadius: "1vh",
+                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
                     }}
                     onClick={() => {window.location.href = "/installationBatch"}}
                   >
@@ -311,16 +312,17 @@ function Main() {
                   className="col-sm"
                   style={{
                     marginBottom: "1vh",
-                    backgroundColor: "#FFFFFF",
-                    marginRight: "1vh",
-                    borderRadius: "1vh",
-                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
+                   
                   }}
                 >
                   <div
                     class="card"
                     style={{
-                      borderColor: "#ffffff",
+                      borderColor: "#FFFFEC", 
+                      backgroundColor: "#FFFFEC",
+                    marginRight: "1vh",
+                    borderRadius: "1vh",
+                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
                     }}
                     onClick={() => {window.location.href = "/relocationHistory"}}
                   >
@@ -367,15 +369,16 @@ function Main() {
                   className="col-sm"
                   style={{
                     marginBottom: "1vh",
-                    backgroundColor: "#FFFFFF",
-                    borderRadius: "1vh",
-                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
+                 
                   }}
                 >
                   <div
                     class="card"
                     style={{
-                      borderColor: "#ffffff",
+                      borderColor: "#FCF5ED",   
+                      backgroundColor: "#FCF5ED",
+                    borderRadius: "1vh",
+                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
                     }}
                     onClick={() => {window.location.href = "/dismantleHistory"}}
                   >
