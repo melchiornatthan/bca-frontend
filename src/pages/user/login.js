@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import InputWithLabel from "../components/input";
-import MemoApp from "../assets/app-logo.png";
 import CustomButton from "../components/button";
 import background from "../assets/background.svg";
 
@@ -36,8 +35,10 @@ function Login() {
           localStorage.setItem("username", username);
           response.data.isAdmin ?  localStorage.setItem("isAdmin", true) : localStorage.setItem("isAdmin", false)
           response.data.isAdmin ?  window.location.href = "/admin/main" :  window.location.href = "/main"
+        }else{
+          toast.error("Invalid username or password");
         }
-        toast.error("Invalid username or password");
+        
       })
       .catch((error) => {
         toast.error("Login failed");

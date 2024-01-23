@@ -1,6 +1,6 @@
 // UserSidebar.js
 import React, { useState } from "react";
-import { Offcanvas, Button } from "react-bootstrap";
+import { Offcanvas } from "react-bootstrap";
 import { HiCubeTransparent, HiChip, HiOutlineXCircle } from "react-icons/hi";
 import { MdDashboard } from "react-icons/md";
 

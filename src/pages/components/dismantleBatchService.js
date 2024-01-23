@@ -14,16 +14,6 @@ function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
     setHasPending(batchdata.some((entry) => entry.status === "pending"));
   }, [batchdata]);
 
-  function formatCustomDate(dateString) {
-    const options = {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-    };
-    return new Date(dateString).toLocaleString(undefined, options);
-  }
 
   const toDetails = (int_id, dismatle_id, batchid) => {
     const path = isAdmin

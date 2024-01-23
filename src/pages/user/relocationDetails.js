@@ -67,12 +67,21 @@ function RelocationDetails() {
         </nav>
       </div>
       <div
-        className="text-center mt-2"
+        className="text-center"
         style={{ fontFamily: "inter", fontSize: "6vh" }}
       >
-        <h1>Relocation Request</h1>
+        <h1
+          style={{
+            fontFamily: "inter",
+            color: "#E9B824",
+            fontWeight: "bold",
+            fontSize: "4vh",
+          }}
+        >
+          Relocation Details
+        </h1>
       </div>
-      <RelocationDetailService batchdata={data} isAdmin={false} />
+      <RelocationDetailService batchdata={data} isAdmin={false} className="my-5"/>
     </div>
   );
 }

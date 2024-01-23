@@ -11,7 +11,6 @@ import Navbar from "../components/navbar";
 function AdminRelocationDetails() {
   const [data, setData] = useState({});
   const location = useLocation();
-  const token = localStorage.getItem("token");
   const searchParams = new URLSearchParams(location.search);
   const int_id = parseInt(searchParams.get("id"), 10);
 
