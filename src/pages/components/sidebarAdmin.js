@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { Offcanvas } from "react-bootstrap";
 import { HiChip, HiOutlineXCircle } from "react-icons/hi";
-import { MdDashboard } from "react-icons/md";
+import { BsLayoutSidebarInset } from "react-icons/bs";
+
 
 const SidebarAdmin = () => {
   const [showMain, setShowMain] = useState(false);
@@ -13,7 +14,7 @@ const SidebarAdmin = () => {
 
   return (
     <>
-      <MdDashboard
+      <BsLayoutSidebarInset
         onClick={handleShowMain}
         className="mx-4"
         style={{ color: "#1E56A0", fontSize: "3vh" }}

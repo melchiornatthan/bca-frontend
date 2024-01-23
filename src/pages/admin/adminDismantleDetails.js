@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "../../axiosConfig";
 import DismantleDetailsService from "../components/dismantleDetailsService";
 import "typeface-inter";
+import { RiHome6Fill } from "react-icons/ri";
 import Navbar from "../components/navbar";
 
 function AdminDismantleDetails() {
@@ -60,9 +61,7 @@ function AdminDismantleDetails() {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
             <li className="breadcrumb-item">
-              <a className="link-body-emphasis" href="/admin/main">
-                Main
-              </a>
+               <RiHome6Fill onClick={() => window.location.href = "/admin/main"}/>
             </li>
             <li className="breadcrumb-item">
               <a

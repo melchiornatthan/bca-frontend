@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CustomButton from "../components/button";
 import InputWithLabel from "../components/input";
 import VsatSelect from "../components/communication";
+import { RiHome6Fill } from "react-icons/ri";
 import SelectLocation from "../components/locations";
 import "typeface-inter";
 
@@ -181,9 +182,7 @@ function InstallationReq() {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3 rounded-3">
             <li className="breadcrumb-item">
-              <a className="link-body-emphasis" href="/main">
-                Main
-              </a>
+               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               Installation Request

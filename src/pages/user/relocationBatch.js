@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "../../axiosConfig";
 import RelocationByBatchIdTable from "../components/relocationBatchService";
 import "typeface-inter";
+import { RiHome6Fill } from "react-icons/ri";
 import ExcelJS from "exceljs";
 import Navbar from "../components/navbar";
 
@@ -145,9 +146,7 @@ function RelocationBatch() {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
             <li className="breadcrumb-item">
-              <a className="link-body-emphasis" href="/main">
-                Main
-              </a>
+               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
             </li>
             <li className="breadcrumb-item">
               <a

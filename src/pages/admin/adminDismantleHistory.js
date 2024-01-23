@@ -4,6 +4,7 @@ import "typeface-inter";
 import DismantleServiceTable from "../components/DismantleService";
 import InputWithLabel from "../components/input";
 import Navbar from "../components/navbar";
+import { RiHome6Fill } from "react-icons/ri";
 
 function AdminDismantleHistory() {
   const [data, setData] = useState([]);
@@ -52,9 +53,7 @@ function AdminDismantleHistory() {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
             <li className="breadcrumb-item">
-              <a className="link-body-emphasis" href="/admin/main">
-                Main
-              </a>
+               <RiHome6Fill onClick={() => window.location.href = "/admin/main"}/>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               History

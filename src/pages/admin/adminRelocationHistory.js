@@ -4,6 +4,7 @@ import RelocationBatchTable from "../components/relocationService";
 import InputWithLabel from "../components/input";
 import "typeface-inter";
 import Navbar from "../components/navbar";
+import { RiHome6Fill } from "react-icons/ri";
 
 function AdminRelocationHistory() {
   const [relocationData, setRelocationData] = useState([]);
@@ -52,9 +53,7 @@ function AdminRelocationHistory() {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
             <li className="breadcrumb-item">
-              <a className="link-body-emphasis" href="/admin/main">
-                Main
-              </a>
+               <RiHome6Fill onClick={() => window.location.href = "/admin/main"}/>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               History

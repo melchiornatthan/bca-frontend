@@ -69,7 +69,7 @@ function BatchTable({ batchdata, isAdmin }) {
                 </td>
                 <td>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-outline-primary"
                     onClick={() => toDetails(entry.batchid)}
                   >
                     Details

@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "../../axiosConfig";
 import RelocationDetailService from "../components/relocationDetailsService";
 import "typeface-inter";
+import { RiHome6Fill } from "react-icons/ri";
 import Navbar from "../components/navbar";
 
 function RelocationDetails() {
@@ -40,9 +41,7 @@ function RelocationDetails() {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
             <li className="breadcrumb-item">
-              <a className="link-body-emphasis" href="/main">
-                Main
-              </a>
+               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
             </li>
             <li className="breadcrumb-item">
               <a

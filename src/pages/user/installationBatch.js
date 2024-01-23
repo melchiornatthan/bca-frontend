@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
 import "typeface-inter";
+import { RiHome6Fill } from "react-icons/ri";
 import Navbar from "../components/navbar";
 function InstallationBatch() {
   const [installationData, setInstallationData] = useState([]);
@@ -49,9 +50,7 @@ function InstallationBatch() {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
             <li className="breadcrumb-item">
-              <a className="link-body-emphasis" href="/main">
-                Main
-              </a>
+              <RiHome6Fill onClick={() => window.location.href = "/main"}/>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               History
@@ -76,7 +75,6 @@ function InstallationBatch() {
           label="Enter Batch ID"
           value={batchid}
           name="pic"
-          
           placeholder="Enter the installation Batch ID"
           onChange={(e) => handleInputChange(e, setBatchId)}
         />

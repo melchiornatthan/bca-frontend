@@ -6,6 +6,7 @@ import axios from "../../axiosConfig";
 import DismantleByBatchIdTable from "../components/dismantleBatchService";
 import "typeface-inter";
 import Navbar from "../components/navbar";
+import { RiHome6Fill } from "react-icons/ri";
 
 function AdminDismantleBatch() {
   const [data, setData] = useState([]);
@@ -38,9 +39,7 @@ function AdminDismantleBatch() {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb breadcrumb-chevron p-3">
             <li className="breadcrumb-item">
-              <a className="link-body-emphasis" href="/admin/main">
-                Main
-              </a>
+            <RiHome6Fill onClick={() => window.location.href = "/admin/main"}/>
             </li>
             <li className="breadcrumb-item">
               <a
