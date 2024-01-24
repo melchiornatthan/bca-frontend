@@ -20,6 +20,8 @@
     "react-toastify": "^9.1.3",
     "recharts": "^2.10.3",
     "typeface-inter": "^3.18.1",
+    "typeface-kalam": "^1.1.13",
+    "typeface-karma": "^1.1.13",
     "typeface-montserrat": "^1.1.13",
     "web-vitals": "^2.1.4"
   },

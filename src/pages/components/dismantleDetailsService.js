@@ -18,19 +18,20 @@ function DismantleDetailsService({ batchdata, isAdmin, updateRequestStatus }) {
               value={data.location}
               name="location"
             />
+             <div className="py-1">
             <UneditableInputWithLabel
               label="Address"
               value={data.address}
               name="address"
             />
           </div>
-          <div>
+
             <UneditableInputWithLabel
               label="Area"
               value={data.area}
               name="area"
             />
-          </div>
+         </div>
         </div>
         <div className="col-md">
           <div className="form-group">
@@ -46,6 +47,11 @@ function DismantleDetailsService({ batchdata, isAdmin, updateRequestStatus }) {
                 name="communication"
               />
             </div>
+            <UneditableInputWithLabel
+              label="Provider"
+              value={data.provider}
+              name="Provider"
+            />
           </div>
           {isAdmin && data.dismantle_status === true && (
             <div className="text-center mt-3">

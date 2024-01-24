@@ -8,7 +8,7 @@ const Navbar = () => {
  
   return (
     <nav
-      className="navbar"
+      className="navbar mt-2"
       style={{
         backgroundColor: "#FFFFFF",
         display: "flex",
@@ -21,7 +21,7 @@ const Navbar = () => {
         className="px-3"
         src={bcaLogo}
         alt="Back"
-        style={{ height: "6vh" }}
+        style={{ height: "5vh" }}
         onClick={() =>
           isAdmin
             ? (window.location.href = "/admin/main")

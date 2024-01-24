@@ -24,13 +24,13 @@ function RelocationDetailService({
               value={data.old_location}
               name="location"
             />
+            <div className="py-1">
             <UneditableInputWithLabel
               label="Address"
               value={data.old_address}
               name="address"
             />
           </div>
-          <div>
             <UneditableInputWithLabel
               label="Area"
               value={data.old_area}
@@ -52,6 +52,13 @@ function RelocationDetailService({
                 name="communication"
               />
             </div>
+            <div>
+              <UneditableInputWithLabel
+                label="Provider"
+                value={data.provider}
+                name="Provider"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -65,11 +72,13 @@ function RelocationDetailService({
             value={data.new_location}
             name="newLocation"
           />
+          <div className="py-1">
           <UneditableInputWithLabel
             label="New Address"
             value={data.new_address}
             name="newAddress"
           />
+          </div>
           <UneditableInputWithLabel
             label="New Area"
             value={data.new_area}
@@ -88,6 +97,13 @@ function RelocationDetailService({
                 label="New Communication"
                 value={data.new_communication}
                 name="newCommunication"
+              />
+            </div>
+            <div>
+              <UneditableInputWithLabel
+                label="Provider"
+                value={data.provider}
+                name="Provider"
               />
             </div>
           </div>

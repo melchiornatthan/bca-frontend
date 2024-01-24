@@ -42,6 +42,7 @@ function RelocationByBatchIdTable({ batchdata, isAdmin = false }) {
               <th>New Area</th>
               <th>New Branch PIC</th>
               <th>New Communication</th>
+              <th>Provider</th>
               {(isAdmin || !hasPending) && <th>Status</th>}
               <th>Details</th>
             </tr>
@@ -55,6 +56,7 @@ function RelocationByBatchIdTable({ batchdata, isAdmin = false }) {
                 <td>{request.new_area}</td>
                 <td>{request.new_branch_pic}</td>
                 <td>{request.new_communication}</td>
+                <td>{request.provider}</td>
                 {(isAdmin || !hasPending) && (
                   <td
                     style={{

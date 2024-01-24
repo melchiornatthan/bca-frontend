@@ -37,6 +37,7 @@ function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
             <tr>
               <th>Installation ID</th>
               <th>Location</th>
+              <th>Provider</th>
               {(isAdmin || !hasPending) && <th>Status</th>}
               <th>Details</th>
             </tr>
@@ -46,6 +47,7 @@ function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
               <tr key={index}>
                 <td>{request.installation_id}</td>
                 <td>{request.location}</td>
+                <td>{request.provider}</td>
                 {(isAdmin || !hasPending) && (
                   <td
                     style={{
