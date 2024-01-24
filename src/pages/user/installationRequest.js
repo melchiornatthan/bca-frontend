@@ -7,7 +7,9 @@ import InputWithLabel from "../components/input";
 import VsatSelect from "../components/communication";
 import { RiHome6Fill } from "react-icons/ri";
 import SelectLocation from "../components/locations";
-import "typeface-inter";
+import Table from 'react-bootstrap/Table';
+import { MdDeleteForever } from "react-icons/md";
+import "typeface-karma";
 
 import Navbar from "../components/navbar";
 function InstallationReq() {
@@ -258,7 +260,7 @@ function InstallationReq() {
             />
           </div>
           <div className="col-sm mx-auto my-auto">
-            <label htmlFor="communication" style={{ fontFamily: "inter" }}>
+            <label htmlFor="communication" style={{ fontFamily: "karma" }}>
               Communication
             </label>
             <VsatSelect
@@ -284,7 +286,7 @@ function InstallationReq() {
         >
           <div className="row mx-auto">
             <div className="col-md">
-              <table className="table table-hover">
+              <Table striped bordered hover className="table table-hover mx-auto">
                 <thead>
                   <tr>
                     <th>Location</th>
@@ -292,7 +294,7 @@ function InstallationReq() {
                     <th>Area</th>
                     <th>Branch PIC</th>
                     <th>Communication</th>
-                    <th>Action</th> {/* New column for delete button */}
+                    <th>Delete</th> {/* New column for delete button */}
                   </tr>
                 </thead>
                 <tbody>
@@ -300,6 +302,7 @@ function InstallationReq() {
                     .slice()
                     .reverse()
                     .map((request, index) => (
+                     
                       <tr key={index}>
                         <td>{request.location}</td>
                         <td>{request.address}</td>
@@ -308,16 +311,19 @@ function InstallationReq() {
                         <td>{request.communication}</td>
                         <td>
                           <button
-                            className="btn btn-danger btn-md"
+                            className="btn btn-danger btn-md "
                             onClick={() => handleDeleteRow(index)}
                           >
-                            Delete
+                            <MdDeleteForever style={{
+                              fontSize: "2vh",
+                            }}/>
                           </button>
                         </td>
                       </tr>
+                      
                     ))}
                 </tbody>
-              </table>
+              </Table>
               <div className="text-center mx-auto">
                 <CustomButton
                   text="Submit Batch"

@@ -61,7 +61,7 @@ function Login() {
       <div
         className="row"
         style={{
-          backgroundColor: "#FFFFFF", // Change background color on hover
+          backgroundColor: "#F6F6F6", // Change background color on hover
          height: "100%",
         }}
       >
@@ -78,7 +78,7 @@ function Login() {
                 className="mx-auto"
                 src={BCALogo}
                 alt="BCA Logo"
-                style={{ height: "106px", width: "150px" }}
+                style={{ height: "106px", width: "155px" }}
               />
               <h1
                 style={{
@@ -108,7 +108,7 @@ function Login() {
         <div
           className="col-md"
           style={{
-            background: 'linear-gradient(to right, #0B2447, #1E56A0)',
+            background: 'linear-gradient(to top, #0B2447, #1E56A0)',
             
           }}
         >
@@ -120,7 +120,7 @@ function Login() {
                 marginTop: "30vh",
                 marginBottom: "30vh",
                 backgroundColor: "#FFFFFF",
-                borderRadius: "1vh",
+                borderRadius: "3vh",
               }}
             >
               <div className="row">
@@ -143,7 +143,7 @@ function Login() {
                   value={password}
                   name="password"
                   type="password"
-                  hideInput={true}
+                  isHidden={true}
                   placeholder="Enter your password"
                   showIcon={true}
                   onChange={(e) => handleInputChange(e, setPassword)}

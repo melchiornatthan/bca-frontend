@@ -1,8 +1,13 @@
 // UserSidebar.js
 import React, { useState } from "react";
 import { Offcanvas } from "react-bootstrap";
-import { HiCubeTransparent, HiChip, HiOutlineXCircle } from "react-icons/hi";
+import { HiOutlineXCircle } from "react-icons/hi";
 import { BsLayoutSidebarInset } from "react-icons/bs";
+import { MdHomeRepairService } from "react-icons/md";
+import { MdOutlineTimelapse } from "react-icons/md";
+import { MdAddBox } from "react-icons/md";
+import { TbArrowsMove } from "react-icons/tb";
+import { MdOutlineDelete } from "react-icons/md";
 
 const UserSidebar = () => {
   const [showMain, setShowMain] = useState(false);
@@ -29,11 +34,11 @@ const UserSidebar = () => {
       <Offcanvas
         show={showMain}
         onHide={handleCloseMain}
-        style={{ backgroundColor: "#ffffff", width: "30vh" }}
+        style={{ backgroundColor: "#ffffff", width: "25vh" }}
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <strong style={{ fontSize: "3vh", color: "#1E56A0" }}>
+            <strong style={{ fontSize: "3vh", color: "#0B2447" }}>
               {" "}
               Memo Application.
             </strong>
@@ -49,7 +54,7 @@ const UserSidebar = () => {
               onClick={handleShowSecondary}
             >
               <div className="my-1">
-                <HiCubeTransparent />
+                <MdHomeRepairService />
               </div>
               <strong> Request Service</strong>
             </button>
@@ -60,7 +65,7 @@ const UserSidebar = () => {
               onClick={handleShowTertiary}
             >
               <div className="my-1">
-                <HiChip />
+                <MdOutlineTimelapse />
               </div>
               <strong> Service History</strong>
             </button>
@@ -87,11 +92,11 @@ const UserSidebar = () => {
       <Offcanvas
         show={showSecondary}
         onHide={handleCloseSecondary}
-        style={{ backgroundColor: "#ffffff", width: "30vh" }}
+        style={{ backgroundColor: "#ffffff", width: "25vh" }}
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <strong style={{ fontSize: "3vh", color: "#000000" }}>
+            <strong style={{ fontSize: "3vh", color: "#0B2447" }}>
               Request Service
             </strong>
           </Offcanvas.Title>
@@ -107,7 +112,7 @@ const UserSidebar = () => {
               onClick={() => (window.location.href = "/installationRequest")}
             >
               <div className="my-1">
-                <HiChip />
+                <MdAddBox />
               </div>
               <strong>Installation Request</strong>
             </button>
@@ -118,7 +123,7 @@ const UserSidebar = () => {
               onClick={() => (window.location.href = "/relocationRequest")}
             >
               <div className="my-1">
-                <HiChip />
+                <TbArrowsMove />
               </div>
               <strong>Relocation Request</strong>
             </button>
@@ -129,7 +134,7 @@ const UserSidebar = () => {
               onClick={() => (window.location.href = "/dismantleRequest")}
             >
               <div className="my-1">
-                <HiChip />
+                <MdOutlineDelete />
               </div>
               <strong>Dismantle Request</strong>
             </button>
@@ -140,11 +145,11 @@ const UserSidebar = () => {
       <Offcanvas
         show={showTertiary}
         onHide={handleCloseTertiary}
-        style={{ backgroundColor: "#ffffff", width: "30vh" }}
+        style={{ backgroundColor: "#ffffff", width: "25vh" }}
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <strong style={{ fontSize: "3vh", color: "#000000" }}>
+            <strong style={{ fontSize: "3vh", color: "#0B2447" }}>
               Service History
             </strong>
           </Offcanvas.Title>
@@ -160,7 +165,7 @@ const UserSidebar = () => {
               onClick={() => (window.location.href = "/installationBatch")}
             >
               <div className="my-1">
-                <HiChip />
+                <MdOutlineTimelapse />
               </div>
               <strong>Installation History</strong>
             </button>
@@ -171,7 +176,7 @@ const UserSidebar = () => {
               onClick={() => (window.location.href = "/relocationHistory")}
             >
               <div className="my-1">
-                <HiChip />
+                <MdOutlineTimelapse />
               </div>
               <strong>Relocation History</strong>
             </button>
@@ -182,7 +187,7 @@ const UserSidebar = () => {
               onClick={() => (window.location.href = "/dismantleHistory")}
             >
               <div className="my-1">
-                <HiChip />
+                <MdOutlineTimelapse />
               </div>
               <strong>Dismantle History</strong>
             </button>

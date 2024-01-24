@@ -1,5 +1,6 @@
 import React from "react";
 import "typeface-inter";
+import "typeface-karma";
 /**
  * SelectLocation Component
  *
@@ -18,7 +19,7 @@ const SelectLocation = ({
 }) => {
   return (
     <div className="form-group">
-      <label htmlFor={label} style={{ "font-family": "inter" }}>
+      <label htmlFor={label} style={{ "font-family": "karma" }}>
         {label}
       </label>
       <select

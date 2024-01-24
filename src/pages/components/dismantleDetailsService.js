@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import UneditableInputWithLabel from "./uneditableInput";
-
+import InputWithLabel from "./input";
 function DismantleDetailsService({ batchdata, isAdmin, updateRequestStatus }) {
   const [data, setData] = useState({});
 
@@ -13,20 +12,20 @@ function DismantleDetailsService({ batchdata, isAdmin, updateRequestStatus }) {
       <div className="row w-75 mx-auto mt-5">
         <div className="col-md">
           <div className="form-group">
-            <UneditableInputWithLabel
+            <InputWithLabel isDisabled={true}
               label="Location"
               value={data.location}
               name="location"
             />
              <div className="py-1">
-            <UneditableInputWithLabel
+            <InputWithLabel isDisabled={true}
               label="Address"
               value={data.address}
               name="address"
             />
           </div>
 
-            <UneditableInputWithLabel
+            <InputWithLabel isDisabled={true}
               label="Area"
               value={data.area}
               name="area"
@@ -35,19 +34,19 @@ function DismantleDetailsService({ batchdata, isAdmin, updateRequestStatus }) {
         </div>
         <div className="col-md">
           <div className="form-group">
-            <UneditableInputWithLabel
+            <InputWithLabel isDisabled={true}
               label="Branch PIC"
               value={data.branch_pic}
               name="pic"
             />
             <div className="py-1">
-              <UneditableInputWithLabel
+              <InputWithLabel isDisabled={true}
                 label="Communication"
                 value={data.communication}
                 name="communication"
               />
             </div>
-            <UneditableInputWithLabel
+            <InputWithLabel isDisabled={true}
               label="Provider"
               value={data.provider}
               name="Provider"

@@ -1,11 +1,11 @@
 import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import UneditableInputWithLabel from "../components/uneditableInput";
 import SelectProviders from "../components/providers";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
 import Navbar from "../components/navbar";
+import InputWithLabel from "../components/input";
 
 function InstallationOverride() {
   const location = useLocation();
@@ -113,19 +113,19 @@ function InstallationOverride() {
       <div className="row py-5 w-75 mx-auto">
         <div className="col-md">
           <div className="form-group">
-            <UneditableInputWithLabel
+            <InputWithLabel isDisabled={true}
               label="Location"
               value={data.location}
               name="location"
             />
-            <UneditableInputWithLabel
+            <InputWithLabel isDisabled={true}
               label="Address"
               value={data.address}
               name="address"
             />
           </div>
           <div>
-            <UneditableInputWithLabel
+            <InputWithLabel isDisabled={true}
               label="Area"
               value={data.area}
               name="area"
@@ -134,13 +134,13 @@ function InstallationOverride() {
         </div>
         <div className="col-md">
           <div className="form-group">
-            <UneditableInputWithLabel
+            <InputWithLabel isDisabled={true}
               label="Branch PIC"
               value={data.branch_pic}
               name="pic"
             />
             <div className="py-1">
-              <UneditableInputWithLabel
+              <InputWithLabel isDisabled={true}
                 label="Communication"
                 value={data.communication}
                 name="communication"

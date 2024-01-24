@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { Table } from "react-bootstrap";
 
 function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
   const [data, setData] = useState([]);
@@ -32,7 +33,7 @@ function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
       className="text-center w-75 mx-auto px-5"
     >
       <div style={tableStyle}>
-        <table className="table table-hover">
+        <Table striped bordered hover>
           <thead>
             <tr>
               <th>Installation ID</th>
@@ -79,7 +80,7 @@ function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       </div>
     </div>
   );

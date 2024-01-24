@@ -4,13 +4,13 @@ import InputWithLabel from "../components/input";
 import { useState } from "react";
 import axios from "../../axiosConfig";
 import InstallationSearchTable from "../components/searchInstallationTable";
-import UneditableInputWithLabel from "../components/uneditableInput";
 import SelectLocation from "../components/locations";
 import CustomButton from "../components/button";
 import { RiHome6Fill } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 
 import Navbar from "../components/navbar";
+import { Table } from "react-bootstrap";
 
 function RelocationReq() {
   const [location, setLocation] = useState("");
@@ -238,19 +238,19 @@ function RelocationReq() {
           <div className="row py-5 w-75 mx-auto">
             <div className="col-md">
               <div className="form-group">
-                <UneditableInputWithLabel
+                <InputWithLabel isDisabled={true}
                   label="Location"
                   value={selectedData.location}
                   name="location"
                 />
-                <UneditableInputWithLabel
+                <InputWithLabel isDisabled={true}
                   label="Address"
                   value={selectedData.address}
                   name="address"
                 />
               </div>
               <div>
-                <UneditableInputWithLabel
+                <InputWithLabel isDisabled={true}
                   label="Area"
                   value={selectedData.area}
                   name="area"
@@ -259,20 +259,20 @@ function RelocationReq() {
             </div>
             <div className="col-md">
               <div className="form-group">
-                <UneditableInputWithLabel
+                <InputWithLabel isDisabled={true}
                   label="Branch PIC"
                   value={selectedData.branch_pic}
                   name="pic"
                 />
                 <div>
-                  <UneditableInputWithLabel
+                  <InputWithLabel isDisabled={true}
                     label="Communication"
                     value={selectedData.communication}
                     name="communication"
                   />
                 </div>
                 <div>
-                  <UneditableInputWithLabel
+                  <InputWithLabel isDisabled={true}
                     label="Provider"
                     value={selectedData.provider}
                     name="provider"
@@ -330,17 +330,18 @@ function RelocationReq() {
                   onChange={(e) => handleInputChange(e, setNewPic)}
                 />
                 <div>
-                  <UneditableInputWithLabel
+                  <InputWithLabel isDisabled={true}
                     label="Communication"
                     value={selectedData.communication}
                     name="communication"
                   />
                 </div>
                 <div>
-                  <UneditableInputWithLabel
+                  <InputWithLabel isDisabled={true}
                     label="Provider"
                     value={selectedData.provider}
-                    name="communication"
+                    name="Provider"
+                    
                   />
                 </div>
                 <div className="row py-4 mx-auto text-center">
@@ -374,7 +375,7 @@ function RelocationReq() {
           <div className="row py-4 mx-auto">
             <div className="col-md text-center">
               <h2>Submitted Requests</h2>
-              <table className="table">
+              <Table striped bordered hover className="my-3" >
                 <thead>
                   <tr>
                     <th>Old Location</th>
@@ -397,7 +398,7 @@ function RelocationReq() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
               <div className="text-center mx-auto">
                 <CustomButton
                   text="Submit Batch"

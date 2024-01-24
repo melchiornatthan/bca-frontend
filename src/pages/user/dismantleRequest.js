@@ -3,11 +3,11 @@ import InputWithLabel from "../components/input";
 import { useState } from "react";
 import axios from "../../axiosConfig";
 import InstallationSearchTable from "../components/searchInstallationTable";
-import UneditableInputWithLabel from "../components/uneditableInput";
 import CustomButton from "../components/button";
 import { RiHome6Fill } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 import Navbar from "../components/navbar";
+import Table from "react-bootstrap/Table";
 
 function DismantleRequest() {
   const [location, setLocation] = useState("");
@@ -163,19 +163,19 @@ function DismantleRequest() {
           <div className="row py-5 w-75 mx-auto">
             <div className="col-md">
               <div className="form-group">
-                <UneditableInputWithLabel
+                <InputWithLabel isDisabled={true}
                   label="Location"
                   value={selectedData.location}
                   name="location"
                 />
-                <UneditableInputWithLabel
+                <InputWithLabel isDisabled={true}
                   label="Address"
                   value={selectedData.address}
                   name="address"
                 />
               </div>
               <div>
-                <UneditableInputWithLabel
+                <InputWithLabel isDisabled={true}
                   label="Area"
                   value={selectedData.area}
                   name="area"
@@ -184,20 +184,20 @@ function DismantleRequest() {
             </div>
             <div className="col-md">
               <div className="form-group">
-                <UneditableInputWithLabel
+                <InputWithLabel isDisabled={true}
                   label="Branch PIC"
                   value={selectedData.branch_pic}
                   name="pic"
                 />
                 <div>
-                  <UneditableInputWithLabel
+                  <InputWithLabel isDisabled={true}
                     label="Communication"
                     value={selectedData.communication}
                     name="communication"
                   />
                 </div>
                 <div>
-                  <UneditableInputWithLabel
+                  <InputWithLabel isDisabled={true}
                     label="Provider"
                     value={selectedData.provider}
                     name="provider"
@@ -234,7 +234,7 @@ function DismantleRequest() {
           <div className="row py-4 mx-auto">
             <div className="col-md text-center">
               <h2>Submitted Requests</h2>
-              <table className="table">
+              <Table striped bordered hover className="my-3">
                 <thead>
                   <tr>
                     <th>Location</th>
@@ -255,7 +255,7 @@ function DismantleRequest() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </Table>
               <div className="text-center mx-auto">
                 <CustomButton
                   text="Submit Batch"

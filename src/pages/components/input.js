@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
+import { Form, InputGroup, FormControl, Button } from "react-bootstrap";
+import "typeface-karma";
 
 /**
  * InputWithLabel Component
@@ -10,9 +12,9 @@ import { RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
  * @param {string} props.value - The current value of the input.
  * @param {function} props.onChange - The function to handle input changes.
  * @param {string} props.id - The unique ID for the input.
- * @param {boolean} props.hideInput - Flag to determine whether to hide the input.
  * @param {boolean} props.isDisabled - Flag to determine whether the input is disabled.
  * @param {boolean} props.showIcon - Flag to determine whether to show the input icon.
+ * @param {boolean} props.isHidden - Flag to determine whether to hide the input by using the password type.
  */
 function InputWithLabel({
   label,
@@ -20,46 +22,26 @@ function InputWithLabel({
   value,
   onChange,
   id,
-  hideInput = false,
   isDisabled = false,
-  showIcon = false,
+  isHidden = false,
 }) {
-  const [passwordVisible, setPasswordVisible] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
-  const inputType = hideInput ? (passwordVisible ? "text" : "password") : "text";
+  const inputType = isHidden ? "password" : "text";
 
   return (
-    <div className="form-group my-1">
-      <label>{label}</label>
-      <div className="input-group mt-1">
-        <input
+    <Form.Group className="my-1">
+      <Form.Label style={{ fontFamily: "karma", fontSize: "2vh" }}>{label}</Form.Label>
+      <InputGroup>
+        <FormControl
           type={inputType}
-          style={{height: "6vh"}}
-          className="form-control"
+          style={{ height: "6vh" }}
           placeholder={placeholder}
           id={id}
           value={value}
           onChange={onChange}
           disabled={isDisabled}
         />
-        {showIcon && hideInput && (
-          <div className="input-group-append">
-            <button
-              className="btn btn-outline-primary mx-1"
-              type="button"
-              onClick={togglePasswordVisibility}
-              style={{ height: "6vh" , borderColor: "#ffffff" }}
-            >
-              {passwordVisible ? <RiEyeLine /> : <RiEyeCloseLine />}
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
+      </InputGroup>
+    </Form.Group>
   );
 }
 

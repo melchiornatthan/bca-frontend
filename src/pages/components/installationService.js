@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import Table from "react-bootstrap/Table";
 import "typeface-inter";
 function InstallationService({ installationData, isAdminView }) {
   const token = localStorage.getItem("token");
@@ -80,7 +81,7 @@ function InstallationService({ installationData, isAdminView }) {
         {isAdminView ? "Service Requests" : "Batch Requests"}
       </h1>
       <div style={tableStyle}>
-        <table className="table table-hover mt-3">
+        <Table striped bordered hover className=" mt-3">
           <thead>
             <tr>
               <th style={{ fontFamily: "inter" }}>Location</th>
@@ -143,7 +144,7 @@ function InstallationService({ installationData, isAdminView }) {
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       </div>
     </div>
   );

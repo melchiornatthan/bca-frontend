@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Offcanvas } from "react-bootstrap";
 import { HiChip, HiOutlineXCircle } from "react-icons/hi";
 import { BsLayoutSidebarInset } from "react-icons/bs";
-
+import { MdOutlineTimelapse } from "react-icons/md";
 
 const SidebarAdmin = () => {
   const [showMain, setShowMain] = useState(false);
@@ -22,11 +22,11 @@ const SidebarAdmin = () => {
       <Offcanvas
         show={showMain}
         onHide={handleCloseMain}
-        style={{ backgroundColor: "#ffffff", width: "30vh" }}
+        style={{ backgroundColor: "#ffffff", width: "25vh" }}
       >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
-            <strong style={{ fontSize: "3vh", color: "#000000" }}>
+            <strong style={{ fontSize: "3vh", color: "#0B2447" }}>
               {" "}
               Memo Application.
             </strong>
@@ -45,7 +45,7 @@ const SidebarAdmin = () => {
               }
             >
               <div className="my-1">
-                <HiChip />
+                <MdOutlineTimelapse />
               </div>
               <strong>Installation History</strong>
             </button>
@@ -58,7 +58,7 @@ const SidebarAdmin = () => {
               }
             >
               <div className="my-1">
-                <HiChip />
+                <MdOutlineTimelapse />
               </div>
               <strong>Relocation History</strong>
             </button>
@@ -69,7 +69,7 @@ const SidebarAdmin = () => {
               onClick={() => (window.location.href = "/admin/dismantleHistory")}
             >
               <div className="my-1">
-                <HiChip />
+                <MdOutlineTimelapse />
               </div>
               <strong>Dismantle History</strong>
             </button>

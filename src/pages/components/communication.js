@@ -1,6 +1,6 @@
 // VsatSelect.js
 import React from "react";
-import "typeface-inter";
+import "typeface-karma";
 function VsatSelect({ value, onChange }) {
   return (
     <select
@@ -9,10 +9,10 @@ function VsatSelect({ value, onChange }) {
       style={{height: "6vh"}}
       onChange={onChange}
     >
-      <option style={{ "font-family": "inter" }} value="VSAT">
+      <option style={{ "font-family": "karma" }} value="VSAT">
         VSAT
       </option>
-      <option style={{ "font-family": "inter" }} value="M2M">
+      <option style={{ "font-family": "karma" }} value="M2M">
         M2M
       </option>
     </select>

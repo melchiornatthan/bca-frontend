@@ -22,7 +22,7 @@ function InstallationReqTable({ installationData }) {
     <div className="text-center w-75 mx-auto">
       <h1 style={{ fontFamily: "inter" }}>Service Requests</h1>
       <div style={tableStyle}>
-        <table className="table table-hover mt-3">
+        <Table striped bordered hover className=" mt-3">
           <thead>
             <tr>
               <th style={{ fontFamily: "inter" }}>Location</th>
@@ -46,7 +46,7 @@ function InstallationReqTable({ installationData }) {
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
       </div>
     </div>
   );
