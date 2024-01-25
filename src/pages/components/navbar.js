@@ -47,11 +47,11 @@ const Navbar = () => {
             style={{ fontSize: "1vh", color: "#1E56A0" }}
           />
         </Dropdown.Toggle>
-        <Dropdown.Menu style={{marginTop:"1vh", marginRight:"2vh"}}>
+        <Dropdown.Menu className="mx-auto" style={{marginTop:"1vh", marginRight:"2vh", borderRadius:"3vh", borderColor:"#FFFFFF",boxShadow: "0 0 1vh rgba(0, 0, 0, 0.1)"}}>
           <button
             type="button"
-            style={{ borderColor: "#FFFFFF", width: "80%", marginLeft: "10%" }}
-            className="btn btn-outline-danger"
+            style={{ borderColor: "#FFFFFF", width: "80%", marginLeft: "10%" , borderRadius:"3vh"}}
+            className="btn btn-outline-danger px-2"
             onClick={() => {
               localStorage.removeItem("token");
               localStorage.removeItem("isAdmin");
