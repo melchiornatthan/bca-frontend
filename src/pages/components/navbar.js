@@ -1,14 +1,14 @@
 import bcaLogo from "../assets/white-bca.svg";
-import { MdAccountCircle } from "react-icons/md";
+import { TiArrowSortedDown } from "react-icons/ti";
 import { Dropdown } from "react-bootstrap";
 import UserSidebar from "./sidebarUser";
 import SidebarAdmin from "./sidebarAdmin";
 const Navbar = () => {
   const isAdmin = localStorage.getItem("isAdmin") === "true";
- 
+  const username = localStorage.getItem("username");
   return (
     <nav
-      className="navbar mt-2"
+      className="navbar mt-2 px-4"
       style={{
         backgroundColor: "#FFFFFF",
         display: "flex",
@@ -20,7 +20,6 @@ const Navbar = () => {
       <img
         className="px-3"
         src={bcaLogo}
-        alt="Back"
         style={{ height: "5vh" }}
         onClick={() =>
           isAdmin
@@ -30,12 +29,22 @@ const Navbar = () => {
       />
       <Dropdown>
         <Dropdown.Toggle
-          id="account-dropdown"
-          style={{ backgroundColor: "#FFFFFF", borderColor: "#FFFFFF" }}
+          style={{ backgroundColor: "#FFFFFF", borderRadius:"5vh", borderColor: "#FFFFFF", boxShadow: "0 0 1vh rgba(0, 0, 0, 0.1)"}}
         >
-          <MdAccountCircle
-            className="mx-3"
-            style={{ fontSize: "3vh", color: "#1E56A0" }}
+          
+          <span style={{
+            color: "#1E56A0",
+            fontFamily: "inter",
+            fontSize: "2vh",
+            marginTop: "1vh",
+            marginBottom: "1vh",
+            marginRight: "1vh",
+            marginLeft: "2vh",
+          }}>
+            Hello, <strong>{username}</strong>
+          </span>
+          <TiArrowSortedDown
+            style={{ fontSize: "1vh", color: "#1E56A0" }}
           />
         </Dropdown.Toggle>
         <Dropdown.Menu style={{marginTop:"1vh", marginRight:"2vh"}}>

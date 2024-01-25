@@ -19,8 +19,6 @@ function InstallationSearchTable({ batchdata, onSelect }) {
       style={{
         borderRadius: "17px",
         padding: "20px",
-        boxShadow: isHovered ? "10px 10px 20px rgba(0, 96, 175, 0.3)" : "none",
-        transition: "box-shadow 0.5s",
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
