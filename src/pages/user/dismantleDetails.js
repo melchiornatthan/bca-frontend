@@ -1,8 +1,6 @@
-import React from "react";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
+import { Container, Breadcrumb } from "react-bootstrap";
 import axios from "../../axiosConfig";
 import DismantleDetailsService from "../components/dismantleDetailsService";
 import "typeface-inter";
@@ -18,53 +16,36 @@ function DismantleDetails() {
 
   useEffect(() => {
     getRelocationData();
-    console.log(data);
   }, [int_id]);
 
   const getRelocationData = async () => {
-    await axios
-      .get("installationsById/" + int_id + "")
-      .then((response) => {
-        setData(response.data[0]);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
+    try {
+      const response = await axios.get(`installationsById/${int_id}`);
+      setData(response.data[0]);
+    } catch (error) {
+      console.error("Error fetching location data:", error);
+    }
   };
 
   return (
-    <div className="container-fluid pt-3">
-     <Navbar/>
-      <div className="container my-3">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3">
-            <li className="breadcrumb-item">
-               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                href="/dismantleHistory"
-              >
-                History
-              </a>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                href={`/dismantleBatch?batchid=${batchid}`}
-              >
-                Batch
-              </a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Details
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="text-center mt-5">
+    <Container fluid className="pt-3">
+      <Navbar />
+      <Container className="my-3">
+        <Breadcrumb>
+          <Breadcrumb.Item onClick={() => window.location.href = "/main"}>
+            <RiHome6Fill />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item onClick={() => window.location.href ="/dismantleHistory"} >History</Breadcrumb.Item>
+          <Breadcrumb.Item  onClick={() => window.location.href =`/dismantleBatch?batchid=${batchid}`}>
+            Batch
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            Details
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+
+      <Container className="text-center mt-5">
         <h1
           style={{
             fontFamily: "inter",
@@ -75,9 +56,10 @@ function DismantleDetails() {
         >
           Dismantle Request
         </h1>
-      </div>
+      </Container>
+
       <DismantleDetailsService batchdata={data} isAdmin={false} />
-    </div>
+    </Container>
   );
 }
 

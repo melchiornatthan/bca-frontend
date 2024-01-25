@@ -1,19 +1,20 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Container, Breadcrumb, Button } from 'react-bootstrap';
 import axios from "../../axiosConfig";
 import InstallationService from "../components/installationService";
 import ExcelJS from "exceljs";
 import { RiHome6Fill } from "react-icons/ri";
 
 import Navbar from "../components/navbar";
+
 function BatchDetails() {
   const [data, setData] = useState([]);
   const location = useLocation();
   const [date, setDate] = useState(new Date());
   const [hasPending, setHasPending] = useState(false);
-  
+
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
@@ -28,11 +29,7 @@ function BatchDetails() {
 
   const getInstallationData = async () => {
     await axios
-      .get(
-        "getInstallationsbyBatchID/" +
-          batchid +
-          ""
-      )
+      .get("getInstallationsbyBatchID/" + batchid + "")
       .then((response) => {
         setData(response.data);
       })
@@ -143,37 +140,35 @@ function BatchDetails() {
   };
 
   return (
-    <div className="container-fluid pt-3">
-      <Navbar/>
-      <div className="container my-3">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3">
-            <li className="breadcrumb-item">
-               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                href="/installationBatch"
-              >
-                History
-              </a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Details
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="py-5 mx-auto text-center">
+    <Container fluid className="pt-3">
+      <Navbar />
+      <Container className="my-3">
+        <Breadcrumb className="breadcrumb-chevron p-3">
+          <Breadcrumb.Item>
+            <RiHome6Fill onClick={() => window.location.href = "/main"} />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <a
+              className="link-body-emphasis fw-semibold text-decoration-none"
+              onClick={() => window.location.href = "/installationBatch"}
+            >
+              History
+            </a>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            Details
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+      <Container className="py-5 mx-auto text-center">
         <InstallationService installationData={data} />
         {!hasPending && (
-          <button className="btn btn-primary" onClick={() => exportToJson()}>
+          <Button variant="primary" onClick={() => exportToJson()}>
             Export to Excel
-          </button>
+          </Button>
         )}
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
 

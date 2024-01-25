@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import axios from "../../axiosConfig";
-import ExcelJS from "exceljs";
-import DismantleByBatchIdTable from "../components/dismantleBatchService";
-import "typeface-inter";
+import { Container, Breadcrumb, Button } from "react-bootstrap";
 import { RiHome6Fill } from "react-icons/ri";
 import Navbar from "../components/navbar";
+import DismantleByBatchIdTable from "../components/dismantleBatchService";
+import axios from "../../axiosConfig";
+import ExcelJS from "exceljs";
+import "typeface-inter";
 
 function DismantleBatch() {
-  // State to hold the data retrieved from the API
   const [data, setData] = useState([]);
   const [date, setDate] = useState(new Date());
   const [hasPending, setHasPending] = useState(false);
   const location = useLocation();
 
-  // Parse the URL parameters and extract the 'batchid' parameter
-  const searchParams =  new URLSearchParams(location.search);
+  const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
 
-  // Fetch data from the API when the component mounts or when batchid changes
   useEffect(() => {
     getDismantleData();
   }, [batchid]);
@@ -27,7 +25,6 @@ function DismantleBatch() {
     setHasPending(data.some((entry) => entry.status === "pending"));
   }, [data]);
 
-  // Function to fetch dismantle data based on batchid
   const getDismantleData = async () => {
     try {
       const response = await axios.get(`getDismantlebyBatchID/${batchid}`);
@@ -136,33 +133,23 @@ function DismantleBatch() {
     window.URL.revokeObjectURL(blobUrl);
   };
 
-  // JSX rendering
   return (
-    <div className="container-fluid pt-3">
-      {/* Breadcrumb navigation */}
-     <Navbar/>
-      <div className="container my-3">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3">
-            <li className="breadcrumb-item">
-               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                href="/dismantleHistory"
-              >
-                History
-              </a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Batch
-            </li>
-          </ol>
-        </nav>
-      </div>
+    <Container fluid className="pt-3">
+      <Navbar />
+      <Container className="my-3">
+        <Breadcrumb>
+          <Breadcrumb.Item onClick={() => window.location.href = "/main"}>
+            <RiHome6Fill />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item href="/dismantleHistory">
+            History
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            Batch
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
 
-      {/* Title */}
       <div className="text-center mt-5">
         <h1
           style={{
@@ -175,21 +162,21 @@ function DismantleBatch() {
           Dismantle Batch
         </h1>
       </div>
+
       <div className="py-5 mx-auto text-center">
-        {/* DismantleByBatchIdTable component */}
         <DismantleByBatchIdTable batchdata={data} isAdmin={false} />
 
         {!hasPending && (
-          <button
+          <Button
             style={{ marginTop: "3vh" }}
-            className="btn btn-primary"
+            variant="primary"
             onClick={() => exportToJson()}
           >
             Export to Excel
-          </button>
+          </Button>
         )}
       </div>
-    </div>
+    </Container>
   );
 }
 

@@ -1,21 +1,23 @@
-// VsatSelect.js
 import React from "react";
+import { Form } from "react-bootstrap";
 import "typeface-karma";
+
 function VsatSelect({ value, onChange }) {
   return (
-    <select
-      className="form-control mt-1" // Apply Bootstrap form-control class
+    <Form.Control
+      as="select"
+      className="mt-1"
       value={value}
-      style={{height: "6vh"}}
+      style={{ height: "6vh" }}
       onChange={onChange}
     >
-      <option style={{ "font-family": "karma" }} value="VSAT">
+      <option style={{ fontFamily: "karma" }} value="VSAT">
         VSAT
       </option>
-      <option style={{ "font-family": "karma" }} value="M2M">
+      <option style={{ fontFamily: "karma" }} value="M2M">
         M2M
       </option>
-    </select>
+    </Form.Control>
   );
 }
 

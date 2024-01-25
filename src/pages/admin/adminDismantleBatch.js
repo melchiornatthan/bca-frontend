@@ -1,62 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
+import { Container, Breadcrumb } from "react-bootstrap";
 import axios from "../../axiosConfig";
 import DismantleByBatchIdTable from "../components/dismantleBatchService";
-import "typeface-inter";
 import Navbar from "../components/navbar";
 import { RiHome6Fill } from "react-icons/ri";
 
 function AdminDismantleBatch() {
   const [data, setData] = useState([]);
   const location = useLocation();
+
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
 
   useEffect(() => {
     getRelocationData();
-    console.log(data);
   }, [batchid]);
 
   const getRelocationData = async () => {
-    await axios
-      .get("getDismantlebyBatchID/" + batchid + "")
-      .then((response) => {
-        setData(response.data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
+    try {
+      const response = await axios.get(`getDismantlebyBatchID/${batchid}`);
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching location data:", error);
+    }
   };
 
   return (
-    <div>
-       <Navbar/>
-      <div className="container">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3">
-            <li className="breadcrumb-item">
-            <RiHome6Fill onClick={() => window.location.href = "/admin/main"}/>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                href="/admin/dismantleHistory"
-              >
-                History
-              </a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Batch
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="text-center mt-5" style={{ fontFamily: "inter" }}>
-      <h1
+    <Container fluid className="pt-3">
+      <Navbar />
+      <Container className="my-3">
+        <Breadcrumb>
+          <Breadcrumb.Item onClick={() => window.location.href = "/admin/main"}>
+            <RiHome6Fill />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item href="/admin/dismantleHistory">History</Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            Batch
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+
+      <Container className="text-center mt-5" style={{ fontFamily: "inter" }}>
+        <h1
           style={{
             fontFamily: "inter",
             color: "#D83F31",
@@ -66,9 +53,10 @@ function AdminDismantleBatch() {
         >
           Dismantle Requests
         </h1>
-      </div>
+      </Container>
+
       <DismantleByBatchIdTable batchdata={data} isAdmin={true} />
-    </div>
+    </Container>
   );
 }
 

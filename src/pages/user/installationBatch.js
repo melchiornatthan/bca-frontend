@@ -1,10 +1,12 @@
 import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
+import { Container, Breadcrumb, Row, Col, Form, Button } from 'react-bootstrap';
+import { RiHome6Fill } from "react-icons/ri";
+import Navbar from "../components/navbar";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
 import "typeface-inter";
-import { RiHome6Fill } from "react-icons/ri";
-import Navbar from "../components/navbar";
+
 function InstallationBatch() {
   const [installationData, setInstallationData] = useState([]);
   const [batchid, setBatchId] = useState("");
@@ -44,21 +46,17 @@ function InstallationBatch() {
   }, [batchid]);
 
   return (
-    <div className="container-fluid py-3">
-      <Navbar/>
-      <div className="container my-3">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3">
-            <li className="breadcrumb-item">
-              <RiHome6Fill onClick={() => window.location.href = "/main"}/>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              History
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="container my-5 text-center">
+    <Container fluid className="py-3">
+      <Navbar />
+      <Container className="my-3">
+        <Breadcrumb className="breadcrumb-chevron p-3">
+          <Breadcrumb.Item>
+            <RiHome6Fill onClick={() => window.location.href = "/main"} />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">History</Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+      <Container className="my-5 text-center">
         <h1
           style={{
             fontFamily: "inter",
@@ -69,20 +67,26 @@ function InstallationBatch() {
         >
           Installation Requests
         </h1>
-      </div>
-      <div className="container" style={{ width: "45%" }}>
-        <InputWithLabel
-          label="Enter Batch ID"
-          value={batchid}
-          name="pic"
-          placeholder="Enter the installation Batch ID"
-          onChange={(e) => handleInputChange(e, setBatchId)}
-        />
-      </div>
-      <div className="my-5">
+      </Container>
+      <Container style={{ width: "45%" }}>
+        <Form>
+          <Form.Group as={Row} controlId="formBatchID">
+            <Form.Label column sm="4">Enter Batch ID</Form.Label>
+            <Col sm="8">
+              <InputWithLabel
+                value={batchid}
+                name="pic"
+                placeholder="Enter the installation Batch ID"
+                onChange={(e) => handleInputChange(e, setBatchId)}
+              />
+            </Col>
+          </Form.Group>
+        </Form>
+      </Container>
+      <Container className="my-5">
         <BatchTable batchdata={installationData} isAdmin={false} />
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
 

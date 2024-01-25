@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
+import { Container, Breadcrumb, Row, Col } from "react-bootstrap";
 import axios from "../../axiosConfig";
 import InstallationService from "../components/installationService";
 import Navbar from "../components/navbar";
@@ -31,32 +30,34 @@ function AdminBatchDetails() {
   };
 
   return (
-    <div>
-       <Navbar/>
-      <div className="container">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3">
-            <li className="breadcrumb-item">
-               <RiHome6Fill onClick={() => window.location.href = "/admin/main"}/>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                href="/admin/installationBatch"
-              >
-                History
-              </a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Details
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="py-5 mx-auto text-center">
-        <InstallationService installationData={data} isAdminView={true} />
-      </div>
-    </div>
+    <Container fluid className="pt-3">
+      <Navbar />
+      <Container className="my-3">
+        <Breadcrumb className="breadcrumb-chevron p-3">
+          <Breadcrumb.Item>
+            <RiHome6Fill onClick={() => window.location.href = "/admin/main"} />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <a
+              className="link-body-emphasis fw-semibold text-decoration-none"
+              onClick={() => window.location.href = "/admin/installationBatch"}
+            >
+              History
+            </a>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            Details
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+      <Container className="py-5 mx-auto text-center">
+        <Row>
+          <Col>
+            <InstallationService installationData={data} isAdminView={true} />
+          </Col>
+        </Row>
+      </Container>
+    </Container>
   );
 }
 

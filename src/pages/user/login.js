@@ -6,7 +6,7 @@ import InputWithLabel from "../components/input";
 import CustomButton from "../components/button";
 import BCALogo from "../assets/BCA Logo Blue.png";
 import "typeface-karma";
-
+import { Container, Row, Col, Form } from 'react-bootstrap';
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -52,85 +52,30 @@ function Login() {
   };
 
   return (
-    <div className="container-fluid"
-      style={{
-        height: "100vh",
-        width: "100%",
-      }}
-    >
-      <div
-        className="row"
-        style={{
-          backgroundColor: "#F6F6F6", // Change background color on hover
-         height: "100%",
-        }}
-      >
-        <div className="col-md">
-          <div
-            className="container"
-            style={{
-              marginTop: "33vh",
-              marginBottom: "33vh",
-            }}
-          >
-            <div className="row text-center">
-              <img
-                className="mx-auto"
-                src={BCALogo}
-                alt="BCA Logo"
-                style={{ height: "106px", width: "155px" }}
-              />
-              <h1
-                style={{
-                  fontFamily: "Kalam",
-                  color: "#1E56A0",
-                  fontWeight: "bold",
-                  fontSize: "12vh",
-                }}
-              >
+    
+    
+    <Container fluid style={{ height: "100vh", width: "100%" }}>
+      <Row style={{ backgroundColor: "#F6F6F6", height: "100%" }}>
+        <Col md>
+          <Container style={{ marginTop: "33vh", marginBottom: "33vh" }}>
+            <Row className="text-center">
+              <img className="mx-auto" src={BCALogo} alt="BCA Logo" style={{ height: "106px", width: "155px" }} />
+              <h1 style={{ fontFamily: "Kalam", color: "#1E56A0", fontWeight: "bold", fontSize: "12vh" }}>
                 Memo Hub
               </h1>
-              <p style={{
-                fontFamily: "Karma",
-                color: "#FF9843",
-                fontWeight: "bold",
-                fontSize: "3vh",
-              }}>
-               Made with  <strong style={{
-                color: "#D63484",
-               }}>NIS-B 
-                </strong>
-              
+              <p style={{ fontFamily: "Karma", color: "#FF9843", fontWeight: "bold", fontSize: "3vh" }}>
+                Made with <strong style={{ color: "#D63484" }}>NIS-B</strong>
               </p>
-            </div>
-          </div>
-        </div>
-        <div
-          className="col-md"
-          style={{
-            background: 'linear-gradient(to top, #0B2447, #1E56A0)',
-            
-          }}
-        >
-          <div className="container w-75">
-            <form
-              className="mx-auto p-5 w-75"
-              onSubmit={handleSubmit}
-              style={{
-                marginTop: "30vh",
-                marginBottom: "30vh",
-                backgroundColor: "#FFFFFF",
-                borderRadius: "3vh",
-              }}
-            >
-              <div className="row">
-                <h1 className="text-center" style={{
-                  fontFamily: "Karma",
-                  color: "#1E56A0",
-                  fontWeight: "bold",
-                  fontSize: "4vh",
-                }}>
-                Sign In</h1>
+            </Row>
+          </Container>
+        </Col>
+        <Col md style={{ background: 'linear-gradient(to top, #0B2447, #1E56A0)' }}>
+          <Container className="w-75">
+            <Form onSubmit={handleSubmit} className="mx-auto p-5 w-75" style={{ marginTop: "30vh", marginBottom: "30vh", backgroundColor: "#FFFFFF", borderRadius: "3vh" }}>
+              <Row>
+                <h1 className="text-center" style={{ fontFamily: "Karma", color: "#1E56A0", fontWeight: "bold", fontSize: "4vh" }}>
+                  Sign In
+                </h1>
                 <InputWithLabel
                   label="Username"
                   value={username}
@@ -151,13 +96,14 @@ function Login() {
                 <div className="text-center mt-3">
                   <CustomButton text="Login" color="primary" type="submit" />
                 </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+              </Row>
+            </Form>
+          </Container>
+        </Col>
+      </Row>
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-    </div>
+    </Container>
+    
   );
 }
 

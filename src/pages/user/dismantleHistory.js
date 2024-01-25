@@ -1,5 +1,6 @@
 import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
+import { Container, Breadcrumb, Form } from "react-bootstrap";
 import "typeface-inter";
 import DismantleServiceTable from "../components/DismantleService";
 import InputWithLabel from "../components/input";
@@ -18,9 +19,14 @@ function DismantleHistory() {
     getDismantleData();
   }, []);
 
+
+  useEffect(() => {
+    getDismantleDataByBatchID();
+  }, [batchid]);
+
   const getDismantleDataByBatchID = () => {
     axios
-      .get("getBatchDismantle/" + batchid + "")
+      .get(`getBatchDismantle/${batchid}`)
       .then((response) => {
         console.log(response.data);
         setData(response.data);
@@ -42,26 +48,21 @@ function DismantleHistory() {
       });
   };
 
-  useEffect(() => {
-    getDismantleDataByBatchID();
-  }, [batchid]);
-
   return (
-    <div className="container-fluid pt-3">
-     <Navbar/>
-      <div className="container my-3">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3">
-            <li className="breadcrumb-item">
-               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              History
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="container my-5 text-center">
+    <Container fluid className="pt-3">
+      <Navbar />
+      <Container className="my-3">
+        <Breadcrumb>
+          <Breadcrumb.Item onClick={() => window.location.href = "/main"}>
+            <RiHome6Fill />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            History
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+
+      <Container className="my-5 text-center">
         <h1
           style={{
             fontFamily: "inter",
@@ -72,20 +73,24 @@ function DismantleHistory() {
         >
           Dismantle Requests
         </h1>
-      </div>
-      <div className="container " style={{ width: "45%" }}>
-        <InputWithLabel
-          label="Enter Batch ID"
-          value={batchid}
-          name="pic"
-          placeholder="Enter the installation location"
-          onChange={(e) => handleInputChange(e, setBatchId)}
-        />
-      </div>
-      <div className="my-5">
-        <DismantleServiceTable batchdata={data}  />
-      </div>
-    </div>
+      </Container>
+
+      <Container style={{ width: "45%" }}>
+        <Form>
+          <InputWithLabel
+            label="Enter Batch ID"
+            value={batchid}
+            name="pic"
+            placeholder="Enter the installation location"
+            onChange={(e) => handleInputChange(e, setBatchId)}
+          />
+        </Form>
+      </Container>
+
+      <Container className="my-5">
+        <DismantleServiceTable batchdata={data} />
+      </Container>
+    </Container>
   );
 }
 

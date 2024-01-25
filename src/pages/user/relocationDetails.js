@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
+import { Container, Breadcrumb } from 'react-bootstrap';
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
 import axios from "../../axiosConfig";
 import RelocationDetailService from "../components/relocationDetailsService";
 import "typeface-inter";
@@ -18,57 +17,47 @@ function RelocationDetails() {
 
   useEffect(() => {
     getRelocationData();
-    console.log(data);
   }, [int_id]);
 
-
   const getRelocationData = async () => {
-    await axios
-      .get("relocations/" + int_id + "")
-      .then((response) => {
-        setData(response.data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
+    try {
+      const response = await axios.get("relocations/" + int_id + "");
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching location data:", error);
+    }
   };
 
   return (
-    <div className="container-fluid pt-3 pb-3">
-      <Navbar/>
-      <div className="container my-3">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3">
-            <li className="breadcrumb-item">
-               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                href="/relocationHistory"
-              >
-                History
-              </a>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                href={`/relocationBatch?batchid=${data.batchid}`}
-              >
-                Batch
-              </a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Details
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div
-        className="text-center"
-        style={{ fontFamily: "inter", fontSize: "6vh" }}
-      >
+    <Container fluid className="pt-3 pb-3">
+      <Navbar />
+      <Container className="my-3">
+        <Breadcrumb className="breadcrumb-chevron p-3">
+          <Breadcrumb.Item>
+            <RiHome6Fill onClick={() => window.location.href = "/main"} />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <a
+              className="link-body-emphasis fw-semibold text-decoration-none"
+              onClick={() => window.location.href = "/relocationHistory"}
+            >
+              History
+            </a>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <a
+              className="link-body-emphasis fw-semibold text-decoration-none"
+              onClick={() => window.location.href = `/relocationBatch?batchid=${data.batchid}`} 
+            >
+              Batch
+            </a>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            Details
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+      <Container className="text-center">
         <h1
           style={{
             fontFamily: "inter",
@@ -79,9 +68,9 @@ function RelocationDetails() {
         >
           Relocation Details
         </h1>
-      </div>
-      <RelocationDetailService batchdata={data} isAdmin={false} className="my-5"/>
-    </div>
+      </Container>
+      <RelocationDetailService batchdata={data} isAdmin={false} className="my-5" />
+    </Container>
   );
 }
 

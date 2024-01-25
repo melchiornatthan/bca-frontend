@@ -8,9 +8,10 @@ import SelectLocation from "../components/locations";
 import CustomButton from "../components/button";
 import { RiHome6Fill } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
+import { Container, Breadcrumb, Row, Col, Table } from 'react-bootstrap';
+
 
 import Navbar from "../components/navbar";
-import { Table } from "react-bootstrap";
 
 function RelocationReq() {
   const [location, setLocation] = useState("");
@@ -198,220 +199,174 @@ function RelocationReq() {
   };
 
   return (
-    <div className="container-fluid pt-3">
-     <Navbar/>
-      <div className="container my-3">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3 rounded-3">
-            <li className="breadcrumb-item">
-               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Relocation Request
-            </li>
-          </ol>
-        </nav>
+
+
+<Container fluid className="pt-3">
+  <Navbar />
+
+  <Container className="my-3">
+    <Breadcrumb className="breadcrumb-chevron p-3 rounded-3">
+      <Breadcrumb.Item onClick={() => window.location.href = "/main"}>
+        <RiHome6Fill />
+      </Breadcrumb.Item>
+      <Breadcrumb.Item active aria-current="page">
+        Relocation Request
+      </Breadcrumb.Item>
+    </Breadcrumb>
+  </Container>
+
+  <div className="text-center my-5">
+    <h1 style={{ color: "#E9B824", fontWeight: "bold" }}>
+      Relocation Request
+    </h1>
+  </div>
+
+  <Row className="py-5 w-75 mx-auto">
+    <Col md>
+      <InputWithLabel
+        label="Enter Location"
+        value={location}
+        name="pic"
+        placeholder="Enter the installation location"
+        onChange={(e) => handleInputChange(e, setLocation)}
+      />
+    </Col>
+    <Col md>
+      <div className="mx-auto">
+        <InstallationSearchTable batchdata={data} onSelect={handleSelect} />
       </div>
-      <div className="text-center my-5">
-        <h1 style={{ color: "#E9B824", fontWeight: "bold" }}>
-          Relocation Request
-        </h1>
-      </div>
-      <div className="row py-5 w-75 mx-auto">
-        <div className="col-md">
+    </Col>
+  </Row>
+
+  {selectedData && (
+    <div id="form">
+      <Row className="py-5 w-75 mx-auto">
+        <Col md>
+          <div className="form-group">
+            <InputWithLabel isDisabled={true} label="Location" value={selectedData.location} name="location" />
+            <InputWithLabel isDisabled={true} label="Address" value={selectedData.address} name="address" />
+            <InputWithLabel isDisabled={true} label="Area" value={selectedData.area} name="area" />
+          </div>
+        </Col>
+        <Col md>
+          <div className="form-group">
+            <InputWithLabel isDisabled={true} label="Branch PIC" value={selectedData.branch_pic} name="pic" />
+            <div>
+              <InputWithLabel isDisabled={true} label="Communication" value={selectedData.communication} name="communication" />
+            </div>
+            <div>
+              <InputWithLabel isDisabled={true} label="Provider" value={selectedData.provider} name="Provider" />
+            </div>
+          </div>
+        </Col>
+      </Row>
+
+      <Row className="w-75 mx-auto">
+        <Col lg>
           <InputWithLabel
-            label="Enter Location"
-            value={location}
-            name="pic"
-            placeholder="Enter the installation location"
-            onChange={(e) => handleInputChange(e, setLocation)}
+            label="New Location"
+            value={newLocation}
+            name="newLocation"
+            placeholder="Enter the new location"
+            onChange={(e) => handleInputChange(e, setNewLocation)}
           />
-        </div>
-        <div className="col-md">
-          <div className=" mx-auto">
-            <InstallationSearchTable batchdata={data} onSelect={handleSelect} />
-          </div>
-        </div>
-      </div>
-      {selectedData && (
-        <div id="form">
-          <div className="row py-5 w-75 mx-auto">
-            <div className="col-md">
-              <div className="form-group">
-                <InputWithLabel isDisabled={true}
-                  label="Location"
-                  value={selectedData.location}
-                  name="location"
-                />
-                <InputWithLabel isDisabled={true}
-                  label="Address"
-                  value={selectedData.address}
-                  name="address"
-                />
-              </div>
+          <InputWithLabel
+            label="New Address"
+            value={newAddress}
+            name="newAddress"
+            placeholder="Enter the new address"
+            onChange={(e) => handleInputChange(e, setNewAddress)}
+          />
+          <Row>
+            <Col mx-auto>
               <div>
-                <InputWithLabel isDisabled={true}
-                  label="Area"
-                  value={selectedData.area}
-                  name="area"
+                <SelectLocation
+                  options={specialData}
+                  label="Select the City"
+                  value={area}
+                  onChange={(e) => handleInputChange(e, setArea)}
                 />
               </div>
-            </div>
-            <div className="col-md">
-              <div className="form-group">
-                <InputWithLabel isDisabled={true}
-                  label="Branch PIC"
-                  value={selectedData.branch_pic}
-                  name="pic"
+            </Col>
+            {area === "NA" && (
+              <Col sm mx-auto>
+                <SelectLocation
+                  options={areas}
+                  label="Select the Province"
+                  value={province}
+                  onChange={(e) => handleInputChange(e, setProvince)}
                 />
-                <div>
-                  <InputWithLabel isDisabled={true}
-                    label="Communication"
-                    value={selectedData.communication}
-                    name="communication"
-                  />
-                </div>
-                <div>
-                  <InputWithLabel isDisabled={true}
-                    label="Provider"
-                    value={selectedData.provider}
-                    name="provider"
-                  />
-                </div>
-              </div>
+              </Col>
+            )}
+          </Row>
+        </Col>
+        <Col lg>
+          <div className="form-group">
+            <InputWithLabel
+              label="Branch PIC"
+              value={newPic}
+              name="pic"
+              placeholder="Enter the Branch PIC"
+              onChange={(e) => handleInputChange(e, setNewPic)}
+            />
+            <div>
+              <InputWithLabel isDisabled={true} label="Communication" value={selectedData.communication} name="communication" />
             </div>
+            <div>
+              <InputWithLabel isDisabled={true} label="Provider" value={selectedData.provider} name="Provider" />
+            </div>
+            <Row  mx-auto className="mx-auto" >
+                <CustomButton className="w-50" text="Add" color="primary" onClick={handleSubmit} />
+            </Row>
           </div>
-          <div className="row w-75 mx-auto">
-            <div className="col-lg">
-              <InputWithLabel
-                label="New Location"
-                value={newLocation}
-                name="newLocation"
-                placeholder="Enter the new location"
-                onChange={(e) => handleInputChange(e, setNewLocation)}
-              />
-              <InputWithLabel
-                label="New Address"
-                value={newAddress}
-                name="newAddress"
-                placeholder="Enter the new address"
-                onChange={(e) => handleInputChange(e, setNewAddress)}
-              />
-              <div className="row">
-                <div className="col mx-auto">
-                  <div>
-                    <SelectLocation
-                      options={specialData}
-                      label="Select the City"
-                      value={area}
-                      onChange={(e) => handleInputChange(e, setArea)}
-                    />
-                  </div>
-                </div>
-                {area === "NA" && (
-                  <div className="col-sm mx-auto">
-                    <SelectLocation
-                      options={areas}
-                      label="Select the Province"
-                      value={province}
-                      onChange={(e) => handleInputChange(e, setProvince)}
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-            <div className="col-lg">
-              <div className="form-group">
-                <InputWithLabel
-                  label="Branch PIC"
-                  value={newPic}
-                  name="pic"
-                  placeholder="Enter the Branch PIC"
-                  onChange={(e) => handleInputChange(e, setNewPic)}
-                />
-                <div>
-                  <InputWithLabel isDisabled={true}
-                    label="Communication"
-                    value={selectedData.communication}
-                    name="communication"
-                  />
-                </div>
-                <div>
-                  <InputWithLabel isDisabled={true}
-                    label="Provider"
-                    value={selectedData.provider}
-                    name="Provider"
-                    
-                  />
-                </div>
-                <div className="row py-4 mx-auto text-center">
-                  <div className="col-md">
-                    <CustomButton
-                      text="Add"
-                      color="primary"
-                      onClick={handleSubmit}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      {submittedRequests.length > 0 && (
-        <div
-          className="my-5 w-75 mx-auto"
-          style={{
-            borderRadius: "33px",
-            padding: "20px",
-            boxShadow: isHoveredSecond
-              ? "10px 10px 20px rgba(33, 156, 144, 0.3)"
-              : "none",
-            transition: "box-shadow 0.3s",
-          }}
-          onMouseEnter={() => setIsHoveredSecond(true)}
-          onMouseLeave={() => setIsHoveredSecond(false)}
-        >
-          <div className="row py-4 mx-auto">
-            <div className="col-md text-center">
-              <h2>Submitted Requests</h2>
-              <Table striped bordered hover className="my-3" >
-                <thead>
-                  <tr>
-                    <th>Old Location</th>
-                    <th>New Location</th>
-                    <th>New Address</th>
-                    <th>New Area</th>
-                    <th>New Branch PIC</th>
-                    <th>New Communication</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {submittedRequests.map((request, index) => (
-                    <tr key={index}>
-                      <td>{request.old_location}</td>
-                      <td>{request.new_location}</td>
-                      <td>{request.new_address}</td>
-                      <td>{request.new_area}</td>
-                      <td>{request.new_branch_pic}</td>
-                      <td>{request.new_communication}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-              <div className="text-center mx-auto">
-                <CustomButton
-                  text="Submit Batch"
-                  color="primary"
-                  onClick={() => submitBatchData()}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+        </Col>
+      </Row>
     </div>
+  )}
+
+  {submittedRequests.length > 0 && (
+    <div className="my-5 w-75 mx-auto" style={{ borderRadius: "33px", padding: "20px", boxShadow: isHoveredSecond ? "10px 10px 20px rgba(33, 156, 144, 0.3)" : "none", transition: "box-shadow 0.3s" }}
+      onMouseEnter={() => setIsHoveredSecond(true)}
+      onMouseLeave={() => setIsHoveredSecond(false)}
+    >
+      <Row className="py-4 mx-auto">
+        <Col md className="text-center">
+          <h2>Submitted Requests</h2>
+          <Table striped bordered hover className="my-3">
+            <thead>
+              <tr>
+                <th>Old Location</th>
+                <th>New Location</th>
+                <th>New Address</th>
+                <th>New Area</th>
+                <th>New Branch PIC</th>
+                <th>New Communication</th>
+              </tr>
+            </thead>
+            <tbody>
+              {submittedRequests.map((request, index) => (
+                <tr key={index}>
+                  <td>{request.old_location}</td>
+                  <td>{request.new_location}</td>
+                  <td>{request.new_address}</td>
+                  <td>{request.new_area}</td>
+                  <td>{request.new_branch_pic}</td>
+                  <td>{request.new_communication}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <div className="text-center mx-auto">
+            <CustomButton text="Submit Batch" color="primary" onClick={() => submitBatchData()} />
+          </div>
+        </Col>
+      </Row>
+    </div>
+  )}
+
+  <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+</Container>
+
   );
 }
 

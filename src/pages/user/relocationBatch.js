@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
+import { Container, Breadcrumb, Button } from 'react-bootstrap';
 import axios from "../../axiosConfig";
 import RelocationByBatchIdTable from "../components/relocationBatchService";
 import "typeface-inter";
@@ -20,7 +19,6 @@ function RelocationBatch() {
 
   useEffect(() => {
     getRelocationData();
-    console.log(data);
   }, [batchid]);
 
   useEffect(() => {
@@ -28,17 +26,12 @@ function RelocationBatch() {
   }, [data]);
 
   const getRelocationData = async () => {
-    await axios
-      .get(
-        "getRelocationsbyBatchID/" + batchid + ""
-      )
-      .then((response) => {
-        setData(response.data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error) ;
-      });
+    try {
+      const response = await axios.get("getRelocationsbyBatchID/" + batchid);
+      setData(response.data);
+    } catch (error) {
+      console.error("Error fetching location data:", error);
+    }
   };
 
   const exportToJson = async () => {
@@ -140,29 +133,27 @@ function RelocationBatch() {
   };
 
   return (
-    <div className="container-fluid pt-3">
-      <Navbar/>
-      <div className="container my-3">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3">
-            <li className="breadcrumb-item">
-               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                href="/relocationHistory"
-              >
-                History
-              </a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Batch
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="text-center mt-5">
+    <Container fluid className="pt-3">
+      <Navbar />
+      <Container className="my-3">
+        <Breadcrumb className="breadcrumb-chevron p-3">
+          <Breadcrumb.Item>
+            <RiHome6Fill onClick={() => window.location.href = "/main"} />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <a
+              className="link-body-emphasis fw-semibold text-decoration-none"
+              onClick={() => window.location.href = "/relocationHistory"}
+            >
+              History
+            </a>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            Batch
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+      <Container className="text-center mt-5">
         <h1
           style={{
             fontFamily: "inter",
@@ -173,19 +164,18 @@ function RelocationBatch() {
         >
           Relocation Batch
         </h1>
-      </div>
-      <div>
-      <div className="py-5 mx-auto text-center">
-         <RelocationByBatchIdTable batchdata={data} isAdmin={false} />
-         {!hasPending && (
-        <button style={{marginTop:'3vh'}} className="btn btn-primary" onClick={() => exportToJson()}>
-          Export to Excel
-        </button>
-      )}
-        </div>
-       
-      </div>
-    </div>
+      </Container>
+      <Container>
+        <Container className="py-5 mx-auto text-center">
+          <RelocationByBatchIdTable batchdata={data} isAdmin={false} />
+          {!hasPending && (
+            <Button style={{ marginTop: '3vh' }} variant="primary" onClick={() => exportToJson()}>
+              Export to Excel
+            </Button>
+          )}
+        </Container>
+      </Container>
+    </Container>
   );
 }
 

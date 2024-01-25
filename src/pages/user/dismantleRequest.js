@@ -7,7 +7,7 @@ import CustomButton from "../components/button";
 import { RiHome6Fill } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 import Navbar from "../components/navbar";
-import Table from "react-bootstrap/Table";
+import { Container, Breadcrumb, Row, Col, Table } from "react-bootstrap";
 
 function DismantleRequest() {
   const [location, setLocation] = useState("");
@@ -123,100 +123,104 @@ function DismantleRequest() {
       });
   };
   return (
-    <div className="container-fluid pt-3">
-     <Navbar/>
-      <div className="container my-3">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3">
-            <li className="breadcrumb-item">
-               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Dismantle Request
-            </li>
-          </ol>
-        </nav>
-      </div>
+    <Container fluid className="pt-3">
+      <Navbar />
+
+      <Container className="my-3">
+        <Breadcrumb className="breadcrumb-chevron p-3">
+          <Breadcrumb.Item onClick={() => (window.location.href = "/main")}>
+            <RiHome6Fill />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            Dismantle Request
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+
       <div className="text-center my-5">
         <h1 style={{ color: "#D83F31", fontWeight: "bold" }}>
           Dismantle Request
         </h1>
       </div>
-      <div className="row py-5 w-75 mx-auto">
-        <div className="col-md">
+
+      <Row className="py-5 w-75 mx-auto">
+        <Col>
           <InputWithLabel
-            label="Select Instalation"
+            label="Select Installation"
             value={location}
             name="pic"
             placeholder="Enter the installation location"
             onChange={(e) => handleInputChange(e, setLocation)}
           />
-        </div>
-        <div className="col-md">
-          <div className=" mx-auto">
+        </Col>
+        <Col>
+          <div className="mx-auto">
             <InstallationSearchTable batchdata={data} onSelect={handleSelect} />
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
+
       {selectedData && (
         <div>
-          <div className="row py-5 w-75 mx-auto">
-            <div className="col-md">
+          <Row className="py-5 w-75 mx-auto">
+            <Col>
               <div className="form-group">
-                <InputWithLabel isDisabled={true}
+                <InputWithLabel
+                  isDisabled={true}
                   label="Location"
                   value={selectedData.location}
                   name="location"
                 />
-                <InputWithLabel isDisabled={true}
+                <InputWithLabel
+                  isDisabled={true}
                   label="Address"
                   value={selectedData.address}
                   name="address"
                 />
-              </div>
-              <div>
-                <InputWithLabel isDisabled={true}
+                <InputWithLabel
+                  isDisabled={true}
                   label="Area"
                   value={selectedData.area}
                   name="area"
                 />
               </div>
-            </div>
-            <div className="col-md">
+            </Col>
+            <Col>
               <div className="form-group">
-                <InputWithLabel isDisabled={true}
+                <InputWithLabel
+                  isDisabled={true}
                   label="Branch PIC"
                   value={selectedData.branch_pic}
                   name="pic"
                 />
-                <div>
-                  <InputWithLabel isDisabled={true}
-                    label="Communication"
-                    value={selectedData.communication}
-                    name="communication"
-                  />
-                </div>
-                <div>
-                  <InputWithLabel isDisabled={true}
-                    label="Provider"
-                    value={selectedData.provider}
-                    name="provider"
-                  />
-                </div>
+                <InputWithLabel
+                  isDisabled={true}
+                  label="Communication"
+                  value={selectedData.communication}
+                  name="communication"
+                />
+                <InputWithLabel
+                  isDisabled={true}
+                  label="Provider"
+                  value={selectedData.provider}
+                  name="provider"
+                />
               </div>
-            </div>
-          </div>
-          <div className="row mx-auto text-center">
-            <div className="col-md">
+            </Col>
+          </Row>
+
+          <Row className="mx-auto text-center">
+            <Col>
               <CustomButton
                 text="Submit"
                 color="primary"
                 onClick={handleSubmit}
               />
-            </div>
-          </div>
+            </Col>
+          </Row>
         </div>
       )}
+
       {submittedRequests.length > 0 && (
         <div
           className="my-5 w-75 mx-auto"
@@ -231,8 +235,8 @@ function DismantleRequest() {
           onMouseEnter={() => setIsHoveredSecond(true)}
           onMouseLeave={() => setIsHoveredSecond(false)}
         >
-          <div className="row py-4 mx-auto">
-            <div className="col-md text-center">
+          <Row className="py-4 mx-auto">
+            <Col className="text-center">
               <h2>Submitted Requests</h2>
               <Table striped bordered hover className="my-3">
                 <thead>
@@ -263,12 +267,13 @@ function DismantleRequest() {
                   onClick={() => submitBatchData()}
                 />
               </div>
-            </div>
-          </div>
+            </Col>
+          </Row>
         </div>
       )}
+
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-    </div>
+    </Container>
   );
 }
 

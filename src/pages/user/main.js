@@ -3,6 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "typeface-inter";
 import axios from "../../axiosConfig";
 import ResponsiveDoughnutChart from "../components/doughnutChart";
+import { Container, Row, Col, Card } from 'react-bootstrap';
 
 import { FaConciergeBell } from "react-icons/fa";
 import { MdBuildCircle } from "react-icons/md";
@@ -51,382 +52,168 @@ function Main() {
   };
 
   return (
-    <div className="container-fluid py-2"
-    style={{backgroundColor:"#FFFFFF"}}
-    >
-     <Navbar/>
-      <div className="container-fluid my-3">
-        <div className="row mx-auto centered-row">
-          <div
-            className="col-md"
-            style={{
-              marginTop: "1vh",
-              marginBottom: "1vh",
-              backgroundColor: "#FFFFFF",
-              borderRadius: "1vh",
-              paddingBottom: "3vh",
-            }}
-          >
-            <div className="container">
+   
+    <Container fluid className="py-2" style={{ backgroundColor: "#FFFFFF" }}>
+      <Navbar />
+      <Container fluid className="my-3">
+        <Row className="mx-auto centered-row">
+          <Col md style={{ marginTop: "1vh", marginBottom: "1vh", backgroundColor: "#FFFFFF", borderRadius: "1vh", paddingBottom: "3vh" }}>
+            <Container>
               <div>
                 <ResponsiveDoughnutChart data={data} />
               </div>
-
-              <h1
-                style={{
-                  textAlign: "center",
-                  fontFamily: "inter",
-                  fontSize: "4vh",
-                  fontWeight: "bold",
-                  color: "#163172",
-                  marginTop: "6vh",
-                }}
-              >
+    
+              <h1 style={{ textAlign: "center", fontFamily: "inter", fontSize: "4vh", fontWeight: "bold", color: "#163172", marginTop: "6vh" }}>
                 Provider Count
               </h1>
-              <h2
-                style={{
-                  textAlign: "center",
-                  fontFamily: "inter",
-                  fontWeight: "bold",
-                  fontSize: "2vh",
-                  color: "#163172",
-                }}
-              >
-                Data Update : {date.toDateString()} {date.toLocaleTimeString()}
+              <h2 style={{ textAlign: "center", fontFamily: "inter", fontWeight: "bold", fontSize: "2vh", color: "#163172" }}>
+                Data Update: {date.toDateString()} {date.toLocaleTimeString()}
               </h2>
-            </div>
-            <div className="row text-center" style={{ marginTop: "6vh" }}>
-              <div className="col">
-                <div
-                  className="card"
-                  style={{
-                    borderColor: "#ffffff",
-                  }}
-                >
-                  <div className="card-body">
-                    <h1
-                      className="card-title"
-                      style={{
-                        fontFamily: "inter",
-                        fontSize: "3vh",
-                        color: "#65B741",
-                      }}
-                    >
+            </Container>
+    
+            <Row className="text-center" style={{ marginTop: "6vh" }}>
+              <Col>
+                <Card style={{ borderColor: "#ffffff" }}>
+                  <Card.Body>
+                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#65B741" }}>
                       <strong>Primacom</strong>
                     </h1>
-                    <strong style={{ fontSize: "4vh",color: "#004225" }}>
+                    <strong style={{ fontSize: "4vh", color: "#004225" }}>
                       {" "}
                       {providerCount.primacom}{" "}
                     </strong>
-                  </div>
-                </div>
-                <div
-                  className="card my-1"
-                  style={{
-                    borderColor: "#ffffff",
-                  }}
-                >
-                  <div className="card-body">
-                    <h1
-                      className="card-title"
-                      style={{
-                        fontFamily: "inter",
-                        fontSize: "3vh",
-                        color: "#E3651D",
-                      }}
-                    >
+                  </Card.Body>
+                </Card>
+                <Card className="my-1" style={{ borderColor: "#ffffff" }}>
+                  <Card.Body>
+                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#E3651D" }}>
                       <strong>Tangara</strong>
                     </h1>
-
-                    <strong style={{ fontSize: "4vh",color: "#004225" }}>
+                    <strong style={{ fontSize: "4vh", color: "#004225" }}>
                       {" "}
                       {providerCount.tangara}{" "}
                     </strong>
-                  </div>
-                </div>
-              </div>
-              <div className="col">
-                <div
-                  className="card"
-                  style={{
-                    borderColor: "#ffffff",
-                  }}
-                >
-                  <div className="card-body">
-                    <h1
-                      className="card-title"
-                      style={{
-                        fontFamily: "inter",
-                        fontSize: "3vh",
-                        color: "#DA0C81",
-                      }}
-                    >
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col>
+                <Card style={{ borderColor: "#ffffff" }}>
+                  <Card.Body>
+                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#DA0C81" }}>
                       <strong>IForte</strong>
                     </h1>
-
-                    <strong style={{ fontSize: "4vh",color: "#004225" }}>
+                    <strong style={{ fontSize: "4vh", color: "#004225" }}>
                       {" "}
                       {providerCount.iforte}{" "}
                     </strong>
-                  </div>
-                </div>
-                <div
-                  className="card my-1"
-                  style={{
-                    borderColor: "#ffffff",
-                  }}
-                >
-                  <div className="card-body">
-                    <h1
-                      className="card-title"
-                      style={{
-                        fontFamily: "inter",
-                        fontSize: "3vh",
-                        color: "#3A1078",
-                      }}
-                    >
+                  </Card.Body>
+                </Card>
+                <Card className="my-1" style={{ borderColor: "#ffffff" }}>
+                  <Card.Body>
+                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#3A1078" }}>
                       <strong>Indonet</strong>
                     </h1>
-
-                    <strong style={{ fontSize: "4vh",color: "#004225" }}>
+                    <strong style={{ fontSize: "4vh", color: "#004225" }}>
                       {" "}
                       {providerCount.indonet}{" "}
                     </strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-md mx-3">
-            <div className="row">
-              <div className="row text-center">
-                <strong
-                  className="mx-auto"
-                  style={{
-                    color: "#1E56A0",
-                    fontFamily: "inter",
-                    fontSize: "8vh",
-                    fontWeight: "bold",
-                    marginTop: "14vh",
-                    marginBottom: "1vh",
-                  }}
-                >
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+          </Col>
+    
+          <Col md className="mx-3">
+            <Row>
+              <Row className="text-center">
+                <strong style={{ color: "#1E56A0", fontFamily: "inter", fontSize: "8vh", fontWeight: "bold", marginTop: "14vh", marginBottom: "1vh" }}>
                   Welcome to
                   <div style={{ color: "#86B6F6" }}>Memo Hub</div>
                 </strong>
-                <p
-                  style={{
-                    color: "#FFB000",
-                    fontFamily: "inter",
-                    fontSize: "2vh",
-                    fontWeight: "bold",
-                    marginBottom: "9vh",
-                  }}
-                >
+                <p style={{ color: "#FFB000", fontFamily: "inter", fontSize: "2vh", fontWeight: "bold", marginBottom: "9vh" }}>
                   Made with NIS-B
                 </p>
-                <div
-                  className="row"
-                  style={{ marginBottom: "5vh", marginTop: "5vh" }}
-                >
-                  <FaConciergeBell
-                    style={{
-                      color: "#FF9B50",
-                      fontSize: "3vh",
-                    }}
-                  />
-                  <strong
-                    className="mx-auto"
-                    style={{
-                      color: "#1E56A0",
-                      fontFamily: "inter",
-                      marginTop: "1vh",
-                      fontSize: "3vh",
-                    }}
-                  >
+                <Row style={{ marginBottom: "5vh", marginTop: "5vh" }}>
+                  <FaConciergeBell style={{ color: "#FF9B50", fontSize: "3vh" }} />
+                  <strong style={{ color: "#1E56A0", fontFamily: "inter", marginTop: "1vh", fontSize: "3vh" }}>
                     Request Pending
                   </strong>
-                </div>
-              </div>
-              <div className="row">
-                <div
-                  className="col-sm"
-                  style={{
-                    marginBottom: "1vh",
-                    marginRight: "1vh",
-                   
-                  }}
-                >
-                  <div
-                    class="card"
-                    style={{
-                      borderColor: "#F2FFE9", 
-                      backgroundColor: "#F2FFE9",
-                    borderRadius: "1vh",
-                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
-                    }}
-                    onClick={() => {window.location.href = "/installationBatch"}}
-                  >
-                    <div class="card-body">
+                </Row>
+              </Row>
+    
+              <Row>
+                <Col sm style={{ marginBottom: "1vh", marginRight: "1vh" }}>
+                  <Card style={{ borderColor: "#F2FFE9", backgroundColor: "#F2FFE9", borderRadius: "1vh", boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)" }} onClick={() => { window.location.href = "/installationBatch" }}>
+                    <Card.Body>
                       <div className="row">
                         <div className="col w-25">
-                          <MdBuildCircle
-                            style={{
-                              marginRight: "1vh",
-                              marginTop: "1vh",
-                              color: "#1E5128",
-                              fontSize: "25px",
-                            }}
-                          />
+                          <MdBuildCircle style={{ marginRight: "1vh", marginTop: "1vh", color: "#1E5128", fontSize: "25px" }} />
                         </div>
                         <div className="col w-75">
-                          <h1
-                            class="card-title"
-                            style={{ fontSize: "2vh", color: "#65B741" }}
-                          >
+                          <h1 className="card-title" style={{ fontSize: "2vh", color: "#65B741" }}>
                             <div>
-                              <strong
-                                className="mx-auto"
-                                style={{
-                                  color: "#1E5128",
-                                  fontFamily: "inter",
-                                  fontSize: "2vh",
-                                }}
-                              >
+                              <strong className="mx-auto" style={{ color: "#1E5128", fontFamily: "inter", fontSize: "2vh" }}>
                                 Installation Request
                               </strong>
                             </div>
                           </h1>
                         </div>
-
-                        <h2 style={{ color: "#1E5128" }}>
-                          {" "}
-                          {reqCount.installation}{" "}
-                        </h2>
+                        <h2 style={{ color: "#1E5128" }}> {reqCount.installation} </h2>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-sm"
-                  style={{
-                    marginBottom: "1vh",
-                   
-                  }}
-                >
-                  <div
-                    class="card"
-                    style={{
-                      borderColor: "#FFFFEC", 
-                      backgroundColor: "#FFFFEC",
-                    marginRight: "1vh",
-                    borderRadius: "1vh",
-                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
-                    }}
-                    onClick={() => {window.location.href = "/relocationHistory"}}
-                  >
-                    <div class="card-body">
+                    </Card.Body>
+                  </Card>
+                </Col>
+    
+                <Col sm style={{ marginBottom: "1vh" }}>
+                  <Card style={{ borderColor: "#FFFFEC", backgroundColor: "#FFFFEC", marginRight: "1vh", borderRadius: "1vh", boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)" }} onClick={() => { window.location.href = "/relocationHistory" }}>
+                    <Card.Body>
                       <div className="row">
                         <div className="col w-25">
-                          <FaTruckMoving
-                            style={{
-                              marginRight: "1vh",
-                              marginTop: "1vh",
-                              color: "#F05941",
-                              fontSize: "25px",
-                            }}
-                          />
+                          <FaTruckMoving style={{ marginRight: "1vh", marginTop: "1vh", color: "#F05941", fontSize: "25px" }} />
                         </div>
                         <div className="col w-75">
-                          <h1
-                            class="card-title"
-                            style={{ fontSize: "2vh", color: "#F05941" }}
-                          >
+                          <h1 className="card-title" style={{ fontSize: "2vh", color: "#F05941" }}>
                             <div>
-                              <strong
-                                className="mx-auto"
-                                style={{
-                                  color: "#F05941",
-                                  fontFamily: "inter",
-                                  fontSize: "2vh",
-                                }}
-                              >
+                              <strong className="mx-auto" style={{ color: "#F05941", fontFamily: "inter", fontSize: "2vh" }}>
                                 Relocation Request
                               </strong>
                             </div>
                           </h1>
                         </div>
-                        <h2 style={{ color: "#F05941" }}>
-                          {" "}
-                          {reqCount.relocation}{" "}
-                        </h2>
+                        <h2 style={{ color: "#F05941" }}> {reqCount.relocation} </h2>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-sm"
-                  style={{
-                    marginBottom: "1vh",
-                 
-                  }}
-                >
-                  <div
-                    class="card"
-                    style={{
-                      borderColor: "#FCF5ED",   
-                      backgroundColor: "#FCF5ED",
-                    borderRadius: "1vh",
-                    boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
-                    }}
-                    onClick={() => {window.location.href = "/dismantleHistory"}}
-                  >
-                    <div class="card-body">
+                    </Card.Body>
+                  </Card>
+                </Col>
+    
+                <Col sm style={{ marginBottom: "1vh" }}>
+                  <Card style={{ borderColor: "#FCF5ED", backgroundColor: "#FCF5ED", borderRadius: "1vh", boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)" }} onClick={() => { window.location.href = "/dismantleHistory" }}>
+                    <Card.Body>
                       <div className="row">
                         <div className="col w-25">
-                          <IoMdRemoveCircle
-                            style={{
-                              marginRight: "1vh",
-                              color: "#B31312",
-                              fontSize: "25px",
-                              marginTop: "1vh",
-                            }}
-                          />
+                          <IoMdRemoveCircle style={{ marginRight: "1vh", color: "#B31312", fontSize: "25px", marginTop: "1vh" }} />
                         </div>
                         <div className="col w-75">
-                          <h1
-                            class="card-title"
-                            style={{ fontSize: "2vh", color: "#65B741" }}
-                          >
+                          <h1 className="card-title" style={{ fontSize: "2vh", color: "#65B741" }}>
                             <div>
-                              <strong
-                                className="mx-auto"
-                                style={{
-                                  color: "#B31312",
-                                  fontFamily: "inter",
-                                  fontSize: "2vh",
-                                }}
-                              >
+                              <strong className="mx-auto" style={{ color: "#B31312", fontFamily: "inter", fontSize: "2vh" }}>
                                 Dismantle Request
                               </strong>
                             </div>
                           </h1>
                         </div>
-                        <h2 style={{ color: "#B31312" }}>
-                          {" "}
-                          {reqCount.dismantle}{" "}
-                        </h2>
+                        <h2 style={{ color: "#B31312" }}> {reqCount.dismantle} </h2>
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </Container>
+    
   );
 }
 

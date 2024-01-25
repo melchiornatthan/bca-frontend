@@ -7,8 +7,8 @@ import InputWithLabel from "../components/input";
 import VsatSelect from "../components/communication";
 import { RiHome6Fill } from "react-icons/ri";
 import SelectLocation from "../components/locations";
-import Table from 'react-bootstrap/Table';
 import { MdDeleteForever } from "react-icons/md";
+import { Container, Breadcrumb, Row, Col, Table, Button } from 'react-bootstrap';
 import "typeface-karma";
 
 import Navbar from "../components/navbar";
@@ -178,43 +178,28 @@ function InstallationReq() {
   
 
   return (
-    <div className="container-fluid pt-3">
-     <Navbar/>
-      <div className="container my-3">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3 rounded-3">
-            <li className="breadcrumb-item">
-               <RiHome6Fill onClick={() => window.location.href = "/main"}/>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Installation Request
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="text-center my-5">
-        <h1
-          style={{ color: "#219C90", fontWeight: "bold", fontFamily: "inter" }}
-        >
-          Installation Request
-        </h1>
-      </div>
-      <div
-        style={{
-          borderRadius: "5px",
-          width: "90%",
-          padding: "3vh",
-          boxShadow: isHoveredFirst
-            ? "5px 5px 10px rgba(33, 156, 144, 0.3)"
-            : "none",
-          transition: "box-shadow 0.3s",
-        }}
+    
+    
+    <Container fluid className="pt-3">
+    <Navbar />
+    <Container className="my-3">
+        <Breadcrumb className="breadcrumb-chevron p-3 rounded-3">
+          <Breadcrumb.Item onClick={() => window.location.href = "/main"}>
+            <RiHome6Fill />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            Installation Request
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+    
+      <div style={{ borderRadius: "5px", width: "90%", padding: "3vh", boxShadow: isHoveredFirst ? "5px 5px 10px rgba(33, 156, 144, 0.3)" : "none", transition: "box-shadow 0.3s" }}
         className="mx-auto"
         onMouseEnter={() => setIsHoveredFirst(true)}
         onMouseLeave={() => setIsHoveredFirst(false)}
       >
-        <div className="row mx-auto">
-          <div className="col-sm mx-auto my-auto">
+        <Row className="mx-auto">
+          <Col sm className="mx-auto my-auto">
             <InputWithLabel
               label="Location"
               value={location}
@@ -222,8 +207,8 @@ function InstallationReq() {
               placeholder="Enter the location"
               onChange={(e) => handleInputChange(e, setLocation)}
             />
-          </div>
-          <div className="col-sm mx-auto my-auto">
+          </Col>
+          <Col sm className="mx-auto my-auto">
             <InputWithLabel
               label="Address"
               value={address}
@@ -231,26 +216,26 @@ function InstallationReq() {
               placeholder="Enter the address"
               onChange={(e) => handleInputChange(e, setAddress)}
             />
-          </div>
-          <div className="col-sm mx-auto my-auto">
+          </Col>
+          <Col sm className="mx-auto my-auto">
             <SelectLocation
               options={specialData}
               label="Select the City"
               value={area}
               onChange={(e) => handleInputChange(e, setArea)}
             />
-          </div>
+          </Col>
           {area === "NA" && (
-            <div className="col-sm mx-auto my-auto">
+            <Col sm className="mx-auto my-auto">
               <SelectLocation
                 options={data}
                 label="Select the Province"
                 value={province}
                 onChange={(e) => handleInputChange(e, setProvince)}
               />
-            </div>
+            </Col>
           )}
-          <div className="col-sm mx-auto my-auto">
+          <Col sm className="mx-auto my-auto">
             <InputWithLabel
               label="Branch PIC"
               value={pic}
@@ -258,8 +243,8 @@ function InstallationReq() {
               placeholder="Enter the Branch PIC"
               onChange={(e) => handleInputChange(e, setPic)}
             />
-          </div>
-          <div className="col-sm mx-auto my-auto">
+          </Col>
+          <Col sm className="mx-auto my-auto">
             <label htmlFor="communication" style={{ fontFamily: "karma" }}>
               Communication
             </label>
@@ -267,25 +252,17 @@ function InstallationReq() {
               value={communication}
               onChange={(e) => handleInputChange(e, setCommunication)}
             />
-          </div>
-          <div className="col-sm mx-auto" style={{
-            marginTop: "3vh",
-          }}>
+          </Col>
+          <Col sm className="mx-auto" style={{ marginTop: "3vh" }}>
             <CustomButton text="Add" color="primary" onClick={handleSubmit} />
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
+    
       {submittedRequests.length > 0 && (
-        <div
-          className="mx-auto mt-3"
-          style={{
-            borderRadius: "5px",
-            padding: "2vh",
-            width: "90%",
-          }}
-        >
-          <div className="row mx-auto">
-            <div className="col-md">
+        <div className="mx-auto mt-3" style={{ borderRadius: "5px", padding: "2vh", width: "90%" }}>
+          <Row className="mx-auto">
+            <Col md>
               <Table striped bordered hover className="table table-hover mx-auto">
                 <thead>
                   <tr>
@@ -294,49 +271,37 @@ function InstallationReq() {
                     <th>Area</th>
                     <th>Branch PIC</th>
                     <th>Communication</th>
-                    <th>Delete</th> {/* New column for delete button */}
+                    <th>Delete</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {submittedRequests
-                    .slice()
-                    .reverse()
-                    .map((request, index) => (
-                     
-                      <tr key={index}>
-                        <td>{request.location}</td>
-                        <td>{request.address}</td>
-                        <td>{request.area}</td>
-                        <td>{request.branch_pic}</td>
-                        <td>{request.communication}</td>
-                        <td>
-                          <button
-                            className="btn btn-danger btn-md "
-                            onClick={() => handleDeleteRow(index)}
-                          >
-                            <MdDeleteForever style={{
-                              fontSize: "2vh",
-                            }}/>
-                          </button>
-                        </td>
-                      </tr>
-                      
-                    ))}
+                  {submittedRequests.slice().reverse().map((request, index) => (
+                    <tr key={index}>
+                      <td>{request.location}</td>
+                      <td>{request.address}</td>
+                      <td>{request.area}</td>
+                      <td>{request.branch_pic}</td>
+                      <td>{request.communication}</td>
+                      <td>
+                        <Button variant="danger" size="md" onClick={() => handleDeleteRow(index)}>
+                          <MdDeleteForever style={{ fontSize: "2vh" }} />
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </Table>
               <div className="text-center mx-auto">
-                <CustomButton
-                  text="Submit Batch"
-                  color="primary"
-                  onClick={() => submitBatchData()}
-                />
+                <CustomButton text="Submit Batch" color="primary" onClick={() => submitBatchData()} />
               </div>
-            </div>
-          </div>
+            </Col>
+          </Row>
         </div>
       )}
+    
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-    </div>
+    </Container>
+    
   );
 }
 

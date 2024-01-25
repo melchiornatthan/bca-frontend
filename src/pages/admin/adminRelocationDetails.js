@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Container, Breadcrumb } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
 import axios from "../../axiosConfig";
 import RelocationDetailService from "../components/relocationDetailsService";
-import "typeface-inter";
 import Navbar from "../components/navbar";
 import { RiHome6Fill } from "react-icons/ri";
 
@@ -17,7 +15,6 @@ function AdminRelocationDetails() {
 
   useEffect(() => {
     getRelocationData();
-    console.log(data);
   }, [int_id]);
 
   const getRelocationData = async () => {
@@ -25,7 +22,6 @@ function AdminRelocationDetails() {
       .get("relocations/" + int_id + "")
       .then((response) => {
         setData(response.data);
-        console.log(data);
       })
       .catch((error) => {
         console.error("Error fetching location data:", error);
@@ -33,7 +29,6 @@ function AdminRelocationDetails() {
   };
 
   const updateRequestStatus = async (id) => {
-    // Display a confirmation dialog
     const confirmed = window.confirm(
       "Are you sure you want to approve this request?"
     );
@@ -49,12 +44,11 @@ function AdminRelocationDetails() {
         new_communication: data.new_communication,
         new_area_id: data.new_area_id,
       };
-      // User clicked "OK" in the confirmation dialog, proceed with the request
+
       await axios
         .put(`update-relocations/`, body)
         .then((response) => {
-          window.location.href =
-            "/admin/relocationBatch?batchid=" + data.batchid + "";
+          window.location.href = "/admin/relocationBatch?batchid=" + data.batchid + "";
         })
         .catch((error) => {
           console.error("Error updating installation data:", error);
@@ -63,37 +57,35 @@ function AdminRelocationDetails() {
   };
 
   return (
-    <div className="pb-5">
-       <Navbar/>
-      <div className="container">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb breadcrumb-chevron p-3">
-            <li className="breadcrumb-item">
-               <RiHome6Fill onClick={() => window.location.href = "/admin/main"}/>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                href="/admin/relocationHistory"
-              >
-                History
-              </a>
-            </li>
-            <li className="breadcrumb-item">
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                href={`/admin/relocationBatch?batchid=${data.batchid}`}
-              >
-                Batch
-              </a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Details
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="text-center mt-5" style={{ fontFamily: "inter" }}>
+    <Container fluid className="py-3">
+    <Navbar />
+    <Container className="my-3">
+        <Breadcrumb className="breadcrumb-chevron p-3">
+          <Breadcrumb.Item>
+            <RiHome6Fill onClick={() => window.location.href = "/admin/main"} />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <a
+              className="link-body-emphasis fw-semibold text-decoration-none"
+              onClick={() => window.location.href = "/admin/relocationHistory"}
+            >
+              History
+            </a>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <a
+              className="link-body-emphasis fw-semibold text-decoration-none"
+              onClick={() => window.location.href = `/admin/relocationBatch?batchid=${data.batchid}`}
+            >
+              Batch
+            </a>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            Details
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+      <Container className="text-center mt-5" style={{ fontFamily: "inter" }}>
         <h1
           style={{
             fontFamily: "inter",
@@ -104,13 +96,13 @@ function AdminRelocationDetails() {
         >
           Relocation Requests
         </h1>
-      </div>
+      </Container>
       <RelocationDetailService
         batchdata={data}
         isAdmin={true}
         updateRequestStatus={updateRequestStatus}
       />
-    </div>
+    </Container>
   );
 }
 
