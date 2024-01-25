@@ -46,19 +46,19 @@ function InstallationBatch() {
   }, [batchid]);
 
   return (
-    <Container fluid className="py-3">
+    <Container fluid className='py-3'>
       <Navbar />
-      <Container className="my-3">
-        <Breadcrumb className="breadcrumb-chevron p-3">
+      <Container className='my-3'>
+        <Breadcrumb className='breadcrumb-chevron p-3'>
           <Breadcrumb.Item>
             <RiHome6Fill onClick={() => (window.location.href = "/main")} />
           </Breadcrumb.Item>
-          <Breadcrumb.Item active aria-current="page">
+          <Breadcrumb.Item active aria-current='page'>
             History
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
-      <Container className="my-5 text-center">
+      <Container className='my-5 text-center'>
         <h1
           style={{
             fontFamily: "inter",
@@ -72,13 +72,13 @@ function InstallationBatch() {
       </Container>
       <Container style={{ width: "45%" }}>
         <InputWithLabel
-          label="Enter Batch ID"
+          label='Enter Batch ID'
           value={batchid}
-          placeholder="Enter the installation Batch ID"
+          placeholder='Enter the installation Batch ID'
           onChange={(e) => handleInputChange(e, setBatchId)}
         />
       </Container>
-      <Container className="my-5">
+      <Container className='my-5'>
         <BatchTable batchdata={installationData} isAdmin={false} />
       </Container>
     </Container>

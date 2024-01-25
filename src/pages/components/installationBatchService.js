@@ -35,13 +35,11 @@ function BatchTable({ batchdata, isAdmin }) {
       style={{
         borderRadius: "17px",
         padding: "20px",
-       
       }}
-  
-      className="text-center w-75 mx-auto px-5"
+      className='text-center w-75 mx-auto px-5'
     >
       <div style={tableStyle}>
-        <table className="table table-hover">
+        <table className='table table-hover'>
           <thead>
             <tr>
               <th>Requested at</th>
@@ -51,26 +49,26 @@ function BatchTable({ batchdata, isAdmin }) {
             </tr>
           </thead>
           <tbody>
-            {data.map((entry, index) => (
+            {data?.map((entry, index) => (
               <tr key={index}>
-                <td>{formatCustomDate(entry.createdAt)}</td>
-                <td>{entry.batchid}</td>
+                <td>{formatCustomDate(entry?.createdAt)}</td>
+                <td>{entry?.batchid}</td>
                 <td
                   style={{
                     color:
-                      entry.status === "pending"
+                      entry?.status === "pending"
                         ? "#FFA500"
-                        : entry.status === "approved"
+                        : entry?.status === "approved"
                         ? "green"
                         : "black",
                   }}
                 >
-                  <strong>{entry.status}</strong>
+                  <strong>{entry?.status}</strong>
                 </td>
                 <td>
                   <button
-                    className="btn btn-outline-primary"
-                    onClick={() => toDetails(entry.batchid)}
+                    className='btn btn-outline-primary'
+                    onClick={() => toDetails(entry?.batchid)}
                   >
                     Details
                   </button>

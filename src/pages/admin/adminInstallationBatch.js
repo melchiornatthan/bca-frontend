@@ -23,7 +23,6 @@ function AdminInstallationReq() {
     axios
       .get("getBatchInstallations/" + batchid + "")
       .then((response) => {
-        console.log(response.data);
         setInstallationData(response.data);
       })
       .catch((error) => {
@@ -33,9 +32,8 @@ function AdminInstallationReq() {
 
   const getInstallations = () => {
     axios
-      .get("getBatchInstallations/" + 2 + "")
+      .get("getBatchInstallations/" + 2 + "") // 'xxx/getBatchInstallations/2
       .then((response) => {
-        console.log(response.data);
         setInstallationData(response.data);
       })
       .catch((error) => {
@@ -48,19 +46,21 @@ function AdminInstallationReq() {
   }, [batchid]);
 
   return (
-    <Container fluid className="pt-3">
+    <Container fluid className='pt-3'>
       <Navbar />
-      <Container className="my-3">
-        <Breadcrumb className="breadcrumb-chevron p-3">
+      <Container className='my-3'>
+        <Breadcrumb className='breadcrumb-chevron p-3'>
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => window.location.href = "/admin/main"}/>
+            <RiHome6Fill
+              onClick={() => (window.location.href = "/admin/main")}
+            />
           </Breadcrumb.Item>
-          <Breadcrumb.Item active aria-current="page">
+          <Breadcrumb.Item active aria-current='page'>
             History
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
-      <Container className="my-5 text-center">
+      <Container className='my-5 text-center'>
         <h1
           style={{
             fontFamily: "inter",
@@ -72,21 +72,21 @@ function AdminInstallationReq() {
           Installation Requests
         </h1>
       </Container>
-      <Container className="w-50">
+      <Container className='w-50'>
         <InputWithLabel
-          label="Enter Batch ID"
+          label='Enter Batch ID'
           value={batchid}
-          name="pic"
-          placeholder="Enter the installation location"
+          name='pic'
+          placeholder='Enter the installation location'
           onChange={(e) => handleInputChange(e, setBatchId)}
         />
       </Container>
-      <Row className="mt-5">
+      <Row className='mt-5'>
         <Col>
           <BatchTable batchdata={installationData} isAdmin={true} />
         </Col>
       </Row>
-      </Container>
+    </Container>
   );
 }
 
