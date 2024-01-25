@@ -78,7 +78,7 @@ function AdminMain() {
                     </h1>
                     <strong style={{ fontSize: "4vh", color: "#004225" }}>
                       {" "}
-                      {providerCount.primacom}{" "}
+                      {providerCount.primacom}{"/2550"}
                     </strong>
                   </Card.Body>
                 </Card>
@@ -89,7 +89,7 @@ function AdminMain() {
                     </h1>
                     <strong style={{ fontSize: "4vh", color: "#004225" }}>
                       {" "}
-                      {providerCount.tangara}{" "}
+                      {providerCount.tangara}{"/2550"}
                     </strong>
                   </Card.Body>
                 </Card>
@@ -102,7 +102,7 @@ function AdminMain() {
                     </h1>
                     <strong style={{ fontSize: "4vh", color: "#004225" }}>
                       {" "}
-                      {providerCount.iforte}{" "}
+                      {providerCount.iforte}{"/2550"}
                     </strong>
                   </Card.Body>
                 </Card>
@@ -113,7 +113,7 @@ function AdminMain() {
                     </h1>
                     <strong style={{ fontSize: "4vh", color: "#004225" }}>
                       {" "}
-                      {providerCount.indonet}{" "}
+                      {providerCount.indonet}{"/2550"}
                     </strong>
                   </Card.Body>
                 </Card>

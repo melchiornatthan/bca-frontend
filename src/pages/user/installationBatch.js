@@ -1,6 +1,6 @@
 import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
-import { Container, Breadcrumb, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Breadcrumb, Row, Col, Form, Button } from "react-bootstrap";
 import { RiHome6Fill } from "react-icons/ri";
 import Navbar from "../components/navbar";
 import BatchTable from "../components/installationBatchService";
@@ -51,9 +51,11 @@ function InstallationBatch() {
       <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => window.location.href = "/main"} />
+            <RiHome6Fill onClick={() => (window.location.href = "/main")} />
           </Breadcrumb.Item>
-          <Breadcrumb.Item active aria-current="page">History</Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            History
+          </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
       <Container className="my-5 text-center">
@@ -69,19 +71,12 @@ function InstallationBatch() {
         </h1>
       </Container>
       <Container style={{ width: "45%" }}>
-        <Form>
-          <Form.Group as={Row} controlId="formBatchID">
-            <Form.Label column sm="4">Enter Batch ID</Form.Label>
-            <Col sm="8">
-              <InputWithLabel
-                value={batchid}
-                name="pic"
-                placeholder="Enter the installation Batch ID"
-                onChange={(e) => handleInputChange(e, setBatchId)}
-              />
-            </Col>
-          </Form.Group>
-        </Form>
+        <InputWithLabel
+          label="Enter Batch ID"
+          value={batchid}
+          placeholder="Enter the installation Batch ID"
+          onChange={(e) => handleInputChange(e, setBatchId)}
+        />
       </Container>
       <Container className="my-5">
         <BatchTable batchdata={installationData} isAdmin={false} />

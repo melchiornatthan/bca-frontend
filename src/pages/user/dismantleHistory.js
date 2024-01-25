@@ -52,9 +52,9 @@ function DismantleHistory() {
     <Container fluid className="pt-3">
       <Navbar />
       <Container className="my-3">
-        <Breadcrumb>
-          <Breadcrumb.Item onClick={() => window.location.href = "/main"}>
-            <RiHome6Fill />
+       <Breadcrumb className="breadcrumb-chevron p-3">
+          <Breadcrumb.Item>
+            <RiHome6Fill onClick={() => (window.location.href = "/main")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             History
@@ -81,7 +81,7 @@ function DismantleHistory() {
             label="Enter Batch ID"
             value={batchid}
             name="pic"
-            placeholder="Enter the installation location"
+            placeholder="Enter the dismantle Batch ID"
             onChange={(e) => handleInputChange(e, setBatchId)}
           />
         </Form>

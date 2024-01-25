@@ -20,6 +20,9 @@ const SelectProviders = ({ options, label, value, onChange }) => {
         id={label}
         value={value}
         onChange={onChange}
+        style={{
+          height: "6vh",
+        }}
       >
         {options.map((option) => (
           <option

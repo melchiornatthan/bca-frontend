@@ -53,7 +53,7 @@ function Main() {
 
   return (
    
-    <Container fluid className="py-2" style={{ backgroundColor: "#FFFFFF" }}>
+    <Container fluid className="pt-3" style={{ backgroundColor: "#FFFFFF" }}>
       <Navbar />
       <Container fluid className="my-3">
         <Row className="mx-auto centered-row">

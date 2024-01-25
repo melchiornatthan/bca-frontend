@@ -50,13 +50,25 @@ function AdminDismantleDetails() {
     <Container fluid className="pt-3">
       <Navbar />
       <Container className="my-3">
-        <Breadcrumb>
-          <Breadcrumb.Item onClick={() => window.location.href = "/admin/main"}>
-            <RiHome6Fill />
+      <Breadcrumb className="breadcrumb-chevron p-3">
+          <Breadcrumb.Item>
+            <RiHome6Fill onClick={() => window.location.href = "/admin/main"} />
           </Breadcrumb.Item>
-          <Breadcrumb.Item href="/admin/dismantleHistory">History</Breadcrumb.Item>
-          <Breadcrumb.Item href={`/admin/dismantleBatch?batchid=${batchid}`}>
-            Batch
+          <Breadcrumb.Item>
+            <a
+              className="link-body-emphasis fw-semibold text-decoration-none"
+              onClick={() => window.location.href = "/admin/dismantleHistory"}
+            >
+              History
+            </a>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <a
+              className="link-body-emphasis fw-semibold text-decoration-none"
+              onClick={() => window.location.href = `/admin/dismantleBatch?batchid=${data.batchid}`}
+            >
+              Batch
+            </a>
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             Details

@@ -77,7 +77,7 @@ function RelocationHistory() {
           label="Enter Batch ID"
           value={batchid}
           name="pic"
-          placeholder="Enter the installation location"
+          placeholder="Enter the relocation Batch ID"
           onChange={(e) => handleInputChange(e, setBatchId)}
         />
       </Container>
