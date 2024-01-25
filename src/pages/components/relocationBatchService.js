@@ -30,8 +30,7 @@ function RelocationByBatchIdTable({ batchdata, isAdmin = false }) {
         padding: "20px",
        
       }}
-     
-      className="text-center w-75 mx-auto px-5"
+      className="text-center mx-auto px-3"
     >
       <div style={tableStyle}>
         <Table striped bordered hover>

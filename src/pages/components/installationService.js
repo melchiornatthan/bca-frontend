@@ -69,7 +69,7 @@ function InstallationService({ installationData, isAdminView }) {
   };
 
   return (
-    <div className="text-center w-75 mx-auto">
+    <div className="text-center mx-auto">
       <h1
         style={{
           fontFamily: "inter",

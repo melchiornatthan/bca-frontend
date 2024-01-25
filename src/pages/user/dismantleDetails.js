@@ -63,7 +63,7 @@ function DismantleDetails() {
             fontFamily: "inter",
             color: "#D83F31",
             fontWeight: "bold",
-            fontSize: "4vh",
+            fontSize: "6vh",
           }}
         >
           Dismantle Request
