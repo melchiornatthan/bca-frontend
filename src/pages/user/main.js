@@ -71,14 +71,14 @@ function Main() {
               </h2>
             </Container>
     
-            <Row className="text-center" style={{ marginTop: "6vh" }}>
+            <Row className="text-center" style={{ marginTop: "8vh" }}>
               <Col>
                 <Card style={{ borderColor: "#ffffff" }}>
                   <Card.Body>
-                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#65B741" }}>
+                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#1E56A0" }}>
                       <strong>Primacom</strong>
                     </h1>
-                    <strong style={{ fontSize: "4vh", color: "#004225" }}>
+                    <strong style={{ fontSize: "3vh", color: "#004225" }}>
                       {" "}
                       {providerCount.primacom}{" "}
                     </strong>
@@ -86,10 +86,10 @@ function Main() {
                 </Card>
                 <Card className="my-1" style={{ borderColor: "#ffffff" }}>
                   <Card.Body>
-                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#E3651D" }}>
+                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#1E56A0" }}>
                       <strong>Tangara</strong>
                     </h1>
-                    <strong style={{ fontSize: "4vh", color: "#004225" }}>
+                    <strong style={{ fontSize: "3vh", color: "#004225" }}>
                       {" "}
                       {providerCount.tangara}{" "}
                     </strong>
@@ -99,10 +99,10 @@ function Main() {
               <Col>
                 <Card style={{ borderColor: "#ffffff" }}>
                   <Card.Body>
-                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#DA0C81" }}>
-                      <strong>IForte</strong>
+                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#1E56A0" }}>
+                      <strong>iForte</strong>
                     </h1>
-                    <strong style={{ fontSize: "4vh", color: "#004225" }}>
+                    <strong style={{ fontSize: "3vh", color: "#004225" }}>
                       {" "}
                       {providerCount.iforte}{" "}
                     </strong>
@@ -110,10 +110,10 @@ function Main() {
                 </Card>
                 <Card className="my-1" style={{ borderColor: "#ffffff" }}>
                   <Card.Body>
-                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#3A1078" }}>
+                    <h1 className="card-title" style={{ fontFamily: "inter", fontSize: "3vh", color: "#1E56A0" }}>
                       <strong>Indonet</strong>
                     </h1>
-                    <strong style={{ fontSize: "4vh", color: "#004225" }}>
+                    <strong style={{ fontSize: "3vh", color: "#004225" }}>
                       {" "}
                       {providerCount.indonet}{" "}
                     </strong>
