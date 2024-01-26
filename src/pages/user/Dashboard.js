@@ -11,7 +11,7 @@ import { FaTruckMoving } from "react-icons/fa";
 import { IoMdRemoveCircle } from "react-icons/io";
 
 
-function Main() {
+function Dashboard() {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const [providerCount, setProviderCount] = useState([]);
   const [reqCount, setReqCount] = useState([]);
@@ -163,7 +163,7 @@ function Main() {
                       boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
                     }}
                     onClick={() => {
-                      window.location.href = "/relocationHistory";
+                    navigate("relocationHistory");
                     }}
                   >
                     <Card.Body>
@@ -382,4 +382,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Dashboard;

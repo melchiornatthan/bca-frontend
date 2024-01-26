@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function RelocationByBatchIdTable({ batchdata, isAdmin = false }) {
-  
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [hasPending, setHasPending] = useState(false);
   const tableStyle = {
@@ -19,8 +20,8 @@ function RelocationByBatchIdTable({ batchdata, isAdmin = false }) {
   
 
   const toDetails = (id) => {
-    const path = isAdmin ? "/admin/relocationDetails" : "/relocationDetails";
-    window.location.href = `${path}?id=${id}`;
+    const path = isAdmin ? "/admin/relocationDetails" : navigate(`/user/relocationHistory/relocationDetails?id=${id}`);
+   
   };
 
   return (

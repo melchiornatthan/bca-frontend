@@ -1,6 +1,7 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 function RelocationBatchTable({ batchdata, isAdmin = false }) {
+  const navigate = useNavigate();
   const tableStyle = {
     maxHeight: "600px",
     overflowY: "auto",
@@ -18,8 +19,9 @@ function RelocationBatchTable({ batchdata, isAdmin = false }) {
   }
 
   const toDetails = (batchid) => {
-    const path = isAdmin ? "/admin/relocationBatch" : "/relocationBatch";
-    window.location.href = `${path}?batchid=${batchid}`;
+    const path = isAdmin
+      ? "/admin/relocationBatch"
+      : navigate(`relocationBatch?batchid=${batchid}`);
   };
 
   return (
@@ -28,7 +30,6 @@ function RelocationBatchTable({ batchdata, isAdmin = false }) {
         borderRadius: "5px",
         padding: "20px",
       }}
-     
       className="text-center w-75 mx-auto px-5"
     >
       <div style={tableStyle}>

@@ -6,7 +6,7 @@ import RelocationByBatchIdTable from "../components/relocationBatchService";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
 import ExcelJS from "exceljs";
-import Navbar from "../components/navbar";
+import { useNavigate } from "react-router-dom";
 
 function RelocationBatch() {
   const [data, setData] = useState([]);
@@ -16,6 +16,7 @@ function RelocationBatch() {
   const [date, setDate] = useState(new Date());
   const batchid = parseInt(searchParams.get("batchid"), 10);
   const [hasPending, setHasPending] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getRelocationData();
@@ -133,17 +134,16 @@ function RelocationBatch() {
   };
 
   return (
-    <Container fluid className="pt-3">
-      <Navbar />
+    <Container fluid>
       <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => window.location.href = "/main"} />
+            <RiHome6Fill onClick={() => navigate("/user")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => window.location.href = "/relocationHistory"}
+              onClick={() =>  navigate("/user/relocationHistory")}
             >
               History
             </a>
@@ -153,20 +153,9 @@ function RelocationBatch() {
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
-      <Container className="text-center mt-5">
-        <h1
-          style={{
-            fontFamily: "inter",
-            color: "#E9B824",
-            fontWeight: "bold",
-            fontSize: "4vh",
-          }}
-        >
-          Relocation Batch
-        </h1>
-      </Container>
+     
       <Container>
-        <Container className="py-5 mx-auto text-center">
+        <Container className="py-1 mx-auto text-center">
           <RelocationByBatchIdTable batchdata={data} isAdmin={false} />
           {!hasPending && (
             <Button style={{ marginTop: '3vh' }} variant="primary" onClick={() => exportToJson()}>

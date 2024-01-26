@@ -6,11 +6,12 @@ import axios from "../../axiosConfig";
 import RelocationDetailService from "../components/relocationDetailsService";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
-import Navbar from "../components/navbar";
+import { useNavigate } from "react-router-dom";
 
 function RelocationDetails() {
   const [data, setData] = useState({});
   const location = useLocation();
+  const navigate = useNavigate();
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const int_id = parseInt(searchParams.get("id"), 10);
@@ -29,17 +30,16 @@ function RelocationDetails() {
   };
 
   return (
-    <Container fluid className="pt-3 pb-3">
-      <Navbar />
+    <Container fluid>
       <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => window.location.href = "/main"} />
+            <RiHome6Fill onClick={() =>navigate("/user")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => window.location.href = "/relocationHistory"}
+              onClick={() => navigate("/user/relocationHistory")}
             >
               History
             </a>
@@ -47,7 +47,7 @@ function RelocationDetails() {
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => window.location.href = `/relocationBatch?batchid=${data.batchid}`} 
+              onClick={() => navigate(`/user/relocationHistory/relocationBatch?batchid=${data.batchid}`)} 
             >
               Batch
             </a>
@@ -56,18 +56,6 @@ function RelocationDetails() {
             Details
           </Breadcrumb.Item>
         </Breadcrumb>
-      </Container>
-      <Container className="text-center">
-        <h1
-          style={{
-            fontFamily: "inter",
-            color: "#E9B824",
-            fontWeight: "bold",
-            fontSize: "4vh",
-          }}
-        >
-          Relocation Details
-        </h1>
       </Container>
       <RelocationDetailService batchdata={data} isAdmin={false} className="my-5" />
     </Container>

@@ -131,11 +131,15 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Login from "./pages/user/login";
-import Main from "./pages/user/main";
+import Dashboard from "./pages/user/Dashboard";
 import MainLayout from "./pages/user/mainLayout";
 import InstallationHistory from "./pages/user/installationHistory";
 import InstallationSearch from "./pages/user/installationSearch";
 import InstallationDetails from "./pages/user/installationDetails";
+import RelocationHistory from "./pages/user/relocationHistory";
+import RelocationSearch from "./pages/user/relocationSearch";
+import RelocationDetails from "./pages/user/relocationDetails";
+import RelocationBatch from "./pages/user/relocationBatch";
 
 const router = createBrowserRouter([
   {
@@ -148,7 +152,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Main />,
+        element: <Dashboard />,
       },
       {
         path: "installationHistory",
@@ -163,6 +167,24 @@ const router = createBrowserRouter([
             element: <InstallationDetails />,
           },
           
+        ],
+      },
+      {
+        path: "relocationHistory",
+        element: <RelocationHistory />,
+        children: [
+          {
+            index: true,
+            element: <RelocationSearch />,
+          },
+          {
+            path: "relocationBatch",
+            element: <RelocationBatch />,
+          },
+          {
+            path: "relocationDetails",
+            element: <RelocationDetails />,
+          },
         ],
       }
     ],
