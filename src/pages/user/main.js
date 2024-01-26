@@ -4,18 +4,19 @@ import "typeface-inter";
 import axios from "../../axiosConfig";
 import ResponsiveDoughnutChart from "../components/doughnutChart";
 import { Container, Row, Col, Card } from "react-bootstrap";
-
+import { useNavigate } from "react-router-dom";
 import { FaConciergeBell } from "react-icons/fa";
 import { MdBuildCircle } from "react-icons/md";
 import { FaTruckMoving } from "react-icons/fa";
 import { IoMdRemoveCircle } from "react-icons/io";
-import Navbar from "../components/navbar";
+
 
 function Main() {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const [providerCount, setProviderCount] = useState([]);
   const [reqCount, setReqCount] = useState([]);
   const [date, setDate] = useState(new Date());
+  const navigate = useNavigate();
   const data = [
     { name: "Primacom", value: parseInt(providerCount.primacom) },
     { name: "Tangara", value: parseInt(providerCount.tangara) },
@@ -52,9 +53,7 @@ function Main() {
   };
 
   return (
-    <Container fluid className="pt-3" style={{ backgroundColor: "#FFFFFF" }}>
-      <Navbar />
-      <Container fluid className="my-3">
+ 
         <Row className="mx-auto centered-row">
           
 
@@ -112,7 +111,7 @@ function Main() {
                       boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
                     }}
                     onClick={() => {
-                      window.location.href = "/installationBatch";
+                     navigate("installationHistory");
                     }}
                   >
                     <Card.Body>
@@ -380,8 +379,6 @@ function Main() {
             </Row>
           </Col>
         </Row>
-      </Container>
-    </Container>
   );
 }
 

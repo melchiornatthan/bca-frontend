@@ -6,15 +6,15 @@ import axios from "../../axiosConfig";
 import InstallationService from "../components/installationService";
 import ExcelJS from "exceljs";
 import { RiHome6Fill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
-import Navbar from "../components/navbar";
 
-function BatchDetails() {
+function InstallationDetails() {
   const [data, setData] = useState([]);
   const location = useLocation();
   const [date, setDate] = useState(new Date());
   const [hasPending, setHasPending] = useState(false);
-
+  const navigate = useNavigate();
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
@@ -140,17 +140,16 @@ function BatchDetails() {
   };
 
   return (
-    <Container fluid className="pt-3">
-      <Navbar />
-      <Container className="my-3">
+    <Container fluid>
+      <Container className="py-5 mx-auto text-center"><Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => window.location.href = "/main"} />
+            <RiHome6Fill onClick={() => navigate("/user")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => window.location.href = "/installationBatch"}
+              onClick={() => navigate("/user/installationHistory")}
             >
               History
             </a>
@@ -160,7 +159,6 @@ function BatchDetails() {
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
-      <Container className="py-5 mx-auto text-center">
         <InstallationService installationData={data} />
         {!hasPending && (
           <Button variant="primary" onClick={() => exportToJson()}>
@@ -172,4 +170,4 @@ function BatchDetails() {
   );
 }
 
-export default BatchDetails;
+export default InstallationDetails;

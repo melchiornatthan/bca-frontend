@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-
+import { useNavigate } from "react-router-dom"; 
 function BatchTable({ batchdata, isAdmin }) {
   const [data, setData] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     setData(batchdata);
   }, [batchdata]);
@@ -26,8 +26,7 @@ function BatchTable({ batchdata, isAdmin }) {
   const toDetails = (batchid) => {
     const url = isAdmin
       ? `/admin/installationDetails?batchid=${batchid}`
-      : `/installationDetails?batchid=${batchid}`;
-    window.location.href = url;
+      : navigate("installationDetails?batchid=" + batchid + "");
   };
 
   return (

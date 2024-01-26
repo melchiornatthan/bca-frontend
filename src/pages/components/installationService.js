@@ -70,16 +70,6 @@ function InstallationService({ installationData, isAdminView }) {
 
   return (
     <div className="text-center mx-auto">
-      <h1
-        style={{
-          fontFamily: "inter",
-          color: "#219C90",
-          fontWeight: "bold",
-          fontSize: "6vh",
-        }}
-      >
-        {isAdminView ? "Service Requests" : "Batch Requests"}
-      </h1>
       <div style={tableStyle}>
         <Table striped bordered hover className=" mt-3">
           <thead>

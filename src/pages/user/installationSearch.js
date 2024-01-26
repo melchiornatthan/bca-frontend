@@ -1,16 +1,16 @@
 import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
-import { Container, Breadcrumb, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Breadcrumb} from "react-bootstrap";
 import { RiHome6Fill } from "react-icons/ri";
-import Navbar from "../components/navbar";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
+import { useNavigate } from "react-router-dom";
 import "typeface-inter";
 
-function InstallationBatch() {
+function InstallationSearch() {
   const [installationData, setInstallationData] = useState([]);
   const [batchid, setBatchId] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     getInstallationData();
   }, []);
@@ -46,29 +46,16 @@ function InstallationBatch() {
   }, [batchid]);
 
   return (
-    <Container fluid className="py-3">
-      <Navbar />
+    <Container>
       <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => (window.location.href = "/main")} />
+            <RiHome6Fill onClick={() => navigate("/user") }/>
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             History
           </Breadcrumb.Item>
         </Breadcrumb>
-      </Container>
-      <Container className="my-5 text-center">
-        <h1
-          style={{
-            fontFamily: "inter",
-            color: "#219C90",
-            fontWeight: "bold",
-            fontSize: "6vh",
-          }}
-        >
-          Installation Requests
-        </h1>
       </Container>
       <Container style={{ width: "45%" }}>
         <InputWithLabel
@@ -85,4 +72,4 @@ function InstallationBatch() {
   );
 }
 
-export default InstallationBatch;
+export default InstallationSearch;

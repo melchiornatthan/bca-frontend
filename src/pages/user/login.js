@@ -40,7 +40,7 @@ function Login() {
             : localStorage.setItem("isAdmin", false);
           response.data.isAdmin
             ? (window.location.href = "/admin/main")
-            : (window.location.href = "/main");
+            : (window.location.href = "/user");
         } else {
           toast.error("Invalid username or password");
         }

@@ -32,7 +32,7 @@ instance.interceptors.response.use(
     // Handle response error
     if (error.response && error.response.status === 401) {
       // Redirect to the login page
-      window.location.href = '/login';
+      window.location.href = '/';
     }
     return Promise.reject(error);
   }
