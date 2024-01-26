@@ -152,6 +152,10 @@ import AdminDashboard from "./pages/admin/adminDashboard";
 import AdminInstallationHistory from "./pages/admin/adminInstallationHistory";
 import AdminInstallationSearch from "./pages/admin/adminInstallationSearch";
 import AdminBatchDetails from "./pages/admin/adminInstallationDetails";
+import AdminRelocationHistory from "./pages/admin/adminRelocationHistory";
+import AdminRelocationBatch from "./pages/admin/adminRelocationBatch";
+import AdminRelocationDetails from "./pages/admin/adminRelocationDetails";
+import AdminRelocationSearch from "./pages/admin/adminRelocationSearch";
 
 
 const router = createBrowserRouter([
@@ -257,19 +261,19 @@ const router = createBrowserRouter([
       },
       {
         path: "relocationHistory",
-        element: <RelocationHistory />,
+        element: <AdminRelocationHistory />,
         children: [
           {
             index: true,
-            element: <RelocationSearch />,
+            element: <AdminRelocationSearch />,
           },
           {
             path: "relocationBatch",
-            element: <RelocationBatch />,
+            element: <AdminRelocationBatch />,
           },
           {
             path: "relocationDetails",
-            element: <RelocationDetails />,
+            element: <AdminRelocationDetails />,
           },
         ],
       },

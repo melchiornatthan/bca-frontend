@@ -20,7 +20,7 @@ function RelocationByBatchIdTable({ batchdata, isAdmin = false }) {
   
 
   const toDetails = (id) => {
-    const path = isAdmin ? "/admin/relocationDetails" : navigate(`/user/relocationHistory/relocationDetails?id=${id}`);
+    const path = isAdmin ? navigate(`/admin/relocationHistory/relocationDetails?id=${id}`) : navigate(`/user/relocationHistory/relocationDetails?id=${id}`);
    
   };
 

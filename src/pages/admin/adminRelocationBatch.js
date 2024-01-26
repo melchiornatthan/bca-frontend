@@ -4,7 +4,7 @@ import { Container, Breadcrumb } from "react-bootstrap";
 import axios from "../../axiosConfig";
 import RelocationByBatchIdTable from "../components/relocationBatchService";
 import { RiHome6Fill } from "react-icons/ri";
-import Navbar from "../components/navbar";
+import { useNavigate } from "react-router-dom";
 
 function AdminRelocationBatch() {
   const [data, setData] = useState([]);
@@ -13,6 +13,7 @@ function AdminRelocationBatch() {
   // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getRelocationData();
@@ -31,16 +32,15 @@ function AdminRelocationBatch() {
 
   return (
     <Container fluid className="pt-3">
-      <Navbar />
       <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => window.location.href = "/admin/main"} />
+            <RiHome6Fill onClick={() => navigate("/admin")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => window.location.href = "/admin/relocationHistory"} 
+              onClick={() => navigate("/admin/relocationHistory")} 
             >
               History
             </a>
@@ -49,18 +49,6 @@ function AdminRelocationBatch() {
             Batch
           </Breadcrumb.Item>
         </Breadcrumb>
-      </Container>
-      <Container className="text-center">
-        <h1
-          style={{
-            fontFamily: "inter",
-            color: "#E9B824",
-            fontWeight: "bold",
-            fontSize: "6vh",
-          }}
-        >
-          Relocation Requests
-        </h1>
       </Container>
       <Container>
         <RelocationByBatchIdTable batchdata={data} isAdmin={true} />

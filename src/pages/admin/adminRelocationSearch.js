@@ -3,13 +3,12 @@ import { useState, useEffect } from "react";
 import { Container, Breadcrumb } from "react-bootstrap";
 import RelocationBatchTable from "../components/relocationService";
 import InputWithLabel from "../components/input";
-import Navbar from "../components/navbar";
 import { RiHome6Fill } from "react-icons/ri";
-
-function AdminRelocationHistory() {
+import { useNavigate } from "react-router-dom";
+function AdminRelocationSearch() {
   const [relocationData, setRelocationData] = useState([]);
   const [batchid, setBatchId] = useState("");
-
+  const navigate = useNavigate();
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
   };
@@ -48,28 +47,15 @@ function AdminRelocationHistory() {
 
   return (
     <Container fluid className="pt-3">
-    <Navbar />
     <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => window.location.href = "/admin/main"} />
+            <RiHome6Fill onClick={() => navigate("/admin")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             History
           </Breadcrumb.Item>
         </Breadcrumb>
-      </Container>
-      <Container className="my-5 text-center">
-        <h1
-          style={{
-            fontFamily: "inter",
-            color: "#E9B824",
-            fontWeight: "bold",
-            fontSize: "6vh",
-          }}
-        >
-          Relocation Requests
-        </h1>
       </Container>
       <Container className="w-50">
         <InputWithLabel
@@ -87,4 +73,4 @@ function AdminRelocationHistory() {
   );
 }
 
-export default AdminRelocationHistory;
+export default AdminRelocationSearch;

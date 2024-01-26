@@ -19,9 +19,7 @@ function RelocationBatchTable({ batchdata, isAdmin = false }) {
   }
 
   const toDetails = (batchid) => {
-    const path = isAdmin
-      ? "/admin/relocationBatch"
-      : navigate(`relocationBatch?batchid=${batchid}`);
+   navigate(`relocationBatch?batchid=${batchid}`);
   };
 
   return (
