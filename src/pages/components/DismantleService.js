@@ -1,7 +1,7 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 function DismantleServiceTable({ batchdata, isAdmin = false }) {
- 
+  const navigate = useNavigate();
   const tableStyle = {
     maxHeight: "600px",
     overflowY: "auto",
@@ -19,8 +19,7 @@ function DismantleServiceTable({ batchdata, isAdmin = false }) {
   }
 
   const toDetails = (batchid) => {
-    const path = isAdmin ? "/admin/dismantleBatch" : "dismantleBatch";
-    window.location.href = `${path}?batchid=${batchid}`;
+    const path = isAdmin ? "/admin/dismantleBatch" : navigate(`dismantleBatch?batchid=${batchid}`);
   };
 
   return (

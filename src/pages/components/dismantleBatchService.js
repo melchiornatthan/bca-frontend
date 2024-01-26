@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Table } from "react-bootstrap";
 
 function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
   const [data, setData] = useState([]);
   const [hasPending, setHasPending] = useState(false);
+  const navigate = useNavigate();
   const tableStyle = {
     maxHeight: "600px",
     overflowY: "auto",
@@ -19,8 +21,8 @@ function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
   const toDetails = (int_id, dismatle_id, batchid) => {
     const path = isAdmin
       ? `/admin/dismantleDetails?id=${int_id}&dismantle_id=${dismatle_id}&batchid=${batchid}`
-      : `/dismantleDetails?id=${int_id}&batchid=${batchid}`;
-    window.location.href = path;
+      : `/user/dismantleHistory/dismantleDetails?id=${int_id}&batchid=${batchid}`;
+    navigate(path);
   };
 
   return (

@@ -140,6 +140,11 @@ import RelocationHistory from "./pages/user/relocationHistory";
 import RelocationSearch from "./pages/user/relocationSearch";
 import RelocationDetails from "./pages/user/relocationDetails";
 import RelocationBatch from "./pages/user/relocationBatch";
+import DismantleHistory from "./pages/user/dismantleHistory";
+import DismantleSearch from "./pages/user/dismantleSearch";
+import DismantleBatch from "./pages/user/dismantleBatch";
+import DismantleDetails from "./pages/user/dismantleDetails";
+
 
 const router = createBrowserRouter([
   {
@@ -184,6 +189,24 @@ const router = createBrowserRouter([
           {
             path: "relocationDetails",
             element: <RelocationDetails />,
+          },
+        ],
+      },
+      {
+        path: "dismantleHistory",
+        element: <DismantleHistory />,
+        children: [
+          {
+            index: true,
+            element: <DismantleSearch />,
+          },
+          {
+            path: "dismantleBatch",
+            element: <DismantleBatch />,
+          },
+          {
+            path: "dismantleDetails",
+            element: <DismantleDetails />,
           },
         ],
       }

@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Breadcrumb, Button } from "react-bootstrap";
 import { RiHome6Fill } from "react-icons/ri";
-import Navbar from "../components/navbar";
 import DismantleByBatchIdTable from "../components/dismantleBatchService";
 import axios from "../../axiosConfig";
 import ExcelJS from "exceljs";
 import "typeface-inter";
+import { useNavigate } from "react-router-dom";
 
 function DismantleBatch() {
   const [data, setData] = useState([]);
   const [date, setDate] = useState(new Date());
   const [hasPending, setHasPending] = useState(false);
   const location = useLocation();
-
+  const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
 
@@ -134,55 +134,37 @@ function DismantleBatch() {
   };
 
   return (
-    <Container fluid className="pt-3">
-    <Navbar />
+    <Container>
+      <Breadcrumb className="breadcrumb-chevron p-3">
+        <Breadcrumb.Item>
+          <RiHome6Fill onClick={() => navigate("/user")} />
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a
+            className="link-body-emphasis fw-semibold text-decoration-none"
+            onClick={() => navigate("/user/dismantleHistory")}
+          >
+            History
+          </a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active aria-current="page">
+          Batch
+        </Breadcrumb.Item>
+      </Breadcrumb>
+      <Container className="py-2 mx-auto text-center">
+        <DismantleByBatchIdTable batchdata={data} isAdmin={false} />
 
-    <Container className="my-3">
-    <Breadcrumb className="breadcrumb-chevron p-3">
-          <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => window.location.href = "/main"} />
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>
-            <a
-              className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => window.location.href = "/dismantleHistory"}
-            >
-              History
-            </a>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active aria-current="page">
-            Batch
-          </Breadcrumb.Item>
-        </Breadcrumb>
+        {!hasPending && (
+          <Button
+            style={{ marginTop: "3vh" }}
+            variant="primary"
+            onClick={exportToJson}
+          >
+            Export to Excel
+          </Button>
+        )}
+      </Container>
     </Container>
-
-    <Container className="text-center mt-5">
-      <h1
-        style={{
-          fontFamily: "inter",
-          color: "#D83F31",
-          fontWeight: "bold",
-          fontSize: "6vh",
-        }}
-      >
-        Dismantle Batch
-      </h1>
-    </Container>
-
-    <Container className="py-5 mx-auto text-center">
-      <DismantleByBatchIdTable batchdata={data} isAdmin={false} />
-
-      {!hasPending && (
-        <Button
-          style={{ marginTop: "3vh" }}
-          variant="primary"
-          onClick={exportToJson}
-        >
-          Export to Excel
-        </Button>
-      )}
-    </Container>
-  </Container>
   );
 }
 
