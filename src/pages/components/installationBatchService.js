@@ -24,9 +24,7 @@ function BatchTable({ batchdata, isAdmin }) {
   }
 
   const toDetails = (batchid) => {
-    const url = isAdmin
-      ? `/admin/installationDetails?batchid=${batchid}`
-      : navigate("installationDetails?batchid=" + batchid + "");
+     navigate("installationDetails?batchid=" + batchid + "");
   };
 
   return (

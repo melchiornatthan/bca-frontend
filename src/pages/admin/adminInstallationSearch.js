@@ -6,11 +6,12 @@ import { RiHome6Fill } from "react-icons/ri";
 import Navbar from "../components/navbar";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
+import { useNavigate } from "react-router-dom";
 
-function AdminInstallationReq() {
+function AdminInstallationSearch() {
   const [installationData, setInstallationData] = useState([]);
   const [batchid, setBatchId] = useState("");
-
+  const navigate = useNavigate(); 
   useEffect(() => {
     getInstallations();
   }, []);
@@ -49,28 +50,15 @@ function AdminInstallationReq() {
 
   return (
     <Container fluid className="pt-3">
-      <Navbar />
       <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => window.location.href = "/admin/main"}/>
+            <RiHome6Fill onClick={() =>navigate("/admin")}/>
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             History
           </Breadcrumb.Item>
         </Breadcrumb>
-      </Container>
-      <Container className="my-5 text-center">
-        <h1
-          style={{
-            fontFamily: "inter",
-            color: "#219C90",
-            fontWeight: "bold",
-            fontSize: "6vh",
-          }}
-        >
-          Installation Requests
-        </h1>
       </Container>
       <Container className="w-50">
         <InputWithLabel
@@ -90,4 +78,4 @@ function AdminInstallationReq() {
   );
 }
 
-export default AdminInstallationReq;
+export default AdminInstallationSearch;

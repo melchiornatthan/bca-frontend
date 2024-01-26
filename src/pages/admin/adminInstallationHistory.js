@@ -3,7 +3,7 @@ import "typeface-inter";
 import { Container } from "react-bootstrap";
 import { Outlet } from 'react-router-dom';
 
-function AdminRelocationHistory() {
+function AdminInstallationHistory() {
 
   return (
     <Container >
@@ -11,17 +11,16 @@ function AdminRelocationHistory() {
             className="text-center mt-5"
           style={{
             fontFamily: "inter",
-            color: "#E9B824",
+            color: "#219C90",
             fontWeight: "bold",
             fontSize: "6vh",
           }}
         >
-          Relocation Requests
+          Installation Requests
         </h1>
-        
         <Outlet />
     </Container>
   );
 }
 
-export default AdminRelocationHistory;
+export default AdminInstallationHistory;

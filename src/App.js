@@ -147,6 +147,11 @@ import DismantleDetails from "./pages/user/dismantleDetails";
 import InstallationRequest from "./pages/user/installationRequest";
 import RelocationRequest from "./pages/user/relocationRequest";
 import DismantleRequest from "./pages/user/dismantleRequest";
+import AdminMainLayout from "./pages/admin/adminMainLayout";
+import AdminDashboard from "./pages/admin/adminDashboard";
+import AdminInstallationHistory from "./pages/admin/adminInstallationHistory";
+import AdminInstallationSearch from "./pages/admin/adminInstallationSearch";
+import AdminBatchDetails from "./pages/admin/adminInstallationDetails";
 
 
 const router = createBrowserRouter([
@@ -173,6 +178,79 @@ const router = createBrowserRouter([
           {
             path: "installationDetails",
             element: <InstallationDetails />,
+          },
+          
+        ],
+      },
+      {
+        path: "relocationHistory",
+        element: <RelocationHistory />,
+        children: [
+          {
+            index: true,
+            element: <RelocationSearch />,
+          },
+          {
+            path: "relocationBatch",
+            element: <RelocationBatch />,
+          },
+          {
+            path: "relocationDetails",
+            element: <RelocationDetails />,
+          },
+        ],
+      },
+      {
+        path: "dismantleHistory",
+        element: <DismantleHistory />,
+        children: [
+          {
+            index: true,
+            element: <DismantleSearch />,
+          },
+          {
+            path: "dismantleBatch",
+            element: <DismantleBatch />,
+          },
+          {
+            path: "dismantleDetails",
+            element: <DismantleDetails />,
+          },
+        ],
+      },
+      {
+        path: "installationRequest",
+        element: <InstallationRequest />,
+      },
+      {
+        path: "relocationRequest",
+        element: <RelocationRequest />,
+      },
+      {
+        path: "dismantleRequest",
+        element: <DismantleRequest />,
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <AdminMainLayout />,
+    children:  [
+      {
+        index: true,
+        element: <AdminDashboard />,
+      },
+      {
+        path: "installationHistory",
+        element: <InstallationHistory />,
+        children: [
+          {
+            index: true,
+            element: <AdminInstallationSearch />,
+          },
+          {
+            path: "installationDetails",
+            element: <AdminBatchDetails />,
           },
           
         ],
