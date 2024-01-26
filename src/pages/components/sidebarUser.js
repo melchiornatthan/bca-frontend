@@ -8,12 +8,12 @@ import { MdOutlineTimelapse } from "react-icons/md";
 import { MdAddBox } from "react-icons/md";
 import { TbArrowsMove } from "react-icons/tb";
 import { MdOutlineDelete } from "react-icons/md";
-
+import { useNavigate } from "react-router-dom";
 const UserSidebar = () => {
   const [showMain, setShowMain] = useState(false);
   const [showSecondary, setShowSecondary] = useState(false);
   const [showTertiary, setShowTertiary] = useState(false);
-
+  const navigate = useNavigate();
   const handleCloseMain = () => setShowMain(false);
   const handleShowMain = () => setShowMain(true);
 
@@ -79,7 +79,7 @@ const UserSidebar = () => {
             localStorage.removeItem("token");
             localStorage.removeItem("isAdmin");
             localStorage.removeItem("username");
-            window.location.href = "/login";
+            navigate("/");
           }}
         >
           <div className="my-1 ">
@@ -109,7 +109,7 @@ const UserSidebar = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-success"
-              onClick={() => (window.location.href = "/installationRequest")}
+              onClick={() => navigate("installationRequest")}
             >
               <div className="my-1">
                 <MdAddBox />
@@ -120,7 +120,7 @@ const UserSidebar = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-warning"
-              onClick={() => (window.location.href = "/relocationRequest")}
+              onClick={() => navigate("relocationRequest")}
             >
               <div className="my-1">
                 <TbArrowsMove />
@@ -131,7 +131,7 @@ const UserSidebar = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-danger"
-              onClick={() => (window.location.href = "/dismantleRequest")}
+              onClick={() => navigate("dismantleRequest")}
             >
               <div className="my-1">
                 <MdOutlineDelete />
@@ -162,7 +162,7 @@ const UserSidebar = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-success"
-              onClick={() => (window.location.href = "/installationBatch")}
+              onClick={() => navigate("installationHistory")}
             >
               <div className="my-1">
                 <MdOutlineTimelapse />
@@ -173,7 +173,7 @@ const UserSidebar = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-warning"
-              onClick={() => (window.location.href = "/relocationHistory")}
+              onClick={() => navigate("relocationHistory")}
             >
               <div className="my-1">
                 <MdOutlineTimelapse />
@@ -184,7 +184,7 @@ const UserSidebar = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-danger"
-              onClick={() => (window.location.href = "/dismantleHistory")}
+              onClick={() => navigate("dismantleHistory")}
             >
               <div className="my-1">
                 <MdOutlineTimelapse />

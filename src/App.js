@@ -144,6 +144,9 @@ import DismantleHistory from "./pages/user/dismantleHistory";
 import DismantleSearch from "./pages/user/dismantleSearch";
 import DismantleBatch from "./pages/user/dismantleBatch";
 import DismantleDetails from "./pages/user/dismantleDetails";
+import InstallationRequest from "./pages/user/installationRequest";
+import RelocationRequest from "./pages/user/relocationRequest";
+import DismantleRequest from "./pages/user/dismantleRequest";
 
 
 const router = createBrowserRouter([
@@ -209,7 +212,19 @@ const router = createBrowserRouter([
             element: <DismantleDetails />,
           },
         ],
-      }
+      },
+      {
+        path: "installationRequest",
+        element: <InstallationRequest />,
+      },
+      {
+        path: "relocationRequest",
+        element: <RelocationRequest />,
+      },
+      {
+        path: "dismantleRequest",
+        element: <DismantleRequest />,
+      },
     ],
   },
 ]);

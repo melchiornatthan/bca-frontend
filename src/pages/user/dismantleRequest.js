@@ -6,8 +6,8 @@ import InstallationSearchTable from "../components/searchInstallationTable";
 import CustomButton from "../components/button";
 import { RiHome6Fill } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
-import Navbar from "../components/navbar";
 import { Container, Breadcrumb, Row, Col, Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function DismantleRequest() {
   const [location, setLocation] = useState("");
@@ -17,7 +17,7 @@ function DismantleRequest() {
   const [batchData, setBatchData] = useState([]);
   const [submittedRequests, setSubmittedRequests] = useState([]);
   const [isHoveredSecond, setIsHoveredSecond] = useState(false);
-
+  const navigate = useNavigate();
   const handleSelect = (id) => {
     fetchInstallationbyId(id);
     console.log(batchId);
@@ -124,11 +124,10 @@ function DismantleRequest() {
   };
   return (
     <Container fluid className="pt-3">
-      <Navbar />
 
       <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
-          <Breadcrumb.Item onClick={() => (window.location.href = "/main")}>
+          <Breadcrumb.Item onClick={() => navigate("/user")}>
             <RiHome6Fill />
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
@@ -136,13 +135,6 @@ function DismantleRequest() {
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
-
-      <div className="text-center my-5">
-        <h1 style={{ color: "#D83F31", fontWeight: "bold" }}>
-          Dismantle Request
-        </h1>
-      </div>
-
       <Row className="py-5 w-75 mx-auto">
         <Col>
           <InputWithLabel

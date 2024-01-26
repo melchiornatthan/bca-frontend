@@ -3,9 +3,11 @@ import { TiArrowSortedDown } from "react-icons/ti";
 import { Dropdown } from "react-bootstrap";
 import UserSidebar from "./sidebarUser";
 import SidebarAdmin from "./sidebarAdmin";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const isAdmin = localStorage.getItem("isAdmin") === "true";
   const username = localStorage.getItem("username");
+  const navigate = useNavigate();
   return (
     <nav
       className="navbar mt-2 px-4"
@@ -23,8 +25,8 @@ const Navbar = () => {
         style={{ height: "5vh" }}
         onClick={() =>
           isAdmin
-            ? (window.location.href = "/admin/main")
-            : (window.location.href = "/main")
+            ? navigate("/admin")
+            : navigate("/user")
         }
       />
       <Dropdown>
@@ -56,7 +58,7 @@ const Navbar = () => {
               localStorage.removeItem("token");
               localStorage.removeItem("isAdmin");
               localStorage.removeItem("username");
-              window.location.href = "/login";
+            navigate("/");
             }}
           >
             <strong> Logout</strong>

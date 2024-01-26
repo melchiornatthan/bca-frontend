@@ -10,9 +10,8 @@ import SelectLocation from "../components/locations";
 import { MdDeleteForever } from "react-icons/md";
 import { Container, Breadcrumb, Row, Col, Table, Button } from 'react-bootstrap';
 import "typeface-karma";
-
-import Navbar from "../components/navbar";
-function InstallationReq() {
+import { useNavigate } from "react-router-dom";
+function InstallationRequest() {
   // State variables
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
@@ -24,9 +23,8 @@ function InstallationReq() {
   const [batchId, setBatchId] = useState(200000000);
   const [batchData, setBatchData] = useState([]);
   const [submittedRequests, setSubmittedRequests] = useState([]);
-  const [isHoveredFirst, setIsHoveredFirst] = useState(false);
   const [province, setProvince] = useState("Jawa Barat");
-
+  const navigate = useNavigate();
   useEffect(() => {
     console.log(communication);
   }, [communication]);
@@ -181,10 +179,9 @@ function InstallationReq() {
     
     
     <Container fluid className="pt-3">
-    <Navbar />
     <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3 rounded-3">
-          <Breadcrumb.Item onClick={() => window.location.href = "/main"}>
+          <Breadcrumb.Item onClick={() => navigate("/user")}>
             <RiHome6Fill />
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
@@ -193,10 +190,8 @@ function InstallationReq() {
         </Breadcrumb>
       </Container>
     
-      <div style={{ borderRadius: "5px", width: "90%", padding: "3vh", boxShadow: isHoveredFirst ? "5px 5px 10px rgba(33, 156, 144, 0.3)" : "none", transition: "box-shadow 0.3s" }}
+      <div style={{ borderRadius: "5px", width: "90%", padding: "3vh" }}
         className="mx-auto"
-        onMouseEnter={() => setIsHoveredFirst(true)}
-        onMouseLeave={() => setIsHoveredFirst(false)}
       >
         <Row className="mx-auto">
           <Col sm className="mx-auto my-auto">
@@ -305,4 +300,4 @@ function InstallationReq() {
   );
 }
 
-export default InstallationReq;
+export default InstallationRequest;

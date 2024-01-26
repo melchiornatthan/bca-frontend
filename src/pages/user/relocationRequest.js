@@ -9,10 +9,9 @@ import CustomButton from "../components/button";
 import { RiHome6Fill } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 import { Container, Breadcrumb, Row, Col, Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-import Navbar from "../components/navbar";
-
-function RelocationReq() {
+function RelocationRequest() {
   const [location, setLocation] = useState("");
   const [data, setData] = useState([]);
   const [selectedData, setSelectedData] = useState();
@@ -27,8 +26,8 @@ function RelocationReq() {
   const [areaId, setAreaId] = useState(1);
   const [batchData, setBatchData] = useState([]);
   const [submittedRequests, setSubmittedRequests] = useState([]);
-  const [isHoveredSecond, setIsHoveredSecond] = useState(false);
   const [province, setProvince] = useState("Jakarta");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchInstallationData();
@@ -194,11 +193,10 @@ function RelocationReq() {
 
   return (
     <Container fluid className="pt-3">
-      <Navbar />
-
+      
       <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3 rounded-3">
-          <Breadcrumb.Item onClick={() => (window.location.href = "/main")}>
+          <Breadcrumb.Item onClick={() => navigate("/user")}>
             <RiHome6Fill />
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
@@ -207,11 +205,6 @@ function RelocationReq() {
         </Breadcrumb>
       </Container>
 
-      <div className="text-center my-5">
-        <h1 style={{ color: "#E9B824", fontWeight: "bold" }}>
-          Relocation Request
-        </h1>
-      </div>
 
       <Row className="py-1 w-50 mx-auto">
           <InputWithLabel
@@ -406,4 +399,4 @@ function RelocationReq() {
   );
 }
 
-export default RelocationReq;
+export default RelocationRequest;
