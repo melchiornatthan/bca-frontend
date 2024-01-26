@@ -20,7 +20,7 @@ function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
 
   const toDetails = (int_id, dismatle_id, batchid) => {
     const path = isAdmin
-      ? `/admin/dismantleDetails?id=${int_id}&dismantle_id=${dismatle_id}&batchid=${batchid}`
+      ? `/admin/dismantleHistory/dismantleDetails?id=${int_id}&dismantle_id=${dismatle_id}&batchid=${batchid}`
       : `/user/dismantleHistory/dismantleDetails?id=${int_id}&batchid=${batchid}`;
     navigate(path);
   };

@@ -156,6 +156,10 @@ import AdminRelocationHistory from "./pages/admin/adminRelocationHistory";
 import AdminRelocationBatch from "./pages/admin/adminRelocationBatch";
 import AdminRelocationDetails from "./pages/admin/adminRelocationDetails";
 import AdminRelocationSearch from "./pages/admin/adminRelocationSearch";
+import AdminDismantleHistory from "./pages/admin/adminDismantleHistory";
+import AdminDismantleSearch from "./pages/admin/adminDismantleSearch";
+import AdminDismantleBatch from "./pages/admin/adminDismantleBatch";
+import AdminDismantleDetails from "./pages/admin/adminDismantleDetails";
 
 
 const router = createBrowserRouter([
@@ -279,33 +283,21 @@ const router = createBrowserRouter([
       },
       {
         path: "dismantleHistory",
-        element: <DismantleHistory />,
+        element: <AdminDismantleHistory />,
         children: [
           {
             index: true,
-            element: <DismantleSearch />,
+            element: <AdminDismantleSearch />,
           },
           {
             path: "dismantleBatch",
-            element: <DismantleBatch />,
+            element: <AdminDismantleBatch />,
           },
           {
             path: "dismantleDetails",
-            element: <DismantleDetails />,
+            element: <AdminDismantleDetails />,
           },
         ],
-      },
-      {
-        path: "installationRequest",
-        element: <InstallationRequest />,
-      },
-      {
-        path: "relocationRequest",
-        element: <RelocationRequest />,
-      },
-      {
-        path: "dismantleRequest",
-        element: <DismantleRequest />,
       },
     ],
   },

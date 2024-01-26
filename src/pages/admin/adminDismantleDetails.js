@@ -4,7 +4,7 @@ import { Container, Breadcrumb } from "react-bootstrap";
 import axios from "../../axiosConfig";
 import DismantleDetailsService from "../components/dismantleDetailsService";
 import { RiHome6Fill } from "react-icons/ri";
-import Navbar from "../components/navbar";
+import { useNavigate } from "react-router-dom";
 
 function AdminDismantleDetails() {
   const [data, setData] = useState({});
@@ -13,6 +13,7 @@ function AdminDismantleDetails() {
   const int_id = parseInt(searchParams.get("id"), 10);
   const dismantle_id = parseInt(searchParams.get("dismantle_id"), 10);
   const batchid = parseInt(searchParams.get("batchid"), 10);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getRelocationData();
@@ -48,16 +49,15 @@ function AdminDismantleDetails() {
 
   return (
     <Container fluid className="pt-3">
-      <Navbar />
       <Container className="my-3">
       <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => window.location.href = "/admin/main"} />
+            <RiHome6Fill onClick={() =>navigate("/admin")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => window.location.href = "/admin/dismantleHistory"}
+              onClick={() => navigate("/admin/dismantleHistory")}
             >
               History
             </a>
@@ -65,7 +65,7 @@ function AdminDismantleDetails() {
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => window.location.href = `/admin/dismantleBatch?batchid=${data.batchid}`}
+              onClick={() => navigate(`/admin/dismantleHistory/dismantleBatch?batchid=${data.batchid}`)}
             >
               Batch
             </a>
@@ -74,19 +74,6 @@ function AdminDismantleDetails() {
             Details
           </Breadcrumb.Item>
         </Breadcrumb>
-      </Container>
-
-      <Container className="text-center mt-5" style={{ fontFamily: "inter" }}>
-        <h1
-          style={{
-            fontFamily: "inter",
-            color: "#D83F31",
-            fontWeight: "bold",
-            fontSize: "6vh",
-          }}
-        >
-          Dismantle Requests
-        </h1>
       </Container>
 
       <DismantleDetailsService

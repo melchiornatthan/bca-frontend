@@ -4,10 +4,11 @@ import { Offcanvas } from "react-bootstrap";
 import { HiChip, HiOutlineXCircle } from "react-icons/hi";
 import { BsLayoutSidebarInset } from "react-icons/bs";
 import { MdOutlineTimelapse } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const SidebarAdmin = () => {
   const [showMain, setShowMain] = useState(false);
-
+  const navigate = useNavigate(); 
   const handleCloseMain = () => setShowMain(false);
   const handleShowMain = () => setShowMain(true);
 
@@ -41,7 +42,7 @@ const SidebarAdmin = () => {
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-success"
               onClick={() =>
-                (window.location.href = "/admin/installationBatch")
+                navigate("installationHistory")
               }
             >
               <div className="my-1">
@@ -54,7 +55,7 @@ const SidebarAdmin = () => {
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-warning"
               onClick={() =>
-                (window.location.href = "/admin/relocationHistory")
+                navigate("relocationHistory")
               }
             >
               <div className="my-1">
@@ -66,7 +67,7 @@ const SidebarAdmin = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-danger"
-              onClick={() => (window.location.href = "/admin/dismantleHistory")}
+              onClick={() => navigate("dismantleHistory")}
             >
               <div className="my-1">
                 <MdOutlineTimelapse />
@@ -83,7 +84,7 @@ const SidebarAdmin = () => {
             localStorage.removeItem("token");
             localStorage.removeItem("isAdmin");
             localStorage.removeItem("username");
-            window.location.href = "/login";
+            navigate("/")
           }}
         >
           <div className="my-1 ">

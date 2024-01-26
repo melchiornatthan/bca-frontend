@@ -19,7 +19,7 @@ function DismantleServiceTable({ batchdata, isAdmin = false }) {
   }
 
   const toDetails = (batchid) => {
-    const path = isAdmin ? "/admin/dismantleBatch" : navigate(`dismantleBatch?batchid=${batchid}`);
+       navigate(`dismantleBatch?batchid=${batchid}`);
   };
 
   return (
