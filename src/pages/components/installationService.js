@@ -3,11 +3,12 @@ import axios from "axios";
 import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import "typeface-inter";
+import { useNavigate } from "react-router-dom";
 function InstallationService({ installationData, isAdminView }) {
   const token = localStorage.getItem("token");
   const [data, setData] = React.useState(installationData);
   const [hasPending, setHasPending] = React.useState(false);
-  
+  const navigate = useNavigate();
 
   useEffect(() => {
     setData(installationData);
@@ -27,7 +28,7 @@ function InstallationService({ installationData, isAdminView }) {
     // Handle navigation logic here based on isAdminView prop
     if (isAdminView) {
       // Redirect to admin override page
-      window.location.href = "/admin/installationOverride?id=" + id + "";
+      navigate("/admin/installationHistory/installationOverride?id=" + id + "");
     } else {
       // Redirect to user details page
       // Add logic for user details navigation here

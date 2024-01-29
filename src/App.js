@@ -160,6 +160,7 @@ import AdminDismantleHistory from "./pages/admin/adminDismantleHistory";
 import AdminDismantleSearch from "./pages/admin/adminDismantleSearch";
 import AdminDismantleBatch from "./pages/admin/adminDismantleBatch";
 import AdminDismantleDetails from "./pages/admin/adminDismantleDetails";
+import AdminInstallationOverride from "./pages/admin/adminInstallationOverride";
 
 
 const router = createBrowserRouter([
@@ -260,6 +261,10 @@ const router = createBrowserRouter([
             path: "installationDetails",
             element: <AdminBatchDetails />,
           },
+          {
+            path: "installationOverride",
+            element: <AdminInstallationOverride />,
+          }
           
         ],
       },

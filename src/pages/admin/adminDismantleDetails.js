@@ -40,7 +40,7 @@ function AdminDismantleDetails() {
       };
       try {
         const response = await axios.put(`update-dismantle/`, body);
-        window.location.href = `/admin/dismantleBatch?batchid=${batchid}`;
+       navigate(`/admin/dismantleHistory/dismantleBatch?batchid=${batchid}`);
       } catch (error) {
         console.error("Error updating installation data:", error);
       }

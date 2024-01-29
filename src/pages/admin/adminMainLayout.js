@@ -1,18 +1,26 @@
+// MainLayout.js
+
 import React from "react";
 import "typeface-inter";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Navbar from "../components/navbar";
 import { Outlet } from 'react-router-dom';
+import Sidebar from "../components/sidebar";
 
 function AdminMainLayout() {
 
   return (
-    <Container fluid className="pt-3" style={{ backgroundColor: "#FFFFFF" }}>
-      <Navbar />
-      <Container fluid className="my-3">
-        <Outlet />
-      </Container>
-    </Container>
+    <div>
+      <Row>
+        <Col md={2} className=" d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block">
+          <Sidebar />
+        </Col>
+        <Col>
+          <Navbar />
+          <Outlet />
+        </Col>
+      </Row>
+    </div>
   );
 }
 

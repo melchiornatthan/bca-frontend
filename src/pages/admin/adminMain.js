@@ -9,11 +9,13 @@ import { FaTruckMoving } from "react-icons/fa";
 import { IoMdRemoveCircle } from "react-icons/io";
 import Navbar from "../components/navbar";
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 function AdminMain() {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const [providerCount, setProviderCount] = useState([]);
   const [reqCount, setReqCount] = useState([]);
   const [date, setDate] = useState(new Date());
+  const navigate = useNavigate();
   const data = [
     { name: "Primacom", value: parseInt(providerCount.primacom) },
     { name: "Tangara", value: parseInt(providerCount.tangara) },
@@ -141,7 +143,7 @@ function AdminMain() {
     
               <Row>
                 <Col sm style={{ marginBottom: "1vh", marginRight: "1vh" }}>
-                  <Card style={{ borderColor: "#F2FFE9", backgroundColor: "#F2FFE9", borderRadius: "1vh", boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)" }} onClick={() => { window.location.href = "/admin/installationBatch" }}>
+                  <Card style={{ borderColor: "#F2FFE9", backgroundColor: "#F2FFE9", borderRadius: "1vh", boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)" }} onClick={() => { navigate("/admin/installationHistory") }}>
                     <Card.Body>
                       <div className="row">
                         <div className="col w-25">
@@ -163,7 +165,7 @@ function AdminMain() {
                 </Col>
     
                 <Col sm style={{ marginBottom: "1vh" }}>
-                  <Card style={{ borderColor: "#FFFFEC", backgroundColor: "#FFFFEC", marginRight: "1vh", borderRadius: "1vh", boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)" }} onClick={() => { window.location.href = "/admin/relocationHistory" }}>
+                  <Card style={{ borderColor: "#FFFFEC", backgroundColor: "#FFFFEC", marginRight: "1vh", borderRadius: "1vh", boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)" }} onClick={() => { navigate("/admin/relocationHistory") }}>
                     <Card.Body>
                       <div className="row">
                         <div className="col w-25">
@@ -185,7 +187,7 @@ function AdminMain() {
                 </Col>
     
                 <Col sm style={{ marginBottom: "1vh" }}>
-                  <Card style={{ borderColor: "#FCF5ED", backgroundColor: "#FCF5ED", borderRadius: "1vh", boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)" }} onClick={() => { window.location.href = "/admin/dismantleHistory" }}>
+                  <Card style={{ borderColor: "#FCF5ED", backgroundColor: "#FCF5ED", borderRadius: "1vh", boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)" }} onClick={() => { navigate("/admin/dismantleHistory") }}>
                     <Card.Body>
                       <div className="row">
                         <div className="col w-25">

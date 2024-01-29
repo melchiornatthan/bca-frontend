@@ -4,16 +4,17 @@ import { Container, Breadcrumb, Row, Col, Button } from "react-bootstrap";
 import axios from "../../axiosConfig";
 import SelectProviders from "../components/providers";
 import InputWithLabel from "../components/input";
-import Navbar from "../components/navbar";
+import { useNavigate } from "react-router-dom";
 import { RiHome6Fill } from "react-icons/ri";
 
-function InstallationOverride() {
+function AdminInstallationOverride() {
   const location = useLocation();
   const [data, setData] = useState([]);
   const [provData, setProvData] = useState([]);
   const [provider, setProvider] = useState(1);
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
+  const navigate = useNavigate();
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
@@ -66,7 +67,7 @@ function InstallationOverride() {
       })
       .then((response) => {
         console.log(response);
-        window.location.href = `/admin/installationDetails?batchid=${data.batchid}`;
+        navigate(`/admin/installationHistory/installationDetails?batchid=${data.batchid}`);
       })
       .catch((error) => {
         console.error("Error fetching location data:", error);
@@ -74,17 +75,16 @@ function InstallationOverride() {
   };
 
   return (
-    <Container fluid className="pt-3">
-      <Navbar />
+    <Container fluid>
       <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => window.location.href = "/admin/main"} />
+            <RiHome6Fill onClick={() => navigate("/admin")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => window.location.href = "/admin/installationBatch"} 
+              onClick={() => navigate("/admin/installationHistory")} 
             >
               History
             </a>
@@ -92,7 +92,7 @@ function InstallationOverride() {
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => window.location.href = `/admin/installationDetails?batchid=${data.batchid}`} 
+              onClick={() => navigate(`/admin/installationHistory/installationDetails?batchid=${data.batchid}`)} 
             >
               Details
             </a>
@@ -101,9 +101,6 @@ function InstallationOverride() {
             Override
           </Breadcrumb.Item>
         </Breadcrumb>
-      </Container>
-      <Container className="text-center mt-5" style={{ fontFamily: "inter" }}>
-        <h1>Installation Override</h1>
       </Container>
       <Container className="py-5 mx-auto">
         <Row>
@@ -165,4 +162,4 @@ function InstallationOverride() {
   );
 }
 
-export default InstallationOverride;
+export default AdminInstallationOverride;

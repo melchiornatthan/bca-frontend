@@ -62,7 +62,7 @@ function Dashboard() {
                 fontFamily: "inter",
                 fontSize: "8vh",
                 fontWeight: "bold",
-                marginTop: "7vh",
+                marginTop: "10vh",
                 marginBottom: "1vh",
               }}
             >
@@ -80,7 +80,7 @@ function Dashboard() {
             >
               Made with NIS-B
             </p>
-            <Row style={{ marginBottom: "5vh", marginTop: "5vh" }}>
+            <Row style={{ marginBottom: "5vh", marginTop: "8vh" }}>
               <FaConciergeBell style={{ color: "#FF9B50", fontSize: "3vh" }} />
               <strong
                 style={{
@@ -96,7 +96,7 @@ function Dashboard() {
           </Row>
 
           <Row>
-            <Col sm style={{ marginBottom: "1vh", marginRight: "1vh" }}>
+            <Col sm style={{ marginBottom: "1vh"}}>
               <Card
                 style={{
                   borderColor: "#F2FFE9",
@@ -254,7 +254,7 @@ function Dashboard() {
       <Col
         md
         style={{
-          marginTop: "1vh",
+          marginTop: "5vh",
           marginBottom: "1vh",
           backgroundColor: "#FFFFFF",
           borderRadius: "1vh",

@@ -6,11 +6,12 @@ import InputWithLabel from "../components/input";
 import CustomButton from "../components/button";
 import BCALogo from "../assets/BCA Logo Blue.png";
 import "typeface-karma";
+import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Form } from 'react-bootstrap';
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
   };
@@ -39,8 +40,8 @@ function Login() {
             ? localStorage.setItem("isAdmin", true)
             : localStorage.setItem("isAdmin", false);
           response.data.isAdmin
-            ? (window.location.href = "/admin")
-            : (window.location.href = "/user");
+            ? navigate("/admin")
+            : navigate("/user");
         } else {
           toast.error("Invalid username or password");
         }

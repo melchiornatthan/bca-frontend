@@ -62,7 +62,7 @@ function AdminDashboard() {
                 fontFamily: "inter",
                 fontSize: "8vh",
                 fontWeight: "bold",
-                marginTop: "7vh",
+                marginTop: "9vh",
                 marginBottom: "1vh",
               }}
             >
@@ -80,7 +80,7 @@ function AdminDashboard() {
             >
               Made with NIS-B
             </p>
-            <Row style={{ marginBottom: "5vh", marginTop: "5vh" }}>
+            <Row style={{ marginBottom: "5vh", marginTop: "8vh" }}>
               <FaConciergeBell style={{ color: "#FF9B50", fontSize: "3vh" }} />
               <strong
                 style={{
@@ -273,7 +273,7 @@ function AdminDashboard() {
               fontSize: "4vh",
               fontWeight: "bold",
               color: "#163172",
-              marginTop: "6vh",
+              marginTop: "8vh",
             }}
           >
             Provider Count

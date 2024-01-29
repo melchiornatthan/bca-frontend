@@ -1,13 +1,12 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Container, Breadcrumb, Button } from 'react-bootstrap';
+import { Container, Breadcrumb, Button } from "react-bootstrap";
 import axios from "../../axiosConfig";
 import InstallationService from "../components/installationService";
 import ExcelJS from "exceljs";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-
 
 function InstallationDetails() {
   const [data, setData] = useState([]);
@@ -140,32 +139,33 @@ function InstallationDetails() {
   };
 
   return (
-    <Container fluid>
-      <Container className="py-5 mx-auto text-center"><Container className="my-3">
-        <Breadcrumb className="breadcrumb-chevron p-3">
-          <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => navigate("/user")} />
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>
-            <a
-              className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => navigate("/user/installationHistory")}
-            >
-              History
-            </a>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active aria-current="page">
-            Details
-          </Breadcrumb.Item>
-        </Breadcrumb>
-      </Container>
+    <Container>
+      
+        <Container className="my-3">
+          <Breadcrumb className="breadcrumb-chevron p-3">
+            <Breadcrumb.Item>
+              <RiHome6Fill onClick={() => navigate("/user")} />
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+              <a
+                className="link-body-emphasis fw-semibold text-decoration-none"
+                onClick={() => navigate("/user/installationHistory")}
+              >
+                History
+              </a>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item active aria-current="page">
+              Details
+            </Breadcrumb.Item>
+          </Breadcrumb>
+        </Container>
         <InstallationService installationData={data} />
         {!hasPending && (
           <Button variant="primary" onClick={() => exportToJson()}>
             Export to Excel
           </Button>
         )}
-      </Container>
+      
     </Container>
   );
 }

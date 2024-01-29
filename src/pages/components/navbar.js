@@ -1,16 +1,16 @@
 import bcaLogo from "../assets/white-bca.svg";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { Dropdown } from "react-bootstrap";
-import UserSidebar from "./sidebarUser";
-import SidebarAdmin from "./sidebarAdmin";
+
 import { useNavigate } from "react-router-dom";
+import SidebarOffcanvas from "./sidebarOffcanvas";
 const Navbar = () => {
   const isAdmin = localStorage.getItem("isAdmin") === "true";
   const username = localStorage.getItem("username");
   const navigate = useNavigate();
   return (
     <nav
-      className="navbar mt-2 px-4"
+      className="navbar mt-4 px-4"
       style={{
         backgroundColor: "#FFFFFF",
         display: "flex",
@@ -18,7 +18,9 @@ const Navbar = () => {
         alignItems: "center",
       }}
     >
-      {isAdmin ? <SidebarAdmin /> : <UserSidebar />}
+      <div className=" d-block d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none">
+        <SidebarOffcanvas />
+      </div>
       <img
         className="px-3"
         src={bcaLogo}

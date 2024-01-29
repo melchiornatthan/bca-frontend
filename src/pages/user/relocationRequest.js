@@ -133,7 +133,7 @@ function RelocationRequest() {
       setBatchData([]); // Clear the batch data
       setSubmittedRequests([]); // Clear the previous requests
       setBatchId(generateBatchId());
-      window.location.href = "/main";
+      navigate("/user");
     } catch (error) {
       console.error("Error submitting batch data:", error);
       toast.error("Error submitting batch data");

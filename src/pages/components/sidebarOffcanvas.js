@@ -9,10 +9,11 @@ import { MdAddBox } from "react-icons/md";
 import { TbArrowsMove } from "react-icons/tb";
 import { MdOutlineDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-const UserSidebar = () => {
+const SidebarOffcanvas = () => {
   const [showMain, setShowMain] = useState(false);
   const [showSecondary, setShowSecondary] = useState(false);
   const [showTertiary, setShowTertiary] = useState(false);
+  const isAdmin = localStorage.getItem("isAdmin");
   const navigate = useNavigate();
   const handleCloseMain = () => setShowMain(false);
   const handleShowMain = () => setShowMain(true);
@@ -47,6 +48,7 @@ const UserSidebar = () => {
 
         <Offcanvas.Body>
           <div className="row">
+            {isAdmin === "false" && (
             <button
               type="button"
               style={{ borderColor: "#FFFFFF" }}
@@ -58,6 +60,7 @@ const UserSidebar = () => {
               </div>
               <strong> Request Service</strong>
             </button>
+            )}
             <button
               type="button"
               style={{ borderColor: "#FFFFFF" }}
@@ -198,4 +201,4 @@ const UserSidebar = () => {
   );
 };
 
-export default UserSidebar;
+export default SidebarOffcanvas;
