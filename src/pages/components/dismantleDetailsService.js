@@ -12,41 +12,47 @@ function DismantleDetailsService({ batchdata, isAdmin, updateRequestStatus }) {
       <div className="row w-75 mx-auto mt-5">
         <div className="col-md">
           <div className="form-group">
-            <InputWithLabel isDisabled={true}
+            <InputWithLabel
+              isDisabled={true}
               label="Location"
               value={data.location}
               name="location"
             />
-             <div className="py-1">
-            <InputWithLabel isDisabled={true}
-              label="Address"
-              value={data.address}
-              name="address"
-            />
-          </div>
+            <div className="py-1">
+              <InputWithLabel
+                isDisabled={true}
+                label="Address"
+                value={data.address}
+                name="address"
+              />
+            </div>
 
-            <InputWithLabel isDisabled={true}
+            <InputWithLabel
+              isDisabled={true}
               label="Area"
               value={data.area}
               name="area"
             />
-         </div>
+          </div>
         </div>
         <div className="col-md">
           <div className="form-group">
-            <InputWithLabel isDisabled={true}
+            <InputWithLabel
+              isDisabled={true}
               label="Branch PIC"
               value={data.branch_pic}
               name="pic"
             />
             <div className="py-1">
-              <InputWithLabel isDisabled={true}
+              <InputWithLabel
+                isDisabled={true}
                 label="Communication"
                 value={data.communication}
                 name="communication"
               />
             </div>
-            <InputWithLabel isDisabled={true}
+            <InputWithLabel
+              isDisabled={true}
               label="Provider"
               value={data.provider}
               name="Provider"

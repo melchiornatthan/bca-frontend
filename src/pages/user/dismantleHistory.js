@@ -10,7 +10,7 @@ function DismantleHistory() {
         className="text-center mt-5"
         style={{
           fontFamily: "inter",
-          color: "#D83F31",
+          color: "#9A031E",
           fontWeight: "bold",
           fontSize: "6vh",
         }}

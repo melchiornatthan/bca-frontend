@@ -56,11 +56,10 @@ function Login() {
     
     
     <Container fluid style={{ height: "100vh", width: "100%" }}>
-      <Row style={{ backgroundColor: "#F6F6F6", height: "100%" }}>
-        <Col md>
-          <Container style={{ marginTop: "33vh", marginBottom: "33vh" }}>
+      <Row style={{ backgroundColor: "#FFFFFF", height: "100%" }}>
+        <Col md className=" d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block">
+          <Container style={{ marginTop: "38vh", marginBottom: "33vh" }}>
             <Row className="text-center">
-              <img className="mx-auto" src={BCALogo} alt="BCA Logo" style={{ height: "106px", width: "155px" }} />
               <h1 style={{ fontFamily: "Kalam", color: "#1E56A0", fontWeight: "bold", fontSize: "12vh" }}>
                 Memo Hub
               </h1>
@@ -70,7 +69,7 @@ function Login() {
             </Row>
           </Container>
         </Col>
-        <Col md style={{ background: 'linear-gradient(to top, #0B2447, #1E56A0)' }}>
+        <Col md style={{ background: 'linear-gradient(to top, #001F3F, #083358)' }}>
           <Container className="w-75">
             <Form onSubmit={handleSubmit} className="mx-auto p-5 w-75" style={{ marginTop: "30vh", marginBottom: "30vh", backgroundColor: "#FFFFFF", borderRadius: "3vh" }}>
               <Row>

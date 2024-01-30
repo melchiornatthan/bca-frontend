@@ -58,20 +58,20 @@ function Dashboard() {
           <Row className="text-center">
             <strong
               style={{
-                color: "#1E56A0",
+                color: "#0F4C75",
                 fontFamily: "inter",
                 fontSize: "8vh",
                 fontWeight: "bold",
-                marginTop: "10vh",
+                marginTop: "9vh",
                 marginBottom: "1vh",
               }}
             >
               Welcome to
-              <div style={{ color: "#86B6F6" }}>Memo Hub</div>
+              <div style={{ color: "#3282B8" }}>Memo Hub</div>
             </strong>
             <p
               style={{
-                color: "#FFB000",
+                color: "#FF9B50",
                 fontFamily: "inter",
                 fontSize: "2vh",
                 fontWeight: "bold",
@@ -100,7 +100,7 @@ function Dashboard() {
               <Card
                 style={{
                   borderColor: "#F2FFE9",
-                  backgroundColor: "#F2FFE9",
+                  backgroundColor: "#DCFFB7",
                   borderRadius: "1vh",
                   boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
                 }}
@@ -151,7 +151,7 @@ function Dashboard() {
               <Card
                 style={{
                   borderColor: "#FFFFEC",
-                  backgroundColor: "#FFFFEC",
+                  backgroundColor: "#FBFFB1",
                   marginRight: "1vh",
                   borderRadius: "1vh",
                   boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
@@ -204,7 +204,7 @@ function Dashboard() {
               <Card
                 style={{
                   borderColor: "#FCF5ED",
-                  backgroundColor: "#FCF5ED",
+                  backgroundColor: "#FFDBC5",
                   borderRadius: "1vh",
                   boxShadow: "0 0 1vh rgba(0, 0, 0, 0.05)",
                 }}
@@ -272,8 +272,8 @@ function Dashboard() {
               fontFamily: "inter",
               fontSize: "4vh",
               fontWeight: "bold",
-              color: "#163172",
-              marginTop: "6vh",
+              color: "#0F4C75",
+              marginTop: "8vh",
             }}
           >
             Provider Count
@@ -284,7 +284,7 @@ function Dashboard() {
               fontFamily: "inter",
               fontWeight: "bold",
               fontSize: "2vh",
-              color: "#163172",
+              color: "#0F4C75",
             }}
           >
             Data Update: {date.toDateString()} {date.toLocaleTimeString()}
@@ -302,7 +302,7 @@ function Dashboard() {
                   style={{
                     fontFamily: "inter",
                     fontSize: "3vh",
-                    color: "#1E56A0",
+                    color: "#0F4C75",
                   }}
                 >
                   <strong>Primacom</strong>
@@ -320,7 +320,7 @@ function Dashboard() {
                   style={{
                     fontFamily: "inter",
                     fontSize: "3vh",
-                    color: "#1E56A0",
+                    color: "#0F4C75",
                   }}
                 >
                   <strong>Tangara</strong>
@@ -340,7 +340,7 @@ function Dashboard() {
                   style={{
                     fontFamily: "inter",
                     fontSize: "3vh",
-                    color: "#1E56A0",
+                    color: "#0F4C75",
                   }}
                 >
                   <strong>iForte</strong>
@@ -358,7 +358,7 @@ function Dashboard() {
                   style={{
                     fontFamily: "inter",
                     fontSize: "3vh",
-                    color: "#1E56A0",
+                    color: "#0F4C75",
                   }}
                 >
                   <strong>Indonet</strong>

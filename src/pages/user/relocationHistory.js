@@ -11,7 +11,7 @@ function RelocationHistory() {
             className="text-center mt-5"
           style={{
             fontFamily: "inter",
-            color: "#E9B824",
+            color: "#E25E3E",
             fontWeight: "bold",
             fontSize: "6vh",
           }}

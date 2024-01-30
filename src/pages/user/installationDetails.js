@@ -140,7 +140,6 @@ function InstallationDetails() {
 
   return (
     <Container>
-      
         <Container className="my-3">
           <Breadcrumb className="breadcrumb-chevron p-3">
             <Breadcrumb.Item>
@@ -160,10 +159,14 @@ function InstallationDetails() {
           </Breadcrumb>
         </Container>
         <InstallationService installationData={data} />
+        
         {!hasPending && (
+        <div>
           <Button variant="primary" onClick={() => exportToJson()}>
             Export to Excel
           </Button>
+        </div>
+          
         )}
       
     </Container>

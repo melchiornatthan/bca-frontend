@@ -11,7 +11,7 @@ function AdminInstallationHistory() {
             className="text-center mt-5"
           style={{
             fontFamily: "inter",
-            color: "#219C90",
+            color: "#1E5128",
             fontWeight: "bold",
             fontSize: "6vh",
           }}

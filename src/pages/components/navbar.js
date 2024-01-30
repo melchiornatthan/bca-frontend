@@ -1,7 +1,7 @@
 import bcaLogo from "../assets/white-bca.svg";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { Dropdown } from "react-bootstrap";
-
+import { BiSolidHome } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import SidebarOffcanvas from "./sidebarOffcanvas";
 const Navbar = () => {
@@ -10,7 +10,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <nav
-      className="navbar mt-4 px-4"
+      className="navbar mt-3 px-3 sticky-top"
       style={{
         backgroundColor: "#FFFFFF",
         display: "flex",
@@ -21,16 +21,12 @@ const Navbar = () => {
       <div className=" d-block d-sm-block d-md-none d-lg-none d-xl-none d-xxl-none">
         <SidebarOffcanvas />
       </div>
-      <img
-        className="px-3"
-        src={bcaLogo}
-        style={{ height: "5vh" }}
-        onClick={() =>
+      
+      <BiSolidHome  style={{ fontSize: "2vh", color:'#0F4C75' }} onClick={() =>
           isAdmin
             ? navigate("/admin")
             : navigate("/user")
-        }
-      />
+        }/>
       <Dropdown>
         <Dropdown.Toggle
           style={{ backgroundColor: "#FFFFFF", borderRadius:"5vh", borderColor: "#FFFFFF", boxShadow: "0 0 1vh rgba(0, 0, 0, 0.1)"}}
