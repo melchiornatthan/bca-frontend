@@ -8,7 +8,14 @@ import VsatSelect from "../components/communication";
 import { RiHome6Fill } from "react-icons/ri";
 import SelectLocation from "../components/locations";
 import { MdDeleteForever } from "react-icons/md";
-import { Container, Breadcrumb, Row, Col, Table, Button } from 'react-bootstrap';
+import {
+  Container,
+  Breadcrumb,
+  Row,
+  Col,
+  Table,
+  Button,
+} from "react-bootstrap";
 import "typeface-karma";
 import { useNavigate } from "react-router-dom";
 function InstallationRequest() {
@@ -119,8 +126,6 @@ function InstallationRequest() {
     }
   };
 
-  
-
   const handleDeleteRow = (index) => {
     // Remove the row from submittedRequests
     const updatedSubmittedRequests = [...submittedRequests];
@@ -139,23 +144,23 @@ function InstallationRequest() {
       if (batchData.length === 0) {
         return; // No data to submit
       }
-  
+
       setBatchId(generateBatchId());
       const date = new Date();
-  
+
       for (const data of batchData) {
         data.batchid = batchId;
         data.createdAt = date;
-  
+
         try {
           const response = await axios.post("installation-request", data);
-  
+
           if (response.data.message === "No provider available") {
             throw new Error(
               `Threshold limit reached for ${data.area}, please contact the Administrator.`
             );
           }
-  
+
           // Additional processing for successful response, if needed
         } catch (innerError) {
           console.error("Error submitting installation request:", innerError);
@@ -163,7 +168,7 @@ function InstallationRequest() {
           // Handle specific error scenarios if necessary
         }
       }
-  
+
       toast.success("Installation requests submitted successfully.");
       setBatchData([]); // Clear the batch data
       setSubmittedRequests([]); // Clear the previous requests
@@ -173,13 +178,10 @@ function InstallationRequest() {
       toast.error("Error processing batch data");
     }
   };
-  
 
   return (
-    
-    
     <Container fluid className="pt-3">
-    <Container className="my-3">
+      <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3 rounded-3">
           <Breadcrumb.Item onClick={() => navigate("/user")}>
             <RiHome6Fill />
@@ -189,8 +191,9 @@ function InstallationRequest() {
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
-    
-      <div style={{ borderRadius: "5px", width: "90%", padding: "3vh" }}
+
+      <div
+        style={{ borderRadius: "5px", width: "90%", padding: "3vh" }}
         className="mx-auto"
       >
         <Row className="mx-auto">
@@ -253,12 +256,20 @@ function InstallationRequest() {
           </Col>
         </Row>
       </div>
-    
+
       {submittedRequests.length > 0 && (
-        <div className="mx-auto mt-3" style={{ borderRadius: "5px", padding: "2vh", width: "90%" }}>
+        <div
+          className="mx-auto mt-3"
+          style={{ borderRadius: "5px", padding: "2vh", width: "90%" }}
+        >
           <Row className="mx-auto">
             <Col md>
-              <Table striped bordered hover className="table table-hover mx-auto">
+              <Table
+                striped
+                bordered
+                hover
+                className="table table-hover mx-auto"
+              >
                 <thead>
                   <tr>
                     <th>Location</th>
@@ -270,33 +281,43 @@ function InstallationRequest() {
                   </tr>
                 </thead>
                 <tbody>
-                  {submittedRequests.slice().reverse().map((request, index) => (
-                    <tr key={index}>
-                      <td>{request.location}</td>
-                      <td>{request.address}</td>
-                      <td>{request.area}</td>
-                      <td>{request.branch_pic}</td>
-                      <td>{request.communication}</td>
-                      <td>
-                        <Button variant="danger" size="md" onClick={() => handleDeleteRow(index)}>
-                          <MdDeleteForever style={{ fontSize: "2vh" }} />
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
+                  {submittedRequests
+                    .slice()
+                    .reverse()
+                    .map((request, index) => (
+                      <tr key={index}>
+                        <td>{request.location}</td>
+                        <td>{request.address}</td>
+                        <td>{request.area}</td>
+                        <td>{request.branch_pic}</td>
+                        <td>{request.communication}</td>
+                        <td>
+                          <Button
+                            variant="danger"
+                            size="md"
+                            onClick={() => handleDeleteRow(index)}
+                          >
+                            <MdDeleteForever style={{ fontSize: "2vh" }} />
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </Table>
               <div className="text-center mx-auto">
-                <CustomButton text="Submit Batch" color="primary" onClick={() => submitBatchData()} />
+                <CustomButton
+                  text="Submit Batch"
+                  color="primary"
+                  onClick={() => submitBatchData()}
+                />
               </div>
             </Col>
           </Row>
         </div>
       )}
-    
+
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </Container>
-    
   );
 }
 

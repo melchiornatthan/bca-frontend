@@ -96,7 +96,7 @@ function Dashboard() {
           </Row>
 
           <Row>
-            <Col sm style={{ marginBottom: "1vh"}}>
+            <Col sm style={{ marginBottom: "1vh" }}>
               <Card
                 style={{
                   borderColor: "#F2FFE9",

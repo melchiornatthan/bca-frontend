@@ -1,6 +1,6 @@
 import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
-import { Container, Breadcrumb} from "react-bootstrap";
+import { Container, Breadcrumb } from "react-bootstrap";
 import { RiHome6Fill } from "react-icons/ri";
 import BatchTable from "../components/installationBatchService";
 import InputWithLabel from "../components/input";
@@ -50,7 +50,7 @@ function InstallationSearch() {
       <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() => navigate("/user") }/>
+            <RiHome6Fill onClick={() => navigate("/user")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             History
@@ -66,7 +66,7 @@ function InstallationSearch() {
         />
       </Container>
       <Container className="my-5">
-        <BatchTable batchdata={installationData}  />
+        <BatchTable batchdata={installationData} />
       </Container>
     </Container>
   );

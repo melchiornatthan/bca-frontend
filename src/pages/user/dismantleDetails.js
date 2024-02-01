@@ -57,7 +57,7 @@ function DismantleDetails() {
           Details
         </Breadcrumb.Item>
       </Breadcrumb>
-      <DismantleDetailsService batchdata={data}  />
+      <DismantleDetailsService batchdata={data} />
     </Container>
   );
 }

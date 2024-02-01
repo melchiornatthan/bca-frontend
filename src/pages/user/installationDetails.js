@@ -140,35 +140,33 @@ function InstallationDetails() {
 
   return (
     <Container>
-        <Container className="my-3">
-          <Breadcrumb className="breadcrumb-chevron p-3">
-            <Breadcrumb.Item>
-              <RiHome6Fill onClick={() => navigate("/user")} />
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>
-              <a
-                className="link-body-emphasis fw-semibold text-decoration-none"
-                onClick={() => navigate("/user/installationHistory")}
-              >
-                History
-              </a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active aria-current="page">
-              Details
-            </Breadcrumb.Item>
-          </Breadcrumb>
-        </Container>
-        <InstallationService installationData={data} />
-        
-        {!hasPending && (
+      <Container className="my-3">
+        <Breadcrumb className="breadcrumb-chevron p-3">
+          <Breadcrumb.Item>
+            <RiHome6Fill onClick={() => navigate("/user")} />
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <a
+              className="link-body-emphasis fw-semibold text-decoration-none"
+              onClick={() => navigate("/user/installationHistory")}
+            >
+              History
+            </a>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item active aria-current="page">
+            Details
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </Container>
+      <InstallationService installationData={data} />
+
+      {!hasPending && (
         <div>
           <Button variant="primary" onClick={() => exportToJson()}>
             Export to Excel
           </Button>
         </div>
-          
-        )}
-      
+      )}
     </Container>
   );
 }

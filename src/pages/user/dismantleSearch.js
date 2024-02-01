@@ -2,7 +2,7 @@ import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import { Container, Breadcrumb, Form } from "react-bootstrap";
 import "typeface-inter";
-import DismantleServiceTable from "../components/DismantleService";
+import DismantleServiceTable from "../components/dismantleService";
 import InputWithLabel from "../components/input";
 import { useNavigate } from "react-router-dom";
 import { RiHome6Fill } from "react-icons/ri";

@@ -7,7 +7,7 @@ import CustomButton from "../components/button";
 import BCALogo from "../assets/BCA Logo Blue.png";
 import "typeface-karma";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import { Container, Row, Col, Form } from "react-bootstrap";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -39,9 +39,7 @@ function Login() {
           response.data.isAdmin
             ? localStorage.setItem("isAdmin", true)
             : localStorage.setItem("isAdmin", false);
-          response.data.isAdmin
-            ? navigate("/admin")
-            : navigate("/user");
+          response.data.isAdmin ? navigate("/admin") : navigate("/user");
         } else {
           toast.error("Invalid username or password");
         }
@@ -53,27 +51,62 @@ function Login() {
   };
 
   return (
-    
-    
     <Container fluid style={{ height: "100vh", width: "100%" }}>
       <Row style={{ backgroundColor: "#FFFFFF", height: "100%" }}>
-        <Col md className=" d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block">
+        <Col
+          md
+          className=" d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block"
+        >
           <Container style={{ marginTop: "38vh", marginBottom: "33vh" }}>
             <Row className="text-center">
-              <h1 style={{ fontFamily: "Kalam", color: "#1E56A0", fontWeight: "bold", fontSize: "12vh" }}>
+              <h1
+                style={{
+                  fontFamily: "Kalam",
+                  color: "#1E56A0",
+                  fontWeight: "bold",
+                  fontSize: "12vh",
+                }}
+              >
                 Memo Hub
               </h1>
-              <p style={{ fontFamily: "Karma", color: "#FF9843", fontWeight: "bold", fontSize: "3vh" }}>
+              <p
+                style={{
+                  fontFamily: "Karma",
+                  color: "#FF9843",
+                  fontWeight: "bold",
+                  fontSize: "3vh",
+                }}
+              >
                 Made with <strong style={{ color: "#D63484" }}>NIS-B</strong>
               </p>
             </Row>
           </Container>
         </Col>
-        <Col md style={{ background: 'linear-gradient(to top, #001F3F, #083358)' }}>
+        <Col
+          md
+          style={{ background: "linear-gradient(to top, #001F3F, #083358)" }}
+        >
           <Container className="w-75">
-            <Form onSubmit={handleSubmit} className="mx-auto p-5 w-75" style={{ marginTop: "30vh", marginBottom: "30vh", backgroundColor: "#FFFFFF", borderRadius: "3vh" }}>
+            <Form
+              onSubmit={handleSubmit}
+              className="mx-auto p-5 w-75"
+              style={{
+                marginTop: "30vh",
+                marginBottom: "30vh",
+                backgroundColor: "#FFFFFF",
+                borderRadius: "3vh",
+              }}
+            >
               <Row>
-                <h1 className="text-center" style={{ fontFamily: "Karma", color: "#1E56A0", fontWeight: "bold", fontSize: "4vh" }}>
+                <h1
+                  className="text-center"
+                  style={{
+                    fontFamily: "Karma",
+                    color: "#1E56A0",
+                    fontWeight: "bold",
+                    fontSize: "4vh",
+                  }}
+                >
                   Sign In
                 </h1>
                 <InputWithLabel
@@ -103,7 +136,6 @@ function Login() {
       </Row>
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </Container>
-    
   );
 }
 
