@@ -89,7 +89,7 @@ function AdminRelocationDetails() {
       
       <RelocationDetailService
         batchdata={data}
-        isAdmin={true}
+        
         updateRequestStatus={updateRequestStatus}
       />
     </Container>

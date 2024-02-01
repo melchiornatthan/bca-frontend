@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-function DismantleServiceTable({ batchdata, isAdmin = false }) {
+function DismantleServiceTable({ batchdata }) {
   const navigate = useNavigate();
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   const tableStyle = {
     maxHeight: "600px",
     overflowY: "auto",

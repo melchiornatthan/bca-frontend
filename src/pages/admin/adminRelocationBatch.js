@@ -51,7 +51,7 @@ function AdminRelocationBatch() {
         </Breadcrumb>
       </Container>
       <Container>
-        <RelocationByBatchIdTable batchdata={data} isAdmin={true} />
+        <RelocationByBatchIdTable batchdata={data}  />
       </Container>
     </Container>
   );

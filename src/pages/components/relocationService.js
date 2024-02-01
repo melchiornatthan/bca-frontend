@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-function RelocationBatchTable({ batchdata, isAdmin = false }) {
+function RelocationBatchTable({ batchdata }) {
   const navigate = useNavigate();
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   const tableStyle = {
     maxHeight: "600px",
     overflowY: "auto",

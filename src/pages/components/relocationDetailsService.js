@@ -3,10 +3,10 @@ import InputWithLabel from "./input";
 import "typeface-inter";
 function RelocationDetailService({
   batchdata = {},
-  isAdmin = false,
   updateRequestStatus,
 }) {
   const [data, setData] = useState({});
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   useEffect(() => {
     setData(batchdata);
   }, [batchdata]);

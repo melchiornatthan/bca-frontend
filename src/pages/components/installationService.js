@@ -4,10 +4,11 @@ import { useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import "typeface-inter";
 import { useNavigate } from "react-router-dom";
-function InstallationService({ installationData, isAdminView }) {
+function InstallationService({ installationData }) {
   const token = localStorage.getItem("token");
   const [data, setData] = React.useState(installationData);
   const [hasPending, setHasPending] = React.useState(false);
+  const isAdmin = localStorage.getItem("isAdmin") === "true"; 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,8 +26,8 @@ function InstallationService({ installationData, isAdminView }) {
   };
 
   const toDetails = (id) => {
-    // Handle navigation logic here based on isAdminView prop
-    if (isAdminView) {
+    // Handle navigation logic here based on isAdmin prop
+    if (isAdmin) {
       // Redirect to admin override page
       navigate("/admin/installationHistory/installationOverride?id=" + id + "");
     } else {
@@ -44,7 +45,7 @@ function InstallationService({ installationData, isAdminView }) {
       try {
         // Update the request status based on the context
         const response = await axios.put(
-          isAdminView
+          isAdmin
             ? `http://localhost:3333/bca-app/update-installations/${id}`
             : `http://localhost:3333/user-app/update-installations/${id}`,
           null, // Pass null as the second parameter since you are making a PUT request
@@ -80,13 +81,13 @@ function InstallationService({ installationData, isAdminView }) {
               <th style={{ fontFamily: "inter" }}>Branch PIC</th>
               <th style={{ fontFamily: "inter" }}>Area</th>
               <th style={{ fontFamily: "inter" }}>Communication</th>
-              {(isAdminView || !hasPending) && (
+              {(isAdmin || !hasPending) && (
                 <th style={{ fontFamily: "inter" }}>Provider</th>
               )}
-              {(isAdminView || !hasPending) && (
+              {(isAdmin || !hasPending) && (
                 <th style={{ fontFamily: "inter" }}>Status</th>
               )}
-              {isAdminView && (
+              {isAdmin && (
                 <th style={{ fontFamily: "inter" }}>Approve or Override</th>
               )}
             </tr>
@@ -99,13 +100,13 @@ function InstallationService({ installationData, isAdminView }) {
                 <td style={{ fontFamily: "inter" }}>{entry.branch_pic}</td>
                 <td style={{ fontFamily: "inter" }}>{entry.area}</td>
                 <td style={{ fontFamily: "inter" }}>{entry.communication}</td>
-                {(isAdminView || !hasPending) && (
+                {(isAdmin || !hasPending) && (
                   <td style={{ fontFamily: "inter" }}>{entry.provider}</td>
                 )}
-                {(isAdminView || !hasPending) && (
+                {(isAdmin || !hasPending) && (
                   <td style={{ fontFamily: "inter" }}>{entry.status}</td>
                 )}
-                {isAdminView && (
+                {isAdmin && (
                   <td>
                     <div className="row">
                       <div className="col">

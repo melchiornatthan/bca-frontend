@@ -71,7 +71,7 @@ function AdminDismantleSearch() {
       </Container>
       <Row className="mt-5">
         <Col>
-          <DismantleServiceTable batchdata={data} isAdmin={true} />
+          <DismantleServiceTable batchdata={data}  />
         </Col>
       </Row>
     </Container>

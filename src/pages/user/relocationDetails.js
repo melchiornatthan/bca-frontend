@@ -57,7 +57,7 @@ function RelocationDetails() {
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
-      <RelocationDetailService batchdata={data} isAdmin={false} className="my-5" />
+      <RelocationDetailService batchdata={data}  className="my-5" />
     </Container>
   );
 }

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; 
-function BatchTable({ batchdata, isAdmin }) {
+function BatchTable({ batchdata }) {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   useEffect(() => {
     setData(batchdata);
   }, [batchdata]);

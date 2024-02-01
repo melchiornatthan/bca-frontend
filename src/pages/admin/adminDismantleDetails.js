@@ -78,7 +78,7 @@ function AdminDismantleDetails() {
 
       <DismantleDetailsService
         batchdata={data}
-        isAdmin={true}
+        
         updateRequestStatus={updateRequestStatus}
       />
     </Container>

@@ -71,7 +71,7 @@ function AdminInstallationSearch() {
       </Container>
       <Row className="mt-5">
         <Col>
-          <BatchTable batchdata={installationData} isAdmin={true} />
+          <BatchTable batchdata={installationData} />
         </Col>
       </Row>
       </Container>

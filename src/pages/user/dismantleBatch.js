@@ -152,7 +152,7 @@ function DismantleBatch() {
         </Breadcrumb.Item>
       </Breadcrumb>
       <Container className="py-2 mx-auto text-center">
-        <DismantleByBatchIdTable batchdata={data} isAdmin={false} />
+        <DismantleByBatchIdTable batchdata={data}  />
 
         {!hasPending && (
           <Button

@@ -156,7 +156,7 @@ function RelocationBatch() {
      
       <Container>
         <Container className="py-1 mx-auto text-center">
-          <RelocationByBatchIdTable batchdata={data} isAdmin={false} />
+          <RelocationByBatchIdTable batchdata={data}  />
           {!hasPending && (
             <Button style={{ marginTop: '3vh' }} variant="primary" onClick={() => exportToJson()}>
               Export to Excel

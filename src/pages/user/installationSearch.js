@@ -66,7 +66,7 @@ function InstallationSearch() {
         />
       </Container>
       <Container className="my-5">
-        <BatchTable batchdata={installationData} isAdmin={false} />
+        <BatchTable batchdata={installationData}  />
       </Container>
     </Container>
   );

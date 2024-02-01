@@ -3,9 +3,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "react-bootstrap";
 
-function DismantleByBatchIdTable({ batchdata, isAdmin = false }) {
+function DismantleByBatchIdTable({ batchdata }) {
   const [data, setData] = useState([]);
   const [hasPending, setHasPending] = useState(false);
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   const navigate = useNavigate();
   const tableStyle = {
     maxHeight: "600px",

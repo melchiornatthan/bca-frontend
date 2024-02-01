@@ -3,10 +3,11 @@ import { useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-function RelocationByBatchIdTable({ batchdata, isAdmin = false }) {
+function RelocationByBatchIdTable({ batchdata }) {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [hasPending, setHasPending] = useState(false);
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   const tableStyle = {
     maxHeight: "600px",
     overflowY: "auto",

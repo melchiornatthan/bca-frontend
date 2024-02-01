@@ -69,7 +69,7 @@ function RelocationSearch() {
         />
       </Container>
       <Container className="my-5">
-        <RelocationBatchTable batchdata={relocationData} isAdmin={false} />
+        <RelocationBatchTable batchdata={relocationData}  />
       </Container>
     </Container>
   );

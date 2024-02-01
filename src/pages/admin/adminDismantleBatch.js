@@ -48,7 +48,7 @@ function AdminDismantleBatch() {
         </Breadcrumb>
       </Container>
 
-      <DismantleByBatchIdTable batchdata={data} isAdmin={true} />
+      <DismantleByBatchIdTable batchdata={data}  />
     </Container>
   );
 }

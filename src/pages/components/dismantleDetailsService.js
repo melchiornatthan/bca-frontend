@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import InputWithLabel from "./input";
-function DismantleDetailsService({ batchdata, isAdmin, updateRequestStatus }) {
+function DismantleDetailsService({ batchdata, updateRequestStatus }) {
   const [data, setData] = useState({});
-
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   useEffect(() => {
     setData(batchdata);
   }, [batchdata]);
