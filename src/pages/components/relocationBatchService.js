@@ -35,7 +35,7 @@ function RelocationByBatchIdTable({ batchdata }) {
       className="text-center mx-auto px-3"
     >
       <div style={tableStyle}>
-        <Table striped bordered hover>
+        <Table hover>
           <thead>
             <tr>
               <th>Old Location</th>
@@ -46,12 +46,12 @@ function RelocationByBatchIdTable({ batchdata }) {
               <th>New Communication</th>
               <th>Provider</th>
               {(isAdmin || !hasPending) && <th>Status</th>}
-              <th>Details</th>
+             
             </tr>
           </thead>
           <tbody>
             {data.map((request, index) => (
-              <tr key={index}>
+              <tr key={index}  onClick={() => toDetails(request.id)}>
                 <td>{request.old_location}</td>
                 <td>{request.new_location}</td>
                 <td>{request.new_address}</td>
@@ -73,14 +73,7 @@ function RelocationByBatchIdTable({ batchdata }) {
                     {request.status}
                   </td>
                 )}
-                <td>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => toDetails(request.id)}
-                  >
-                    Details
-                  </button>
-                </td>
+                
               </tr>
             ))}
           </tbody>

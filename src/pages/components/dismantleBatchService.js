@@ -36,19 +36,24 @@ function DismantleByBatchIdTable({ batchdata }) {
       className="text-center w-75 mx-auto px-5"
     >
       <div style={tableStyle}>
-        <Table striped bordered hover>
+        <Table hover>
           <thead>
             <tr>
               <th>Installation ID</th>
               <th>Location</th>
               <th>Provider</th>
               {(isAdmin || !hasPending) && <th>Status</th>}
-              <th>Details</th>
             </tr>
           </thead>
           <tbody>
             {data.map((request, index) => (
-              <tr key={index}>
+              <tr key={index} onClick={() =>
+                toDetails(
+                  request.installation_id,
+                  request.id,
+                  request.batchid
+                )
+              }>
                 <td>{request.installation_id}</td>
                 <td>{request.location}</td>
                 <td>{request.provider}</td>
@@ -66,20 +71,6 @@ function DismantleByBatchIdTable({ batchdata }) {
                     {request.status}
                   </td>
                 )}
-                <td>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() =>
-                      toDetails(
-                        request.installation_id,
-                        request.id,
-                        request.batchid
-                      )
-                    }
-                  >
-                    Details
-                  </button>
-                </td>
               </tr>
             ))}
           </tbody>

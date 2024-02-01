@@ -19,7 +19,7 @@ function RelocationHistory() {
           Relocation Requests
         </h1>
         
-        <Outlet />
+        <Outlet/>
     </Container>
   );
 }
