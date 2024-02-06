@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Breadcrumb, Button } from "react-bootstrap";
 import { RiHome6Fill } from "react-icons/ri";
-import DismantleByBatchIdTable from "../components/dismantleBatchService";
+import DismantleByBatchIdTable from "../components/dismantleDetailTable";
 import axios from "../../axiosConfig";
 import ExcelJS from "exceljs";
 import "typeface-inter";

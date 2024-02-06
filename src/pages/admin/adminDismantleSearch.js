@@ -4,7 +4,7 @@ import "typeface-inter";
 import { Container, Breadcrumb, Row, Col } from "react-bootstrap";
 import { RiHome6Fill } from "react-icons/ri";
 import Navbar from "../components/navbar";
-import DismantleServiceTable from "../components/dismantleService";
+import DismantleServiceTable from "../components/dismantleBatchTable";
 import InputWithLabel from "../components/input";
 import { useNavigate } from "react-router-dom";
 

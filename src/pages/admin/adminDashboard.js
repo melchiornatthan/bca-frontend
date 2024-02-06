@@ -3,12 +3,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "typeface-inter";
 import axios from "../../axiosConfig";
 import ResponsiveDoughnutChart from "../components/doughnutChart";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FaConciergeBell } from "react-icons/fa";
 import { MdBuildCircle } from "react-icons/md";
 import { FaTruckMoving } from "react-icons/fa";
 import { IoMdRemoveCircle } from "react-icons/io";
+import logo from "../assets/logo-nisb.png";
 
 function AdminDashboard() {
   ChartJS.register(ArcElement, Tooltip, Legend);
@@ -55,7 +56,7 @@ function AdminDashboard() {
     <Row className="mx-auto centered-row">
       <Col md className="mx-3">
         <Row>
-          <Row className="text-center">
+          <Row className="text-center justify-content-center">
             <strong
               style={{
                 color: "#083358",
@@ -78,8 +79,9 @@ function AdminDashboard() {
                 marginBottom: "9vh",
               }}
             >
-              Made with NIS-B
+              Made with  <Image src={logo} style={{width:'76px', height:'25px'}}/>
             </p>
+            
             <Row style={{ marginBottom: "5vh", marginTop: "8vh" }}>
               <FaConciergeBell style={{ color: "#FF9B50", fontSize: "3vh" }} />
               <strong

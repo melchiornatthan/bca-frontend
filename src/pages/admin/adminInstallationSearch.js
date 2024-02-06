@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import { Container, Breadcrumb, Row, Col } from "react-bootstrap";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
-import Navbar from "../components/navbar";
-import BatchTable from "../components/installationBatchService";
+import BatchTable from "../components/installationBatchTable";
 import InputWithLabel from "../components/input";
 import { useNavigate } from "react-router-dom";
 

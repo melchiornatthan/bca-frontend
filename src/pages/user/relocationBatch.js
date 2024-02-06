@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Breadcrumb, Button } from 'react-bootstrap';
 import axios from "../../axiosConfig";
-import RelocationByBatchIdTable from "../components/relocationBatchService";
+import RelocationByBatchIdTable from "../components/relocationDetailTable";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
 import ExcelJS from "exceljs";
@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 function RelocationBatch() {
   const [data, setData] = useState([]);
   const location = useLocation();
-  // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const [date, setDate] = useState(new Date());
   const batchid = parseInt(searchParams.get("batchid"), 10);

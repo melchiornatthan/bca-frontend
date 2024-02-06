@@ -1,7 +1,7 @@
 import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import { Container, Breadcrumb } from "react-bootstrap";
-import RelocationBatchTable from "../components/relocationService";
+import RelocationBatchTable from "../components/relocationBatchTable";
 import InputWithLabel from "../components/input";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";

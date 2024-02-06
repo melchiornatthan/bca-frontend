@@ -4,10 +4,11 @@ import "typeface-kalam";
 import { ToastContainer, toast } from "react-toastify";
 import InputWithLabel from "../components/input";
 import CustomButton from "../components/button";
-import BCALogo from "../assets/BCA Logo Blue.png";
+import logo from "../assets/logo-nisb.png";
+import logowhite from "../assets/logo_NISB_white.png";
 import "typeface-karma";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form, Image } from "react-bootstrap";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -57,28 +58,22 @@ function Login() {
           md
           className=" d-none d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block"
         >
-          <Container style={{ marginTop: "38vh", marginBottom: "33vh" }}>
-            <Row className="text-center">
+          <Container style={{ marginTop: "40vh", marginBottom: "33vh" }}>
+            <Row className="text-center justify-content-center">
+              <Image src={logo} style={{width:'152px', height:'50px'}}/>
+              
               <h1
                 style={{
                   fontFamily: "Kalam",
                   color: "#1E56A0",
                   fontWeight: "bold",
                   fontSize: "12vh",
+                  marginTop: "2vh"
                 }}
               >
                 Memo Hub
               </h1>
-              <p
-                style={{
-                  fontFamily: "Karma",
-                  color: "#FF9843",
-                  fontWeight: "bold",
-                  fontSize: "3vh",
-                }}
-              >
-                Made with <strong style={{ color: "#D63484" }}>NIS-B</strong>
-              </p>
+              
             </Row>
           </Container>
         </Col>
@@ -86,10 +81,28 @@ function Login() {
           md
           style={{ background: "linear-gradient(to top, #001F3F, #083358)" }}
         >
+           <Container style={{ marginTop: "40vh", marginBottom: "33vh" }} className=" d-block d-sm-block d-md-block d-lg-none d-xl-none d-xxl-none">
+            <Row className="text-center justify-content-center">
+              <Image src={logowhite} style={{width:'152px', height:'50px'}} />
+              
+              <h1
+                style={{
+                  fontFamily: "Kalam",
+                  color: "#FFFFFF",
+                  fontWeight: "bold",
+                  fontSize: "12vh",
+                  marginTop: "5vh"
+                }}
+              >
+                Memo Hub
+              </h1>
+              
+            </Row>
+          </Container>
           <Container className="w-75">
             <Form
               onSubmit={handleSubmit}
-              className="mx-auto p-5 w-75"
+              className="mx-auto p-5"
               style={{
                 marginTop: "30vh",
                 marginBottom: "30vh",
