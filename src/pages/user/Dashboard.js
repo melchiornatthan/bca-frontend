@@ -10,6 +10,8 @@ import { MdBuildCircle } from "react-icons/md";
 import { FaTruckMoving } from "react-icons/fa";
 import { IoMdRemoveCircle } from "react-icons/io";
 import logo from "../../assets/logo-nisb.png";
+import { getRequestCount } from "../../service/getRequestCount";
+import { getProviderCount } from "../../service/getProviderCount";
 
 function Dashboard() {
   ChartJS.register(ArcElement, Tooltip, Legend);
@@ -25,32 +27,11 @@ function Dashboard() {
   ];
 
   useEffect(() => {
-    getRequestCount();
-    getProviderCount();
+    getRequestCount(setReqCount);
+    getProviderCount(setProviderCount, setDate);
   }, []);
 
-  const getRequestCount = async () => {
-    try {
-      const response = await axios.get("requestsCount");
-      setReqCount(response.data);
-      console.log("Request Count:", response.data);
-    } catch (error) {
-      console.error("Error fetching request counts:", error.message);
-    }
-  };
-
-  const getProviderCount = async () => {
-    await axios
-      .get("providerCount")
-      .then((response) => {
-        setProviderCount(response.data);
-        console.log(response);
-        setDate(new Date());
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
+  
 
   return (
     <Row className="mx-auto centered-row">
