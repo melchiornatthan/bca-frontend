@@ -1,4 +1,4 @@
-import bcaLogo from "../../assets/white-bca.svg";
+import bcaLogo from "../assets/white-bca.svg";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { Dropdown } from "react-bootstrap";
 import { BiSolidHome } from "react-icons/bi";

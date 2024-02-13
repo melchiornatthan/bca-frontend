@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Breadcrumb, Row, Col, Button } from "react-bootstrap";
 import axios from "../../axiosConfig";
-import SelectProviders from "../components/providers";
-import InputWithLabel from "../components/input";
+import SelectProviders from "../../components/providers";
+import InputWithLabel from "../../components/input";
 import { useNavigate } from "react-router-dom";
 import { RiHome6Fill } from "react-icons/ri";
 

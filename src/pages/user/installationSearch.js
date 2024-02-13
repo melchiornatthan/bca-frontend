@@ -2,8 +2,8 @@ import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import { Container, Breadcrumb } from "react-bootstrap";
 import { RiHome6Fill } from "react-icons/ri";
-import BatchTable from "../components/installationBatchTable";
-import InputWithLabel from "../components/input";
+import BatchTable from "../../components/installationBatchTable";
+import InputWithLabel from "../../components/input";
 import { useNavigate } from "react-router-dom";
 import "typeface-inter";
 

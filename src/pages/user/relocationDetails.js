@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Container, Breadcrumb } from 'react-bootstrap';
 import { useLocation } from "react-router-dom";
 import axios from "../../axiosConfig";
-import RelocationDetailService from "../components/relocationDetailsLayout";
+import RelocationDetailService from "../../components/relocationDetailsLayout";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";

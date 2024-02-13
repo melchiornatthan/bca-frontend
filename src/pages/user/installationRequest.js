@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "../../axiosConfig";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CustomButton from "../components/button";
-import InputWithLabel from "../components/input";
-import VsatSelect from "../components/communication";
+import CustomButton from "../../components/button";
+import InputWithLabel from "../../components/input";
+import VsatSelect from "../../components/communication";
 import { RiHome6Fill } from "react-icons/ri";
-import SelectLocation from "../components/locations";
+import SelectLocation from "../../components/locations";
 import { MdDeleteForever } from "react-icons/md";
 import {
   Container,

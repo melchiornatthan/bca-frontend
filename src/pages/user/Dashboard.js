@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "typeface-inter";
 import axios from "../../axiosConfig";
-import ResponsiveDoughnutChart from "../components/doughnutChart";
+import ResponsiveDoughnutChart from "../../components/doughnutChart";
 import { Container, Row, Col, Card,Image} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FaConciergeBell } from "react-icons/fa";

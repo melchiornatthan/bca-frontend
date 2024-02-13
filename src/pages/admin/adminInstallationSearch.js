@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { Container, Breadcrumb, Row, Col } from "react-bootstrap";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
-import BatchTable from "../components/installationBatchTable";
-import InputWithLabel from "../components/input";
+import BatchTable from "../../components/installationBatchTable";
+import InputWithLabel from "../../components/input";
 import { useNavigate } from "react-router-dom";
 
 function AdminInstallationSearch() {

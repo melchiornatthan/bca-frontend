@@ -3,9 +3,9 @@
 import React from "react";
 import "typeface-inter";
 import {  Row, Col } from "react-bootstrap";
-import Navbar from "../components/navbar";
+import Navbar from "../../components/navbar";
 import { Outlet } from 'react-router-dom';
-import Sidebar from "../components/sidebar";
+import Sidebar from "../../components/sidebar";
 
 function MainLayout() {
 

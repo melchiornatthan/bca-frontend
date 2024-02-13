@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Breadcrumb, Row, Col } from "react-bootstrap";
 import axios from "../../axiosConfig";
-import InstallationService from "../components/installationDetailTable";
+import InstallationService from "../../components/installationDetailTable";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 function AdminBatchDetails() {

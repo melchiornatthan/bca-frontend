@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 
-import InputWithLabel from "../components/input";
+import InputWithLabel from "../../components/input";
 import { useState } from "react";
 import axios from "../../axiosConfig";
-import InstallationSearchTable from "../components/searchInstallationTable";
-import SelectLocation from "../components/locations";
-import CustomButton from "../components/button";
+import InstallationSearchTable from "../../components/searchInstallationTable";
+import SelectLocation from "../../components/locations";
+import CustomButton from "../../components/button";
 import { RiHome6Fill } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 import { Container, Breadcrumb, Row, Col, Table } from "react-bootstrap";

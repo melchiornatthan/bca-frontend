@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Breadcrumb } from "react-bootstrap";
 import axios from "../../axiosConfig";
-import RelocationByBatchIdTable from "../components/relocationDetailTable";
+import RelocationByBatchIdTable from "../../components/relocationDetailTable";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
