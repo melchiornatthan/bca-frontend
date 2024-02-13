@@ -9,7 +9,7 @@ import { FaConciergeBell } from "react-icons/fa";
 import { MdBuildCircle } from "react-icons/md";
 import { FaTruckMoving } from "react-icons/fa";
 import { IoMdRemoveCircle } from "react-icons/io";
-import logo from "../assets/logo-nisb.png";
+import logo from "../../assets/logo-nisb.png";
 
 function Dashboard() {
   ChartJS.register(ArcElement, Tooltip, Legend);

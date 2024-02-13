@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Container, Nav, Row, Image} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "typeface-karma";
-import logo from "../assets/logo NISB.png";
+import logo from "../../assets/logo NISB.png";
 
 const Sidebar = () => {
   const [isServiceCollapsed, setServiceCollapsed] = useState(false);
