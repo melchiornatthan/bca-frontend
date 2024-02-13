@@ -7,6 +7,7 @@ import axios from "../../axiosConfig";
 import ExcelJS from "exceljs";
 import "typeface-inter";
 import { useNavigate } from "react-router-dom";
+import { getDismantleDataByBatchID } from "../../service/getDismantlebyBatchID";
 
 function DismantleBatch() {
   const [data, setData] = useState([]);
@@ -18,22 +19,12 @@ function DismantleBatch() {
   const batchid = parseInt(searchParams.get("batchid"), 10);
 
   useEffect(() => {
-    getDismantleData();
+    getDismantleDataByBatchID(batchid, setData);
   }, [batchid]);
 
   useEffect(() => {
     setHasPending(data.some((entry) => entry.status === "pending"));
   }, [data]);
-
-  const getDismantleData = async () => {
-    try {
-      const response = await axios.get(`getDismantlebyBatchID/${batchid}`);
-      setData(response.data);
-    } catch (error) {
-      console.error("Error fetching dismantle data:", error);
-      // Handle error gracefully, show a user-friendly message, or redirect if necessary
-    }
-  };
 
   const exportToJson = async () => {
     setDate(new Date());
@@ -152,7 +143,7 @@ function DismantleBatch() {
         </Breadcrumb.Item>
       </Breadcrumb>
       <Container className="py-2 mx-auto text-center">
-        <DismantleByBatchIdTable batchdata={data}  />
+        <DismantleByBatchIdTable batchdata={data} />
 
         {!hasPending && (
           <Button

@@ -5,6 +5,7 @@ import axios from "../../axiosConfig";
 import DismantleByBatchIdTable from "../../components/dismantleDetailTable";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { getDismantleDataByBatchID } from "../../service/getDismantlebyBatchID";
 
 function AdminDismantleBatch() {
   const [data, setData] = useState([]);
@@ -15,29 +16,20 @@ function AdminDismantleBatch() {
   const batchid = parseInt(searchParams.get("batchid"), 10);
 
   useEffect(() => {
-    getRelocationData();
+    getDismantleDataByBatchID(batchid, setData);
   }, [batchid]);
-
-  const getRelocationData = async () => {
-    try {
-      const response = await axios.get(`getDismantlebyBatchID/${batchid}`);
-      setData(response.data);
-    } catch (error) {
-      console.error("Error fetching location data:", error);
-    }
-  };
 
   return (
     <Container fluid className="pt-3">
       <Container className="my-3">
-      <Breadcrumb className="breadcrumb-chevron p-3">
+        <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
             <RiHome6Fill onClick={() => navigate("/admin")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => navigate("/admin/dismantleHistory")} 
+              onClick={() => navigate("/admin/dismantleHistory")}
             >
               History
             </a>
@@ -48,7 +40,7 @@ function AdminDismantleBatch() {
         </Breadcrumb>
       </Container>
 
-      <DismantleByBatchIdTable batchdata={data}  />
+      <DismantleByBatchIdTable batchdata={data} />
     </Container>
   );
 }
