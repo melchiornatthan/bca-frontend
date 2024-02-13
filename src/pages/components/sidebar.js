@@ -1,9 +1,11 @@
 // Sidebar.js
 
 import React, { useState } from "react";
-import { Container, Nav, Row } from "react-bootstrap";
+import { Container, Nav, Row, Image} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "typeface-karma";
+import logo from "../assets/logo NISB.png";
+
 const Sidebar = () => {
   const [isServiceCollapsed, setServiceCollapsed] = useState(false);
   const [isHistoryCollapsed, setHistoryCollapsed] = useState(false);
@@ -32,15 +34,7 @@ const Sidebar = () => {
       <Container fluid className="my-3 ">
         <Row className="mx-2 centered-row my-2 ">
           <Container>
-            <h1
-              style={{
-                fontFamily: "Kalam",
-                color: "#D2E3C8",
-                fontWeight: "bold",
-              }}
-            >
-              Memo Hub
-            </h1>
+          <Image className="my-2" src={logo} style={{width:'45px', height:'71px', fontSize: "2vh", color:'#0F4C75' }} />
           </Container>
           {isAdmin === "false" && (
             <>
@@ -55,7 +49,7 @@ const Sidebar = () => {
               </button>
 
               {isServiceCollapsed && (
-                <Row>
+                <Row style={{marginLeft:'1vh'}}>
                   <button
                     className="btn text-start btn-outline-success  "
                     onClick={() => navigate("installationRequest")}
@@ -103,7 +97,7 @@ const Sidebar = () => {
           </button>
 
           {isHistoryCollapsed && (
-            <Row>
+            <Row style={{marginLeft:'1vh'}}>
               <button
                 className="btn text-start btn-outline-success   "
                 onClick={() => navigate("installationHistory")}

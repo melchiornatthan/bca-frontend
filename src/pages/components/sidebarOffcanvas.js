@@ -82,6 +82,7 @@ const SidebarOffcanvas = () => {
             localStorage.removeItem("token");
             localStorage.removeItem("isAdmin");
             localStorage.removeItem("username");
+            handleCloseMain();
             navigate("/");
           }}
         >
@@ -112,7 +113,11 @@ const SidebarOffcanvas = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-success"
-              onClick={() => navigate("installationRequest")}
+              onClick={() => {
+                handleCloseSecondary();
+                handleCloseMain();
+                navigate("installationRequest");
+              }}
             >
               <div className="my-1">
                 <MdAddBox />
@@ -123,7 +128,11 @@ const SidebarOffcanvas = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-warning"
-              onClick={() => navigate("relocationRequest")}
+              onClick={() => {
+                handleCloseSecondary();
+                handleCloseMain();
+                navigate("relocationRequest");
+              }}
             >
               <div className="my-1">
                 <TbArrowsMove />
@@ -134,7 +143,11 @@ const SidebarOffcanvas = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-danger"
-              onClick={() => navigate("dismantleRequest")}
+              onClick={() => {
+                handleCloseSecondary();
+                handleCloseMain();
+                navigate("dismantleRequest");
+              }}
             >
               <div className="my-1">
                 <MdOutlineDelete />
@@ -165,7 +178,11 @@ const SidebarOffcanvas = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-success"
-              onClick={() => navigate("installationHistory")}
+              onClick={() => {
+                handleCloseTertiary();
+                handleCloseMain();
+                navigate("installationHistory");
+              }}
             >
               <div className="my-1">
                 <MdOutlineTimelapse />
@@ -176,7 +193,11 @@ const SidebarOffcanvas = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-warning"
-              onClick={() => navigate("relocationHistory")}
+              onClick={() => {
+                handleCloseTertiary();
+                handleCloseMain();
+                navigate("relocationHistory");
+              }}
             >
               <div className="my-1">
                 <MdOutlineTimelapse />
@@ -187,7 +208,11 @@ const SidebarOffcanvas = () => {
               type="button"
               style={{ borderColor: "#FFFFFF" }}
               className="btn text-start btn-outline-danger"
-              onClick={() => navigate("dismantleHistory")}
+              onClick={() => { 
+                handleCloseTertiary();
+                handleCloseMain();
+                navigate("dismantleHistory");
+              }}
             >
               <div className="my-1">
                 <MdOutlineTimelapse />

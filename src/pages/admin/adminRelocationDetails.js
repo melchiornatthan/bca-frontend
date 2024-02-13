@@ -50,7 +50,7 @@ function AdminRelocationDetails() {
       await axios
         .put(`update-relocations/`, body)
         .then((response) => {
-         navigate("/admin/relocationBatch?batchid=" + data.batchid + "");
+         navigate("/admin/relocationHistory/relocationBatch?batchid=" + data.batchid + "");
         })
         .catch((error) => {
           console.error("Error updating installation data:", error);

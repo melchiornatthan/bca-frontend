@@ -159,6 +159,7 @@ function DismantleBatch() {
             style={{ marginTop: "3vh" }}
             variant="primary"
             onClick={exportToJson}
+            className="mx-auto"
           >
             Export to Excel
           </Button>

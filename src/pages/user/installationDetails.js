@@ -161,11 +161,11 @@ function InstallationDetails() {
       <InstallationService installationData={data} />
 
       {!hasPending && (
-        <div>
-          <Button variant="primary" onClick={() => exportToJson()}>
+        <Container style={{ paddingLeft:'45%'}}>
+          <Button  variant="primary" onClick={() => exportToJson()}>
             Export to Excel
           </Button>
-        </div>
+        </Container>
       )}
     </Container>
   );

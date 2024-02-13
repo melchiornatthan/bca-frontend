@@ -10,7 +10,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   return (
     <nav
-      className="navbar mt-3 px-3 sticky-top"
+      className="navbar mt-3 px-3 "
       style={{
         backgroundColor: "#FFFFFF",
         display: "flex",
