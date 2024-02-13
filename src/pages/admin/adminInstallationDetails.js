@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Container, Breadcrumb, Row, Col } from "react-bootstrap";
-import axios from "../../axiosConfig";
 import InstallationService from "../../components/installationDetailTable";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import getInstallationsbyBatchID from "../../service/getInstallationsbyBatchID";
 function AdminBatchDetails() {
   const [data, setData] = useState([]);
   const location = useLocation();
@@ -14,19 +14,8 @@ function AdminBatchDetails() {
   const batchid = parseInt(searchParams.get("batchid"), 10);
 
   useEffect(() => {
-    getInstallationData();
+    getInstallationsbyBatchID(batchid, setData);
   }, [batchid]);
-
-  const getInstallationData = async () => {
-    await axios
-      .get("getInstallationsbyBatchID/" + batchid + "")
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
 
   return (
     <Container fluid className="pt-3">

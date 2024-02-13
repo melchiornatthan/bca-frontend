@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Container, Breadcrumb, Button } from "react-bootstrap";
-import axios from "../../axiosConfig";
+import getInstallationsbyBatchID from "../../service/getInstallationsbyBatchID";
 import InstallationService from "../../components/installationDetailTable";
 import ExcelJS from "exceljs";
 import { RiHome6Fill } from "react-icons/ri";
@@ -19,23 +19,13 @@ function InstallationDetails() {
   const batchid = parseInt(searchParams.get("batchid"), 10);
 
   useEffect(() => {
-    getInstallationData();
+   getInstallationsbyBatchID(batchid, setData);
   }, []);
 
   useEffect(() => {
     setHasPending(data.some((entry) => entry.status === "pending"));
   }, [data]);
 
-  const getInstallationData = async () => {
-    await axios
-      .get("getInstallationsbyBatchID/" + batchid + "")
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
 
   const exportToJson = async () => {
     setDate(new Date());
