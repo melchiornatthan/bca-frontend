@@ -1,4 +1,3 @@
-import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import { Container, Breadcrumb } from "react-bootstrap";
 import { RiHome6Fill } from "react-icons/ri";
@@ -6,43 +5,22 @@ import BatchTable from "../../components/installationBatchTable";
 import InputWithLabel from "../../components/input";
 import { useNavigate } from "react-router-dom";
 import "typeface-inter";
+import { getBatchInstallations } from "../../service/getBatchInstallations";
 
 function InstallationSearch() {
   const [installationData, setInstallationData] = useState([]);
   const [batchid, setBatchId] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
-    getInstallationData();
+   getBatchInstallations('2', setInstallationData);
   }, []);
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
   };
 
-  const getInstallationDatabyBatchID = () => {
-    axios
-      .get("getBatchInstallations/" + batchid + "")
-      .then((response) => {
-        setInstallationData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
-
-  const getInstallationData = () => {
-    axios
-      .get("getBatchInstallations/" + 2 + "")
-      .then((response) => {
-        setInstallationData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
-
   useEffect(() => {
-    getInstallationDatabyBatchID();
+    getBatchInstallations(batchid, setInstallationData);
   }, [batchid]);
 
   return (
