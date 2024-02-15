@@ -38,7 +38,6 @@ function AdminDismantleBatch() {
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
-
       <DismantleByBatchIdTable batchdata={data} />
     </Container>
   );

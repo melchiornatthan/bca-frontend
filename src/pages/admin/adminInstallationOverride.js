@@ -6,6 +6,8 @@ import SelectProviders from "../../components/providers";
 import InputWithLabel from "../../components/input";
 import { useNavigate } from "react-router-dom";
 import { RiHome6Fill } from "react-icons/ri";
+import { getInstallationById } from "../../service/getInstallationbyID";
+import { getProviderAlternatives } from "../../service/getProviderAlternatives";
 
 function AdminInstallationOverride() {
   const location = useLocation();
@@ -21,39 +23,16 @@ function AdminInstallationOverride() {
   };
 
   useEffect(() => {
-    getInstallationById();
+    getInstallationById(id, setData);
   }, []);
 
   useEffect(() => {
-    getProviderAlternatives();
-  }, [data]);
+    if (data.area_id) {
+      // Call the separated function
+      getProviderAlternatives(data.area_id, setProvData);
+    }
+  }, [data.area_id]);
 
-  const getInstallationById = async () => {
-    await axios
-      .get("installationsById/" + id + "")
-      .then((response) => {
-        setData(response.data[0]);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
-
-  const getProviderAlternatives = async () => {
-    console.log(data.area_id);
-    await axios
-      .get(`getProvidersbyArea/${data.area_id}`)
-      .then((response) => {
-        setProvData([
-          ...response.data.list,
-          { provider: { id: 5, provider: "Telkomsel (M2M)" } },
-        ]);
-        console.log(response.data.list);
-      })
-      .catch((error) => {
-        console.error("Error fetching Provider data:", error);
-      });
-  };
 
   const overrideInstallation = async () => {
     console.log(data.id);
