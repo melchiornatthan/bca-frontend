@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "../../axiosConfig";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CustomButton from "../../components/button";
@@ -18,163 +18,110 @@ import {
 } from "react-bootstrap";
 import "typeface-karma";
 import { useNavigate } from "react-router-dom";
+import { getInstallationBatchId } from "../../service/getInstallationBatchID";
+import { getLocationData } from "../../service/getLocationData";
+import { getSpecialLocationData } from "../../service/getSpecialLocationData";
+import { submitInstallationRequest } from "../../service/submitInstallationRequest";
 function InstallationRequest() {
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
   const [pic, setPic] = useState("");
-  const [data, setData] = useState([]);
   const [area, setArea] = useState("Jakarta");
-  const [specialData, setSpecialData] = useState([]);
+  const [specialLocations, setSpecialLocations] = useState([]);
+  const [locationData, setLocationData] = useState([]);
   const [communication, setCommunication] = useState("VSAT");
-  const [batchId, setBatchId] = useState(200000000);
   const [batchData, setBatchData] = useState([]);
   const [submittedRequests, setSubmittedRequests] = useState([]);
   const [province, setProvince] = useState("Jawa Barat");
+  const [batchId, setBatchId] = useState(200000000);
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log(communication);
-  }, [communication]);
+ 
 
-  // Fetch data from the server
+
   useEffect(() => {
-    generateBatchId();
-    fetchLocationData();
-    fetchSpecialLocationData();
+    async function fetchData() {
+      try {
+        const newBatchId = await getInstallationBatchId();
+        setBatchId(newBatchId);
+
+        const locationData = await getLocationData();
+        setLocationData(locationData);
+
+        const specialLocationData = await getSpecialLocationData();
+        setSpecialLocations([...specialLocationData, { location: "NA" }]);
+        setArea(specialLocationData[0].location);
+      } catch (error) {
+        console.error("Error initializing data:", error);
+      }
+    }
+
+    fetchData();
   }, []);
 
-  // Batch ID generator
-  async function generateBatchId() {
-    await axios
-      .get("getInstallationBatchId")
-      .then((response) => {
-        const currentBatchId = parseInt(response.data.batchid, 10);
-        const newBatchId = currentBatchId + 1;
-        setBatchId(newBatchId);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  }
-
-  // Reusable input change handler
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value);
   };
 
-  const fetchLocationData = async () => {
-    await axios
-      .get("locations")
-      .then((response) => {
-        setData(response.data.list);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
-
-  const fetchSpecialLocationData = async () => {
-    await axios
-      .get("special-locations")
-      .then((response) => {
-        console.log(response.data.list);
-        setSpecialData([...response.data.list, { location: "NA" }]);
-        setArea(response.data.list[0].location);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
-  // Handle form submission
   const handleSubmit = () => {
-    // Validate that all required fields are filled
+    // Validation logic
     if (!location || !address || !pic || !area || !communication) {
-      // Show a toast message if the form is not valid
       toast.error("Please fill in all input fields.");
       return;
     }
 
-    if (area === "NA") {
-      const requestData = {
-        location,
-        address,
-        branch_pic: pic,
-        area: province,
-        communication,
-      };
+    const requestData = {
+      location,
+      address,
+      branch_pic: pic,
+      area: area === "NA" ? province : area,
+      communication,
+    };
 
-      setBatchData([...batchData, requestData]);
-      setSubmittedRequests([...submittedRequests, requestData]);
-      setLocation("");
-      setAddress("");
-      setPic("");
-    } else {
-      const requestData = {
-        location,
-        address,
-        branch_pic: pic,
-        area,
-        communication,
-      };
-
-      setBatchData([...batchData, requestData]);
-      setSubmittedRequests([...submittedRequests, requestData]);
-
-      setLocation("");
-      setAddress("");
-      setPic("");
-    }
+    setBatchData([...batchData, requestData]);
+    setSubmittedRequests([...submittedRequests, requestData]);
+    setLocation("");
+    setAddress("");
+    setPic("");
   };
 
-  const handleDeleteRow = (index) => {
-    // Remove the row from submittedRequests
-    const updatedSubmittedRequests = [...submittedRequests];
-    updatedSubmittedRequests.splice(index, 1);
+  const handleDeleteRow = (requestToDelete) => {
+    const updatedSubmittedRequests = submittedRequests.filter(
+      (request) => request !== requestToDelete
+    );
     setSubmittedRequests(updatedSubmittedRequests);
-
-    // Remove the corresponding row from batchData
-    const updatedBatchData = [...batchData];
-    updatedBatchData.splice(index, 1);
+  
+    const updatedBatchData = batchData.filter(
+      (request) => request !== requestToDelete
+    );
     setBatchData(updatedBatchData);
   };
+  
 
-  // Submit batch data
   const submitBatchData = async () => {
     try {
       if (batchData.length === 0) {
-        return; // No data to submit
+        toast.error("No data to submit.");
+        return;
       }
-
-      setBatchId(generateBatchId());
-      const date = new Date();
 
       for (const data of batchData) {
         data.batchid = batchId;
-        data.createdAt = date;
+        const response = await submitInstallationRequest(data);
 
-        try {
-          const response = await axios.post("installation-request", data);
-
-          if (response.data.message === "No provider available") {
-            throw new Error(
-              `Threshold limit reached for ${data.area}, please contact the Administrator.`
-            );
-          }
-
-          // Additional processing for successful response, if needed
-        } catch (innerError) {
-          console.error("Error submitting installation request:", innerError);
-          toast.error("Error submitting installation request");
-          // Handle specific error scenarios if necessary
+        if (response.message === "No provider available") {
+          throw new Error(
+            `Threshold limit reached for ${data.area}, please contact the Administrator.`
+          );
         }
       }
 
       toast.success("Installation requests submitted successfully.");
-      setBatchData([]); // Clear the batch data
-      setSubmittedRequests([]); // Clear the previous requests
-      setBatchId(generateBatchId());
+      setBatchData([]);
+      setSubmittedRequests([]);
+      setBatchId(await getInstallationBatchId());
     } catch (error) {
-      console.error("Error processing batch data:", error);
-      toast.error("Error processing batch data");
+      console.error("Error submitting batch data:", error);
+      toast.error("Error submitting installation requests.");
     }
   };
 
@@ -216,7 +163,7 @@ function InstallationRequest() {
           </Col>
           <Col sm className="mx-auto my-auto">
             <SelectLocation
-              options={specialData}
+              options={specialLocations}
               label="Select the City"
               value={area}
               onChange={(e) => handleInputChange(e, setArea)}
@@ -225,7 +172,7 @@ function InstallationRequest() {
           {area === "NA" && (
             <Col sm className="mx-auto my-auto">
               <SelectLocation
-                options={data}
+                options={locationData}
                 label="Select the Province"
                 value={province}
                 onChange={(e) => handleInputChange(e, setProvince)}
@@ -294,7 +241,7 @@ function InstallationRequest() {
                           <Button
                             variant="danger"
                             size="md"
-                            onClick={() => handleDeleteRow(index)}
+                            onClick={() => handleDeleteRow(request)}
                           >
                             <MdDeleteForever style={{ fontSize: "2vh" }} />
                           </Button>
