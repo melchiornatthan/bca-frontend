@@ -10,7 +10,6 @@ function AdminDismantleBatch() {
   const [data, setData] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
-  // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
 

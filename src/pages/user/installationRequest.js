@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CustomButton from "../../components/button";
@@ -22,6 +21,7 @@ import { getInstallationBatchId } from "../../service/getInstallationBatchID";
 import { getLocationData } from "../../service/getLocationData";
 import { getSpecialLocationData } from "../../service/getSpecialLocationData";
 import { submitInstallationRequest } from "../../service/submitInstallationRequest";
+
 function InstallationRequest() {
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
@@ -35,8 +35,6 @@ function InstallationRequest() {
   const [province, setProvince] = useState("Jawa Barat");
   const [batchId, setBatchId] = useState(200000000);
   const navigate = useNavigate();
- 
-
 
   useEffect(() => {
     async function fetchData() {
@@ -89,13 +87,12 @@ function InstallationRequest() {
       (request) => request !== requestToDelete
     );
     setSubmittedRequests(updatedSubmittedRequests);
-  
+
     const updatedBatchData = batchData.filter(
       (request) => request !== requestToDelete
     );
     setBatchData(updatedBatchData);
   };
-  
 
   const submitBatchData = async () => {
     try {

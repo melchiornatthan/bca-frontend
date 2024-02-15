@@ -14,7 +14,6 @@ function InstallationDetails() {
   const [date, setDate] = useState(new Date());
   const [hasPending, setHasPending] = useState(false);
   const navigate = useNavigate();
-  // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
 
@@ -59,7 +58,6 @@ function InstallationDetails() {
     };
     worksheet.getCell("A1").font = { bold: true };
 
-    // Use the 'id-ID' locale option to display the date in Indonesian format
     const dateOptions = {
       year: "numeric",
       month: "long",
