@@ -6,7 +6,7 @@ import InputWithLabel from "../../components/input";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { getRelocationsbyBatchID } from "../../service/getRelocationbyBatchID";
+import { getRelocationsbyBatchID } from "../../service/getBatchRelocations";
 
 function RelocationSearch() {
   const [relocationData, setRelocationData] = useState([]);

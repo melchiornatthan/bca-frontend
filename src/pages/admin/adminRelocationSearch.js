@@ -5,7 +5,7 @@ import RelocationBatchTable from "../../components/relocationBatchTable";
 import InputWithLabel from "../../components/input";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { getRelocationsbyBatchID } from "../../service/getRelocationbyBatchID";
+import { getRelocationsbyBatchID } from "../../service/getBatchRelocations";
 function AdminRelocationSearch() {
   const [relocationData, setRelocationData] = useState([]);
   const [batchid, setBatchId] = useState("");
