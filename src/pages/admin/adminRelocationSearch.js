@@ -5,6 +5,7 @@ import RelocationBatchTable from "../../components/relocationBatchTable";
 import InputWithLabel from "../../components/input";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { getRelocationsbyBatchID } from "../../service/getRelocationbyBatchID";
 function AdminRelocationSearch() {
   const [relocationData, setRelocationData] = useState([]);
   const [batchid, setBatchId] = useState("");
@@ -14,35 +15,12 @@ function AdminRelocationSearch() {
   };
 
   useEffect(() => {
-    getRelocations();
+   getRelocationsbyBatchID('2', setRelocationData);
   }, []);
 
-  const getRelocationByBatchID = () => {
-    axios
-      .get("getBatchRelocation/" + batchid + "")
-      .then((response) => {
-        console.log(response.data);
-        setRelocationData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
-
-  const getRelocations = () => {
-    axios
-      .get("getBatchRelocation/" + 2 + "")
-      .then((response) => {
-        console.log(response.data);
-        setRelocationData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
 
   useEffect(() => {
-    getRelocationByBatchID();
+    getRelocationsbyBatchID(batchid, setRelocationData);
   }, [batchid]);
 
   return (
