@@ -22,6 +22,14 @@ Introducing Memo Automation web application designed to streamline requests for 
    npm install
    ```
 
+## Docker
+
+This project is also included with a docker image file. To build the image use this command:
+
+```bash
+docker build compose up --build
+```
+
 ## Usage
 
 1. Start the development server:
