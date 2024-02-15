@@ -4,12 +4,11 @@ import { Container, Breadcrumb, Row, Col } from "react-bootstrap";
 import InstallationService from "../../components/installationDetailTable";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import {getInstallationsbyBatchID} from "../../service/getInstallationsbyBatchID";
+import { getInstallationsbyBatchID } from "../../service/getInstallationsbyBatchID";
 function AdminBatchDetails() {
   const [data, setData] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
-  // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const batchid = parseInt(searchParams.get("batchid"), 10);
 

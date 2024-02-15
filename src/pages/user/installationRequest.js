@@ -19,7 +19,6 @@ import {
 import "typeface-karma";
 import { useNavigate } from "react-router-dom";
 function InstallationRequest() {
-  // State variables
   const [location, setLocation] = useState("");
   const [address, setAddress] = useState("");
   const [pic, setPic] = useState("");

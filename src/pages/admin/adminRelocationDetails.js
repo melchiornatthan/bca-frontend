@@ -4,7 +4,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useLocation } from "react-router-dom";
 import axios from "../../axiosConfig";
 import RelocationDetailService from "../../components/relocationDetailsLayout";
-import Navbar from "../../components/navbar";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { getRelocationById } from "../../service/getRelocationbyID";

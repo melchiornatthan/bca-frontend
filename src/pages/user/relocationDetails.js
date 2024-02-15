@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { Container, Breadcrumb } from 'react-bootstrap';
+import { Container, Breadcrumb } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import axios from "../../axiosConfig";
 import RelocationDetailService from "../../components/relocationDetailsLayout";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
@@ -13,21 +12,19 @@ function RelocationDetails() {
   const [data, setData] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
-  // Parse the URL parameters and extract the 'data' parameter
   const searchParams = new URLSearchParams(location.search);
   const int_id = parseInt(searchParams.get("id"), 10);
 
   useEffect(() => {
-   getRelocationById(int_id, setData);
+    getRelocationById(int_id, setData);
   }, [int_id]);
-
 
   return (
     <Container fluid>
       <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() =>navigate("/user")} />
+            <RiHome6Fill onClick={() => navigate("/user")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <a
@@ -40,7 +37,11 @@ function RelocationDetails() {
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => navigate(`/user/relocationHistory/relocationBatch?batchid=${data.batchid}`)} 
+              onClick={() =>
+                navigate(
+                  `/user/relocationHistory/relocationBatch?batchid=${data.batchid}`
+                )
+              }
             >
               Batch
             </a>
@@ -50,7 +51,7 @@ function RelocationDetails() {
           </Breadcrumb.Item>
         </Breadcrumb>
       </Container>
-      <RelocationDetailService batchdata={data}  className="my-5" />
+      <RelocationDetailService batchdata={data} className="my-5" />
     </Container>
   );
 }

@@ -1,4 +1,4 @@
-import axios from "../../axiosConfig";
+
 import { useState, useEffect } from "react";
 import { Container, Breadcrumb } from "react-bootstrap";
 import RelocationBatchTable from "../../components/relocationBatchTable";

@@ -1,4 +1,3 @@
-import axios from "../../axiosConfig";
 import { useState, useEffect } from "react";
 import { Container, Breadcrumb, Form } from "react-bootstrap";
 import "typeface-inter";
