@@ -7,6 +7,7 @@ import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
 import ExcelJS from "exceljs";
 import { useNavigate } from "react-router-dom";
+import { getRelocationsbyBatchID } from "../../service/getRelocationbyBatchID";
 
 function RelocationBatch() {
   const [data, setData] = useState([]);
@@ -18,21 +19,14 @@ function RelocationBatch() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getRelocationData();
+    getRelocationsbyBatchID(batchid, setData);
   }, [batchid]);
 
   useEffect(() => {
     setHasPending(data.some((entry) => entry.status === "pending"));
   }, [data]);
 
-  const getRelocationData = async () => {
-    try {
-      const response = await axios.get("getRelocationsbyBatchID/" + batchid);
-      setData(response.data);
-    } catch (error) {
-      console.error("Error fetching location data:", error);
-    }
-  };
+  
 
   const exportToJson = async () => {
     setDate(new Date());
