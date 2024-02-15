@@ -50,7 +50,7 @@ function AdminRelocationDetails() {
   };
 
   return (
-    <Container fluid className="py-1">
+    <Container fluid className="my-5">
     <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>

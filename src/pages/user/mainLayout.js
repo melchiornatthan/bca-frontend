@@ -18,7 +18,7 @@ function MainLayout() {
         <Sidebar />
       </Col>
       <Col>
-        <Navbar />
+        <Navbar className="fixed-top"/>
         <div style={{ overflowY: "auto", maxHeight: "calc(100vh - 56px)" }}>
           <Outlet />
         </div>
