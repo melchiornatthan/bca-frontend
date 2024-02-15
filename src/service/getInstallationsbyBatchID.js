@@ -1,8 +1,8 @@
 // installationDataFetcher.js
 
-import axios from "../axiosConfig"; 
+import axios from "../axiosConfig";
 
-const getInstallationsbyBatchID = async (batchid, setData) => {
+export const getInstallationsbyBatchID = async (batchid, setData) => {
   try {
     const response = await axios.get(`getInstallationsbyBatchID/${batchid}`);
     setData(response.data);
@@ -10,5 +10,3 @@ const getInstallationsbyBatchID = async (batchid, setData) => {
     console.error("Error fetching installation data:", error);
   }
 };
-
-export default getInstallationsbyBatchID;

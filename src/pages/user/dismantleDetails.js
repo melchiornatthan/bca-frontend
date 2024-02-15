@@ -6,6 +6,7 @@ import DismantleDetailsService from "../../components/dismantleDetailsLayout";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { getInstallationById } from "../../service/getInstallationbyID";
 
 function DismantleDetails() {
   const [data, setData] = useState({});
@@ -15,17 +16,9 @@ function DismantleDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getRelocationData();
+   getInstallationById(int_id, setData);
   }, [int_id]);
 
-  const getRelocationData = async () => {
-    try {
-      const response = await axios.get(`installationsById/${int_id}`);
-      setData(response.data[0]);
-    } catch (error) {
-      console.error("Error fetching location data:", error);
-    }
-  };
 
   return (
     <Container fluid>

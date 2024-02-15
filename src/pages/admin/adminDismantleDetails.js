@@ -5,6 +5,7 @@ import axios from "../../axiosConfig";
 import DismantleDetailsService from "../../components/dismantleDetailsLayout";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { getInstallationById } from "../../service/getInstallationbyID";
 
 function AdminDismantleDetails() {
   const [data, setData] = useState({});
@@ -16,17 +17,10 @@ function AdminDismantleDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getRelocationData();
+   getInstallationById(int_id, setData);
   }, [int_id]);
 
-  const getRelocationData = async () => {
-    try {
-      const response = await axios.get(`installationsById/${int_id}`);
-      setData(response.data[0]);
-    } catch (error) {
-      console.error("Error fetching location data:", error);
-    }
-  };
+  
 
   const updateRequestStatus = async () => {
     const confirmed = window.confirm(
