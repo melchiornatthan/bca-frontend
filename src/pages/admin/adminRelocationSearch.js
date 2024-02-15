@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Container, Breadcrumb } from "react-bootstrap";
 import RelocationBatchTable from "../../components/relocationBatchTable";
@@ -15,9 +14,8 @@ function AdminRelocationSearch() {
   };
 
   useEffect(() => {
-   getRelocationsbyBatchID('2', setRelocationData);
+    getRelocationsbyBatchID("2", setRelocationData);
   }, []);
-
 
   useEffect(() => {
     getRelocationsbyBatchID(batchid, setRelocationData);
@@ -25,7 +23,7 @@ function AdminRelocationSearch() {
 
   return (
     <Container fluid className="pt-3">
-    <Container className="my-3">
+      <Container className="my-3">
         <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
             <RiHome6Fill onClick={() => navigate("/admin")} />
@@ -45,7 +43,7 @@ function AdminRelocationSearch() {
         />
       </Container>
       <Container className="mt-5">
-        <RelocationBatchTable batchdata={relocationData}  />
+        <RelocationBatchTable batchdata={relocationData} />
       </Container>
     </Container>
   );

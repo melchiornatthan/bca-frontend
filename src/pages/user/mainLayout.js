@@ -10,20 +10,21 @@ import Sidebar from "../../components/sidebar";
 function MainLayout() {
   return (
     <div>
-      <Row>
-        <Col
-          style={{ padding: "0px" }}
-          md={2}
-          className=" d-none d-sm-none d-md-block d-lg-block d-xl-block d-xxl-block"
-        >
-          <Sidebar />
-        </Col>
-        <Col>
-          <Navbar />
+    <Row>
+      <Col
+        md={2}
+        className="d-none d-sm-none d-md-block d-lg-block d-xl-block d-xxl-block"
+      >
+        <Sidebar />
+      </Col>
+      <Col>
+        <Navbar />
+        <div style={{ overflowY: "auto", maxHeight: "calc(100vh - 56px)" }}>
           <Outlet />
-        </Col>
-      </Row>
-    </div>
+        </div>
+      </Col>
+    </Row>
+  </div>
   );
 }
 

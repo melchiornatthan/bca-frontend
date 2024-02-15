@@ -17,10 +17,8 @@ function AdminDismantleDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-   getInstallationById(int_id, setData);
+    getInstallationById(int_id, setData);
   }, [int_id]);
-
-  
 
   const updateRequestStatus = async () => {
     const confirmed = window.confirm(
@@ -34,7 +32,7 @@ function AdminDismantleDetails() {
       };
       try {
         const response = await axios.put(`update-dismantle/`, body);
-       navigate(`/admin/dismantleHistory/dismantleBatch?batchid=${batchid}`);
+        navigate(`/admin/dismantleHistory/dismantleBatch?batchid=${batchid}`);
       } catch (error) {
         console.error("Error updating installation data:", error);
       }
@@ -44,9 +42,9 @@ function AdminDismantleDetails() {
   return (
     <Container fluid className="pt-3">
       <Container className="my-3">
-      <Breadcrumb className="breadcrumb-chevron p-3">
+        <Breadcrumb className="breadcrumb-chevron p-3">
           <Breadcrumb.Item>
-            <RiHome6Fill onClick={() =>navigate("/admin")} />
+            <RiHome6Fill onClick={() => navigate("/admin")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <a
@@ -59,7 +57,11 @@ function AdminDismantleDetails() {
           <Breadcrumb.Item>
             <a
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => navigate(`/admin/dismantleHistory/dismantleBatch?batchid=${data.batchid}`)}
+              onClick={() =>
+                navigate(
+                  `/admin/dismantleHistory/dismantleBatch?batchid=${data.batchid}`
+                )
+              }
             >
               Batch
             </a>
