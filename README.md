@@ -1,28 +1,20 @@
-# Project Name
+# BCAPP Front END
 
 ## Description
 
-This is the README for your React frontend project. This project serves as the user interface for your web application. It is built using React, a popular JavaScript library for building user interfaces.
+Introducing Memo Automation web application designed to streamline requests for installation, relocation, and dismantling entities that uses VSAT. Whether it's for installation, relocation, or dismantling, this platform automates the entire process. From initiating requests to vendor selection and report generation.
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Configuration](#configuration)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 
 1. Clone this repository to your local machine:
    ```bash
-   git clone https://github.com/yourusername/your-project.git
+   git clone https://github.com/melchiornatthan/bca-frontend.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd your-project
+   cd bca-frontend
    ```
 
 3. Install the project dependencies:
@@ -45,11 +37,10 @@ The project structure is organized as follows:
 
 - `src/`: This directory contains all the source code for the React application.
   - `components/`: This directory contains reusable React components.
-  - `containers/`: This directory contains container components that connect the Redux store to presentational components.
-  - `redux/`: This directory contains Redux-related code, including actions, reducers, and the store configuration.
-  - `styles/`: This directory contains CSS or SCSS files for styling the components.
   - `App.js`: The main entry point for the application.
-- `public/`: This directory contains static assets, such as HTML, images, and other resources.
+  - `assets/`: This directory contains images that are used in this project
+  - `pages/` : This directory will have user and admin subdirectory that will contain the pages for both user and admin
+  - `service/` : This directory will contain the communication with the backend server for data fetching, posting a request, etc. 
 
 ## Configuration
 
