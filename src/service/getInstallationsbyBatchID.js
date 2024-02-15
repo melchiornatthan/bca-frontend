@@ -1,4 +1,3 @@
-// installationDataFetcher.js
 
 import axios from "../axiosConfig";
 

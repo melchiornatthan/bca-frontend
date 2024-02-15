@@ -6,6 +6,7 @@ import DismantleServiceTable from "../../components/dismantleBatchTable";
 import InputWithLabel from "../../components/input";
 import { useNavigate } from "react-router-dom";
 import { RiHome6Fill } from "react-icons/ri";
+import { getBatchDismantle } from "../../service/getBatchDismantle";
 
 function DismantleSearch() {
   const [data, setData] = useState([]);
@@ -16,36 +17,13 @@ function DismantleSearch() {
   };
 
   useEffect(() => {
-    getDismantleData();
+   getBatchDismantle('2', setData);
   }, []);
 
   useEffect(() => {
-    getDismantleDataByBatchID();
+    getBatchDismantle(batchid, setData);
   }, [batchid]);
 
-  const getDismantleDataByBatchID = () => {
-    axios
-      .get(`getBatchDismantle/${batchid}`)
-      .then((response) => {
-        console.log(response.data);
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
-
-  const getDismantleData = () => {
-    axios
-      .get("getBatchDismantle/" + 2 + "")
-      .then((response) => {
-        console.log(response.data);
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
 
   return (
     <Container fluid>

@@ -2,11 +2,11 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Container, Breadcrumb, Button } from "react-bootstrap";
-import getInstallationsbyBatchID from "../../service/getInstallationsbyBatchID";
 import InstallationService from "../../components/installationDetailTable";
 import ExcelJS from "exceljs";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { getInstallationsbyBatchID } from "../../service/getInstallationsbyBatchID";
 
 function InstallationDetails() {
   const [data, setData] = useState([]);
@@ -19,7 +19,7 @@ function InstallationDetails() {
   const batchid = parseInt(searchParams.get("batchid"), 10);
 
   useEffect(() => {
-   getInstallationsbyBatchID(batchid, setData);
+    getInstallationsbyBatchID(batchid, setData);
   }, []);
 
   useEffect(() => {

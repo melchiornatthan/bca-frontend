@@ -7,6 +7,7 @@ import Navbar from "../../components/navbar";
 import DismantleServiceTable from "../../components/dismantleBatchTable";
 import InputWithLabel from "../../components/input";
 import { useNavigate } from "react-router-dom";
+import { getBatchDismantle } from "../../service/getBatchDismantle";
 
 function AdminDismantleSearch() {
   const [data, setData] = useState([]);
@@ -17,35 +18,11 @@ function AdminDismantleSearch() {
   };
 
   useEffect(() => {
-    getDismantles();
+    getBatchDismantle('2', setData);
   }, []);
 
-  const getDismantleByBatchID = () => {
-    axios
-      .get("getBatchDismantle/" + batchid + "")
-      .then((response) => {
-        console.log(response.data);
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
-
-  const getDismantles = () => {
-    axios
-      .get("getBatchDismantle/" + 2 + "")
-      .then((response) => {
-        console.log(response.data);
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
-
   useEffect(() => {
-    getDismantleByBatchID();
+    getBatchDismantle(batchid, setData);
   }, [batchid]);
 
   return (
