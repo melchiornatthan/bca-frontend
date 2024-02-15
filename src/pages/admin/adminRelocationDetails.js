@@ -7,6 +7,7 @@ import RelocationDetailService from "../../components/relocationDetailsLayout";
 import Navbar from "../../components/navbar";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { getRelocationById } from "../../service/getRelocationbyID";
 
 function AdminRelocationDetails() {
   const [data, setData] = useState({});
@@ -16,19 +17,10 @@ function AdminRelocationDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getRelocationData();
+   getRelocationById(int_id, setData);
   }, [int_id]);
 
-  const getRelocationData = async () => {
-    await axios
-      .get("relocations/" + int_id + "")
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching location data:", error);
-      });
-  };
+  
 
   const updateRequestStatus = async (id) => {
     const confirmed = window.confirm(

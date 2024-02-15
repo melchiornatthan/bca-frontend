@@ -7,6 +7,7 @@ import RelocationDetailService from "../../components/relocationDetailsLayout";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { getRelocationById } from "../../service/getRelocationbyID";
 
 function RelocationDetails() {
   const [data, setData] = useState({});
@@ -17,17 +18,9 @@ function RelocationDetails() {
   const int_id = parseInt(searchParams.get("id"), 10);
 
   useEffect(() => {
-    getRelocationData();
+   getRelocationById(int_id, setData);
   }, [int_id]);
 
-  const getRelocationData = async () => {
-    try {
-      const response = await axios.get("relocations/" + int_id + "");
-      setData(response.data);
-    } catch (error) {
-      console.error("Error fetching location data:", error);
-    }
-  };
 
   return (
     <Container fluid>
