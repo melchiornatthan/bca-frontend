@@ -1,15 +1,22 @@
-// InstallationSearchTable.js
+import React from "react";
 
-import React, { useState } from "react";
-
+/**
+ * InstallationSearchTable Component displays installation search results.
+ * @param {Object} props - The component's props.
+ * @param {Array} props.batchdata - Data for installation search.
+ * @param {function} props.onSelect - Callback function for selecting an installation.
+ * @returns {JSX.Element} - InstallationSearchTable component.
+ */
 function InstallationSearchTable({ batchdata, onSelect }) {
-  const [isHovered, setIsHovered] = useState(false);
   const tableStyle = {
     maxHeight: "20vh",
     overflowY: "auto",
   };
 
-  // Handle the "Select" button click and call the onSelect callback with the ID
+  /**
+   * Handles the click event of the "Select" button and calls the onSelect callback with the ID.
+   * @param {string} id - The ID of the selected installation.
+   */
   const handleSelectClick = (id) => {
     onSelect(id);
   };
@@ -20,8 +27,6 @@ function InstallationSearchTable({ batchdata, onSelect }) {
         borderRadius: "17px",
         padding: "20px",
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className="text-center mx-auto px-5"
     >
       <div style={tableStyle}>
@@ -53,4 +58,4 @@ function InstallationSearchTable({ batchdata, onSelect }) {
   );
 }
 
-export default InstallationSearchTable;
+export default InstallationSearchTable; // Export InstallationSearchTable component

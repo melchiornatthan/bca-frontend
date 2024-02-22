@@ -19,7 +19,7 @@ function InstallationDetails() {
 
   useEffect(() => {
     getInstallationsbyBatchID(batchid, setData);
-  }, []);
+  }, [batchid]);
 
   useEffect(() => {
     setHasPending(data.some((entry) => entry.status === "pending"));
@@ -134,12 +134,12 @@ function InstallationDetails() {
             <RiHome6Fill onClick={() => navigate("/user")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <a
+            <span
               className="link-body-emphasis fw-semibold text-decoration-none"
               onClick={() => navigate("/user/installationHistory")}
             >
               History
-            </a>
+            </span>
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             Details

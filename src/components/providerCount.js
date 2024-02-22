@@ -5,10 +5,17 @@ import ResponsiveDoughnutChart from "../components/doughnutChart";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { getProviderCount } from "../service/getProviderCount";
 
+/**
+ * ProviderCount component displays provider count data in a responsive doughnut chart and cards.
+ * @returns {JSX.Element} - ProviderCount component.
+ */
 function ProviderCount() {
+  // Register ChartJS elements
   ChartJS.register(ArcElement, Tooltip, Legend);
+  // State for provider count data and date
   const [providerCount, setProviderCount] = useState([]);
   const [date, setDate] = useState(new Date());
+  // Data for doughnut chart
   const data = [
     { name: "Primacom", value: parseInt(providerCount.primacom) },
     { name: "Tangara", value: parseInt(providerCount.tangara) },
@@ -17,16 +24,19 @@ function ProviderCount() {
   ];
 
   useEffect(() => {
-  getProviderCount(setProviderCount, setDate);
+    // Fetch provider count data
+    getProviderCount(setProviderCount, setDate);
   }, []);
 
   return (
     <Container>
       <Container>
+        {/* Responsive doughnut chart */}
         <div>
           <ResponsiveDoughnutChart data={data} />
         </div>
 
+        {/* Title */}
         <h1
           style={{
             textAlign: "center",
@@ -39,6 +49,7 @@ function ProviderCount() {
         >
           Provider Count
         </h1>
+        {/* Data update timestamp */}
         <h2
           style={{
             textAlign: "center",
@@ -52,6 +63,7 @@ function ProviderCount() {
         </h2>
       </Container>
 
+      {/* Provider count cards */}
       <Row className="text-center" style={{ marginTop: "8vh" }}>
         <Col>
           <Card style={{ backgroundColor: "#FFFFFF", borderColor: "#ffffff" }}>
@@ -134,4 +146,4 @@ function ProviderCount() {
   );
 }
 
-export default ProviderCount;
+export default ProviderCount; // Export the ProviderCount component for use in other files

@@ -23,7 +23,6 @@ import RelocationRequest from "./pages/user/relocationRequest";
 import DismantleRequest from "./pages/user/dismantleRequest";
 import AdminMainLayout from "./pages/admin/adminMainLayout";
 import AdminDashboard from "./pages/admin/adminDashboard";
-import AdminInstallationHistory from "./pages/admin/adminInstallationHistory";
 import AdminInstallationSearch from "./pages/admin/adminInstallationSearch";
 import AdminBatchDetails from "./pages/admin/adminInstallationDetails";
 import AdminRelocationHistory from "./pages/admin/adminRelocationHistory";

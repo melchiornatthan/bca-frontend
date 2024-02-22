@@ -1,9 +1,12 @@
 import React from "react";
-import "typeface-inter";
 import { Container, Row, Col } from "react-bootstrap";
 import ProviderCount from "../../components/providerCount";
 import RequestCount from "../../components/requestCount";
 
+/**
+ * AdminDashboard Component displays the admin dashboard.
+ * @returns {JSX.Element} - AdminDashboard component.
+ */
 function AdminDashboard() {
   return (
     <Container>
@@ -19,4 +22,4 @@ function AdminDashboard() {
   );
 }
 
-export default AdminDashboard;
+export default AdminDashboard; // Export AdminDashboard component

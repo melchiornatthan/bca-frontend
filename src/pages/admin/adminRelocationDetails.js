@@ -57,20 +57,20 @@ function AdminRelocationDetails() {
             <RiHome6Fill onClick={() => navigate("/admin")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <a
+            <span
               className="link-body-emphasis fw-semibold text-decoration-none"
               onClick={() => navigate("/admin/relocationHistory")}
             >
               History
-            </a>
+            </span>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <a
+            <span
               className="link-body-emphasis fw-semibold text-decoration-none"
               onClick={() => navigate(`/admin/relocationHistory/relocationBatch?batchid=${data.batchid}`)}
             >
               Batch
-            </a>
+            </span>
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             Details

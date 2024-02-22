@@ -6,6 +6,10 @@ import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { getDismantleDataByBatchID } from "../../service/getDismantlebyBatchID";
 
+/**
+ * AdminDismantleBatch Component displays the dismantles by batch ID for the admin.
+ * @returns {JSX.Element} - AdminDismantleBatch component.
+ */
 function AdminDismantleBatch() {
   const [data, setData] = useState([]);
   const location = useLocation();
@@ -17,6 +21,10 @@ function AdminDismantleBatch() {
     getDismantleDataByBatchID(batchid, setData);
   }, [batchid]);
 
+  const handleHistoryClick = () => {
+    navigate("/admin/dismantleHistory");
+  };
+
   return (
     <Container fluid className="pt-3">
       <Container className="my-3">
@@ -25,12 +33,13 @@ function AdminDismantleBatch() {
             <RiHome6Fill onClick={() => navigate("/admin")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <a
+            <span
               className="link-body-emphasis fw-semibold text-decoration-none"
-              onClick={() => navigate("/admin/dismantleHistory")}
+              onClick={handleHistoryClick}
+              style={{ cursor: "pointer" }}
             >
               History
-            </a>
+            </span>
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             Batch
@@ -42,4 +51,4 @@ function AdminDismantleBatch() {
   );
 }
 
-export default AdminDismantleBatch;
+export default AdminDismantleBatch; // Export AdminDismantleBatch component

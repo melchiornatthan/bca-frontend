@@ -31,7 +31,7 @@ function AdminDismantleDetails() {
         installation_id: data.id,
       };
       try {
-        const response = await axios.put(`update-dismantle/`, body);
+        await axios.put(`update-dismantle/`, body);
         navigate(`/admin/dismantleHistory/dismantleBatch?batchid=${batchid}`);
       } catch (error) {
         console.error("Error updating installation data:", error);
@@ -47,15 +47,15 @@ function AdminDismantleDetails() {
             <RiHome6Fill onClick={() => navigate("/admin")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <a
+            <span
               className="link-body-emphasis fw-semibold text-decoration-none"
               onClick={() => navigate("/admin/dismantleHistory")}
             >
               History
-            </a>
+            </span>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <a
+            <span
               className="link-body-emphasis fw-semibold text-decoration-none"
               onClick={() =>
                 navigate(
@@ -64,7 +64,7 @@ function AdminDismantleDetails() {
               }
             >
               Batch
-            </a>
+            </span>
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             Details

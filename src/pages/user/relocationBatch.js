@@ -36,6 +36,7 @@ function RelocationBatch() {
       "installation_id",
       "createdAt",
       "updatedAt",
+      "provider_id"
     ];
     const headers = Object.keys(data[0]).filter(
       (key) => !keysToExclude.includes(key)
@@ -133,12 +134,12 @@ function RelocationBatch() {
             <RiHome6Fill onClick={() => navigate("/user")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <a
+            <span
               className="link-body-emphasis fw-semibold text-decoration-none"
               onClick={() =>  navigate("/user/relocationHistory")}
             >
               History
-            </a>
+            </span>
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             Batch

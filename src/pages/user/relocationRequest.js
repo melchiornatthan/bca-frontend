@@ -19,7 +19,6 @@ function RelocationRequest() {
   const [newAddress, setNewAddress] = useState("");
   const [area, setArea] = useState("Jakarta");
   const [newPic, setNewPic] = useState("");
-  const [newCommunication, setNewCommunication] = useState("VSAT");
   const [areas, setAreas] = useState([]);
   const [specialData, setSpecialData] = useState([]);
   const [batchId, setBatchId] = useState(200000000);
@@ -107,7 +106,6 @@ function RelocationRequest() {
     setNewAddress("");
     setNewLocation("");
     setNewPic("");
-    setNewCommunication("VSAT");
     setArea("Jakarta");
     setSelectedData(null);
     setData([]);
@@ -133,7 +131,7 @@ function RelocationRequest() {
       setBatchData([]); // Clear the batch data
       setSubmittedRequests([]); // Clear the previous requests
       setBatchId(generateBatchId());
-      navigate("/user");
+     
     } catch (error) {
       console.error("Error submitting batch data:", error);
       toast.error("Error submitting batch data");

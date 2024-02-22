@@ -1,8 +1,13 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * RelocationByBatchIdTable Component displays relocation details based on batch ID.
+ * @param {Object} props - The component's props.
+ * @param {Array} props.batchdata - Data for relocation batch.
+ * @returns {JSX.Element} - RelocationByBatchIdTable component.
+ */
 function RelocationByBatchIdTable({ batchdata }) {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -18,11 +23,13 @@ function RelocationByBatchIdTable({ batchdata }) {
     setHasPending(batchdata.some((entry) => entry.status === "pending"));
   }, [batchdata]);
 
-  
-
+  /**
+   * Handle navigation to relocation details based on user role.
+   * @param {string} id - The relocation ID.
+   */
   const toDetails = (id) => {
-    const path = isAdmin ? navigate(`/admin/relocationHistory/relocationDetails?id=${id}`) : navigate(`/user/relocationHistory/relocationDetails?id=${id}`);
-   
+    const path = isAdmin ? `/admin/relocationHistory/relocationDetails?id=${id}` : `/user/relocationHistory/relocationDetails?id=${id}`;
+    navigate(path);
   };
 
   return (
@@ -30,7 +37,6 @@ function RelocationByBatchIdTable({ batchdata }) {
       style={{
         borderRadius: "17px",
         padding: "20px",
-       
       }}
       className="text-center mx-auto px-3"
     >
@@ -46,12 +52,11 @@ function RelocationByBatchIdTable({ batchdata }) {
               <th>New Communication</th>
               <th>Provider</th>
               {(isAdmin || !hasPending) && <th>Status</th>}
-             
             </tr>
           </thead>
           <tbody>
             {data.map((request, index) => (
-              <tr key={index}  onClick={() => toDetails(request.id)}>
+              <tr key={index} onClick={() => toDetails(request.id)}>
                 <td>{request.old_location}</td>
                 <td>{request.new_location}</td>
                 <td>{request.new_address}</td>
@@ -73,7 +78,6 @@ function RelocationByBatchIdTable({ batchdata }) {
                     {request.status}
                   </td>
                 )}
-                
               </tr>
             ))}
           </tbody>
@@ -83,4 +87,4 @@ function RelocationByBatchIdTable({ batchdata }) {
   );
 }
 
-export default RelocationByBatchIdTable;
+export default RelocationByBatchIdTable; // Export RelocationByBatchIdTable component

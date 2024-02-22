@@ -24,7 +24,7 @@ function AdminInstallationOverride() {
 
   useEffect(() => {
     getInstallationById(id, setData);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (data.area_id) {
@@ -61,20 +61,20 @@ function AdminInstallationOverride() {
             <RiHome6Fill onClick={() => navigate("/admin")} />
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <a
+            <span
               className="link-body-emphasis fw-semibold text-decoration-none"
               onClick={() => navigate("/admin/installationHistory")} 
             >
               History
-            </a>
+            </span>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
-            <a
+            <span
               className="link-body-emphasis fw-semibold text-decoration-none"
               onClick={() => navigate(`/admin/installationHistory/installationDetails?batchid=${data.batchid}`)} 
             >
               Details
-            </a>
+            </span>
           </Breadcrumb.Item>
           <Breadcrumb.Item active aria-current="page">
             Override

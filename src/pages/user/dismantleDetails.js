@@ -26,15 +26,15 @@ function DismantleDetails() {
           <RiHome6Fill onClick={() => navigate("/user")} />
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a
+          <span
             className="link-body-emphasis fw-semibold text-decoration-none"
             onClick={() => navigate("/user/dismantleHistory")}
           >
             History
-          </a>
+          </span>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a
+          <span
             className="link-body-emphasis fw-semibold text-decoration-none"
             onClick={() =>
               navigate(
@@ -43,7 +43,7 @@ function DismantleDetails() {
             }
           >
             Batch
-          </a>
+          </span>
         </Breadcrumb.Item>
         <Breadcrumb.Item active aria-current="page">
           Details

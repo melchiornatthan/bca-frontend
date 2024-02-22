@@ -19,7 +19,7 @@ function MainLayout() {
       </Col>
       <Col>
         <Navbar className="fixed-top"/>
-        <div style={{ overflowY: "auto", maxHeight: "calc(100vh - 56px)" }}>
+        <div>
           <Outlet />
         </div>
       </Col>
