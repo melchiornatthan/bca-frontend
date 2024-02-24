@@ -1,8 +1,9 @@
 // axiosConfig.js
 import axios from 'axios';
 
+
 const instance = axios.create({
-  baseURL: 'http://localhost:3333/bca-app/', // Replace with your API base URL
+  baseURL: process.env.REACT_APP_API_URL, // Replace with your API base URL
   headers: {
     // 'Content-Type': 'application/json',
     // Add any other default headers you need
