@@ -5,7 +5,9 @@ import DismantleDetailsService from "../../components/dismantleDetailsLayout";
 import "typeface-inter";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { getInstallationById } from "../../service/getInstallationbyID";
+
+import { getAtmById } from "../../service/getAtmByID";
+
 
 function DismantleDetails() {
   const [data, setData] = useState({});
@@ -15,7 +17,7 @@ function DismantleDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-   getInstallationById(int_id, setData);
+   getAtmById(int_id, setData);
   }, [int_id]);
 
 

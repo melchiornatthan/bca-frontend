@@ -179,7 +179,7 @@ function RelocationRequest() {
 
   const fetchInstallationbyId = async (id) => {
     await axios
-      .get("installationsById/" + id + "")
+      .get("atmById/" + id + "")
       .then((response) => {
         console.log(response.data[0]);
         setSelectedData(response.data[0]);

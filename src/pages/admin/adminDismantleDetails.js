@@ -5,7 +5,7 @@ import axios from "../../axiosConfig";
 import DismantleDetailsService from "../../components/dismantleDetailsLayout";
 import { RiHome6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { getInstallationById } from "../../service/getInstallationbyID";
+import { getAtmById } from "../../service/getAtmByID";
 
 function AdminDismantleDetails() {
   const [data, setData] = useState({});
@@ -17,7 +17,8 @@ function AdminDismantleDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getInstallationById(int_id, setData);
+    getAtmById(int_id, setData);
+    console.log(batchid);
   }, [int_id]);
 
   const updateRequestStatus = async () => {
@@ -59,7 +60,7 @@ function AdminDismantleDetails() {
               className="link-body-emphasis fw-semibold text-decoration-none"
               onClick={() =>
                 navigate(
-                  `/admin/dismantleHistory/dismantleBatch?batchid=${data.batchid}`
+                  `/admin/dismantleHistory/dismantleBatch?batchid=${batchid}`
                 )
               }
             >
